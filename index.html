@@ -1,39 +1,10 @@
-python -m http.server 8080
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-
-const PORT = 8080;
-
-const server = http.createServer((req, res) => {
-    let filePath = '.' + req.url;
-    if (filePath === './') filePath = './loto.html';
-    
-    const extname = path.extname(filePath);
-    const contentType = extname === '.html' ? 'text/html' : 'application/octet-stream';
-    
-    fs.readFile(filePath, (error, content) => {
-        if (error) {
-            res.writeHead(404);
-            res.end('Ficheiro não encontrado');
-        } else {
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content, 'utf-8');
-        }
-    });
-});
-
-server.listen(PORT, () => {
-    console.log('✅ Servidor em: http://localhost:' + PORT);
-    console.log('📄 Abra: http://localhost:' + PORT + '/loto.html');
-});
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0c12">
-<title>🎯 LotoAnalytics Pro v9.3 - Funcional Offline</title>
+<title>🎯 LotoAnalytics Pro v9.4 - Apostas Simples e Múltiplas</title>
 <style>
 :root {
     --bg-primary: #0a0c12;
@@ -76,7 +47,8 @@ h1 { font-size: 2rem; background: var(--gradient-ultra); -webkit-background-clip
 .tab { background: rgba(30, 42, 50, 0.8); border: 1px solid var(--border-color); padding: 10px 18px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s; color: #ccc; font-size: 0.9rem; }
 .tab:hover { background: rgba(102, 126, 234, 0.3); }
 .tab.active { background: var(--gradient-button); color: white; border-color: transparent; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
-.card { background: var(--bg-card); border-radius: 16px; padding: 20px; margin-bottom: 15px; border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }h2 { color: var(--accent-gold); margin-bottom: 12px; border-left: 4px solid var(--accent-orange); padding-left: 10px; font-size: 1.3rem; }
+.card { background: var(--bg-card); border-radius: 16px; padding: 20px; margin-bottom: 15px; border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+h2 { color: var(--accent-gold); margin-bottom: 12px; border-left: 4px solid var(--accent-orange); padding-left: 10px; font-size: 1.3rem; }
 h3 { color: var(--accent-gold); margin: 15px 0 10px 0; font-size: 1.1rem; }
 .grid { display: grid; gap: 15px; }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
@@ -125,7 +97,8 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
 .number-btn.selected { background: var(--gradient-success); border-color: var(--success); transform: scale(1.1); }
 .number-btn.star-btn.selected { background: var(--gradient-primary-btn); border-color: var(--danger); }
 .number-btn.dream-btn.selected { background: var(--gradient-dream); color: #0a0c12 !important; }
-.validation-msg { padding: 10px 15px; border-radius: 10px; margin: 10px 0; font-weight: 600; }.validation-msg.valid { background: rgba(56,239,125,0.15); border: 1px solid var(--success); color: var(--success); }
+.validation-msg { padding: 10px 15px; border-radius: 10px; margin: 10px 0; font-weight: 600; }
+.validation-msg.valid { background: rgba(56,239,125,0.15); border: 1px solid var(--success); color: var(--success); }
 .validation-msg.invalid { background: rgba(245,87,108,0.15); border: 1px solid var(--danger); color: var(--danger); }
 .toast { position: fixed; top: 20px; right: 20px; padding: 15px 25px; border-radius: 12px; color: white; font-weight: 600; z-index: 9999; animation: slideIn 0.3s; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
 .toast.success { background: var(--gradient-success); }
@@ -154,6 +127,8 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
 .lib-status.warn { background: rgba(243,156,18,0.15); border: 1px solid var(--warning); color: var(--warning); }
 .lib-status.err { background: rgba(245,87,108,0.15); border: 1px solid var(--danger); color: var(--danger); }
 .chart-fallback { background: rgba(102,126,234,0.1); border: 1px dashed var(--accent-blue); border-radius: 12px; padding: 20px; text-align: center; color: var(--text-secondary); }
+.combinacoes-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; justify-content: center; }
+.combinacao-item { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 5px 12px; border: 1px solid #3a4a5a; }
 @media (max-width: 700px) {
     .bola { width: 42px; height: 42px; font-size: 1rem; }
     h1 { font-size: 1.5rem; }
@@ -166,15 +141,16 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
 <div class="container">
 
 <header>
-    <h1>🎯 LotoAnalytics Pro <span class="version-badge">v9.3 ✅</span></h1>
-    <div class="subtitle">Apostas Simples e Múltiplas • 1 a 10 Bilhetes • Preços Oficiais Santa Casa • Redução de Probabilidades</div>
+    <h1>🎯 LotoAnalytics Pro <span class="version-badge">v9.4 ✅</span></h1>
+    <div class="subtitle">Apostas Simples e Múltiplas • 1 a 10 Bilhetes • Preços Oficiais Santa Casa</div>
     <div id="libStatus" class="lib-status warn">⏳ A carregar bibliotecas...</div>
     <div class="info-box" style="margin-top:12px;">
         <strong>📊 COMO FUNCIONA:</strong>
         <br>• <strong>Aposta Simples:</strong> 5 números (Euromilhões/Totoloto) ou 6 (EuroDreams)
         <br>• <strong>Aposta Múltipla:</strong> 6-10 números - gera várias combinações automaticamente
-        <br>• <strong>Múltiplos Bilhetes:</strong> 1 a 10 bilhetes diferentes para reduzir probabilidades
-        <br>• <strong>Preços Oficiais:</strong> Todos os cálculos usam preços reais da Santa Casa 2024/2025    </div>
+        <br>• <strong>Múltiplos Bilhetes:</strong> 1 a 10 bilhetes diferentes
+        <br>• <strong>Preços Oficiais:</strong> Todos os cálculos usam preços reais da Santa Casa 2024/2025
+    </div>
 </header>
 
 <div class="tabs">
@@ -204,7 +180,7 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
             <button onclick="App.clearAllData()" style="background:linear-gradient(135deg,#e74c3c,#c0392b);">🗑️ Limpar Dados</button>
         </div>
         <div id="gameInfo" class="game-info"></div>
-        <div id="dbStatus">⚠️ Base de dados vazia - carregue dados para começar</div>
+        <div id="dbStatus">⚠️ Base de dados vazia - carregue dados para estatísticas</div>
     </div>
     <div class="grid grid-4">
         <div class="stat-box"><h4>📊 Total Sorteios</h4><div class="value" id="stat-total">0</div></div>
@@ -223,7 +199,8 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
     <div class="card"><h3>🗺️ Mapa de Calor (Últimos 30 sorteios)</h3><div id="heatmap" class="heat-grid"></div></div>
 </div>
 
-<!-- GERADOR IA --><div class="section" id="sec-gerador">
+<!-- GERADOR IA -->
+<div class="section" id="sec-gerador">
     <div class="card">
         <h2>✨ Gerador com 7 Métodos</h2>
         <div class="info-box">
@@ -258,21 +235,27 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
         <div id="genNumbers" class="numeros-area">Clique em "Gerar Aposta"</div>
         <h3 id="genStarsLabel">⭐ Estrelas</h3>
         <div id="genStars" class="numeros-area"></div>
+
+        <div id="genCombinationsContainer" style="display:none;">
+            <h3>📋 Combinações Geradas (Aposta Múltipla)</h3>
+            <div id="genCombinations" class="combinacoes-grid"></div>
+        </div>
+
         <div class="price-display">
             <h4>💰 PREÇO DA APOSTA</h4>
             <div class="total" id="genPrice">0,00 €</div>
             <p id="genPriceDetail">Selecione o tipo de aposta</p>
         </div>
         <div class="grid grid-3">
-            <div class="stat-box"><h4>🎲 Combinações</h4><div class="value" id="genComb">--</div></div>
-            <div class="stat-box"><h4>📊 Score</h4><div class="value" id="genScore">--</div></div>
+            <div class="stat-box"><h4>🎲 Combinações</h4><div class="value" id="genComb">--</div></div>            <div class="stat-box"><h4>📊 Score</h4><div class="value" id="genScore">--</div></div>
             <div class="stat-box"><h4>🎯 Prob. Jackpot</h4><div class="value" id="genJackpot">--</div></div>
         </div>
         <div class="card" style="background:linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,107,53,0.1)); border:2px solid #FFD700;">
             <h3>🧬 Análise do Algoritmo (7 Critérios)</h3>
             <div id="geneticAnalysis"></div>
         </div>
-        <h3>📋 Probabilidades Matemáticas</h3>        <div id="genProbs"></div>
+        <h3>📋 Probabilidades Matemáticas</h3>
+        <div id="genProbs"></div>
         <button onclick="App.saveGeneratedBet()" class="success" style="margin-top:15px;">💾 Guardar esta Aposta</button>
     </div>
 </div>
@@ -313,15 +296,15 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
                 </select>
             </label>
             <label>Variação:
-                <select id="multiVariation">
-                    <option value="high">Alta (números diferentes)</option>
+                <select id="multiVariation">                    <option value="high">Alta (números diferentes)</option>
                     <option value="medium" selected>Média</option>
                     <option value="low">Baixa (alguns repetidos)</option>
                 </select>
             </label>
             <button onclick="App.generateMultipleBets()" class="ultra">🎲 Gerar Bilhetes</button>
         </div>
-        <div class="price-display">            <h4>💰 CUSTO TOTAL</h4>
+        <div class="price-display">
+            <h4>💰 CUSTO TOTAL</h4>
             <div class="total" id="multiTotalCost">0,00 €</div>
             <p id="multiCostDetail">Selecione a quantidade de bilhetes</p>
         </div>
@@ -362,15 +345,19 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
         <div id="starGrid" class="bet-input"></div>
         <div id="validationMsg"></div>
         <div class="price-display">
-            <h4>💰 PREÇO DA APOSTA</h4>
-            <div class="total" id="manualPrice">0,00 €</div>
+            <h4>💰 PREÇO DA APOSTA</h4>            <div class="total" id="manualPrice">0,00 €</div>
             <p id="manualPriceDetail">Selecione números para ver o preço</p>
         </div>
         <div class="grid grid-3">
             <div class="stat-box"><h4>🎲 Combinações</h4><div class="value" id="manualComb">0</div></div>
             <div class="stat-box"><h4>📊 Soma</h4><div class="value" id="manualSum">0</div></div>
             <div class="stat-box"><h4>🎯 Tipo</h4><div class="value" id="manualType">--</div></div>
-        </div>        <div class="flex" style="margin-top:15px;">
+        </div>
+        <div id="manualCombinationsContainer" style="display:none; margin-top:10px;">
+            <h3>📋 Combinações Geradas (Aposta Múltipla)</h3>
+            <div id="manualCombinations" class="combinacoes-grid"></div>
+        </div>
+        <div class="flex" style="margin-top:15px;">
             <button onclick="App.saveManualBet()" class="success">💾 Guardar Aposta</button>
             <button onclick="App.clearManualBet()">🗑️ Limpar</button>
         </div>
@@ -396,7 +383,6 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
     </div>
 </div>
 
-<!-- HISTÓRICO -->
 <div class="section" id="sec-historico">
     <div class="card">
         <h2>📜 Histórico de Sorteios</h2>
@@ -408,18 +394,18 @@ canvas { max-width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padd
         <h2>💾 Apostas Guardadas</h2>
         <div style="max-height:400px; overflow-y:auto;">
             <table id="savedBetsTable"><tr><td>Nenhuma aposta guardada</td></tr></table>
-        </div>
-    </div>
+        </div>    </div>
 </div>
 
 </div>
 
 <script>
-/* ============================================================
-   LOADER ROBUSTO - Fallback entre múltiplas CDNs
-   ============================================================ */
+// ============================================================
+// LOADER ROBUSTO - Fallback entre múltiplas CDNs
+// ============================================================
 const LibraryLoader = {
-    loaded: { Chart: false, Papa: false, luxon: false },    loadScript(url) {
+    loaded: { Chart: false, Papa: false },
+    loadScript(url) {
         return new Promise((resolve, reject) => {
             const script = document.createElement('script');
             script.src = url;
@@ -457,20 +443,13 @@ const LibraryLoader = {
             'https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js',
             'https://unpkg.com/papaparse@5.4.1/papaparse.min.js'
-        ]);
-        this.loaded.Papa = papaLoaded;
+        ]);        this.loaded.Papa = papaLoaded;
         results.push({ name: 'PapaParse', ok: papaLoaded });
-        const luxonLoaded = await this.loadWithFallbacks('luxon', [
-            'https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js',
-            'https://unpkg.com/luxon@3.4.4/build/global/luxon.min.js'
-        ]);
-        this.loaded.luxon = luxonLoaded;
-        results.push({ name: 'Luxon', ok: luxonLoaded });
         const allOk = results.every(r => r.ok);
-        const someOk = results.some(r => r.ok);        if (allOk) {
+        const someOk = results.some(r => r.ok);
+        if (allOk) {
             status.className = 'lib-status ok';
-            status.innerHTML = '✅ <strong>Todas as bibliotecas carregadas!</strong> Chart.js + PapaParse + Luxon';
+            status.innerHTML = '✅ <strong>Todas as bibliotecas carregadas!</strong> Chart.js + PapaParse';
         } else if (someOk) {
             const failed = results.filter(r => !r.ok).map(r => r.name).join(', ');
             status.className = 'lib-status warn';
@@ -479,22 +458,13 @@ const LibraryLoader = {
             status.className = 'lib-status err';
             status.innerHTML = '❌ <strong>Sem bibliotecas</strong> - Verifique sua ligação à Internet';
         }
-        console.log('═══════════════════════════════════════');
-        console.log('🎯 LotoAnalytics Pro v9.3 - Status');
-        console.log('═══════════════════════════════════════');
-        console.log('Chart.js:', typeof Chart !== 'undefined' ? '✅ OK' : '❌ Falhou');
-        console.log('PapaParse:', typeof Papa !== 'undefined' ? '✅ OK' : '❌ Falhou');
-        console.log('Luxon:', typeof luxon !== 'undefined' ? '✅ OK' : '❌ Falhou');
-        console.log('IndexedDB:', typeof indexedDB !== 'undefined' ? '✅ OK' : '❌ Não suportado');
-        console.log('Crypto API:', typeof crypto !== 'undefined' && crypto.getRandomValues ? '✅ OK' : '⚠️ Fallback Math.random');
-        console.log('═══════════════════════════════════════');
         return allOk;
     }
 };
 
-/* ============================================================
-   CONFIG - Preços Oficiais Santa Casa 2024/2025
-   ============================================================ */
+// ============================================================
+// CONFIG - Preços Oficiais Santa Casa 2024/2025
+// ============================================================
 const GAMES = {
     euromilhoes: {
         name: "Euromilhões", icon: "🎲", maxNumbers: 50, drawNumbers: 5,
@@ -515,9 +485,9 @@ const GAMES = {
         name: "Totoloto", icon: "🎯", maxNumbers: 49, drawNumbers: 5,
         maxStars: 13, drawStars: 1, starLabel: "Super", starIcon: "⚡",
         price: 1.00, multiPrices: {5:1.00, 6:6, 7:21, 8:56, 9:126, 10:252},
-        description: "5 números (1-49) + 1 Super (1-13). Sorteios quarta e sábado.",
-        jackpotOdds: 25889368,
-        betTypes: [            {count: 5, label: "Simples (5 números) - 1,00€"},
+        description: "5 números (1-49) + 1 Super (1-13). Sorteios quarta e sábado.",        jackpotOdds: 25889368,
+        betTypes: [
+            {count: 5, label: "Simples (5 números) - 1,00€"},
             {count: 6, label: "Múltipla 6 (6 comb) - 6,00€"},
             {count: 7, label: "Múltipla 7 (21 comb) - 21,00€"},
             {count: 8, label: "Múltipla 8 (56 comb) - 56,00€"},
@@ -541,9 +511,9 @@ const GAMES = {
     }
 };
 
-/* ============================================================
-   UTILS
-   ============================================================ */
+// ============================================================
+// UTILS
+// ============================================================
 const UI = {
     toast(message, type = 'success') {
         const toast = document.createElement('div');
@@ -564,18 +534,18 @@ const Validator = {
         const errors = [];
         if (!Array.isArray(numbers) || !Array.isArray(stars)) return { valid: false, errors: ['Dados inválidos'] };
         if (numbers.length < cfg.drawNumbers) errors.push(`Mínimo ${cfg.drawNumbers} números`);
-        if (numbers.length > 10) errors.push('Máximo 10 números');
-        if (new Set(numbers).size !== numbers.length) errors.push('Números duplicados');
-        if (numbers.some(n => !Number.isInteger(n) || n < 1 || n > cfg.maxNumbers)) errors.push('Números fora do rango');        if (stars.length !== cfg.drawStars) errors.push(`Necessário ${cfg.drawStars} ${cfg.starLabel}`);
+        if (numbers.length > 10) errors.push('Máximo 10 números');        if (new Set(numbers).size !== numbers.length) errors.push('Números duplicados');
+        if (numbers.some(n => !Number.isInteger(n) || n < 1 || n > cfg.maxNumbers)) errors.push('Números fora do rango');
+        if (stars.length !== cfg.drawStars) errors.push(`Necessário ${cfg.drawStars} ${cfg.starLabel}`);
         if (new Set(stars).size !== stars.length) errors.push(`${cfg.starLabel} duplicado(s)`);
         if (stars.some(s => !Number.isInteger(s) || s < 1 || s > cfg.maxStars)) errors.push(`${cfg.starLabel} fora do rango`);
         return { valid: errors.length === 0, errors };
     }
 };
 
-/* ============================================================
-   MATH
-   ============================================================ */
+// ============================================================
+// MATH
+// ============================================================
 const MathUtils = {
     combination(n, k) {
         if (k < 0 || k > n) return 0;
@@ -613,9 +583,9 @@ const MathUtils = {
             attempts++;
         }
         if (set.size < count) {
-            const available = [];
-            for (let i = 1; i <= max; i++) if (!set.has(i)) available.push(i);
-            while (set.size < count && available.length > 0) {                const idx = Math.floor(Math.random() * available.length);
+            const available = [];            for (let i = 1; i <= max; i++) if (!set.has(i)) available.push(i);
+            while (set.size < count && available.length > 0) {
+                const idx = Math.floor(Math.random() * available.length);
                 set.add(available[idx]);
                 available.splice(idx, 1);
             }
@@ -649,9 +619,9 @@ const MathUtils = {
     }
 };
 
-/* ============================================================
-   STATISTICS
-   ============================================================ */
+// ============================================================
+// STATISTICS
+// ============================================================
 const Statistics = {
     analyze(draws, game) {
         const cfg = GAMES[game];
@@ -662,9 +632,9 @@ const Statistics = {
         const lastSeenStar = new Array(cfg.maxStars + 1).fill(draws.length);
         const sums = [];
         const positionFreq = Array.from({length: cfg.drawNumbers}, () => new Array(cfg.maxNumbers + 1).fill(0));
-        for (let i = 0; i < draws.length; i++) {
-            const d = draws[i];
-            if (!d.numbers || !d.stars) continue;            for (let pos = 0; pos < d.numbers.length; pos++) {
+        for (let i = 0; i < draws.length; i++) {            const d = draws[i];
+            if (!d.numbers || !d.stars) continue;
+            for (let pos = 0; pos < d.numbers.length; pos++) {
                 const n = d.numbers[pos];
                 if (n >= 1 && n <= cfg.maxNumbers) {
                     freqNum[n]++;
@@ -711,9 +681,9 @@ const Statistics = {
                     const key = d.numbers[i] + '-' + d.numbers[j];
                     pairs[key] = (pairs[key] || 0) + 1;
                 }
-            }
-        }
-        const correlations = Object.entries(pairs).sort((a,b) => b[1] - a[1]).slice(0, 15);        let totalPares = 0, totalImpares = 0;
+            }        }
+        const correlations = Object.entries(pairs).sort((a,b) => b[1] - a[1]).slice(0, 15);
+        let totalPares = 0, totalImpares = 0;
         for (const d of draws) {
             if (!d.numbers) continue;
             totalPares += d.numbers.filter(n => n%2===0).length;
@@ -740,9 +710,9 @@ const Statistics = {
     }
 };
 
-/* ============================================================
-   STORAGE
-   ============================================================ */
+// ============================================================
+// STORAGE
+// ============================================================
 const Storage = {
     db: null,
     async init() {
@@ -760,9 +730,9 @@ const Storage = {
                         db.createObjectStore('bets', { keyPath: 'id', autoIncrement: true });
                     }
                 };
-                req.onsuccess = (e) => { this.db = e.target.result; resolve(); };
-                req.onerror = (e) => reject(e.target.error);
-            } catch (err) { reject(err); }        });
+                req.onsuccess = (e) => { this.db = e.target.result; resolve(); };                req.onerror = (e) => reject(e.target.error);
+            } catch (err) { reject(err); }
+        });
     },
     async saveDraws(draws) {
         return new Promise((resolve, reject) => {
@@ -809,9 +779,9 @@ const Storage = {
                 const tx = this.db.transaction('bets', 'readwrite');
                 tx.objectStore('bets').add(bet);
                 tx.oncomplete = () => resolve();
-                tx.onerror = (e) => reject(e.target.error);
-            } catch (err) { reject(err); }
-        });    },
+                tx.onerror = (e) => reject(e.target.error);            } catch (err) { reject(err); }
+        });
+    },
     async getBets() {
         return new Promise((resolve, reject) => {
             try {
@@ -824,12 +794,12 @@ const Storage = {
     }
 };
 
-/* ============================================================
-   GENETIC ALGORITHM
-   ============================================================ */
+// ============================================================
+// GENETIC ALGORITHM
+// ============================================================
 const GeneticAlgorithm = {
     fitness(individual, stats, cfg) {
-        if (!stats || !cfg) return { total: 0, criteria: {} };
+        if (!stats || !cfg) return { total: 50, criteria: {} };
         const { freqNum, lastSeenNum, gaps, positionFreq, mean, std } = stats;
         const maxFreq = Math.max(...freqNum.slice(1)) || 1;
         const maxDelay = Math.max(...lastSeenNum.slice(1)) || 1;
@@ -858,9 +828,9 @@ const GeneticAlgorithm = {
         }, 0) / n;
         criteria.position = Math.min(100, posScore * 100);
         return { total: Object.values(criteria).reduce((a,b) => a+b, 0) / 7, criteria };
-    },
-    crossover(p1, p2) {
-        const size = p1.length;        const start = Math.floor(Math.random() * size);
+    },    crossover(p1, p2) {
+        const size = p1.length;
+        const start = Math.floor(Math.random() * size);
         const end = start + Math.floor(Math.random() * (size - start)) + 1;
         const child = new Array(size).fill(0);
         const used = new Set();
@@ -907,13 +877,14 @@ const GeneticAlgorithm = {
                         newNum = MathUtils.secureRandom(cfg.maxNumbers);
                     }
                     attempts++;
-                } while (mutated.includes(newNum) && attempts < 50);
-                if (!mutated.includes(newNum)) mutated[minScoreIdx] = newNum;
-            }        }
+                } while (mutated.includes(newNum) && attempts < 50);                if (!mutated.includes(newNum)) mutated[minScoreIdx] = newNum;
+            }
+        }
         return mutated.sort((a,b) => a-b);
     },
     evolve(game, count, stats, generations = 1000) {
         const cfg = GAMES[game];
+        if (!cfg) return { best: MathUtils.generateUnique(50, count), fitness: { total: 50, criteria: {} } };
         const popSize = 300;
         const eliteSize = Math.max(15, Math.floor(popSize * 0.1));
         let population = [];
@@ -956,11 +927,12 @@ const GeneticAlgorithm = {
         return t.sort((a,b) => b.fit.total - a.fit.total)[0];
     }
 };
-
-/* ============================================================
-   NEURAL NETWORK   ============================================================ */
+// ============================================================
+// NEURAL NETWORK
+// ============================================================
 const NeuralNetwork = {
     predict(game, stats, cfg) {
+        if (!stats) return new Array(cfg.maxNumbers + 1).fill(50);
         const { freqNum, lastSeenNum, gaps } = stats;
         const scores = new Array(cfg.maxNumbers + 1).fill(0);
         for (let i = 1; i <= cfg.maxNumbers; i++) {
@@ -978,6 +950,7 @@ const NeuralNetwork = {
     },
     generateFromNetwork(game, count, stats) {
         const cfg = GAMES[game];
+        if (!cfg) return [];
         const scores = this.predict(game, stats, cfg);
         const ranked = scores.map((s, i) => ({ num: i, score: s })).filter(x => x.num > 0).sort((a,b) => b.score - a.score);
         const selected = [];
@@ -989,9 +962,9 @@ const NeuralNetwork = {
     }
 };
 
-/* ============================================================
-   GENERATOR
-   ============================================================ */
+// ============================================================
+// GENERATOR
+// ============================================================
 const Generator = {
     genetic(game, count, stats, generations = 1000) {
         const result = GeneticAlgorithm.evolve(game, count, stats, generations);
@@ -1005,9 +978,10 @@ const Generator = {
     },
     statistical(game, count, stats) {
         const cfg = GAMES[game];
-        const scores = new Array(cfg.maxNumbers + 1).fill(0);
-        const maxFreq = Math.max(...stats.freqNum.slice(1)) || 1;
-        for (let i = 1; i <= cfg.maxNumbers; i++) {            scores[i] += (stats.freqNum[i] / maxFreq) * 40;
+        if (!stats) return this.random(game, count);
+        const scores = new Array(cfg.maxNumbers + 1).fill(0);        const maxFreq = Math.max(...stats.freqNum.slice(1)) || 1;
+        for (let i = 1; i <= cfg.maxNumbers; i++) {
+            scores[i] += (stats.freqNum[i] / maxFreq) * 40;
             scores[i] += Math.min(30, stats.lastSeenNum[i] * 0.8);
         }
         const ranked = scores.map((s,i) => ({num:i, score:s})).filter(x => x.num > 0).sort((a,b) => b.score - a.score);
@@ -1017,13 +991,12 @@ const Generator = {
     },
     random(game, count) {
         const numbers = MathUtils.generateUnique(GAMES[game].maxNumbers, count);
-        const stats = App.stats || {};
-        const cfg = GAMES[game];
-        const fitness = Object.keys(stats).length > 0 ? GeneticAlgorithm.fitness(numbers, stats, cfg) : { total: 50, criteria: {} };
+        const fitness = { total: 50, criteria: {} };
         return { numbers, fitness, method: 'random' };
     },
     balanced(game, count, stats) {
         const cfg = GAMES[game];
+        if (!stats) return this.random(game, count);
         const zoneSize = cfg.maxNumbers / 5;
         const perZone = Math.ceil(count / 5);
         const selected = [];
@@ -1049,14 +1022,15 @@ const Generator = {
     },
     statisticalRandom(game, count, stats) {
         const cfg = GAMES[game];
+        if (!stats) return this.random(game, count);
         const scores = new Array(cfg.maxNumbers + 1).fill(0);
         const maxFreq = Math.max(...stats.freqNum.slice(1)) || 1;
         for (let i = 1; i <= cfg.maxNumbers; i++) {
             scores[i] = (stats.freqNum[i] / maxFreq) * 50 + Math.random() * 50;
         }
-        const ranked = scores.map((s,i) => ({num:i, score:s})).filter(x => x.num > 0).sort((a,b) => b.score - a.score);
-        const numbers = ranked.slice(0, count).map(r => r.num).sort((a,b) => a-b);
-        const fitness = GeneticAlgorithm.fitness(numbers, stats, cfg);        return { numbers, fitness, method: 'statistical-random' };
+        const ranked = scores.map((s,i) => ({num:i, score:s})).filter(x => x.num > 0).sort((a,b) => b.score - a.score);        const numbers = ranked.slice(0, count).map(r => r.num).sort((a,b) => a-b);
+        const fitness = GeneticAlgorithm.fitness(numbers, stats, cfg);
+        return { numbers, fitness, method: 'statistical-random' };
     },
     hybridUltra(game, count, stats, generations = 1000) {
         const methods = ['genetic', 'neural', 'statistical', 'balanced'];
@@ -1098,18 +1072,20 @@ const Generator = {
     },
     generateStars(game, stats) {
         const cfg = GAMES[game];
+        if (!cfg) return [];
+        if (!stats) return MathUtils.generateUnique(cfg.maxStars, cfg.drawStars);
         const scores = new Array(cfg.maxStars + 1).fill(0);
         const maxFreq = Math.max(...stats.freqStar.slice(1)) || 1;
         for (let i = 1; i <= cfg.maxStars; i++) {
             scores[i] = ((stats.freqStar[i] || 0) / maxFreq) * 50 + Math.min(50, (stats.lastSeenStar[i] || 0) * 1.5);
         }
-        return scores.map((s,i) => ({num:i, score:s})).filter(x => x.num > 0)
-            .sort((a,b) => b.score - a.score).slice(0, cfg.drawStars).map(s => s.num).sort((a,b) => a-b);
-    }};
+        return scores.map((s,i) => ({num:i, score:s})).filter(x => x.num > 0)            .sort((a,b) => b.score - a.score).slice(0, cfg.drawStars).map(s => s.num).sort((a,b) => a-b);
+    }
+};
 
-/* ============================================================
-   CHARTS - Com fallback
-   ============================================================ */
+// ============================================================
+// CHARTS
+// ============================================================
 const Charts = {
     instances: {},
     destroy(id) {
@@ -1123,7 +1099,7 @@ const Charts = {
         if (typeof Chart === 'undefined') {
             const container = document.getElementById('freqChartContainer');
             if (container) {
-                const maxFreq = Math.max(...data.slice(1));
+                const maxFreq = Math.max(...data.slice(1), 1);
                 const sorted = [];
                 for (let i = 1; i <= maxNum; i++) if (data[i] > 0) sorted.push({ num: i, freq: data[i] });
                 sorted.sort((a,b) => b.freq - a.freq);
@@ -1152,9 +1128,9 @@ const Charts = {
             data: { labels, datasets: [{ label: 'Frequência', data: values, backgroundColor: 'rgba(243,156,18,0.7)', borderColor: '#f39c12', borderWidth: 2 }]},
             options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
         });
-    },
-    distribution(draws, maxNum) {
-        if (typeof Chart === 'undefined') {            const container = document.getElementById('distributionChartContainer');
+    },    distribution(draws, maxNum) {
+        if (typeof Chart === 'undefined') {
+            const container = document.getElementById('distributionChartContainer');
             if (container) {
                 const zones = [0,0,0,0,0];
                 const zoneSize = maxNum / 5;
@@ -1162,12 +1138,12 @@ const Charts = {
                     if (!d.numbers) continue;
                     for (const n of d.numbers) zones[Math.min(4, Math.floor((n-1)/zoneSize))]++;
                 }
-                const total = zones.reduce((a,b) => a+b, 0);
+                const total = zones.reduce((a,b) => a+b, 0) || 1;
                 let html = '<div class="chart-fallback"><h4>📊 Distribuição por Zonas</h4>';
                 const zoneNames = [`Z1 (1-${Math.floor(zoneSize)})`, `Z2`, `Z3`, `Z4`, `Z5`];
                 const colors = ['#f5576c', '#f093fb', '#667eea', '#11998e', '#f39c12'];
                 zones.forEach((count, i) => {
-                    const percent = total > 0 ? (count / total * 100).toFixed(1) : 0;
+                    const percent = (count / total * 100).toFixed(1);
                     html += `<div style="margin:8px 0;"><strong>${zoneNames[i]}:</strong> ${count} (${percent}%)
                         <div style="background:#232b37; border-radius:10px; height:20px; margin-top:4px;">
                         <div style="background:${colors[i]}; height:100%; width:${percent}%; border-radius:10px; text-align:center; line-height:20px; color:white; font-size:0.75rem;">${percent}%</div>
@@ -1199,11 +1175,11 @@ const Charts = {
     }
 };
 
-/* ============================================================
-   APP
-   ============================================================ */
-const App = {
-    currentGame: 'euromilhoes',    draws: [],
+// ============================================================
+// APP
+// ============================================================const App = {
+    currentGame: 'euromilhoes',
+    draws: [],
     stats: null,
     selectedNumbers: new Set(),
     selectedStars: new Set(),
@@ -1212,7 +1188,7 @@ const App = {
     lastGeneratedBet: null,
 
     async init() {
-        console.log('🚀 Inicializando App...');
+        console.log('🚀 Inicializando App v9.4...');
         try {
             await Storage.init();
             console.log('✅ IndexedDB inicializado');
@@ -1250,9 +1226,9 @@ const App = {
     },
 
     setupGameSelector() {
-        const sel = document.getElementById('gameSelect');
-        if (!sel) return;
-        sel.addEventListener('change', async (e) => {            this.currentGame = e.target.value;
+        const sel = document.getElementById('gameSelect');        if (!sel) return;
+        sel.addEventListener('change', async (e) => {
+            this.currentGame = e.target.value;
             const manualSel = document.getElementById('manualGame');
             if (manualSel) manualSel.value = this.currentGame;
             this.updateGameInfo();
@@ -1299,9 +1275,9 @@ const App = {
         if (!sel) return;
         sel.innerHTML = '';
         cfg.betTypes.forEach(bt => {
-            const opt = document.createElement('option');
-            opt.value = bt.count;
-            opt.textContent = bt.label;            if (bt.count === cfg.drawNumbers) opt.selected = true;
+            const opt = document.createElement('option');            opt.value = bt.count;
+            opt.textContent = bt.label;
+            if (bt.count === cfg.drawNumbers) opt.selected = true;
             sel.appendChild(opt);
         });
     },
@@ -1312,6 +1288,9 @@ const App = {
                 document.querySelectorAll('.ticket-btn').forEach(b => b.classList.remove('selected'));
                 e.target.classList.add('selected');
                 this.selectedTickets = parseInt(e.target.dataset.tickets);
+                if (this.multipleBets.length > 0) {
+                    this.updateMultipleBetsDisplay();
+                }
             });
         });
     },
@@ -1327,9 +1306,12 @@ const App = {
                 const status = document.getElementById('dbStatus');
                 if (status) status.innerHTML = `<span style="color:var(--success);font-weight:bold;">✅ ${this.draws.length} sorteios carregados</span>`;
             } else {
+                this.stats = null;
                 const status = document.getElementById('dbStatus');
-                if (status) status.innerHTML = '⚠️ Base de dados vazia';
+                if (status) status.innerHTML = '⚠️ Base de dados vazia - pode gerar apostas mesmo assim!';
                 this.resetDashboard();
+                // ainda assim, renderizar grids manuais
+                this.renderManualGrids();
             }
         } catch (err) {
             UI.toast('Erro ao carregar: ' + err.message, 'error');
@@ -1346,11 +1328,15 @@ const App = {
             if (el) el.innerHTML = '';
         });
         Charts.destroy('freqChart');
+        // Limpar o gráfico de distribuição também
+        const distContainer = document.getElementById('distributionChartContainer');
+        if (distContainer) distContainer.innerHTML = '<div class="chart-fallback">Sem dados para distribuição</div>';
     },
 
     async loadSampleData() {
         try {
-            const cfg = GAMES[this.currentGame];            if (!cfg) return;
+            const cfg = GAMES[this.currentGame];
+            if (!cfg) return;
             const draws = [];
             const hoje = new Date();
             for (let i = 0; i < 500; i++) {
@@ -1394,12 +1380,12 @@ const App = {
         const file = event.target.files[0];
         if (!file) return;
         if (typeof Papa === 'undefined') {
-            UI.toast('PapaParse não carregado - importação CSV desativada', 'error');
-            return;
+            UI.toast('PapaParse não carregado - importação CSV desativada', 'error');            return;
         }
         const cfg = GAMES[this.currentGame];
         if (!cfg) return;
-        const ext = file.name.split('.').pop().toLowerCase();        try {
+        const ext = file.name.split('.').pop().toLowerCase();
+        try {
             let draws = [];
             if (ext === 'json') {
                 const text = await file.text();
@@ -1443,14 +1429,20 @@ const App = {
         }
         event.target.value = '';
     },
-
     recalculateStats() {
-        if (this.draws.length === 0) return;
+        if (this.draws.length === 0) {
+            this.stats = null;
+            return;
+        }
         this.stats = Statistics.analyze(this.draws, this.currentGame);
         this.updateDashboard();
     },
+
     updateDashboard() {
-        if (!this.stats) return;
+        if (!this.stats) {
+            this.resetDashboard();
+            return;
+        }
         const cfg = GAMES[this.currentGame];
         if (!cfg) return;
         const safeSet = (id, value) => {
@@ -1492,12 +1484,12 @@ const App = {
         const safeSet = (id, value) => {
             const el = document.getElementById(id);
             if (el) el.textContent = value;
-        };
-        safeSet('stat-parity', this.stats.parity);
+        };        safeSet('stat-parity', this.stats.parity);
         safeSet('stat-minsum', this.stats.minSum);
         safeSet('stat-maxsum', this.stats.maxSum);
         safeSet('stat-median', this.stats.median.toFixed(1));
-        safeSet('stat-var', this.stats.variance.toFixed(2));        const corrEl = document.getElementById('correlations');
+        safeSet('stat-var', this.stats.variance.toFixed(2));
+        const corrEl = document.getElementById('correlations');
         if (corrEl) {
             corrEl.innerHTML = this.stats.correlations.slice(0,10).map(([p,c]) => `<span class="chip">${p}: ${c}x</span>`).join('') || '<em>Sem dados</em>';
         }
@@ -1541,80 +1533,109 @@ const App = {
             const tx = Storage.db.transaction('bets', 'readwrite');
             tx.objectStore('bets').delete(id);
             tx.oncomplete = async () => {
-                await this.updateSavedBets();
-                UI.toast('Aposta apagada', 'success');
+                await this.updateSavedBets();                UI.toast('Aposta apagada', 'success');
             };
         } catch (err) { UI.toast('Erro: ' + err.message, 'error'); }
     },
+
     generateBet() {
-        if (this.draws.length === 0 || !this.stats) { UI.toast('Carregue dados primeiro!', 'error'); return; }
-        try {
-            const cfg = GAMES[this.currentGame];
-            if (!cfg) { UI.toast('Jogo inválido', 'error'); return; }
-            const count = parseInt(document.getElementById('betType').value);
-            const method = document.getElementById('genMethod').value;
-            const generations = parseInt(document.getElementById('genQuality').value);
-            if (isNaN(count)) { UI.toast('Tipo inválido', 'error'); return; }
-            UI.toast('A gerar com método: ' + method, 'success');
-            let result;
-            switch (method) {
-                case 'hybrid-ultra': result = Generator.hybridUltra(this.currentGame, count, this.stats, generations); break;
-                case 'genetic': result = Generator.genetic(this.currentGame, count, this.stats, generations); break;
-                case 'neural': result = Generator.neural(this.currentGame, count, this.stats); break;
-                case 'statistical': result = Generator.statistical(this.currentGame, count, this.stats); break;
-                case 'random': result = Generator.random(this.currentGame, count); break;
-                case 'balanced': result = Generator.balanced(this.currentGame, count, this.stats); break;
-                case 'statistical-random': result = Generator.statisticalRandom(this.currentGame, count, this.stats); break;
-                default: result = Generator.hybridUltra(this.currentGame, count, this.stats, generations);
-            }
-            const numbers = result.numbers;
-            const stars = Generator.generateStars(this.currentGame, this.stats);
-            this.lastGeneratedBet = { numbers, stars, method, count };
-            const genNum = document.getElementById('genNumbers');
-            if (genNum) genNum.innerHTML = numbers.map(n => `<div class="bola">${n}</div>`).join('');
-            const starClass = this.currentGame === 'eurodreams' ? 'bola sonho' : 'bola estrela';
-            const genStar = document.getElementById('genStars');
-            if (genStar) genStar.innerHTML = stars.map(s => `<div class="${starClass}">${cfg.starIcon}${s}</div>`).join('');
-            const comb = MathUtils.totalTickets(count, this.currentGame);
-            const price = cfg.multiPrices[count] || (cfg.price * comb);
-            const jackpot = MathUtils.jackpotOdds(this.currentGame);
-            const priceEl = document.getElementById('genPrice');
-            if (priceEl) priceEl.textContent = price.toFixed(2) + ' €';
-            const detailEl = document.getElementById('genPriceDetail');
-            if (detailEl) detailEl.textContent = count === cfg.drawNumbers ? 'Aposta Simples' : `Aposta Múltipla (${comb} combinações)`;
-            const combEl = document.getElementById('genComb');
-            if (combEl) combEl.textContent = comb.toLocaleString('pt-PT');
-            const jackEl = document.getElementById('genJackpot');
-            if (jackEl) jackEl.textContent = `1/${jackpot.toLocaleString('pt-PT')}`;
-            const score = result.fitness.total || 0;
-            const scoreEl = document.getElementById('genScore');
-            if (scoreEl) scoreEl.textContent = score.toFixed(1) + '/100';
-
-            let analysisHtml = '<div class="grid grid-7">';
-            const criteriaNames = { frequency: '📊 Freq', delay: '⏳ Atraso', parity: '🔢 Par/Ímp', sum: '➕ Soma', zones: '🗺️ Zonas', diversity: '🎯 Divers', position: '📍 Pos' };
-            const colors = ['#f5576c', '#f093fb', '#667eea', '#11998e', '#f39c12', '#38ef7d', '#FFD700'];
-            let idx = 0;
-            for (const [key, value] of Object.entries(result.fitness.criteria || {})) {
-                analysisHtml += `<div class="stat-box"><h4>${criteriaNames[key] || key}</h4><div class="criterion-bar"><div class="criterion-fill" style="width:${value}%; background:${colors[idx % 7]};">${value.toFixed(0)}%</div></div></div>`;                idx++;
-            }
-            analysisHtml += '</div>';
-            analysisHtml += `<div style="text-align:center; margin-top:15px; font-size:1.2rem; font-weight:bold; color:#FFD700;">Método: ${method} | Score: ${score.toFixed(2)}/100</div>`;
-            const analysisEl = document.getElementById('geneticAnalysis');
-            if (analysisEl) analysisEl.innerHTML = analysisHtml;
-
-            const probs = MathUtils.calculateProbabilities(this.currentGame, count);
-            let html = '<table><tr><th>Categoria</th><th>Prob</th><th>Odds</th></tr>';
-            for (const p of probs.slice(0, 10)) {
-                html += `<tr><td>${p.cat}</td><td>${p.prob.toExponential(3)}</td><td>1/${p.odds.toLocaleString('pt-PT')}</td></tr>`;
-            }
-            html += '</table>';
-            const probEl = document.getElementById('genProbs');
-            if (probEl) probEl.innerHTML = html;
-            UI.toast('Aposta gerada!', 'success');
-        } catch (err) {
-            console.error(err);
-            UI.toast('Erro: ' + err.message, 'error');
+        // Permite gerar mesmo sem dados, usando random como fallback
+        const cfg = GAMES[this.currentGame];
+        if (!cfg) { UI.toast('Jogo inválido', 'error'); return; }
+        const count = parseInt(document.getElementById('betType').value);
+        const method = document.getElementById('genMethod').value;
+        const generations = parseInt(document.getElementById('genQuality').value);
+        if (isNaN(count)) { UI.toast('Tipo inválido', 'error'); return; }
+        UI.toast('A gerar com método: ' + method, 'success');
+        let result;
+        // Se não houver stats, forçar random ou balanced com fallback
+        const hasStats = this.stats && this.draws.length > 0;
+        switch (method) {
+            case 'hybrid-ultra': result = hasStats ? Generator.hybridUltra(this.currentGame, count, this.stats, generations) : Generator.random(this.currentGame, count); break;
+            case 'genetic': result = hasStats ? Generator.genetic(this.currentGame, count, this.stats, generations) : Generator.random(this.currentGame, count); break;
+            case 'neural': result = hasStats ? Generator.neural(this.currentGame, count, this.stats) : Generator.random(this.currentGame, count); break;
+            case 'statistical': result = hasStats ? Generator.statistical(this.currentGame, count, this.stats) : Generator.random(this.currentGame, count); break;
+            case 'random': result = Generator.random(this.currentGame, count); break;
+            case 'balanced': result = hasStats ? Generator.balanced(this.currentGame, count, this.stats) : Generator.random(this.currentGame, count); break;
+            case 'statistical-random': result = hasStats ? Generator.statisticalRandom(this.currentGame, count, this.stats) : Generator.random(this.currentGame, count); break;
+            default: result = Generator.random(this.currentGame, count);
         }
+        const numbers = result.numbers;
+        const stars = Generator.generateStars(this.currentGame, this.stats);
+        this.lastGeneratedBet = { numbers, stars, method, count };
+
+        const genNum = document.getElementById('genNumbers');
+        if (genNum) genNum.innerHTML = numbers.map(n => `<div class="bola">${n}</div>`).join('');
+
+        const starClass = this.currentGame === 'eurodreams' ? 'bola sonho' : 'bola estrela';
+        const genStar = document.getElementById('genStars');
+        if (genStar) genStar.innerHTML = stars.map(s => `<div class="${starClass}">${cfg.starIcon}${s}</div>`).join('');
+
+        const comb = MathUtils.totalTickets(count, this.currentGame);
+        const price = cfg.multiPrices[count] || (cfg.price * comb);
+        const jackpot = MathUtils.jackpotOdds(this.currentGame);
+
+        const priceEl = document.getElementById('genPrice');
+        if (priceEl) priceEl.textContent = price.toFixed(2) + ' €';
+        const detailEl = document.getElementById('genPriceDetail');
+        if (detailEl) detailEl.textContent = count === cfg.drawNumbers ? 'Aposta Simples' : `Aposta Múltipla (${comb} combinações)`;
+
+        const combEl = document.getElementById('genComb');
+        if (combEl) combEl.textContent = comb.toLocaleString('pt-PT');
+        const jackEl = document.getElementById('genJackpot');
+        if (jackEl) jackEl.textContent = `1/${jackpot.toLocaleString('pt-PT')}`;            const score = result.fitness.total || 0;
+        const scoreEl = document.getElementById('genScore');
+        if (scoreEl) scoreEl.textContent = score.toFixed(1) + '/100';
+
+        let analysisHtml = '<div class="grid grid-7">';
+        const criteriaNames = { frequency: '📊 Freq', delay: '⏳ Atraso', parity: '🔢 Par/Ímp', sum: '➕ Soma', zones: '🗺️ Zonas', diversity: '🎯 Divers', position: '📍 Pos' };
+        const colors = ['#f5576c', '#f093fb', '#667eea', '#11998e', '#f39c12', '#38ef7d', '#FFD700'];
+        let idx = 0;
+        for (const [key, value] of Object.entries(result.fitness.criteria || {})) {
+            analysisHtml += `<div class="stat-box"><h4>${criteriaNames[key] || key}</h4><div class="criterion-bar"><div class="criterion-fill" style="width:${value}%; background:${colors[idx % 7]};">${value.toFixed(0)}%</div></div></div>`;
+            idx++;
+        }
+        if (idx === 0) {
+            analysisHtml += '<div class="stat-box"><h4>📊 Sem dados</h4><div>Use dados históricos para análise detalhada</div></div>';
+        }
+        analysisHtml += '</div>';
+        analysisHtml += `<div style="text-align:center; margin-top:15px; font-size:1.2rem; font-weight:bold; color:#FFD700;">Método: ${method} | Score: ${score.toFixed(2)}/100</div>`;
+        const analysisEl = document.getElementById('geneticAnalysis');
+        if (analysisEl) analysisEl.innerHTML = analysisHtml;
+
+        const probs = MathUtils.calculateProbabilities(this.currentGame, count);
+        let html = '<table><tr><th>Categoria</th><th>Prob</th><th>Odds</th></tr>';
+        for (const p of probs.slice(0, 10)) {
+            html += `<tr><td>${p.cat}</td><td>${p.prob.toExponential(3)}</td><td>1/${p.odds.toLocaleString('pt-PT')}</td></tr>`;
+        }
+        html += '</table>';
+        const probEl = document.getElementById('genProbs');
+        if (probEl) probEl.innerHTML = html;
+
+        const combContainer = document.getElementById('genCombinationsContainer');
+        const combDiv = document.getElementById('genCombinations');
+        if (combContainer && combDiv) {
+            if (count > cfg.drawNumbers) {
+                combContainer.style.display = 'block';
+                const combos = this.generateCombinations(numbers, cfg.drawNumbers);
+                combDiv.innerHTML = combos.map(c => `<span class="combinacao-item">${c.join(' ')}</span>`).join('');
+            } else {
+                combContainer.style.display = 'none';
+            }
+        }
+
+        UI.toast('Aposta gerada!', 'success');
+    },
+
+    generateCombinations(arr, k) {
+        if (k === 0) return [[]];
+        if (arr.length === 0) return [];
+        const result = [];
+        const [first, ...rest] = arr;        for (const comb of this.generateCombinations(rest, k - 1)) {
+            result.push([first, ...comb]);
+        }
+        result.push(...this.generateCombinations(rest, k));
+        return result;
     },
 
     async saveGeneratedBet() {
@@ -1633,89 +1654,116 @@ const App = {
     },
 
     generateMultipleBets() {
-        if (this.draws.length === 0 || !this.stats) { UI.toast('Carregue dados primeiro!', 'error'); return; }
-        try {
-            const cfg = GAMES[this.currentGame];
-            if (!cfg) { UI.toast('Jogo inválido', 'error'); return; }
-            const count = parseInt(document.getElementById('multiBetType').value);
-            const numBets = this.selectedTickets;
-            const method = document.getElementById('multiMethod').value;
-            const variation = document.getElementById('multiVariation').value;
-            UI.toast(`A gerar ${numBets} bilhetes...`, 'success');
-            this.multipleBets = [];
-            const usedNumbers = new Set();
-            for (let i = 0; i < numBets; i++) {                let result;
-                switch (method) {
-                    case 'hybrid-ultra': result = Generator.hybridUltra(this.currentGame, count, this.stats, 500); break;
-                    case 'genetic': result = Generator.genetic(this.currentGame, count, this.stats, 500); break;
-                    case 'neural': result = Generator.neural(this.currentGame, count, this.stats); break;
-                    case 'statistical': result = Generator.statistical(this.currentGame, count, this.stats); break;
-                    case 'random': result = Generator.random(this.currentGame, count); break;
-                    case 'balanced': result = Generator.balanced(this.currentGame, count, this.stats); break;
-                    default: result = Generator.hybridUltra(this.currentGame, count, this.stats, 500);
-                }
-                let numbers = result.numbers;
-                const maxOverlap = variation === 'high' ? 0 : (variation === 'medium' ? 2 : 4);
-                let overlap = numbers.filter(n => usedNumbers.has(n)).length;
-                let attempts = 0;
-                while (overlap > maxOverlap && attempts < 20) {
-                    const newNumbers = numbers.map(n => {
-                        if (usedNumbers.has(n) && Math.random() < 0.7) {
-                            let candidate, tries = 0;
-                            do {
-                                candidate = MathUtils.secureRandom(cfg.maxNumbers);
-                                tries++;
-                            } while ((usedNumbers.has(candidate) || numbers.includes(candidate)) && tries < 50);
-                            return candidate;
-                        }
-                        return n;
-                    });
-                    const unique = new Set(newNumbers);
-                    if (unique.size === count) {
-                        numbers = Array.from(unique).sort((a,b) => a-b);
-                    } else {
-                        const fallback = method === 'random' ? Generator.random(this.currentGame, count) :
-                                         Generator.hybridUltra(this.currentGame, count, this.stats, 300);
-                        numbers = fallback.numbers;
-                    }
-                    overlap = numbers.filter(n => usedNumbers.has(n)).length;
-                    attempts++;
-                }
-                numbers.forEach(n => usedNumbers.add(n));
-                const stars = Generator.generateStars(this.currentGame, this.stats);
-                this.multipleBets.push({ numbers, stars, method });
+        const cfg = GAMES[this.currentGame];
+        if (!cfg) { UI.toast('Jogo inválido', 'error'); return; }
+        const count = parseInt(document.getElementById('multiBetType').value);
+        const numBets = this.selectedTickets;
+        const method = document.getElementById('multiMethod').value;
+        const variation = document.getElementById('multiVariation').value;
+        UI.toast(`A gerar ${numBets} bilhetes...`, 'success');
+        this.multipleBets = [];
+        const hasStats = this.stats && this.draws.length > 0;
+        const usedNumbers = new Set();
+        for (let i = 0; i < numBets; i++) {
+            let result;
+            switch (method) {
+                case 'hybrid-ultra': result = hasStats ? Generator.hybridUltra(this.currentGame, count, this.stats, 500) : Generator.random(this.currentGame, count); break;
+                case 'genetic': result = hasStats ? Generator.genetic(this.currentGame, count, this.stats, 500) : Generator.random(this.currentGame, count); break;
+                case 'neural': result = hasStats ? Generator.neural(this.currentGame, count, this.stats) : Generator.random(this.currentGame, count); break;
+                case 'statistical': result = hasStats ? Generator.statistical(this.currentGame, count, this.stats) : Generator.random(this.currentGame, count); break;
+                case 'random': result = Generator.random(this.currentGame, count); break;
+                case 'balanced': result = hasStats ? Generator.balanced(this.currentGame, count, this.stats) : Generator.random(this.currentGame, count); break;
+                default: result = Generator.random(this.currentGame, count);
             }
-            let html = '';
-            this.multipleBets.forEach((bet, idx) => {
-                const starClass = this.currentGame === 'eurodreams' ? 'sonho' : 'estrela';
-                html += `<div class="multiple-bet-card">
-                    <strong>Bilhete #${idx + 1}</strong> <span class="method-badge method-${bet.method.replace('-ultra','').replace('-random','')}">${bet.method}</span>
-                    <div style="margin-top:10px;">
-                        ${bet.numbers.map(n => `<span class="bola" style="width:40px;height:40px;font-size:1rem;">${n}</span>`).join('')}
-                        ${bet.stars.map(s => `<span class="bola ${starClass}" style="width:40px;height:40px;font-size:1rem;">${cfg.starIcon}${s}</span>`).join('')}
-                    </div>                </div>`;
-            });
-            const listEl = document.getElementById('multiBetsList');
-            if (listEl) listEl.innerHTML = html;
-            const comb = MathUtils.totalTickets(count, this.currentGame);
-            const pricePerBet = cfg.multiPrices[count] || (cfg.price * comb);
-            const totalCost = pricePerBet * numBets;
-            const baseOdds = cfg.jackpotOdds;
-            const reducedOdds = Math.ceil(baseOdds / numBets);
-            const reductionPercent = ((1 - reducedOdds / baseOdds) * 100).toFixed(1);
-            const setEl = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-            setEl('multiTotalCost', totalCost.toFixed(2) + ' €');
-            setEl('multiCostDetail', `${numBets} bilhete(s) × ${pricePerBet.toFixed(2)}€ = ${totalCost.toFixed(2)}€`);
-            setEl('multiTotalBets', numBets);
-            setEl('multiFinalProb', `1/${reducedOdds.toLocaleString('pt-PT')}`);
-            setEl('multiReduction', `${reductionPercent}%`);
-            setEl('multiProbDisplay', `1 em ${reducedOdds.toLocaleString('pt-PT')}`);
-            setEl('multiReductionText', `Com ${numBets} bilhetes diferentes - Redução de ${reductionPercent}% das odds originais (1:${baseOdds.toLocaleString('pt-PT')})`);
-            UI.toast(`${numBets} bilhetes gerados!`, 'success');
-        } catch (err) {
-            console.error(err);
-            UI.toast('Erro: ' + err.message, 'error');
+            let numbers = result.numbers;
+            const maxOverlap = variation === 'high' ? 0 : (variation === 'medium' ? 2 : 4);
+            let overlap = numbers.filter(n => usedNumbers.has(n)).length;
+            let attempts = 0;
+            while (overlap > maxOverlap && attempts < 20) {                    const newNumbers = numbers.map(n => {
+                    if (usedNumbers.has(n) && Math.random() < 0.7) {
+                        let candidate, tries = 0;
+                        do {
+                            candidate = MathUtils.secureRandom(cfg.maxNumbers);
+                            tries++;
+                        } while ((usedNumbers.has(candidate) || numbers.includes(candidate)) && tries < 50);
+                        return candidate;
+                    }
+                    return n;
+                });
+                const unique = new Set(newNumbers);
+                if (unique.size === count) {
+                    numbers = Array.from(unique).sort((a,b) => a-b);
+                } else {
+                    const fallback = Generator.random(this.currentGame, count);
+                    numbers = fallback.numbers;
+                }
+                overlap = numbers.filter(n => usedNumbers.has(n)).length;
+                attempts++;
+            }
+            numbers.forEach(n => usedNumbers.add(n));
+
+            const stars = this.generateStarsWithVariation(i);
+            this.multipleBets.push({ numbers, stars, method });
         }
+
+        let html = '';
+        this.multipleBets.forEach((bet, idx) => {
+            const starClass = this.currentGame === 'eurodreams' ? 'sonho' : 'estrela';
+            html += `<div class="multiple-bet-card">
+                <strong>Bilhete #${idx + 1}</strong> <span class="method-badge method-${bet.method.replace('-ultra','').replace('-random','')}">${bet.method}</span>
+                <div style="margin-top:10px;">
+                    ${bet.numbers.map(n => `<span class="bola" style="width:40px;height:40px;font-size:1rem;">${n}</span>`).join('')}
+                    ${bet.stars.map(s => `<span class="bola ${starClass}" style="width:40px;height:40px;font-size:1rem;">${cfg.starIcon}${s}</span>`).join('')}
+                </div>
+            </div>`;
+        });
+        const listEl = document.getElementById('multiBetsList');
+        if (listEl) listEl.innerHTML = html;
+
+        this.updateMultipleBetsDisplay();
+
+        UI.toast(`${numBets} bilhetes gerados!`, 'success');
+    },
+    generateStarsWithVariation(seed) {
+        const cfg = GAMES[this.currentGame];
+        const baseStars = Generator.generateStars(this.currentGame, this.stats);
+        if (cfg.drawStars > 1) {
+            const newStars = [...baseStars];
+            if (seed % 2 === 0 && newStars.length > 1) {
+                const available = [];
+                for (let i = 1; i <= cfg.maxStars; i++) {
+                    if (!newStars.includes(i)) available.push(i);
+                }
+                if (available.length > 0) {
+                    const idx = seed % available.length;
+                    newStars[0] = available[idx];
+                }
+            }
+            return newStars.sort((a,b) => a-b);
+        }
+        return baseStars;
+    },
+
+    updateMultipleBetsDisplay() {
+        if (this.multipleBets.length === 0) return;
+        const cfg = GAMES[this.currentGame];
+        if (!cfg) return;
+        const count = parseInt(document.getElementById('multiBetType').value);
+        const numBets = this.multipleBets.length;
+        const comb = MathUtils.totalTickets(count, this.currentGame);
+        const pricePerBet = cfg.multiPrices[count] || (cfg.price * comb);
+        const totalCost = pricePerBet * numBets;
+        const baseOdds = cfg.jackpotOdds;
+        const reducedOdds = Math.ceil(baseOdds / numBets);
+        const reductionPercent = ((1 - reducedOdds / baseOdds) * 100).toFixed(1);
+        const setEl = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+        setEl('multiTotalCost', totalCost.toFixed(2) + ' €');
+        setEl('multiCostDetail', `${numBets} bilhete(s) × ${pricePerBet.toFixed(2)}€ = ${totalCost.toFixed(2)}€`);
+        setEl('multiTotalBets', numBets);
+        setEl('multiFinalProb', `1/${reducedOdds.toLocaleString('pt-PT')}`);
+        setEl('multiReduction', `${reductionPercent}%`);
+        setEl('multiProbDisplay', `1 em ${reducedOdds.toLocaleString('pt-PT')}`);
+        setEl('multiReductionText', `Com ${numBets} bilhetes diferentes - Redução de ${reductionPercent}% das odds originais (1:${baseOdds.toLocaleString('pt-PT')})`);
     },
 
     async saveAllMultipleBets() {
@@ -1724,8 +1772,7 @@ const App = {
             for (const bet of this.multipleBets) {
                 await Storage.saveBet({
                     date: new Date().toISOString().split('T')[0],
-                    game: this.currentGame,
-                    numbers: bet.numbers,
+                    game: this.currentGame,                    numbers: bet.numbers,
                     stars: bet.stars,
                     method: bet.method + ' (múltiplo)'
                 });
@@ -1742,7 +1789,8 @@ const App = {
         let csv = 'Bilhete,Data';
         for (let i = 1; i <= cfg.drawNumbers; i++) csv += `,N${i}`;
         for (let i = 1; i <= cfg.drawStars; i++) csv += `,${cfg.starLabel[0]}${i}`;
-        csv += ',Método\n';        this.multipleBets.forEach((bet, idx) => {
+        csv += ',Método\n';
+        this.multipleBets.forEach((bet, idx) => {
             csv += `${idx+1},${new Date().toISOString().split('T')[0]}`;
             bet.numbers.forEach(n => csv += `,${n}`);
             bet.stars.forEach(s => csv += `,${s}`);
@@ -1773,8 +1821,7 @@ const App = {
             this.updateMultiBetTypeSelect();
             this.renderManualGrids();
             this.loadFromDB();
-        });
-        this.renderManualGrids();
+        });        this.renderManualGrids();
     },
 
     renderManualGrids() {
@@ -1788,10 +1835,9 @@ const App = {
         setText('minNumLabel', cfg.drawNumbers);
         setText('maxNumLabel', 10);
         setText('maxNumRange', cfg.maxNumbers);
-        setText('maxStarLabel', cfg.drawStars);
-        setText('maxStarRange', cfg.maxStars);
         this.selectedNumbers.clear();
-        this.selectedStars.clear();        const numGrid = document.getElementById('numberGrid');
+        this.selectedStars.clear();
+        const numGrid = document.getElementById('numberGrid');
         if (numGrid) {
             numGrid.innerHTML = '';
             for (let i = 1; i <= cfg.maxNumbers; i++) {
@@ -1824,8 +1870,7 @@ const App = {
         if (!cfg) return;
         if (this.selectedNumbers.has(n)) {
             this.selectedNumbers.delete(n);
-            btn.classList.remove('selected');
-        } else {
+            btn.classList.remove('selected');        } else {
             if (this.selectedNumbers.size >= 10) {
                 UI.toast('Máximo 10 números', 'error');
                 return;
@@ -1840,7 +1885,8 @@ const App = {
         const cfg = GAMES[this.currentGame];
         if (!cfg) return;
         if (this.selectedStars.has(s)) {
-            this.selectedStars.delete(s);            btn.classList.remove('selected');
+            this.selectedStars.delete(s);
+            btn.classList.remove('selected');
         } else {
             if (this.selectedStars.size >= cfg.drawStars) {
                 UI.toast(`Máximo ${cfg.drawStars} ${cfg.starLabel}`, 'error');
@@ -1873,8 +1919,7 @@ const App = {
             sum = nums.reduce((a,b) => a+b, 0);
             type = nums.length === cfg.drawNumbers ? 'Simples' : `Múltipla (${comb})`;
         }
-        const safeSet = (id, value) => {
-            const el = document.getElementById(id);
+        const safeSet = (id, value) => {            const el = document.getElementById(id);
             if (el) el.textContent = value;
         };
         safeSet('manualPrice', price.toFixed(2) + ' €');
@@ -1886,10 +1931,23 @@ const App = {
             detailEl.textContent = nums.length === 0 ? 'Selecione números' :
                 (nums.length === cfg.drawNumbers ? 'Aposta Simples' : `Aposta Múltipla (${comb} combinações)`);
         }
+
+        const combContainer = document.getElementById('manualCombinationsContainer');
+        const combDiv = document.getElementById('manualCombinations');
+        if (combContainer && combDiv) {
+            if (nums.length > cfg.drawNumbers && validation.valid) {
+                combContainer.style.display = 'block';
+                const combos = this.generateCombinations(nums, cfg.drawNumbers);
+                combDiv.innerHTML = combos.map(c => `<span class="combinacao-item">${c.join(' ')}</span>`).join('');
+            } else {
+                combContainer.style.display = 'none';
+            }
+        }
     },
 
     async saveManualBet() {
-        const game = document.getElementById('manualGame').value;        const nums = Array.from(this.selectedNumbers).sort((a,b) => a-b);
+        const game = document.getElementById('manualGame').value;
+        const nums = Array.from(this.selectedNumbers).sort((a,b) => a-b);
         const stars = Array.from(this.selectedStars).sort((a,b) => a-b);
         const validation = Validator.validateBet(nums, stars, game);
         if (!validation.valid) {
@@ -1911,7 +1969,6 @@ const App = {
             UI.toast('Erro: ' + err.message, 'error');
         }
     },
-
     clearManualBet() {
         this.selectedNumbers.clear();
         this.selectedStars.clear();
@@ -1920,9 +1977,9 @@ const App = {
     }
 };
 
-/* ============================================================
-   BOOTSTRAP
-   ============================================================ */
+// ============================================================
+// BOOTSTRAP
+// ============================================================
 (async function bootstrap() {
     await LibraryLoader.loadAll();
     if (document.readyState === 'loading') {
@@ -1933,36 +1990,4 @@ const App = {
 })();
 </script>
 </body>
-</html>
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-
-const PORT = 8080;
-const HTML_FILE = 'loto.html';
-
-const server = http.createServer((req, res) => {
-    // Serve apenas o ficheiro HTML (ignora favicon e outros pedidos)
-    if (req.url === '/' || req.url === `/${HTML_FILE}`) {
-        const filePath = path.join(__dirname, HTML_FILE);
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                res.writeHead(500, { 'Content-Type': 'text/plain' });
-                res.end('Erro ao ler o ficheiro HTML');
-                console.error(`Erro: ${err.message}`);
-                return;
-            }
-            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-            res.end(data);
-        });
-    } else {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Página não encontrada');
-    }
-});
-
-server.listen(PORT, () => {
-    console.log(`✅ Servidor a correr em http://localhost:${PORT}/loto.html`);
-    console.log(`📁 A servir o ficheiro: ${path.join(__dirname, HTML_FILE)}`);
-});
-node server.js
+                    </html>
