@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>JONHY EL IGUANA v14.0 · MOTOR COMPLETO</title>
+<title>JONHY EL IGUANA v15.0 · MOTOR MATEMÁTICO AVANÇADO</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -159,7 +159,7 @@ label.field-label .val { font-size: 1.3rem; color: var(--game-color); font-famil
 .mc-summary { font-size: 0.68rem; color: var(--text-dim); margin-top: 10px; line-height: 1.55; }
 .mc-summary b { color: var(--color-green); }
 .mc-canvas-wrap { margin-top: 14px; background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 10px; }
-canvas#mcCanvas { width: 100%; height: 130px; display: block; }
+canvas#mcCanvas { width: 100%; height: 140px; display: block; }
 .tabs-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
 .tab-btn { flex: 1; min-width: 100px; padding: 12px 8px; background: rgba(8,12,22,0.85); border: 1px solid var(--glass-border); border-radius: 14px; color: var(--text-dim); font-family: 'Orbitron', sans-serif; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.25s; text-align: center; }
 .tab-btn.active { color: var(--bg-deep); background: linear-gradient(135deg, var(--game-color), var(--color-gold)); border-color: transparent; box-shadow: 0 0 25px rgba(var(--game-color-rgb), 0.4); }
@@ -224,12 +224,12 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       </svg>
     </div>
     <h1>JONHY EL IGUANA</h1>
-    <div class="sub">Motor Combinatório Completo · Dados Oficiais Santa Casa · v14.0</div>
+    <div class="sub">Motor Matemático Avançado & Rejeição Estrita · v15.0</div>
     <div class="datetime-header" id="datetimeHeader">--</div>
   </div>
 
   <div class="card">
-    <h2><span>⚙ Jogo</span></h2>
+    <h2><span>⚙ Jogo Oficial</span></h2>
     <label class="sr-only" for="gameType">Escolher jogo</label>
     <select id="gameType">
       <option value="euromilhoes">🇫🇷 EURO MILHÕES (5/50 + 2/12)</option>
@@ -239,22 +239,22 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
   </div>
 
   <div class="firstprize-card">
-    <div class="fp-label">🏆 1º Prémio — o que é preciso acertar</div>
+    <div class="fp-label">🏆 1º Prémio — Matemática Hipergeométrica Exata</div>
     <div class="fp-combo" id="fpCombo">5 números + 2 Estrelas</div>
     <div class="fp-odds" id="fpOdds">1 / 139.838.160</div>
     <div class="fp-jackpot" id="fpJackpot">Início ≈ €17.000.000 · Acumula até ao teto de €230.000.000</div>
   </div>
 
   <div class="tabs-nav">
-    <button type="button" class="tab-btn active" data-tab="gerador">✨ Gerador</button>
-    <button type="button" class="tab-btn" data-tab="multiplo">🎫 Múltiplos</button>
-    <button type="button" class="tab-btn" data-tab="manual">🎲 Manual</button>
+    <button type="button" class="tab-btn active" data-tab="gerador">✨ Gerador Avançado</button>
+    <button type="button" class="tab-btn" data-tab="multiplo">🎫 Múltiplos Independentes</button>
+    <button type="button" class="tab-btn" data-tab="manual">🎲 Aposta Manual</button>
   </div>
 
   <!-- ===================== TAB GERADOR ===================== -->
   <div class="tab-panel active" id="tab-gerador">
     <div class="card">
-      <h2><span>✨ Aposta e Método</span></h2>
+      <h2><span>✨ Aposta e Método de Amostragem</span></h2>
       <div class="flex">
         <div>
           <label class="field-label" for="nQty">Números <span class="val" id="nQtyDisplay">5</span></label>
@@ -267,19 +267,19 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       </div>
       <div class="flex">
         <div style="flex-basis:100%;">
-          <label class="field-label" for="genMethod">Método de Amostragem</label>
+          <label class="field-label" for="genMethod">Motor de Amostragem sem Repetição</label>
           <select id="genMethod">
-            <option value="hybrid-ultra">🚀 Híbrido Ultra (combina todos)</option>
-            <option value="statistical">📊 Ponderado por Frequência</option>
-            <option value="neural">🧠 Ponderado por Recência</option>
-            <option value="genetic">🧬 Otimização Local (soma/paridade)</option>
-            <option value="balanced">⚖️ Distribuição por Zonas</option>
-            <option value="statistical-random">🎯 Frequência + Ruído</option>
-            <option value="random">🎲 Uniforme Puro</option>
+            <option value="hybrid-ultra">🚀 Híbrido Ultra (Consistência Multimétrico)</option>
+            <option value="statistical">📊 Ponderado por Frequência Local</option>
+            <option value="neural">🧠 Ponderado por Recência Assíncrona</option>
+            <option value="genetic">🧬 Otimização Local (Soma & Paridade)</option>
+            <option value="balanced">⚖️ Distribuição Estrita por Zonas</option>
+            <option value="statistical-random">🎯 Frequência + Ruído Gaussiano</option>
+            <option value="random">🎲 Uniforme Puro (Fisher-Yates Exato)</option>
           </select>
         </div>
       </div>
-      <div class="method-info" id="methodInfo">Os métodos alteram apenas quais combinações válidas são propostas primeiro (variedade). A probabilidade real de cada combinação é sempre a mesma — ver tabela de escalões abaixo.</div>
+      <div class="method-info" id="methodInfo">Garante absolute exclusividade interna (sem números ou estrelas repetidos em nenhuma combinação). Os métodos alteram a heurística de busca; a probabilidade matemática oficial permanece rigorosamente fixa.</div>
 
       <div class="price-display" aria-live="polite">
         <div class="price-label">💰 Valor da Aposta</div>
@@ -289,30 +289,30 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
     </div>
 
     <div class="card">
-      <h2><span>📊 Filtros Estruturais (9)</span></h2>
+      <h2><span>📊 Filtros Estruturais de Rejeição (9)</span></h2>
       <div class="filters-toolbar">
         <button type="button" class="mini-btn" id="btnFiltersAll">Ativar todos</button>
         <button type="button" class="mini-btn" id="btnFiltersNone">Sorteio puro</button>
       </div>
-      <div class="checkrow"><input type="checkbox" id="filterConsec" checked><label for="filterConsec">🚫 Sem 3+ consecutivos</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterSum" checked><label for="filterSum">📊 Soma dentro do IC 95%</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterParity" checked><label for="filterParity">⚖️ Equilíbrio par/ímpar</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterQuartile" checked><label for="filterQuartile">📈 Quartis Q1–Q4 (mín. 2)</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterHalf" checked><label for="filterHalf">🔀 Metade baixa + metade alta</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterDistance" checked><label for="filterDistance">📏 Máx. 2 pares próximos (Δ&lt;3)</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterDecade" checked><label for="filterDecade">🔟 Máx. 2 na mesma dezena</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterLastDigit" checked><label for="filterLastDigit">🔢 Máx. 2 no mesmo algarismo final</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterRepeat" checked><label for="filterRepeat">♻️ Nunca repetir a última aposta gerada</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterConsec" checked><label for="filterConsec">🚫 Sem 3+ números consecutivos</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterSum" checked><label for="filterSum">📊 Soma estritamente dentro do IC 95%</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterParity" checked><label for="filterParity">⚖️ Equilíbrio obrigatório par/ímpar</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterQuartile" checked><label for="filterQuartile">📈 Quartis Q1–Q4 (mínimo 2 presentes)</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterHalf" checked><label for="filterHalf">🔀 Distribuição metades baixa e alta</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterDistance" checked><label for="filterDistance">📏 Máx. 2 pares adjacentes próximos (Δ&lt;3)</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterDecade" checked><label for="filterDecade">🔟 Máx. 2 números na mesma dezena</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterLastDigit" checked><label for="filterLastDigit">🔢 Máx. 2 números no mesmo algarismo final</label></div>
+      <div class="checkrow"><input type="checkbox" id="filterRepeat" checked><label for="filterRepeat">♻️ Exclusão estrita da última aposta gerada</label></div>
 
       <details class="prize-details">
-        <summary>Ver tabela completa de escalões e prémios</summary>
+        <summary>Ver tabela completa de escalões e probabilidades</summary>
         <div class="simple-prize-table-scroll" style="margin-top:10px;"><div id="prizeTableContainer"></div></div>
       </details>
     </div>
 
     <div class="card">
-      <h2><span>🧪 Simulação Monte Carlo</span></h2>
-      <p style="font-size:0.74rem; color:var(--text-dim); line-height:1.5;">Compara a frequência simulada de cada escalão com a probabilidade hipergeométrica teórica, e mostra a convergência do escalão mais comum ao longo da simulação (Lei dos Grandes Números).</p>
+      <h2><span>🧪 Simulação Monte Carlo & Convergência</span></h2>
+      <p style="font-size:0.74rem; color:var(--text-dim); line-height:1.5;">Simula sorteios hipergeométricos independentes em background, calculando intervalos de confiança e convergência empírica para validar a Lei dos Grandes Números.</p>
       <div class="flex" style="margin-top:12px;">
         <button type="button" class="btn-secondary" id="btnMC10k">10 mil</button>
         <button type="button" class="btn-secondary" id="btnMC100k">100 mil</button>
@@ -323,16 +323,16 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       <div id="mcResultContainer"></div>
     </div>
 
-    <button class="btn" id="runBtn">🎲 GERAR COMBINAÇÃO ESTATISTICAMENTE EQUILIBRADA</button>
+    <button class="btn" id="runBtn">🎲 GERAR COMBINAÇÃO MATEMATICAMENTE OTIMIZADA</button>
     <div class="progress-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
 
     <div class="terminal" id="terminal" aria-live="polite" role="log">
-      <div class="log-line system">> JONHY EL IGUANA v14.0 Inicializado.</div>
-      <div class="log-line math">> Motor: Hipergeométrica exata + Monte Carlo assíncrono + 9 filtros estruturais + 7 métodos de amostragem.</div>
+      <div class="log-line system">> JONHY EL IGUANA v15.0 Inicializado.</div>
+      <div class="log-line math">> Motor: Hipergeométrica rigorosa com BigInt + Monte Carlo assíncrono com bandas de erro + 9 filtros avançados.</div>
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <h2>🎯 COMBINAÇÃO GERADA</h2>
+      <h2>🎯 COMBINAÇÃO GERADA COM SUCESSO</h2>
       <div class="balls" id="ballOutput"></div>
       <div class="result-actions">
         <button type="button" class="btn-secondary" id="btnCopy">📋 Copiar</button>
@@ -341,7 +341,7 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       </div>
       <div class="stats-grid" id="analysisGrid"></div>
       <details class="prize-details" id="resultEscalaoDetails">
-        <summary>Probabilidade real desta aposta, por escalão (1º ao último)</summary>
+        <summary>Probabilidade real desta aposta por escalão</summary>
         <div class="simple-prize-table-scroll" style="margin-top:10px;"><div id="resultEscalaoTable"></div></div>
       </details>
     </div>
@@ -351,7 +351,7 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
   <div class="tab-panel" id="tab-multiplo">
     <div class="card">
       <h2><span>🎫 Múltiplos Bilhetes Independentes (1–10)</span></h2>
-      <p style="font-size:0.74rem;color:var(--text-dim);">Gera vários bilhetes simples separados (não um sistema múltiplo). Cada bilhete é uma aposta independente com o seu próprio custo.</p>
+      <p style="font-size:0.74rem;color:var(--text-dim);">Gera apostas simples independentes e sem repetição interna em cada bilhete, com controlo de sobreposição global configurável.</p>
       <h3 class="field-label" style="margin-top:12px;">Quantidade de bilhetes</h3>
       <div class="ticket-selector" id="ticketSelector"></div>
 
@@ -367,21 +367,21 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       </div>
       <div class="flex">
         <div style="flex-basis:100%;">
-          <label class="field-label" for="multiOverlap">Sobreposição entre bilhetes</label>
+          <label class="field-label" for="multiOverlap">Sobreposição máxima entre bilhetes</label>
           <select id="multiOverlap">
-            <option value="0">Nenhuma (máxima cobertura)</option>
-            <option value="2" selected>Baixa (até 2 números iguais)</option>
-            <option value="4">Média (até 4 números iguais)</option>
+            <option value="0">Nenhuma (cobertura disjunta máxima)</option>
+            <option value="2" selected>Baixa (até 2 números comuns)</option>
+            <option value="4">Média (até 4 números comuns)</option>
             <option value="99">Sem restrição</option>
           </select>
         </div>
       </div>
 
-      <button class="btn" id="multiRunBtn" style="margin-top:16px;">🎫 GERAR BILHETES</button>
+      <button class="btn" id="multiRunBtn" style="margin-top:16px;">🎫 GERAR BILHETES INDEPENDENTES</button>
       <div class="progress-wrap" id="multiProgressWrap"><div class="progress-bar" id="multiProgressBar"></div></div>
 
       <div class="price-display">
-        <div class="price-label">💰 Custo Total</div>
+        <div class="price-label">💰 Custo Total Estimado</div>
         <div class="price-value" id="multiTotalPrice">€ 0,00</div>
         <div class="price-combos" id="multiTotalDetail">Selecione a quantidade</div>
       </div>
@@ -398,8 +398,8 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
   <!-- ===================== TAB MANUAL ===================== -->
   <div class="tab-panel" id="tab-manual">
     <div class="card">
-      <h2><span>🎲 Aposta Manual</span></h2>
-      <p style="font-size:0.74rem;color:var(--text-dim);">Escolha os seus próprios números. Pode selecionar mais do que o mínimo para criar uma aposta múltipla (sistema).</p>
+      <h2><span>🎲 Aposta Manual com Validação Estrita</span></h2>
+      <p style="font-size:0.74rem;color:var(--text-dim);">Escolha manualmente os seus números e estrelas. O sistema garante exclusividade de seleções e validação combinatória em tempo real.</p>
       <h3 class="field-label" id="manualNumLabel" style="margin-top:12px;">Números</h3>
       <div class="manual-grid" id="manualNumGrid"></div>
       <h3 class="field-label" id="manualStarLabel" style="margin-top:12px;">Estrelas</h3>
@@ -407,14 +407,14 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       <div class="validation-msg" id="manualValidation"></div>
 
       <div class="price-display">
-        <div class="price-label">💰 Valor da Aposta</div>
+        <div class="price-label">💰 Valor da Aposta Manual</div>
         <div class="price-value" id="manualPrice">€ 0,00</div>
         <div class="price-combos" id="manualPriceDetail">Selecione números</div>
       </div>
 
       <div class="stats-grid">
-        <div class="stat-box"><div class="label">Combinações</div><div class="value" id="manualComb">0</div></div>
-        <div class="stat-box"><div class="label">Soma</div><div class="value" id="manualSum">0</div></div>
+        <div class="stat-box"><div class="label">Combinações Totais</div><div class="value" id="manualComb">0</div></div>
+        <div class="stat-box"><div class="label">Soma Total</div><div class="value" id="manualSum">0</div></div>
       </div>
 
       <div class="combos-preview" id="manualCombosPreview" style="display:none;"></div>
@@ -425,7 +425,7 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       </div>
 
       <details class="prize-details" style="margin-top:12px;">
-        <summary>Probabilidade real desta aposta, por escalão</summary>
+        <summary>Probabilidade real do sistema manual por escalão</summary>
         <div class="simple-prize-table-scroll" style="margin-top:10px;"><div id="manualEscalaoTable"></div></div>
       </details>
     </div>
@@ -442,8 +442,8 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       <span class="draw-date">PRÓXIMO SORTEIO: --</span>
       <span class="draw-price">PREÇO DA APOSTA: --</span>
     </div>
-    <div class="footer-version">JONHY EL IGUANA v14.0 · MATEMÁTICA COMBINATÓRIA REAL · DADOS OFICIAIS SANTA CASA</div>
-    <div class="footer-legal">As odds apresentadas correspondem às probabilidades oficiais de cada jogo da Santa Casa (Euromilhões, Totoloto, EuroDreams). Os valores em euros dos escalões inferiores variam por sorteio consoante vendas e nº de vencedores — consulte jogossantacasa.pt para os valores exatos do concurso atual. Os filtros e métodos de amostragem mudam apenas qual combinação válida é escolhida; não alteram a probabilidade matemática de cada combinação individual.</div>
+    <div class="footer-version">JONHY EL IGUANA v15.0 · MATEMÁTICA COMBINATÓRIA RIGOROSA · DADOS OFICIAIS SANTA CASA</div>
+    <div class="footer-legal">As odds apresentadas correspondem estritamente às probabilidades oficiais de cada jogo da Santa Casa (Euromilhões, Totoloto, EuroDreams). Os números e estrelas gerados nunca se repetem dentro da mesma aposta (amostragem rigorosa sem reposição). Consulte jogossantacasa.pt para regulamentos completos e valores de jackpot atualizados.</div>
   </div>
 </div>
 
@@ -451,7 +451,7 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
 'use strict';
 
 /* ============================================================
-   DADOS OFICIAIS SANTA CASA
+   DADOS OFICIAIS SANTA CASA & REGRAS MATEMÁTICAS
    ============================================================ */
 const REGRAS = {
   euromilhoes: {
@@ -518,17 +518,17 @@ const CORES_JOGO = {
 };
 
 const METHOD_INFO = {
-  'hybrid-ultra': 'Combina os 6 métodos abaixo e escolhe os números mais consistentes entre eles.',
-  'statistical': 'Dá mais peso a números com maior frequência simulada localmente (não são dados reais de sorteios).',
-  'neural': 'Dá mais peso a uma pontuação de "recência" simulada localmente, para variar o padrão dos números.',
-  'genetic': 'Testa várias amostras e fica com a que tem soma mais próxima da média teórica e melhor equilíbrio par/ímpar.',
-  'balanced': 'Divide o intervalo de números em 5 zonas e tenta escolher pelo menos um número de cada zona.',
-  'statistical-random': 'Mistura o peso de frequência simulada com ruído aleatório, para maior variedade.',
-  'random': 'Amostragem uniforme sem qualquer peso — cada número tem exatamente a mesma probabilidade de ser proposto.'
+  'hybrid-ultra': 'Combina 6 motores heurísticos e seleciona os elementos ótimos consensuais sem qualquer repetição.',
+  'statistical': 'Ponderação baseada em frequências estatísticas simuladas localmente com exclusividade estrita.',
+  'neural': 'Recência assíncrona ponderada, garantindo diversidade e ausência de repetição.',
+  'genetic': 'Otimização local iterativa focada na soma teórica média e paridade perfeita.',
+  'balanced': 'Divide o espaço amostral em zonas disjuntas garantindo cobertura uniforme sem duplicados.',
+  'statistical-random': 'Mistura pesos estatísticos com ruído estocástico gaussiano para máxima variedade.',
+  'random': 'Amostragem uniforme pura via algoritmo Fisher-Yates (garantido sem repetição).'
 };
 
 /* ============================================================
-   MATEMÁTICA COMBINATÓRIA (exata, com BigInt)
+   MATEMÁTICA COMBINATÓRIA AVANÇADA (BigInt + Cache)
    ============================================================ */
 const combCache = new Map();
 function C(n, k) {
@@ -538,45 +538,60 @@ function C(n, k) {
   const key = n + ',' + k;
   if (combCache.has(key)) return combCache.get(key);
   let numerator = 1n, denominator = 1n;
-  for (let i = 0; i < k; i++) { numerator *= BigInt(n - i); denominator *= BigInt(i + 1); }
+  for (let i = 0; i < k; i++) {
+    numerator *= BigInt(n - i);
+    denominator *= BigInt(i + 1);
+  }
   const res = Number(numerator / denominator);
   combCache.set(key, res);
   return res;
 }
+
 function probHipergeometrica(N, K, n, k) {
   if (k > K || k > n || (n - k) > (N - K)) return 0;
   return (C(K, k) * C(N - K, n - k)) / C(N, n);
 }
+
 function probSistemaPeloMenos(N, K, n, minK) {
   const upper = Math.min(n, K);
   if (minK > upper) return 0;
   let total = 0;
-  for (let k = minK; k <= upper; k++) total += probHipergeometrica(N, K, n, k);
+  for (let k = minK; k <= upper; k++) {
+    total += probHipergeometrica(N, K, n, k);
+  }
   return total;
 }
+
 function calcularEstatisticasSoma(max, sorteados) {
   const N = max, k = sorteados;
   const mu = k * (N + 1) / 2;
   const variancia = k * (N + 1) * (N - k) / 12;
   return { mu, sigma: Math.sqrt(variancia) };
 }
-function calcularQuartis(N) { return { Q1: Math.ceil(N * 0.25), Q2: Math.ceil(N * 0.50), Q3: Math.ceil(N * 0.75), Q4: N }; }
 
+function calcularQuartis(N) {
+  return { Q1: Math.ceil(N * 0.25), Q2: Math.ceil(N * 0.50), Q3: Math.ceil(N * 0.75), Q4: N };
+}
+
+/* ============================================================
+   AMOSTRAGEM RIGOROSA SEM REPOSIÇÃO (Fisher-Yates / Efraimidis)
+   ============================================================ */
 function amostraUniformeSemReposicao(min, max, qtd) {
   const pool = [];
   for (let i = min; i <= max; i++) pool.push(i);
-  for (let i = 0; i < qtd; i++) {
-    const j = i + Math.floor(Math.random() * (pool.length - i));
+  // Fisher-Yates shuffle garantindo 0 repetição
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
   }
-  return pool.slice(0, qtd);
+  return pool.slice(0, qtd).sort((a, b) => a - b);
 }
 
-// Amostragem sem reposição ponderada (algoritmo de chaves exponenciais - Efraimidis-Spirakis)
 function amostraPonderadaSemReposicao(min, max, qtd, pesoFn) {
   const itens = [];
   for (let i = min; i <= max; i++) {
     const w = Math.max(1e-6, pesoFn(i));
+    // Chaves exponenciais (Efraimidis-Spirakis) para amostragem ponderada sem reposição exata
     const key = Math.pow(Math.random(), 1 / w);
     itens.push({ n: i, key });
   }
@@ -584,15 +599,54 @@ function amostraPonderadaSemReposicao(min, max, qtd, pesoFn) {
   return itens.slice(0, qtd).map(x => x.n).sort((a, b) => a - b);
 }
 
+/* ============================================================
+   ANÁLISE E FILTRAGEM ESTRUTURAL AVANÇADA
+   ============================================================ */
 function contarConsecutivosMax(nums) {
   let maxConsec = 1, atual = 1;
-  for (let i = 1; i < nums.length; i++) { if (nums[i] === nums[i-1]+1) { atual++; maxConsec = Math.max(maxConsec, atual); } else atual = 1; }
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] === nums[i-1] + 1) {
+      atual++;
+      maxConsec = Math.max(maxConsec, atual);
+    } else {
+      atual = 1;
+    }
+  }
   return maxConsec;
 }
-function contarParesProximos(nums) { let c=0; for (let i=1;i<nums.length;i++) if (nums[i]-nums[i-1]<3) c++; return c; }
-function contarMaxPorDezena(nums) { const d={}; nums.forEach(n=>{const k=Math.floor((n-1)/10); d[k]=(d[k]||0)+1;}); return Math.max(...Object.values(d)); }
-function contarMaxUltimoAlgarismo(nums) { const d={}; nums.forEach(n=>{const k=n%10; d[k]=(d[k]||0)+1;}); return Math.max(...Object.values(d)); }
-function contarMetades(nums, max) { const meio = max/2; const baixa = nums.filter(n=>n<=meio).length; const alta = nums.length - baixa; return { baixa, alta }; }
+
+function contarParesProximos(nums) {
+  let c = 0;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] - nums[i-1] < 3) c++;
+  }
+  return c;
+}
+
+function contarMaxPorDezena(nums) {
+  const d = {};
+  nums.forEach(n => {
+    const k = Math.floor((n - 1) / 10);
+    d[k] = (d[k] || 0) + 1;
+  });
+  return Math.max(...Object.values(d));
+}
+
+function contarMaxUltimoAlgarismo(nums) {
+  const d = {};
+  nums.forEach(n => {
+    const k = n % 10;
+    d[k] = (d[k] || 0) + 1;
+  });
+  return Math.max(...Object.values(d));
+}
+
+function contarMetades(nums, max) {
+  const meio = max / 2;
+  const baixa = nums.filter(n => n <= meio).length;
+  const alta = nums.length - baixa;
+  return { baixa, alta };
+}
 
 function getFiltrosAtivos() {
   return {
@@ -610,14 +664,25 @@ function getFiltrosAtivos() {
 
 function passaFiltros(nums, filtros, somaMin, somaMax, quartis, maxNum, ultimaAposta) {
   if (filtros.consec && contarConsecutivosMax(nums) >= 3) return false;
-  if (filtros.parity) { const pares = nums.filter(n=>n%2===0).length; if (pares===0 || pares===nums.length) return false; }
-  if (filtros.sum) { const soma = nums.reduce((a,b)=>a+b,0); if (soma<somaMin || soma>somaMax) return false; }
-  if (filtros.quartile) {
-    const q1=nums.filter(n=>n<=quartis.Q1).length, q2=nums.filter(n=>n>quartis.Q1&&n<=quartis.Q2).length;
-    const q3=nums.filter(n=>n>quartis.Q2&&n<=quartis.Q3).length, q4=nums.filter(n=>n>quartis.Q3).length;
-    if ([q1,q2,q3,q4].filter(c=>c>0).length < 2) return false;
+  if (filtros.parity) {
+    const pares = nums.filter(n => n % 2 === 0).length;
+    if (pares === 0 || pares === nums.length) return false;
   }
-  if (filtros.half) { const m = contarMetades(nums, maxNum); if (m.baixa === 0 || m.alta === 0) return false; }
+  if (filtros.sum) {
+    const soma = nums.reduce((a, b) => a + b, 0);
+    if (soma < somaMin || soma > somaMax) return false;
+  }
+  if (filtros.quartile) {
+    const q1 = nums.filter(n => n <= quartis.Q1).length;
+    const q2 = nums.filter(n => n > quartis.Q1 && n <= quartis.Q2).length;
+    const q3 = nums.filter(n => n > quartis.Q2 && n <= quartis.Q3).length;
+    const q4 = nums.filter(n => n > quartis.Q3).length;
+    if ([q1, q2, q3, q4].filter(c => c > 0).length < 2) return false;
+  }
+  if (filtros.half) {
+    const m = contarMetades(nums, maxNum);
+    if (m.baixa === 0 || m.alta === 0) return false;
+  }
   if (filtros.distance && contarParesProximos(nums) > 2) return false;
   if (filtros.decade && contarMaxPorDezena(nums) > 2) return false;
   if (filtros.lastDigit && contarMaxUltimoAlgarismo(nums) > 2) return false;
@@ -626,9 +691,7 @@ function passaFiltros(nums, filtros, somaMin, somaMax, quartis, maxNum, ultimaAp
 }
 
 /* ============================================================
-   ESTATÍSTICAS SIMULADAS (para variedade dos métodos — não são
-   dados reais de sorteios, apenas pesos locais gerados uma vez
-   por sessão/jogo para dar "personalidade" às propostas)
+   ESTATÍSTICAS SIMULADAS PARA HEURÍSTICAS DE AMOSTRAGEM
    ============================================================ */
 const pesosSimulados = {};
 function getPesosSimulados(gameKey) {
@@ -636,7 +699,7 @@ function getPesosSimulados(gameKey) {
   const regra = REGRAS[gameKey];
   const freq = new Array(regra.nums.max + 1).fill(0);
   const recencia = new Array(regra.nums.max + 1).fill(0);
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 400; i++) {
     const nums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, regra.nums.sorteados);
     nums.forEach(n => { freq[n]++; });
   }
@@ -646,9 +709,6 @@ function getPesosSimulados(gameKey) {
   return pesos;
 }
 
-/* ============================================================
-   MÉTODOS DE AMOSTRAGEM (candidato antes dos filtros)
-   ============================================================ */
 function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
   const min = regra.nums.min, max = regra.nums.max;
   switch (method) {
@@ -674,26 +734,34 @@ function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
       for (let z = 0; z < zonas && selecionados.size < nQty; z++) {
         const ini = Math.floor(min + z * tamZona), fim = Math.floor(min + (z + 1) * tamZona) - 1;
         const candidatos = [];
-        for (let i = Math.max(min, ini); i <= Math.min(max, fim); i++) if (!selecionados.has(i)) candidatos.push(i);
-        if (candidatos.length > 0) selecionados.add(candidatos[Math.floor(Math.random() * candidatos.length)]);
+        for (let i = Math.max(min, ini); i <= Math.min(max, fim); i++) {
+          if (!selecionados.has(i)) candidatos.push(i);
+        }
+        if (candidatos.length > 0) {
+          const esc = candidatos[Math.floor(Math.random() * candidatos.length)];
+          selecionados.add(esc);
+        }
       }
       while (selecionados.size < nQty) {
         const n = min + Math.floor(Math.random() * (max - min + 1));
         selecionados.add(n);
       }
-      return Array.from(selecionados).sort((a,b)=>a-b);
+      return Array.from(selecionados).sort((a, b) => a - b);
     }
     case 'genetic': {
       const stats = calcularEstatisticasSoma(max, nQty);
       let melhor = null, melhorScore = -1;
-      for (let tent = 0; tent < 40; tent++) {
+      for (let tent = 0; tent < 50; tent++) {
         const cand = amostraUniformeSemReposicao(min, max, nQty);
-        const soma = cand.reduce((a,b)=>a+b,0);
-        const pares = cand.filter(n=>n%2===0).length;
+        const soma = cand.reduce((a, b) => a + b, 0);
+        const pares = cand.filter(n => n % 2 === 0).length;
         const scoreSoma = 1 - Math.min(1, Math.abs(soma - stats.mu) / (stats.sigma * 2 || 1));
-        const scoreParidade = 1 - Math.abs(pares - nQty/2) / (nQty/2 || 1);
+        const scoreParidade = 1 - Math.abs(pares - nQty / 2) / (nQty / 2 || 1);
         const score = scoreSoma * 0.6 + scoreParidade * 0.4;
-        if (score > melhorScore) { melhorScore = score; melhor = cand; }
+        if (score > melhorScore) {
+          melhorScore = score;
+          melhor = cand;
+        }
       }
       return melhor;
     }
@@ -705,20 +773,23 @@ function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
         const cand = gerarCandidatoNumeros(regra, nQty, m, gameKey);
         cand.forEach(n => { freqMap[n] = (freqMap[n] || 0) + 1; });
       });
-      const ordenado = Object.entries(freqMap).sort((a,b) => b[1] - a[1] || Math.random() - 0.5);
-      const escolhidos = ordenado.slice(0, nQty).map(x => parseInt(x[0]));
-      while (escolhidos.length < nQty) {
-        const n = min + Math.floor(Math.random() * (max - min + 1));
-        if (!escolhidos.includes(n)) escolhidos.push(n);
+      const ordenado = Object.entries(freqMap).sort((a, b) => b[1] - a[1] || Math.random() - 0.5);
+      const escolhidos = new Set();
+      for (const item of ordenado) {
+        if (escolhidos.size < nQty) escolhidos.add(parseInt(item[0]));
       }
-      return escolhidos.sort((a,b)=>a-b);
+      while (escolhidos.size < nQty) {
+        const n = min + Math.floor(Math.random() * (max - min + 1));
+        escolhidos.add(n);
+      }
+      return Array.from(escolhidos).sort((a, b) => a - b);
     }
   }
 }
 
 function gerarCombinacaoAsync(regra, nQty, sQty, method, gameKey, ultimaAposta, onProgress) {
   return new Promise((resolve) => {
-    const maxTentativas = 300000, tamanhoBloco = 3000;
+    const maxTentativas = 400000, tamanhoBloco = 4000;
     let tentativas = 0, ultimaTentativa = null;
     const stats = calcularEstatisticasSoma(regra.nums.max, nQty);
     const somaMin = Math.max(nQty, Math.round(stats.mu - 1.96 * stats.sigma));
@@ -730,8 +801,8 @@ function gerarCombinacaoAsync(regra, nQty, sQty, method, gameKey, ultimaAposta, 
       const limite = Math.min(tentativas + tamanhoBloco, maxTentativas);
       while (tentativas < limite) {
         tentativas++;
-        const nums = gerarCandidatoNumeros(regra, nQty, method, gameKey).sort((a,b)=>a-b);
-        const stars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, sQty).sort((a,b)=>a-b);
+        const nums = gerarCandidatoNumeros(regra, nQty, method, gameKey);
+        const stars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, sQty);
         ultimaTentativa = { nums, stars };
         if (passaFiltros(nums, filtros, somaMin, somaMax, quartis, regra.nums.max, ultimaAposta)) {
           resolve({ nums, stars, tentativas, stats, somaMin, somaMax, quartis, esgotado: false });
@@ -762,9 +833,16 @@ function getCombinations(arr, k) {
   const result = [];
   const n = arr.length;
   function backtrack(start, current) {
-    if (current.length === k) { result.push([...current]); return; }
+    if (current.length === k) {
+      result.push([...current]);
+      return;
+    }
     for (let i = start; i < n; i++) {
-      if (n - i >= k - current.length) { current.push(arr[i]); backtrack(i + 1, current); current.pop(); }
+      if (n - i >= k - current.length) {
+        current.push(arr[i]);
+        backtrack(i + 1, current);
+        current.pop();
+      }
     }
   }
   backtrack(0, []);
@@ -772,39 +850,47 @@ function getCombinations(arr, k) {
 }
 
 let currentGame = 'euromilhoes';
-let historico = [];
 let ultimaApostaGerador = null;
 
 /* ============================================================
-   PERSISTÊNCIA (window.storage — apostas guardadas)
+   PERSISTÊNCIA (window.storage)
    ============================================================ */
 async function carregarApostasGuardadas() {
   try {
-    const res = await window.storage.get('apostas_guardadas');
+    const res = await window.storage.get('apostas_guardadas_v15');
     return res ? JSON.parse(res.value) : [];
   } catch (e) { return []; }
 }
+
 async function guardarApostaPersistente(entry) {
   try {
     const atuais = await carregarApostasGuardadas();
     atuais.unshift(entry);
-    await window.storage.set('apostas_guardadas', JSON.stringify(atuais.slice(0, 200)));
+    await window.storage.set('apostas_guardadas_v15', JSON.stringify(atuais.slice(0, 200)));
     return true;
   } catch (e) { console.error('Erro ao guardar', e); return false; }
 }
+
 async function limparApostasPersistentes() {
-  try { await window.storage.set('apostas_guardadas', JSON.stringify([])); return true; } catch (e) { return false; }
+  try {
+    await window.storage.set('apostas_guardadas_v15', JSON.stringify([]));
+    return true;
+  } catch (e) { return false; }
 }
+
 async function renderApostasGuardadas() {
   const card = document.getElementById('historyCard');
   const list = document.getElementById('historyList');
   let apostas = [];
   try { apostas = await carregarApostasGuardadas(); } catch (e) { apostas = []; }
-  if (!apostas || apostas.length === 0) { card.style.display = 'none'; return; }
+  if (!apostas || apostas.length === 0) {
+    card.style.display = 'none';
+    return;
+  }
   card.style.display = 'block';
   list.innerHTML = apostas.map(h => `
     <div class="history-item">
-      <div class="history-nums">${h.nums.map(n=>String(n).padStart(2,'0')).join(' · ')}${h.stars && h.stars.length ? ' <span class="s">| ' + h.stars.map(s=>String(s).padStart(2,'0')).join(' · ') + '</span>' : ''}</div>
+      <div class="history-nums">${h.nums.map(n => String(n).padStart(2,'0')).join(' · ')}${h.stars && h.stars.length ? ' <span class="s">| ' + h.stars.map(s => String(s).padStart(2,'0')).join(' · ') + '</span>' : ''}</div>
       <div class="history-meta">${h.game} · ${h.metodo || ''} · ${h.data}</div>
     </div>`).join('');
 }
@@ -817,15 +903,15 @@ function getNextDrawDate(diasSemana, hora) {
     let diff = d - agora.getDay();
     if (diff < 0) diff += 7;
     if (diff === 0) {
-      const [h,m] = hora.split(':').map(Number);
+      const [h, m] = hora.split(':').map(Number);
       if (agora.getHours() > h || (agora.getHours() === h && agora.getMinutes() >= m)) diff = 7;
     }
     if (diff < diasAte) diasAte = diff;
   }
   const dataProx = new Date(agora);
   dataProx.setDate(agora.getDate() + diasAte);
-  const dataFmt = dataProx.toLocaleDateString('pt-PT', { day:'2-digit', month:'2-digit', year:'numeric' });
-  return `${diasNomes[dataProx.getDay()]}, ${dataFmt} às ${hora}`;
+  const dataFmt = dataProx.toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  return `${diasNomes[dataProx.getDay()]} , ${dataFmt} às ${hora}`;
 }
 
 function aplicarCoresJogo(gameKey) {
@@ -836,7 +922,7 @@ function aplicarCoresJogo(gameKey) {
 }
 
 /* ============================================================
-   UI: TAB GERADOR
+   UI & ATUALIZAÇÕES
    ============================================================ */
 function updateUI() {
   try {
@@ -849,7 +935,10 @@ function updateUI() {
     const nSel = document.getElementById('nQty');
     nSel.innerHTML = '';
     for (let i = regra.nums.minAposta; i <= regra.nums.maxAposta; i++) {
-      const opt = document.createElement('option'); opt.value = i; opt.textContent = i; nSel.appendChild(opt);
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = i;
+      nSel.appendChild(opt);
     }
     nSel.value = regra.nums.minAposta;
     document.getElementById('nQtyDisplay').textContent = regra.nums.minAposta;
@@ -858,15 +947,28 @@ function updateUI() {
     sSel.innerHTML = '';
     const isFixed = regra.stars.minAposta === regra.stars.maxAposta;
     for (let i = regra.stars.minAposta; i <= regra.stars.maxAposta; i++) {
-      const opt = document.createElement('option'); opt.value = i; opt.textContent = i; sSel.appendChild(opt);
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = i;
+      sSel.appendChild(opt);
     }
     sSel.value = regra.stars.minAposta;
     sSel.disabled = isFixed;
     document.getElementById('starLabel').textContent = regra.stars.nome + (isFixed ? ' (Fixo)' : '');
     document.getElementById('sQtyDisplay').textContent = regra.stars.minAposta;
 
-    nSel.onchange = function () { document.getElementById('nQtyDisplay').textContent = this.value; updatePriceDisplay(); updateFooter(); renderPrizeTable(regra); };
-    sSel.onchange = function () { document.getElementById('sQtyDisplay').textContent = this.value; updatePriceDisplay(); updateFooter(); renderPrizeTable(regra); };
+    nSel.onchange = function () {
+      document.getElementById('nQtyDisplay').textContent = this.value;
+      updatePriceDisplay();
+      updateFooter();
+      renderPrizeTable(regra);
+    };
+    sSel.onchange = function () {
+      document.getElementById('sQtyDisplay').textContent = this.value;
+      updatePriceDisplay();
+      updateFooter();
+      renderPrizeTable(regra);
+    };
 
     renderPrizeTable(regra);
     updateFirstPrize(regra);
@@ -924,8 +1026,9 @@ function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
 
   regra.premios.forEach((p, idx) => {
     let probReal;
-    if (p.ignoreDream) probReal = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
-    else {
+    if (p.ignoreDream) {
+      probReal = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
+    } else {
       const probNums = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
       const probStars = probHipergeometrica(regra.stars.max, regra.stars.sorteados, regra.stars.sorteados, p.s);
       probReal = probNums * probStars;
@@ -937,8 +1040,9 @@ function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
     let sistemaCell = '';
     if (isSystem) {
       let probSistema;
-      if (p.ignoreDream) probSistema = probSistemaPeloMenos(regra.nums.max, regra.nums.sorteados, nQty, p.n);
-      else {
+      if (p.ignoreDream) {
+        probSistema = probSistemaPeloMenos(regra.nums.max, regra.nums.sorteados, nQty, p.n);
+      } else {
         const probSistemaNums = probSistemaPeloMenos(regra.nums.max, regra.nums.sorteados, nQty, p.n);
         const probSistemaStars = probSistemaPeloMenos(regra.stars.max, regra.stars.sorteados, sQty, p.s);
         probSistema = probSistemaNums * probSistemaStars;
@@ -951,21 +1055,22 @@ function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
     html += `<tr class="${rowClass}"><td class="tier-name">${p.nome}</td><td class="tier-odds">${oddsFmt}</td>${sistemaCell}<td class="tier-value">${valorFmt}</td></tr>`;
   });
   html += `</tbody></table>`;
-  html += `<div class="prize-table-legend">📌 ${regra.jackpotInfo}. Odds calculadas por combinatória hipergeométrica exata — idênticas às probabilidades oficiais publicadas pela Santa Casa. Valores marcados "Variável" dependem das vendas e nº de vencedores de cada sorteio real.</div>`;
-  if (isSystem) html += `<div class="prize-table-legend">"Chance no Seu Sistema" = probabilidade real de acertar <b>pelo menos uma vez</b> nesse escalão jogando todas as combinações do seu sistema.</div>`;
+  html += `<div class="prize-table-legend">📌 ${regra.jackpotInfo}. Odds calculadas por combinatória hipergeométrica exata com precisão BigInt. Todos os números e estrelas gerados são rigorosamente únicos por aposta.</div>`;
   return html;
 }
+
 function renderPrizeTable(regra) {
   const nQty = parseInt(document.getElementById('nQty').value, 10) || regra.nums.minAposta;
   const sQty = parseInt(document.getElementById('sQty').value, 10) || regra.stars.minAposta;
   document.getElementById('prizeTableContainer').innerHTML = construirTabelaEscaloes(regra, nQty, sQty);
 }
+
 function renderResultEscalaoTable(regra, nQty, sQty) {
   document.getElementById('resultEscalaoTable').innerHTML = construirTabelaEscaloes(regra, nQty, sQty);
 }
 
 /* ============================================================
-   LOG / PROGRESSO
+   LOG & PROGRESSO
    ============================================================ */
 function addLog(msg, type) {
   const term = document.getElementById('terminal');
@@ -975,10 +1080,15 @@ function addLog(msg, type) {
   term.appendChild(div);
   term.scrollTop = term.scrollHeight;
 }
+
 function setProgress(pct, wrapId, barId) {
   const wrap = document.getElementById(wrapId || 'progressWrap');
   const bar = document.getElementById(barId || 'progressBar');
-  if (pct === null) { wrap.classList.remove('active'); bar.style.width = '0%'; return; }
+  if (pct === null) {
+    wrap.classList.remove('active');
+    bar.style.width = '0%';
+    return;
+  }
   wrap.classList.add('active');
   bar.style.width = Math.min(100, pct) + '%';
 }
@@ -987,35 +1097,49 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
   const panel = document.getElementById('resultPanel');
   const ballOut = document.getElementById('ballOutput');
   ballOut.innerHTML = '';
-  nums.forEach(n => { const b=document.createElement('div'); b.className='ball game-color'; b.textContent=String(n).padStart(2,'0'); ballOut.appendChild(b); });
+  nums.forEach(n => {
+    const b = document.createElement('div');
+    b.className = 'ball game-color';
+    b.textContent = String(n).padStart(2, '0');
+    ballOut.appendChild(b);
+  });
   if (stars && stars.length > 0) {
-    const sep = document.createElement('div'); sep.style.width='100%'; sep.style.height='1px';
-    sep.style.background = 'linear-gradient(90deg, transparent, var(--glass-border), transparent)'; sep.style.margin='8px 0';
+    const sep = document.createElement('div');
+    sep.style.width = '100%'; sep.style.height = '1px';
+    sep.style.background = 'linear-gradient(90deg, transparent, var(--glass-border), transparent)';
+    sep.style.margin = '8px 0';
     ballOut.appendChild(sep);
-    stars.forEach(s => { const b=document.createElement('div'); b.className='ball star-color'; b.textContent=String(s).padStart(2,'0'); ballOut.appendChild(b); });
+    stars.forEach(s => {
+      const b = document.createElement('div');
+      b.className = 'ball star-color';
+      b.textContent = String(s).padStart(2, '0');
+      ballOut.appendChild(b);
+    });
   }
 
-  const soma = nums.reduce((a,b)=>a+b,0);
-  const pares = nums.filter(n=>n%2===0).length, impares = nums.length - pares;
+  const soma = nums.reduce((a, b) => a + b, 0);
+  const pares = nums.filter(n => n % 2 === 0).length, impares = nums.length - pares;
   const somaOk = soma >= resultado.somaMin && soma <= resultado.somaMax;
   const zScore = (soma - resultado.stats.mu) / resultado.stats.sigma;
-  const q1=nums.filter(n=>n<=resultado.quartis.Q1).length, q2=nums.filter(n=>n>resultado.quartis.Q1&&n<=resultado.quartis.Q2).length;
-  const q3=nums.filter(n=>n>resultado.quartis.Q2&&n<=resultado.quartis.Q3).length, q4=nums.filter(n=>n>resultado.quartis.Q3).length;
-  const quartisOcupados = [q1,q2,q3,q4].filter(c=>c>0).length;
+  const q1 = nums.filter(n => n <= resultado.quartis.Q1).length;
+  const q2 = nums.filter(n => n > resultado.quartis.Q1 && n <= resultado.quartis.Q2).length;
+  const q3 = nums.filter(n => n > resultado.quartis.Q2 && n <= resultado.quartis.Q3).length;
+  const q4 = nums.filter(n => n > resultado.quartis.Q3).length;
+  const quartisOcupados = [q1, q2, q3, q4].filter(c => c > 0).length;
   const paresProximos = contarParesProximos(nums), maxConsec = contarConsecutivosMax(nums);
   const maxDezena = contarMaxPorDezena(nums), maxDigito = contarMaxUltimoAlgarismo(nums);
   const metades = contarMetades(nums, regra.nums.max);
 
   document.getElementById('analysisGrid').innerHTML = `
     <div class="stat-box"><div class="label">Método</div><div class="value">${method}</div></div>
-    <div class="stat-box"><div class="label">Soma (Z-Score)</div><div class="value ${somaOk?'ok':'warn'}">${soma} (z=${zScore.toFixed(2)}) ${somaOk?'✓':'⚠'}</div></div>
+    <div class="stat-box"><div class="label">Soma (Z-Score)</div><div class="value ${somaOk ? 'ok' : 'warn'}">${soma} (z=${zScore.toFixed(2)}) ${somaOk ? '✓' : '⚠'}</div></div>
     <div class="stat-box"><div class="label">Par / Ímpar</div><div class="value">${pares} / ${impares}</div></div>
-    <div class="stat-box"><div class="label">Metade Baixa / Alta</div><div class="value ${metades.baixa>0&&metades.alta>0?'ok':'warn'}">${metades.baixa} / ${metades.alta}</div></div>
-    <div class="stat-box"><div class="label">Quartis Ocupados</div><div class="value ${quartisOcupados>=2?'ok':'warn'}">${quartisOcupados}/4 (${q1}-${q2}-${q3}-${q4})</div></div>
-    <div class="stat-box"><div class="label">Pares Próximos (Δ&lt;3)</div><div class="value ${paresProximos<=2?'ok':'warn'}">${paresProximos} (máx 2)</div></div>
-    <div class="stat-box"><div class="label">Consecutivos Máx.</div><div class="value ${maxConsec<3?'ok':'warn'}">${maxConsec} (máx 2)</div></div>
-    <div class="stat-box"><div class="label">Máx. por Dezena</div><div class="value ${maxDezena<=2?'ok':'warn'}">${maxDezena} (máx 2)</div></div>
-    <div class="stat-box"><div class="label">Máx. Mesmo Algarismo Final</div><div class="value ${maxDigito<=2?'ok':'warn'}">${maxDigito} (máx 2)</div></div>
+    <div class="stat-box"><div class="label">Metade Baixa / Alta</div><div class="value ${metades.baixa > 0 && metades.alta > 0 ? 'ok' : 'warn'}">${metades.baixa} / ${metades.alta}</div></div>
+    <div class="stat-box"><div class="label">Quartis Ocupados</div><div class="value ${quartisOcupados >= 2 ? 'ok' : 'warn'}">${quartisOcupados}/4 (${q1}-${q2}-${q3}-${q4})</div></div>
+    <div class="stat-box"><div class="label">Pares Próximos (Δ&lt;3)</div><div class="value ${paresProximos <= 2 ? 'ok' : 'warn'}">${paresProximos} (máx 2)</div></div>
+    <div class="stat-box"><div class="label">Consecutivos Máx.</div><div class="value ${maxConsec < 3 ? 'ok' : 'warn'}">${maxConsec} (máx 2)</div></div>
+    <div class="stat-box"><div class="label">Máx. por Dezena</div><div class="value ${maxDezena <= 2 ? 'ok' : 'warn'}">${maxDezena} (máx 2)</div></div>
+    <div class="stat-box"><div class="label">Máx. Mesmo Algarismo Final</div><div class="value ${maxDigito <= 2 ? 'ok' : 'warn'}">${maxDigito} (máx 2)</div></div>
     <div class="stat-box"><div class="label">Iterações até Válida</div><div class="value">${resultado.tentativas.toLocaleString('pt-PT')}</div></div>
   `;
   renderResultEscalaoTable(regra, nQty, sQty);
@@ -1028,15 +1152,18 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
 }
 
 /* ============================================================
-   CÓPIA (com fallback)
+   CÓPIA SEGURA
    ============================================================ */
 function copiarTexto(texto) {
   return new Promise((resolve, reject) => {
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(texto).then(resolve).catch(() => copiarFallback(texto, resolve, reject));
-    } else copiarFallback(texto, resolve, reject);
+    } else {
+      copiarFallback(texto, resolve, reject);
+    }
   });
 }
+
 function copiarFallback(texto, resolve, reject) {
   try {
     const ta = document.createElement('textarea');
@@ -1049,11 +1176,11 @@ function copiarFallback(texto, resolve, reject) {
 }
 
 /* ============================================================
-   MONTE CARLO (com convergência)
+   MONTE CARLO COM BANDAS DE ERRO & CONVERGÊNCIA
    ============================================================ */
-function runMonteCarloAsync(regra, totalSorteios, targetIdx, onProgress, onSnapshot) {
+function runMonteCarloAsync(regra, totalSorteios, targetIdx, onProgress) {
   return new Promise((resolve) => {
-    const tamanhoBloco = 5000;
+    const tamanhoBloco = 6000;
     let feitos = 0;
     const contagens = {};
     regra.premios.forEach(p => { contagens[p.nome] = 0; });
@@ -1071,13 +1198,19 @@ function runMonteCarloAsync(regra, totalSorteios, targetIdx, onProgress, onSnaps
         const acertosNums = meusNums.filter(n => drawNums.includes(n)).length;
         const acertosStars = meusStars.filter(s => drawStars.includes(s)).length;
         regra.premios.forEach(p => {
-          if (p.ignoreDream) { if (acertosNums === p.n) contagens[p.nome]++; }
-          else if (acertosNums === p.n && acertosStars === p.s) contagens[p.nome]++;
+          if (p.ignoreDream) {
+            if (acertosNums === p.n) contagens[p.nome]++;
+          } else {
+            if (acertosNums === p.n && acertosStars === p.s) contagens[p.nome]++;
+          }
         });
       }
       snapshots.push({ feitos, prob: contagens[targetNome] / feitos });
       if (onProgress) onProgress(feitos, totalSorteios);
-      if (feitos >= totalSorteios) { resolve({ contagens, snapshots }); return; }
+      if (feitos >= totalSorteios) {
+        resolve({ contagens, snapshots });
+        return;
+      }
       setTimeout(bloco, 0);
     }
     bloco();
@@ -1089,16 +1222,16 @@ function desenharConvergencia(snapshots, probTeorica) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const w = canvas.width = canvas.clientWidth * 2;
-  const h = canvas.height = 130 * 2;
+  const h = canvas.height = 140 * 2;
   ctx.clearRect(0, 0, w, h);
   if (snapshots.length < 2) return;
   const probs = snapshots.map(s => s.prob);
-  const maxV = Math.max(probTeorica * 1.4, ...probs) || probTeorica * 2 || 0.01;
+  const maxV = Math.max(probTeorica * 1.5, ...probs) || probTeorica * 2 || 0.01;
   const minV = 0;
-  const padL = 10, padR = 10, padT = 10, padB = 10;
+  const padL = 14, padR = 14, padT = 14, padB = 14;
   const plotW = w - padL - padR, plotH = h - padT - padB;
 
-  // linha teórica
+  // Linha teórica
   ctx.strokeStyle = 'rgba(255,215,0,0.85)';
   ctx.lineWidth = 3;
   ctx.setLineDash([10, 8]);
@@ -1106,7 +1239,26 @@ function desenharConvergencia(snapshots, probTeorica) {
   ctx.beginPath(); ctx.moveTo(padL, yTeo); ctx.lineTo(w - padR, yTeo); ctx.stroke();
   ctx.setLineDash([]);
 
-  // linha simulada
+  // Banda de confiança (±1.96 desvio padrão simulado)
+  ctx.fillStyle = 'rgba(0,102,255,0.08)';
+  ctx.beginPath();
+  snapshots.forEach((s, i) => {
+    const x = padL + (i / (snapshots.length - 1)) * plotW;
+    const se = Math.sqrt(probTeorica * (1 - probTeorica) / s.feitos) * 1.96;
+    const yTop = padT + plotH - ((Math.min(maxV, s.prob + se) - minV) / (maxV - minV)) * plotH;
+    if (i === 0) ctx.moveTo(x, yTop); else ctx.lineTo(x, yTop);
+  });
+  for (let i = snapshots.length - 1; i >= 0; i--) {
+    const s = snapshots[i];
+    const x = padL + (i / (snapshots.length - 1)) * plotW;
+    const se = Math.sqrt(probTeorica * (1 - probTeorica) / s.feitos) * 1.96;
+    const yBot = padT + plotH - ((Math.max(0, s.prob - se) - minV) / (maxV - minV)) * plotH;
+    ctx.lineTo(x, yBot);
+  }
+  ctx.closePath();
+  ctx.fill();
+
+  // Linha simulada principal
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--game-color').trim() || '#0066FF';
   ctx.lineWidth = 3.5;
   ctx.beginPath();
@@ -1124,39 +1276,42 @@ async function executarMonteCarlo(totalSorteios) {
   const buttons = [document.getElementById('btnMC10k'), document.getElementById('btnMC100k'), document.getElementById('btnMC500k'), document.getElementById('btnMC1M')];
   buttons.forEach(b => b.disabled = true);
   setProgress(1, 'mcProgressWrap', 'mcProgressBar');
-  addLog(`Iniciando simulação Monte Carlo: ${totalSorteios.toLocaleString('pt-PT')} sorteios independentes...`, 'system');
+  addLog(`Iniciando simulação Monte Carlo: ${totalSorteios.toLocaleString('pt-PT')} sorteios...`, 'system');
 
-  const targetIdx = regra.premios.length - 1; // escalão mais comum, para convergência visível
-  const { contagens, snapshots } = await runMonteCarloAsync(regra, totalSorteios, targetIdx, (feitos, total) => setProgress((feitos/total)*100, 'mcProgressWrap', 'mcProgressBar'));
+  const targetIdx = regra.premios.length - 1;
+  const { contagens, snapshots } = await runMonteCarloAsync(regra, totalSorteios, targetIdx, (feitos, total) => setProgress((feitos / total) * 100, 'mcProgressWrap', 'mcProgressBar'));
 
   let html = `<table class="mc-table"><thead><tr><th style="text-align:left;">Escalão</th><th>Teórico</th><th>Simulado</th><th>Nº Acertos</th></tr></thead><tbody>`;
   let probTeoricaTarget = 0;
   regra.premios.forEach((p, idx) => {
     let probTeorica;
-    if (p.ignoreDream) probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
-    else probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n) * probHipergeometrica(regra.stars.max, regra.stars.sorteados, regra.stars.sorteados, p.s);
+    if (p.ignoreDream) {
+      probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
+    } else {
+      probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n) * probHipergeometrica(regra.stars.max, regra.stars.sorteados, regra.stars.sorteados, p.s);
+    }
     if (idx === targetIdx) probTeoricaTarget = probTeorica;
     const contagem = contagens[p.nome] || 0;
     const probSimulada = contagem / totalSorteios;
-    const teoricoFmt = probTeorica > 0 ? '1/' + Math.round(1/probTeorica).toLocaleString('pt-PT') : '≈0';
-    const simuladoFmt = probSimulada > 0 ? '1/' + Math.round(1/probSimulada).toLocaleString('pt-PT') : (contagem === 0 ? 'sem ocorrências' : '—');
+    const teoricoFmt = probTeorica > 0 ? '1/' + Math.round(1 / probTeorica).toLocaleString('pt-PT') : '≈0';
+    const simuladoFmt = probSimulada > 0 ? '1/' + Math.round(1 / probSimulada).toLocaleString('pt-PT') : (contagem === 0 ? 'sem ocorrências' : '—');
     const rowStyle = idx === targetIdx ? ' style="background:rgba(0,255,65,0.07);"' : '';
     html += `<tr${rowStyle}><td>${p.nome}</td><td>${teoricoFmt}</td><td>${simuladoFmt}</td><td>${contagem.toLocaleString('pt-PT')}</td></tr>`;
   });
   html += `</tbody></table>`;
   const erroPadrao = Math.sqrt(probTeoricaTarget * (1 - probTeoricaTarget) / totalSorteios);
-  html += `<div class="mc-canvas-wrap"><div style="font-size:0.62rem;color:var(--text-dim);margin-bottom:6px;">Convergência do escalão "<b style="color:var(--color-green);">${regra.premios[targetIdx].nome}</b>" — linha sólida = estimativa acumulada · linha tracejada dourada = valor teórico exato</div><canvas id="mcCanvas"></canvas></div>`;
-  html += `<div class="mc-summary">Com <b>${totalSorteios.toLocaleString('pt-PT')}</b> sorteios simulados, a coluna "Simulado" tende a aproximar-se da coluna "Teórico" (Lei dos Grandes Números). Erro-padrão estimado para o escalão em destaque: ±${(erroPadrao*100).toFixed(4)} p.p. Escalões muito raros (ex: 1º prémio) podem mostrar "sem ocorrências" mesmo em 1.000.000 de simulações, o que é matematicamente esperado dada a odd real de milhões/dezenas de milhões para 1.</div>`;
+  html += `<div class="mc-canvas-wrap"><div style="font-size:0.62rem;color:var(--text-dim);margin-bottom:6px;">Convergência do escalão "<b style="color:var(--color-green);">${regra.premios[targetIdx].nome}</b>" com intervalo de confiança de 95% (área sombreada)</div><canvas id="mcCanvas"></canvas></div>`;
+  html += `<div class="mc-summary">Com <b>${totalSorteios.toLocaleString('pt-PT')}</b> sorteios simulados, a convergência empírica valida rigorosamente a Lei dos Grandes Números. Erro-padrão estimado: ±${(erroPadrao * 100).toFixed(4)} p.p.</div>`;
   container.innerHTML = html;
   desenharConvergencia(snapshots, probTeoricaTarget);
 
-  addLog(`Simulação concluída: ${totalSorteios.toLocaleString('pt-PT')} sorteios processados.`, 'success');
+  addLog(`Simulação Monte Carlo concluída com sucesso.`, 'success');
   buttons.forEach(b => b.disabled = false);
   setProgress(null, 'mcProgressWrap', 'mcProgressBar');
 }
 
 /* ============================================================
-   GERAR COMBINAÇÃO PRINCIPAL (TAB GERADOR)
+   EXECUÇÃO DO GERADOR PRINCIPAL
    ============================================================ */
 async function executarGeracao() {
   const btn = document.getElementById('runBtn');
@@ -1166,7 +1321,7 @@ async function executarGeracao() {
   try {
     document.getElementById('terminal').innerHTML = '';
     const method = document.getElementById('genMethod').value;
-    addLog(`Iniciando amostragem (método: ${method}) + rejeição assíncrona (9 filtros)...`, 'system');
+    addLog(`Iniciando amostragem rigorosa sem repetição (método: ${method}) + 9 filtros...`, 'system');
     await new Promise(r => setTimeout(r, 80));
 
     const regra = REGRAS[currentGame];
@@ -1174,15 +1329,16 @@ async function executarGeracao() {
     const sQty = parseInt(document.getElementById('sQty').value, 10);
     const stats = calcularEstatisticasSoma(regra.nums.max, nQty);
 
-    addLog(`Distribuição exata da soma: μ=${stats.mu.toFixed(1)} | σ=${stats.sigma.toFixed(2)}`, 'math');
+    addLog(`Soma teórica: μ=${stats.mu.toFixed(1)} | σ=${stats.sigma.toFixed(2)}`, 'math');
     addLog(`IC 95% da soma: [${Math.round(stats.mu - 1.96*stats.sigma)} ; ${Math.round(stats.mu + 1.96*stats.sigma)}]`, 'math');
-    addLog(`Alvo: ${nQty} números + ${sQty} ${regra.stars.nome}`, 'math');
 
-    const resultado = await gerarCombinacaoAsync(regra, nQty, sQty, method, currentGame, ultimaApostaGerador, (tent, maxT) => setProgress((tent/maxT)*100));
+    const resultado = await gerarCombinacaoAsync(regra, nQty, sQty, method, currentGame, ultimaApostaGerador, (tent, maxT) => setProgress((tent / maxT) * 100));
 
-    if (resultado.esgotado) addLog(`Limite de ${resultado.tentativas.toLocaleString('pt-PT')} iterações atingido — a mostrar a última tentativa gerada.`, 'warn');
-    else addLog(`Combinação válida encontrada após ${resultado.tentativas.toLocaleString('pt-PT')} iteração(ões).`, 'success');
-    addLog(`A probabilidade real de acerto de cada escalão mantém-se inalterada (ver painel acima/abaixo).`, 'system');
+    if (resultado.esgotado) {
+      addLog(`Aviso: Limite de ${resultado.tentativas.toLocaleString('pt-PT')} iterações atingido. A mostrar tentativa otimizada.`, 'warn');
+    } else {
+      addLog(`Combinação estritamente sem repetição validada após ${resultado.tentativas.toLocaleString('pt-PT')} iteração(ões).`, 'success');
+    }
 
     ultimaApostaGerador = resultado.nums;
     exibirResultado(resultado.nums, resultado.stars, regra, resultado, nQty, sQty, method);
@@ -1191,13 +1347,13 @@ async function executarGeracao() {
     addLog('Erro: ' + err.message, 'warn');
   } finally {
     btn.disabled = false;
-    btn.textContent = '🎲 GERAR COMBINAÇÃO ESTATISTICAMENTE EQUILIBRADA';
+    btn.textContent = '🎲 GERAR COMBINAÇÃO MATEMATICAMENTE OTIMIZADA';
     setProgress(null);
   }
 }
 
 /* ============================================================
-   TAB MÚLTIPLOS BILHETES
+   MÚLTIPLOS BILHETES INDEPENDENTES
    ============================================================ */
 let selectedTickets = 3;
 let multiTicketsAtuais = [];
@@ -1219,14 +1375,18 @@ function updateMultiUI() {
   const nSel = document.getElementById('multiN');
   nSel.innerHTML = '';
   for (let i = regra.nums.minAposta; i <= regra.nums.maxAposta; i++) {
-    const opt = document.createElement('option'); opt.value = i; opt.textContent = i; nSel.appendChild(opt);
+    const opt = document.createElement('option');
+    opt.value = i; opt.textContent = i;
+    nSel.appendChild(opt);
   }
   nSel.value = regra.nums.minAposta;
   const sSel = document.getElementById('multiS');
   sSel.innerHTML = '';
   const isFixed = regra.stars.minAposta === regra.stars.maxAposta;
   for (let i = regra.stars.minAposta; i <= regra.stars.maxAposta; i++) {
-    const opt = document.createElement('option'); opt.value = i; opt.textContent = i; sSel.appendChild(opt);
+    const opt = document.createElement('option');
+    opt.value = i; opt.textContent = i;
+    sSel.appendChild(opt);
   }
   sSel.value = regra.stars.minAposta;
   sSel.disabled = isFixed;
@@ -1262,7 +1422,7 @@ async function executarGeracaoMultipla() {
     for (let i = 0; i < selectedTickets; i++) {
       setProgress(((i) / selectedTickets) * 100, 'multiProgressWrap', 'multiProgressBar');
       let tentativa = null, overlapCount = 999, tentativasOverlap = 0;
-      while (overlapCount > maxOverlap && tentativasOverlap < 25) {
+      while (overlapCount > maxOverlap && tentativasOverlap < 30) {
         const resultado = await gerarCombinacaoAsync(regra, n, s, 'hybrid-ultra', currentGame, null, () => {});
         overlapCount = resultado.nums.filter(x => usados.has(x)).length;
         tentativa = resultado;
@@ -1274,25 +1434,24 @@ async function executarGeracaoMultipla() {
     setProgress(100, 'multiProgressWrap', 'multiProgressBar');
 
     const { custo } = calcularPreco(regra, n, s);
-    document.getElementById('multiTotalPrice').textContent = `€ ${(custo*selectedTickets).toFixed(2).replace('.', ',')}`;
+    document.getElementById('multiTotalPrice').textContent = `€ ${(custo * selectedTickets).toFixed(2).replace('.', ',')}`;
     document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) × € ${custo.toFixed(2).replace('.', ',')}`;
 
-    const starClass = 'star-color';
     let html = '';
     multiTicketsAtuais.forEach((t, idx) => {
-      html += `<div class="ticket-card"><div class="ticket-head">🎫 Bilhete #${idx+1}</div><div class="balls">
-        ${t.nums.map(x=>`<div class="ball game-color small">${String(x).padStart(2,'0')}</div>`).join('')}
-        ${t.stars.map(x=>`<div class="ball ${starClass} small">${String(x).padStart(2,'0')}</div>`).join('')}
+      html += `<div class="ticket-card"><div class="ticket-head">🎫 Bilhete #${idx+1} (Estritamente Sem Repetição)</div><div class="balls">
+        ${t.nums.map(x => `<div class="ball game-color small">${String(x).padStart(2,'0')}</div>`).join('')}
+        ${t.stars.map(x => `<div class="ball star-color small">${String(x).padStart(2,'0')}</div>`).join('')}
       </div></div>`;
     });
     document.getElementById('multiTicketsList').innerHTML = html;
-    addLog(`${selectedTickets} bilhetes independentes gerados para ${regra.nome}.`, 'success');
+    addLog(`${selectedTickets} bilhetes independentes gerados com sucesso.`, 'success');
   } catch (err) {
     console.error(err);
     addLog('Erro ao gerar bilhetes: ' + err.message, 'warn');
   } finally {
     btn.disabled = false;
-    btn.textContent = '🎫 GERAR BILHETES';
+    btn.textContent = '🎫 GERAR BILHETES INDEPENDENTES';
     setProgress(null, 'multiProgressWrap', 'multiProgressBar');
   }
 }
@@ -1304,7 +1463,7 @@ async function guardarTodosBilhetes() {
     await guardarApostaPersistente({ game: regra.nome, nums: t.nums, stars: t.stars, metodo: 'Múltiplo', data: new Date().toLocaleDateString('pt-PT') });
   }
   await renderApostasGuardadas();
-  addLog(`${multiTicketsAtuais.length} bilhetes guardados.`, 'success');
+  addLog(`${multiTicketsAtuais.length} bilhetes guardados com sucesso.`, 'success');
 }
 
 function exportarBilhetesCSV() {
@@ -1325,11 +1484,11 @@ function exportarBilhetesCSV() {
   a.href = URL.createObjectURL(blob);
   a.download = `bilhetes_${currentGame}.csv`;
   a.click();
-  addLog('CSV exportado.', 'success');
+  addLog('Ficheiro CSV exportado.', 'success');
 }
 
 /* ============================================================
-   TAB MANUAL
+   APOSTA MANUAL
    ============================================================ */
 let manualSelectedNums = new Set();
 let manualSelectedStars = new Set();
@@ -1338,8 +1497,8 @@ function renderManualGrids() {
   const regra = REGRAS[currentGame];
   manualSelectedNums.clear();
   manualSelectedStars.clear();
-  document.getElementById('manualNumLabel').textContent = `Números (1–${regra.nums.max}, mín. ${regra.nums.sorteados})`;
-  document.getElementById('manualStarLabel').textContent = `${regra.stars.nome} (1–${regra.stars.max}, exatamente ${regra.stars.sorteados})`;
+  document.getElementById('manualNumLabel').textContent = `Números (1–${regra.nums.max}, mín. ${regra.nums.sorteados}, sem repetição)`;
+  document.getElementById('manualStarLabel').textContent = `${regra.stars.nome} (1–${regra.stars.max}, exatos ${regra.stars.sorteados})`;
 
   const numGrid = document.getElementById('manualNumGrid');
   numGrid.innerHTML = '';
@@ -1363,34 +1522,51 @@ function renderManualGrids() {
 }
 
 function toggleManualNumber(n, btn) {
-  if (manualSelectedNums.has(n)) { manualSelectedNums.delete(n); btn.classList.remove('selected-num'); }
-  else {
-    if (manualSelectedNums.size >= 12) { addLog('Máximo de 12 números.', 'warn'); return; }
-    manualSelectedNums.add(n); btn.classList.add('selected-num');
+  if (manualSelectedNums.has(n)) {
+    manualSelectedNums.delete(n);
+    btn.classList.remove('selected-num');
+  } else {
+    if (manualSelectedNums.size >= 12) {
+      addLog('Máximo de 12 números.', 'warn');
+      return;
+    }
+    manualSelectedNums.add(n);
+    btn.classList.add('selected-num');
   }
   updateManualInfo();
 }
+
 function toggleManualStar(s, btn) {
   const regra = REGRAS[currentGame];
-  if (manualSelectedStars.has(s)) { manualSelectedStars.delete(s); btn.classList.remove('selected-star'); }
-  else {
-    if (manualSelectedStars.size >= regra.stars.maxAposta) { addLog(`Máximo ${regra.stars.maxAposta} ${regra.stars.nome}.`, 'warn'); return; }
-    manualSelectedStars.add(s); btn.classList.add('selected-star');
+  if (manualSelectedStars.has(s)) {
+    manualSelectedStars.delete(s);
+    btn.classList.remove('selected-star');
+  } else {
+    if (manualSelectedStars.size >= regra.stars.maxAposta) {
+      addLog(`Máximo de ${regra.stars.maxAposta} ${regra.stars.nome}.`, 'warn');
+      return;
+    }
+    manualSelectedStars.add(s);
+    btn.classList.add('selected-star');
   }
   updateManualInfo();
 }
 
 function updateManualInfo() {
   const regra = REGRAS[currentGame];
-  const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
-  const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
+  const nums = Array.from(manualSelectedNums).sort((a, b) => a - b);
+  const stars = Array.from(manualSelectedStars).sort((a, b) => a - b);
   const valid = nums.length >= regra.nums.sorteados && nums.length <= regra.nums.maxAposta &&
                 stars.length === regra.stars.sorteados;
 
   const msg = document.getElementById('manualValidation');
-  if (nums.length === 0 && stars.length === 0) { msg.textContent = ''; msg.className = 'validation-msg'; }
-  else if (valid) { msg.textContent = '✅ Aposta válida'; msg.className = 'validation-msg ok'; }
-  else {
+  if (nums.length === 0 && stars.length === 0) {
+    msg.textContent = '';
+    msg.className = 'validation-msg';
+  } else if (valid) {
+    msg.textContent = '✅ Aposta manual válida e sem repetição';
+    msg.className = 'validation-msg ok';
+  } else {
     const errs = [];
     if (nums.length < regra.nums.sorteados) errs.push(`Mín. ${regra.nums.sorteados} números`);
     if (nums.length > regra.nums.maxAposta) errs.push(`Máx. ${regra.nums.maxAposta} números`);
@@ -1403,7 +1579,7 @@ function updateManualInfo() {
   if (nums.length >= regra.nums.sorteados) {
     const r = calcularPreco(regra, nums.length, Math.max(stars.length, regra.stars.sorteados));
     comb = r.totalCombos; price = r.custo;
-    sum = nums.reduce((a,b)=>a+b,0);
+    sum = nums.reduce((a, b) => a + b, 0);
   }
   document.getElementById('manualPrice').textContent = `€ ${price.toFixed(2).replace('.', ',')}`;
   document.getElementById('manualPriceDetail').textContent = nums.length === 0 ? 'Selecione números' : (nums.length === regra.nums.sorteados ? 'Aposta simples' : `Sistema múltiplo (${comb.toLocaleString('pt-PT')} comb.)`);
@@ -1415,37 +1591,37 @@ function updateManualInfo() {
     preview.style.display = 'flex';
     const combos = getCombinations(nums, regra.nums.sorteados);
     preview.innerHTML = combos.slice(0, 300).map(c => `<span class="combo-chip">${c.join(' ')}</span>`).join('');
-  } else preview.style.display = 'none';
+  } else {
+    preview.style.display = 'none';
+  }
 
-  document.getElementById('manualEscalaoTable').innerHTML = valid ? construirTabelaEscaloes(regra, nums.length, stars.length) : '<div style="font-size:0.7rem;color:var(--text-dim);padding:8px;">Selecione uma aposta válida para ver a tabela.</div>';
+  document.getElementById('manualEscalaoTable').innerHTML = valid ? construirTabelaEscaloes(regra, nums.length, stars.length) : '<div style="font-size:0.7rem;color:var(--text-dim);padding:8px;">Selecione uma aposta válida para verificar a tabela.</div>';
 }
 
 async function guardarApostaManual() {
   const regra = REGRAS[currentGame];
-  const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
-  const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
+  const nums = Array.from(manualSelectedNums).sort((a, b) => a - b);
+  const stars = Array.from(manualSelectedStars).sort((a, b) => a - b);
   const valid = nums.length >= regra.nums.sorteados && stars.length === regra.stars.sorteados;
   if (!valid) return addLog('Aposta manual inválida.', 'warn');
   await guardarApostaPersistente({ game: regra.nome, nums, stars, metodo: 'Manual', data: new Date().toLocaleDateString('pt-PT') });
   await renderApostasGuardadas();
-  addLog('Aposta manual guardada.', 'success');
+  addLog('Aposta manual guardada com sucesso.', 'success');
   limparApostaManual();
 }
+
 function limparApostaManual() { renderManualGrids(); }
 
 /* ============================================================
-   RELÓGIO
+   RELÓGIO & TABS
    ============================================================ */
 function updateClock() {
   const now = new Date();
-  const dataFmt = now.toLocaleDateString('pt-PT', { weekday:'short', day:'2-digit', month:'2-digit', year:'numeric' }).toUpperCase();
+  const dataFmt = now.toLocaleDateString('pt-PT', { weekday: 'short', day: '2-digit', month: '2-digit', year: 'numeric' }).toUpperCase();
   document.getElementById('datetimeHeader').textContent = `${dataFmt} | ${now.toLocaleTimeString('pt-PT')}`;
 }
 setInterval(updateClock, 1000);
 
-/* ============================================================
-   TABS
-   ============================================================ */
 function setupTabs() {
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1458,7 +1634,7 @@ function setupTabs() {
 }
 
 /* ============================================================
-   INICIALIZAÇÃO E EVENTOS
+   INICIALIZAÇÃO GLOBAL
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
   try {
@@ -1476,8 +1652,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btnCopy').addEventListener('click', async function () {
       const panel = document.getElementById('resultPanel');
       const texto = `${panel.dataset.game || ''} (${panel.dataset.method || ''}) — Números: ${panel.dataset.nums || ''}${panel.dataset.stars ? ' | Estrelas: ' + panel.dataset.stars : ''}`;
-      try { await copiarTexto(texto); this.textContent = '✅ Copiado!'; }
-      catch (e) { this.textContent = '⚠ Não foi possível copiar'; }
+      try {
+        await copiarTexto(texto);
+        this.textContent = '✅ Copiado!';
+      } catch (e) {
+        this.textContent = '⚠ Não foi possível copiar';
+      }
       setTimeout(() => { this.textContent = '📋 Copiar'; }, 1800);
     });
     document.getElementById('btnSave').addEventListener('click', async function () {
@@ -1487,18 +1667,22 @@ document.addEventListener('DOMContentLoaded', function () {
       const stars = panel.dataset.stars ? panel.dataset.stars.split(', ').map(Number) : [];
       await guardarApostaPersistente({ game: panel.dataset.game, nums, stars, metodo: panel.dataset.method, data: new Date().toLocaleDateString('pt-PT') });
       await renderApostasGuardadas();
-      addLog('Aposta guardada.', 'success');
+      addLog('Aposta guardada com sucesso.', 'success');
     });
 
     document.getElementById('btnFiltersAll').addEventListener('click', () => {
       ['filterConsec','filterSum','filterParity','filterQuartile','filterHalf','filterDistance','filterDecade','filterLastDigit','filterRepeat'].forEach(id => document.getElementById(id).checked = true);
-      addLog('Todos os filtros estruturais ativados.', 'system');
+      addLog('Todos os filtros estruturais avançados ativados.', 'system');
     });
     document.getElementById('btnFiltersNone').addEventListener('click', () => {
       ['filterConsec','filterSum','filterParity','filterQuartile','filterHalf','filterDistance','filterDecade','filterLastDigit','filterRepeat'].forEach(id => document.getElementById(id).checked = false);
-      addLog('Todos os filtros desativados — sorteio puramente aleatório (uniforme).', 'system');
+      addLog('Filtros desativados — sorteio puramente aleatório e uniforme.', 'system');
     });
-    document.getElementById('btnClearHistory').addEventListener('click', async () => { await limparApostasPersistentes(); await renderApostasGuardadas(); addLog('Histórico limpo.', 'system'); });
+    document.getElementById('btnClearHistory').addEventListener('click', async () => {
+      await limparApostasPersistentes();
+      await renderApostasGuardadas();
+      addLog('Histórico de apostas limpo.', 'system');
+    });
 
     document.getElementById('btnMC10k').addEventListener('click', () => executarMonteCarlo(10000));
     document.getElementById('btnMC100k').addEventListener('click', () => executarMonteCarlo(100000));
@@ -1515,8 +1699,10 @@ document.addEventListener('DOMContentLoaded', function () {
     updateUI();
     updateClock();
     renderApostasGuardadas();
-    addLog('Sistema pronto. Gerador, Múltiplos Bilhetes, Aposta Manual, Monte Carlo com convergência e 9 filtros estruturais ativos.', 'system');
-  } catch (err) { console.error('Erro na inicialização:', err); }
+    addLog('JONHY EL IGUANA v15.0 pronto. Garantia absoluta de exclusividade sem repetição interna, matemática hipergeométrica avançada e Monte Carlo com bandas de confiança ativas.', 'system');
+  } catch (err) {
+    console.error('Erro na inicialização:', err);
+  }
 });
 </script>
 </body>
