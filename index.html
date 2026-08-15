@@ -3,404 +3,367 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>JONHY EL BRAVO v21.0 · MOTOR ULTRA-AVANÇADO 5D</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>JONHY EL BRAVO v22 · OBSERVATÓRIO COMBINATÓRIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg-deep: #010205;
-  --glass: rgba(8, 12, 22, 0.88);
-  --glass-heavy: rgba(5, 8, 16, 0.94);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --text-primary: #f0f4ff;
-  --text-dim: #8a9bb5;
-  --color-red: #FF1A1A;
-  --color-green-flag: #046A38;
-  --color-gold: #FFD700;
-  --color-gold-toasted: #CBA135;
-  --color-green: #00FF41;
-  --color-blue: #0066FF;
-  --color-white: #FFFFFF;
-  --color-amber: #CC7722;
-  --color-pink: #FF69B4;
-  --color-pink-rgb: 255, 105, 180;
-  --game-color: #0066FF;
-  --game-color-rgb: 0, 102, 255;
-  --btn-color: #0066FF;
-  --btn-color-rgb: 0, 102, 255;
-  --shadow-5d: 0 20px 50px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.08);
-  --shadow-card: 0 15px 40px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.06);
+/* ============================================================
+   TOKENS — Observatório Combinatório
+   Paleta de instrumento de precisão: grafite/marinho profundo,
+   latão (referência à esfera armilar), gelo (dados/probabilidade)
+   ============================================================ */
+:root{
+  --void:#0a0d14; --void-2:#0d111a;
+  --panel:#111621; --panel-2:#161c2a;
+  --glass:rgba(17,22,33,0.72); --glass-heavy:rgba(10,13,20,0.88);
+  --line:rgba(200,210,230,0.09); --line-strong:rgba(200,210,230,0.16);
+  --paper:#EDEAE1; --paper-dim:#9AA3B5; --paper-faint:#5C6478;
+  --brass:#C8963E; --brass-bright:#EFC272; --brass-rgb:200,150,62;
+  --ice:#6FD6E8; --ice-rgb:111,214,232;
+  --ok:#4FCB8E; --ok-rgb:79,203,142;
+  --warn:#E4523F; --warn-rgb:228,82,63;
+  --game:#6FD6E8; --game-rgb:111,214,232;
+  --shadow-deep:0 30px 70px rgba(0,0,0,0.65), 0 2px 0 rgba(255,255,255,0.03) inset;
+  --shadow-panel:0 18px 40px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.04) inset;
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  color: var(--text-primary);
-  font-family: 'Rajdhani', sans-serif;
-  min-height: 100vh;
-  line-height: 1.55;
-  background-image: url('https://qwen-webui-prod.oss-accelerate.aliyuncs.com/9621fd80-0b8d-4768-a985-31c483168878/9621fd80-0b8d-4768-a985-31c483168878_0.png?x-oss-process=image/resize,w_1920,m_lfit');
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  position: relative;
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--void);
+  color:var(--paper);
+  font-family:var(--font-body);
+  min-height:100vh;
+  line-height:1.55;
+  position:relative;
+  overflow-x:hidden;
 }
-body::before {
-  content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(ellipse at center, rgba(1, 2, 5, 0.72) 0%, rgba(1, 2, 5, 0.93) 100%), linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.8) 100%);
-  pointer-events: none; z-index: 0;
-}
-.container { max-width: 880px; margin: 0 auto; padding: 16px; position: relative; z-index: 1; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulseBar { 0%,100% { opacity:.55 } 50% { opacity:1 } }
-@keyframes flagWave5D {
-  0%   { transform: perspective(400px) rotateX(0deg) rotateY(0deg) skewX(0deg) scaleY(1) translateZ(0px); }
-  20%  { transform: perspective(400px) rotateX(6deg) rotateY(-4deg) skewX(-5deg) scaleY(0.97) translateZ(6px); }
-  40%  { transform: perspective(400px) rotateX(-4deg) rotateY(3deg) skewX(4deg) scaleY(1.03) translateZ(-4px); }
-  60%  { transform: perspective(400px) rotateX(5deg) rotateY(-2deg) skewX(-3deg) scaleY(0.98) translateZ(5px); }
-  80%  { transform: perspective(400px) rotateX(-3deg) rotateY(4deg) skewX(5deg) scaleY(1.02) translateZ(-3px); }
-  100% { transform: perspective(400px) rotateX(0deg) rotateY(0deg) skewX(0deg) scaleY(1) translateZ(0px); }
-}
-@keyframes flagShine { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-.flag-5d { position: absolute; left: 0; width: 100%; height: 11px; display: flex; transform-style: preserve-3d; perspective: 400px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6)); }
-.flag-5d.top { top: 0; } .flag-5d.bottom { bottom: 0; }
-.flag-5d .stripe { height: 100%; animation: flagWave5D 2.6s ease-in-out infinite, flagShine 4s ease-in-out infinite; transform-origin: center top; background-size: 220% 100%; }
-.flag-5d .stripe:nth-child(1) { animation-delay: 0s; } .flag-5d .stripe:nth-child(2) { animation-delay: 0.3s; } .flag-5d .stripe:nth-child(3) { animation-delay: 0.15s; }
-.flag-pt .stripe:nth-child(1) { flex: 2; background: linear-gradient(120deg, var(--color-green-flag), #024d29, var(--color-green-flag)); box-shadow: 0 0 18px rgba(4,106,56,0.6); }
-.flag-pt .stripe:nth-child(2) { flex: 3; background: linear-gradient(120deg, var(--color-red), #a10000, var(--color-red)); box-shadow: 0 0 18px rgba(255,26,26,0.5); }
-.flag-pt-emblem { position: absolute; left: 40%; top: 50%; width: 15px; height: 15px; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle at 35% 30%, var(--color-gold), var(--color-gold-toasted) 70%); box-shadow: 0 0 10px rgba(255,215,0,0.85), 0 0 3px rgba(0,0,0,0.6); animation: goldShimmer 3s ease-in-out infinite, armillarySway 4.5s ease-in-out infinite; z-index: 2; }
-.flag-fr .stripe:nth-child(1) { flex:1; background: linear-gradient(120deg, var(--color-blue), #003b99, var(--color-blue)); box-shadow: 0 0 18px rgba(0,102,255,0.5); }
-.flag-fr .stripe:nth-child(2) { flex:1; background: linear-gradient(120deg, var(--color-white), #cfd8e8, var(--color-white)); box-shadow: 0 0 18px rgba(255,255,255,0.4); }
-.flag-fr .stripe:nth-child(3) { flex:1; background: linear-gradient(120deg, var(--color-red), #a10000, var(--color-red)); box-shadow: 0 0 18px rgba(255,26,26,0.5); }
-@keyframes armillarySway { 0%,100% { transform: rotate(-4deg) translateY(0px); } 25% { transform: rotate(2deg) translateY(-4px); } 50% { transform: rotate(5deg) translateY(0px); } 75% { transform: rotate(-2deg) translateY(4px); } }
-@keyframes goldShimmer { 0%,100% { filter: brightness(1) drop-shadow(0 0 10px rgba(255,215,0,0.45)); } 50% { filter: brightness(1.4) drop-shadow(0 0 24px rgba(255,215,0,0.9)); } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; } }
-.header { background: var(--glass-heavy); border: 1px solid var(--glass-border); border-radius: 24px; padding: 110px 20px 26px; text-align: center; margin-bottom: 18px; box-shadow: var(--shadow-5d); position: relative; overflow: hidden; backdrop-filter: blur(25px) saturate(1.3); -webkit-backdrop-filter: blur(25px) saturate(1.3); }
-.header-emblem-wrap { position: absolute; top: 26px; left: 50%; transform: translateX(-50%); width: 72px; height: 72px; }
-.header-emblem { width: 72px; height: 72px; animation: armillarySway 4.5s ease-in-out infinite, goldShimmer 3.2s ease-in-out infinite; }
-.header h1.brave-name {
-  font-family: 'Orbitron', sans-serif; font-size: 1.85rem; letter-spacing: 4px; font-weight: 900;
-  position: relative; z-index: 1; color: #FFFFFF;
-  text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 44px rgba(120,220,255,0.55);
-  transition: color 1.4s ease, text-shadow 1.4s ease;
-}
-@keyframes cloudPulse5D { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-body[data-phase="cloud"] .brave-name { color: #FFFFFF; text-shadow: 0 0 22px rgba(255,255,255,0.98), 0 0 48px rgba(120,220,255,0.65); animation: cloudPulse5D 4s ease-in-out infinite; }
-body[data-phase="sun"] .brave-name   { color: #FFD700; text-shadow: 0 0 22px rgba(255,215,0,0.98), 0 0 48px rgba(255,180,0,0.6); animation: none; }
-body[data-phase="plant"] .brave-name { color: #00E676; text-shadow: 0 0 22px rgba(0,230,118,0.98), 0 0 48px rgba(0,230,118,0.55); animation: none; }
+/* layered depth field — stars + orbit rings + vignette, three parallax planes */
+.depth-field{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.depth-field .stars{position:absolute;inset:0;background-image:
+  radial-gradient(1px 1px at 12% 18%, rgba(237,234,225,0.5) 0, transparent 60%),
+  radial-gradient(1px 1px at 78% 32%, rgba(237,234,225,0.35) 0, transparent 60%),
+  radial-gradient(1.5px 1.5px at 45% 62%, rgba(237,234,225,0.4) 0, transparent 60%),
+  radial-gradient(1px 1px at 88% 78%, rgba(237,234,225,0.3) 0, transparent 60%),
+  radial-gradient(1px 1px at 22% 85%, rgba(237,234,225,0.35) 0, transparent 60%),
+  radial-gradient(1.5px 1.5px at 60% 10%, rgba(237,234,225,0.3) 0, transparent 60%);
+  opacity:0.55;}
+.depth-field .ring{position:absolute;border-radius:50%;border:1px solid rgba(200,150,62,0.08);}
+.depth-field .ring.r1{width:900px;height:900px;left:50%;top:-120px;transform:translateX(-50%);}
+.depth-field .ring.r2{width:1300px;height:1300px;left:50%;top:-320px;transform:translateX(-50%);border-color:rgba(111,214,232,0.05);}
+.depth-field .vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%, rgba(20,26,40,0.4) 0%, rgba(10,13,20,0.92) 68%, var(--void) 100%);}
+.depth-field .grain{position:absolute;inset:0;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
-.brave-fx { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-.sun-rays {
-  position: absolute; top: 42%; left: 50%; width: 240px; height: 240px; margin: -120px 0 0 -120px; border-radius: 50%;
-  background: repeating-conic-gradient(from 0deg, rgba(255,215,0,0.4) 0deg 3.5deg, transparent 3.5deg 17deg);
-  opacity: 0; transition: opacity 1.2s ease; animation: sunSpin5D 14s linear infinite;
+.wrap{max-width:900px;margin:0 auto;padding:18px;position:relative;z-index:1;}
+@keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}}
+
+/* ---------- HERO / INSTRUMENT HEADER ---------- */
+.hero{
+  position:relative;background:linear-gradient(180deg, var(--panel-2) 0%, var(--panel) 100%);
+  border:1px solid var(--line-strong); border-radius:22px; padding:34px 20px 22px; text-align:center;
+  margin-bottom:16px; box-shadow:var(--shadow-deep); overflow:hidden;
 }
-body[data-phase="sun"] .sun-rays { opacity: 0.85; }
-@keyframes sunSpin5D { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.hero::before{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg, rgba(200,150,62,0.06), transparent 40%),
+  repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255,255,255,0.012) 39px);}
+.armillary-wrap{width:96px;height:96px;margin:0 auto 6px;position:relative;}
+.armillary{width:100%;height:100%;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6));}
+.armillary .ring{fill:none;stroke:var(--brass);stroke-width:1.6;transform-origin:50px 50px;}
+.armillary .ring1{stroke-opacity:0.95;animation:spin1 18s linear infinite;}
+.armillary .ring2{stroke-opacity:0.75;animation:spin2 24s linear infinite reverse;}
+.armillary .ring3{stroke-opacity:0.55;animation:spin1 32s linear infinite;}
+.armillary .core{fill:var(--brass-bright);filter:drop-shadow(0 0 6px rgba(239,194,114,0.8));}
+@keyframes spin1{from{transform:rotateY(0deg) rotate(0deg);}to{transform:rotateY(360deg) rotate(360deg);}}
+@keyframes spin2{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.eyebrow{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--brass);opacity:0.9;margin-top:6px;}
+h1.brand{font-family:var(--font-display);font-weight:700;font-size:1.7rem;letter-spacing:1px;color:var(--paper);margin-top:6px;}
+h1.brand .accent{color:var(--brass-bright);}
+.sub{font-size:0.72rem;color:var(--paper-dim);margin-top:5px;letter-spacing:0.4px;}
+.clock{font-family:var(--font-mono);font-size:1.15rem;color:var(--ice);font-weight:500;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-strong);letter-spacing:1px;}
 
-.droplets-layer { position: absolute; inset: 0; }
-.droplet {
-  position: absolute; top: 34%; width: 5px; height: 13px; border-radius: 0 0 60% 60% / 0 0 70% 70%;
-  background: linear-gradient(180deg, rgba(225,247,255,0.95), rgba(0,200,255,0.35));
-  opacity: 0; animation: dropletFall5D 1.7s ease-in forwards;
-}
-@keyframes dropletFall5D { 0% { opacity: 0; transform: translateY(0); } 18% { opacity: 1; } 100% { opacity: 0; transform: translateY(75px); } }
+/* ---------- GAME SELECTOR ---------- */
+.panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);box-shadow:var(--shadow-panel);}
+.panel h2{font-family:var(--font-display);font-size:0.78rem;font-weight:600;color:var(--game);text-transform:uppercase;letter-spacing:1.6px;border-left:3px solid var(--game);padding-left:11px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;transition:color .4s,border-color .4s;}
+.game-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+.game-pill{flex:1;min-width:110px;padding:13px 8px;border-radius:12px;border:1px solid var(--line-strong);font-family:var(--font-display);font-weight:600;font-size:0.7rem;letter-spacing:0.6px;cursor:pointer;transition:all .25s;background:rgba(0,0,0,0.25);color:var(--paper-dim);}
+.game-pill[data-game="euromilhoes"].active{background:linear-gradient(135deg, rgba(228,82,63,0.22), rgba(228,82,63,0.06));border-color:#E4523F;color:#fff;box-shadow:0 0 0 1px rgba(228,82,63,0.3) inset, 0 8px 20px rgba(228,82,63,0.15);}
+.game-pill[data-game="totoloto"].active{background:linear-gradient(135deg, rgba(200,150,62,0.24), rgba(200,150,62,0.06));border-color:var(--brass);color:#fff;box-shadow:0 0 0 1px rgba(200,150,62,0.3) inset, 0 8px 20px rgba(200,150,62,0.15);}
+.game-pill[data-game="eurodreams"].active{background:linear-gradient(135deg, rgba(79,203,142,0.22), rgba(79,203,142,0.06));border-color:var(--ok);color:#fff;box-shadow:0 0 0 1px rgba(79,203,142,0.3) inset, 0 8px 20px rgba(79,203,142,0.15);}
+.game-pill:not(.active):hover{color:var(--paper);border-color:var(--paper-faint);}
+#gameType{display:none;}
 
-.roots-svg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-.root-path {
-  fill: none; stroke: #00E676; stroke-width: 0.28; stroke-linecap: round; opacity: 0;
-  stroke-dasharray: 100; stroke-dashoffset: 100;
-  filter: drop-shadow(0 0 4px rgba(0,230,118,0.7));
-  transition: stroke-dashoffset 9s linear, opacity 1s ease;
-}
-body[data-phase="plant"] .root-path { opacity: 0.6; stroke-dashoffset: 0; }
+/* ---------- FIRST PRIZE DIAL ---------- */
+.dial-card{background:linear-gradient(180deg, rgba(17,22,33,0.9), rgba(10,13,20,0.96));border:1px solid rgba(var(--brass-rgb),0.35);border-radius:20px;padding:22px 18px;text-align:center;margin-bottom:14px;box-shadow:0 0 50px rgba(var(--brass-rgb),0.08), var(--shadow-panel);position:relative;}
+.dial-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:3px;}
+.dial-combo{font-size:0.92rem;color:var(--paper);margin-top:8px;font-weight:500;}
+.dial-odds{font-family:var(--font-display);font-size:1.9rem;font-weight:700;color:var(--brass-bright);margin:9px 0 4px;letter-spacing:0.5px;}
+.dial-jackpot{font-size:0.72rem;color:var(--paper-dim);line-height:1.5;max-width:480px;margin:0 auto;}
 
-@media (prefers-reduced-motion: reduce) {
-  .brave-name, .sun-rays, .droplet { animation: none !important; }
-  .root-path { transition: none; }
-}
-.header .sub { font-size: 0.72rem; color: var(--color-gold); margin-top: 6px; letter-spacing: 2.5px; font-weight: 600; text-transform: uppercase; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
-.datetime-header { font-family: 'Orbitron', sans-serif; font-size: 22px; color: var(--color-red); font-weight: 900; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--glass-border); text-shadow: 0 0 20px rgba(255, 26, 26, 0.6), 0 2px 8px rgba(0,0,0,0.9); }
-.card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 18px; padding: 18px; margin-bottom: 16px; backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); box-shadow: var(--shadow-card); }
-.card h2 { font-family: 'Orbitron', sans-serif; font-size: 0.82rem; color: var(--game-color); text-transform: uppercase; border-left: 4px solid var(--game-color); padding-left: 12px; margin-bottom: 14px; letter-spacing: 2px; transition: color 0.5s, border-color 0.5s; text-shadow: 0 0 12px rgba(var(--game-color-rgb), 0.6); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-.game-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
-.game-pill { flex: 1; min-width: 100px; padding: 12px 8px; border-radius: 40px; border: 2px solid var(--glass-border); font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; background: rgba(0,0,0,0.4); color: var(--text-dim); text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
-.game-pill[data-game="euromilhoes"].active { background: #FF1A1A; border-color: #FF1A1A; color: #fff; box-shadow: 0 0 26px rgba(255,26,26,0.6); }
-.game-pill[data-game="totoloto"].active { background: #FFD700; border-color: #FFD700; color: #010205; box-shadow: 0 0 26px rgba(255,215,0,0.6); }
-.game-pill[data-game="eurodreams"].active { background: #00E676; border-color: #00E676; color: #010205; box-shadow: 0 0 26px rgba(0,230,118,0.6); }
-.game-pill:not(.active):hover { color: var(--text-primary); border-color: var(--btn-color); }
-#gameType { display: none; }
+/* ---------- TABS ---------- */
+.tabs{display:flex;gap:6px;margin-bottom:14px;}
+.tab{flex:1;padding:12px 6px;background:rgba(17,22,33,0.6);border:1px solid var(--line);border-radius:12px;color:var(--paper-dim);font-family:var(--font-display);font-weight:600;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:center;}
+.tab.active{color:var(--void);background:linear-gradient(135deg, var(--ice), var(--brass-bright));border-color:transparent;box-shadow:0 8px 20px rgba(var(--ice-rgb),0.2);}
+.tabpanel{display:none;animation:rise .35s ease;}
+.tabpanel.active{display:block;}
 
-.avatar-sheriff, .avatar-sheriff-dog { position: fixed; z-index: 20; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-weight: 900; transform: scale(0.6); opacity: 0; transition: all 1.4s ease; pointer-events: none; border: 3px solid rgba(200,160,120,0.35); }
-.avatar-sheriff { left: 10px; top: 10px; width: 58px; height: 58px; font-size: 30px; background: radial-gradient(circle at 30% 30%, #e8d5b0, #b8956a); box-shadow: 0 0 30px rgba(200,180,140,0.4); color: #2a1a0a; }
-.avatar-sheriff-dog { right: 10px; bottom: 10px; width: 50px; height: 50px; font-size: 24px; background: radial-gradient(circle at 30% 30%, #b8956a, #7a5a3a); box-shadow: 0 0 30px rgba(180,140,100,0.4); color: #2a1a0a; }
-.avatar-sheriff.show, .avatar-sheriff-dog.show { transform: scale(1); opacity: 0.92; }
-.avatar-sheriff.big, .avatar-sheriff-dog.big { transform: scale(1.35); opacity: 1; }
-@media (max-width: 600px) { .avatar-sheriff, .avatar-sheriff-dog { width: 40px; height: 40px; font-size: 20px; } }
+/* ---------- FORM ELEMENTS ---------- */
+select{width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%236FD6E8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .3s;}
+select:focus{border-color:var(--ice);}
+select:disabled{opacity:0.5;cursor:not-allowed;}
+.field-label{font-family:var(--font-mono);font-size:0.62rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:1.6px;margin-bottom:6px;display:block;}
+.field-label .val{font-family:var(--font-display);font-size:1.2rem;color:var(--ice);margin-left:4px;}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.row>*{flex:1;min-width:130px;}
 
-.particle-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-.bullet-fx { position: absolute; width: 7px; height: 7px; background: radial-gradient(circle, #FF1A1A, #ff8080); border-radius: 50%; box-shadow: 0 0 16px #FF1A1A; animation: bulletShotFx 1.6s ease-out forwards; }
-@keyframes bulletShotFx { 0% { opacity:1; transform: translate(0,0) scale(1); } 100% { opacity:0; transform: translate(var(--tx), var(--ty)) scale(0); } }
-.sunray-fx { position: fixed; top: 50%; left: 50%; width: 160%; height: 2px; background: linear-gradient(90deg, transparent, #FFD700, transparent); opacity: 0.28; pointer-events: none; z-index: 1; }
-.vine-fx { position: fixed; inset: 0; pointer-events: none; z-index: 1; background: radial-gradient(ellipse at 15% 100%, rgba(0,230,118,0.1) 0%, transparent 65%), radial-gradient(ellipse at 85% 100%, rgba(0,230,118,0.1) 0%, transparent 65%); opacity: 0; transition: opacity 1.5s ease; }
-.vine-fx.active { opacity: 1; }
+/* ---------- PRICE / READOUT ---------- */
+.readout{margin-top:12px;padding:13px 16px;background:linear-gradient(135deg, rgba(var(--brass-rgb),0.1), rgba(var(--brass-rgb),0.02));border:1px solid rgba(var(--brass-rgb),0.4);border-radius:12px;text-align:center;}
+.readout .rl{font-family:var(--font-mono);font-size:0.58rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:2px;}
+.readout .rv{font-family:var(--font-display);font-size:1.4rem;color:var(--brass-bright);font-weight:700;}
+.readout .rd{font-family:var(--font-mono);font-size:0.62rem;color:var(--paper-dim);margin-top:2px;}
 
-select { width: 100%; background: rgba(0,0,0,0.6); border: 2px solid var(--game-color); color: var(--game-color); padding: 14px; font-size: 1.05rem; border-radius: 12px; outline: none; font-family: 'Orbitron', sans-serif; font-weight: 700; cursor: pointer; appearance: none; -webkit-appearance: none; -moz-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%2300FF41' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; transition: border-color 0.5s, color 0.5s; text-shadow: 0 0 8px rgba(var(--game-color-rgb), 0.5); }
-select:disabled { opacity: 0.55; cursor: not-allowed; }
-.flex { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; }
-.flex > * { flex: 1; min-width: 140px; }
-label.field-label { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; display: block; font-weight: 700; }
-label.field-label .val { font-size: 1.3rem; color: var(--game-color); font-family: 'Orbitron', sans-serif; transition: color 0.5s; text-shadow: 0 0 10px rgba(var(--game-color-rgb), 0.6); }
-.price-display { margin-top: 10px; padding: 12px 16px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.03)); border: 2px solid var(--color-gold); border-radius: 12px; text-align: center; box-shadow: 0 0 25px rgba(255, 215, 0, 0.2), inset 0 0 20px rgba(255, 215, 0, 0.05); }
-.price-display .price-label { font-size: 0.6rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 3px; }
-.price-display .price-value { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--color-gold); font-weight: 900; text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 2px 8px rgba(0,0,0,0.9); }
-.price-display .price-combos { font-size: 0.65rem; color: var(--text-dim); margin-top: 3px; letter-spacing: 1px; }
-.filters-toolbar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 2px; }
-.mini-btn { font-family: 'Rajdhani', sans-serif; font-size: 0.64rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: 8px; padding: 6px 12px; cursor: pointer; transition: all 0.25s; }
-.mini-btn:hover { color: var(--text-primary); border-color: var(--btn-color); }
-.checkrow { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 0.76rem; color: var(--text-primary); padding: 8px 12px; background: rgba(0,0,0,0.35); border-radius: 9px; border: 1px solid var(--glass-border); text-shadow: 0 1px 4px rgba(0,0,0,0.8); cursor: pointer; }
-.checkrow input { width: 18px; height: 18px; accent-color: var(--game-color); cursor: pointer; flex-shrink: 0; }
-.firstprize-card { background: linear-gradient(180deg, rgba(5,8,16,0.95), rgba(2,4,8,0.98)); border: 2px solid var(--color-gold); border-radius: 20px; padding: 20px; text-align: center; margin-bottom: 16px; backdrop-filter: blur(15px); box-shadow: 0 0 40px rgba(255,215,0,0.15), var(--shadow-card); }
-.fp-label { font-size: 0.64rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 3px; }
-.fp-combo { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: var(--text-primary); margin-top: 8px; font-weight: 700; }
-.fp-odds { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--color-gold); margin: 8px 0 4px; text-shadow: 0 0 25px rgba(255, 215, 0, 0.6), 0 2px 10px rgba(0,0,0,0.9); }
-.fp-jackpot { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.5px; margin-top: 4px; line-height: 1.5; }
-.btn { width: 100%; padding: 20px; background: linear-gradient(135deg, rgba(var(--btn-color-rgb), 0.28), rgba(var(--btn-color-rgb), 0.08)); border: 2px solid var(--btn-color); color: var(--btn-color); font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; border-radius: 14px; cursor: pointer; margin: 16px 0; transition: all 0.3s; text-shadow: 0 0 15px rgba(var(--btn-color-rgb), 0.6), 0 2px 8px rgba(0,0,0,0.9); box-shadow: 0 0 26px rgba(var(--btn-color-rgb), 0.2); }
-.btn:hover:not(:disabled) { background: rgba(var(--btn-color-rgb), 0.4); box-shadow: 0 0 55px rgba(var(--btn-color-rgb), 0.4); transform: translateY(-2px); }
-.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.btn-secondary { flex: 1; min-width: 130px; padding: 12px; background: rgba(255,255,255,0.05); border: 2px solid var(--glass-border); color: var(--text-primary); font-family: 'Orbitron', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 12px; cursor: pointer; transition: all 0.25s; }
-.btn-secondary:hover { border-color: var(--btn-color); color: var(--btn-color); }
-.btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
-.btn-secondary.active { border-color: var(--game-color); color: var(--game-color); background: rgba(var(--game-color-rgb), 0.12); }
-.progress-wrap { height: 7px; width: 100%; background: rgba(255,255,255,0.08); border-radius: 6px; overflow: hidden; margin: 8px 0 0; display: none; }
-.progress-wrap.active { display: block; }
-.progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--game-color), var(--color-gold)); animation: pulseBar 1.2s ease-in-out infinite; transition: width 0.2s ease-out; }
-.terminal { background: rgba(0,0,0,0.75); border: 1px solid var(--glass-border); border-radius: 12px; height: 130px; overflow-y: auto; padding: 14px; font-size: 0.7rem; color: var(--color-green); line-height: 1.6; font-family: 'Share Tech Mono', monospace; backdrop-filter: blur(10px); }
-.log-line { margin: 3px 0; padding-left: 10px; border-left: 2px solid transparent; }
-.log-line.system { color: var(--color-green); border-left-color: var(--color-green); text-shadow: 0 0 8px rgba(0, 255, 65, 0.4); }
-.log-line.math { color: var(--color-blue); border-left-color: var(--color-blue); text-shadow: 0 0 8px rgba(0, 102, 255, 0.4); }
-.log-line.success { color: var(--color-gold); border-left-color: var(--color-gold); text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
-.log-line.warn { color: var(--color-red); border-left-color: var(--color-red); text-shadow: 0 0 8px rgba(255, 26, 26, 0.4); }
-.result-panel { display: none; border: 2px solid var(--game-color); background: linear-gradient(180deg, rgba(5,8,16,0.92), rgba(2,4,8,0.96)); border-radius: 22px; padding: 26px 18px; margin-top: 20px; text-align: center; box-shadow: 0 0 100px rgba(var(--game-color-rgb), 0.35), var(--shadow-card); animation: fadeIn 0.6s ease-out; transition: border-color 0.5s, box-shadow 0.5s; backdrop-filter: blur(20px); }
-.result-panel h2 { font-family: 'Orbitron', sans-serif; color: var(--game-color); letter-spacing: 3px; margin-bottom: 16px; font-size: 1.05rem; transition: color 0.5s; text-shadow: 0 0 20px rgba(var(--game-color-rgb), 0.7); }
-.balls { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 20px 0; }
-.ball.game-color { width: 60px; height: 60px; border-radius: 50%; border: 4px solid var(--game-color); color: var(--game-color); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 27px; font-weight: 900; background: radial-gradient(circle at 30% 30%, rgba(20,30,50,0.98), rgba(2,4,8,0.99)); box-shadow: 0 0 50px rgba(var(--game-color-rgb), 0.7), 0 0 100px rgba(var(--game-color-rgb), 0.4), 0 8px 20px rgba(0,0,0,0.9), inset 0 2px 8px rgba(255,255,255,0.2), inset 0 -4px 10px rgba(0,0,0,0.6); transition: border-color 0.5s, color 0.5s, box-shadow 0.5s; text-shadow: 0 0 20px rgba(var(--game-color-rgb), 1), 0 2px 6px rgba(0,0,0,0.9); }
-.ball.star-color { width: 60px; height: 60px; border-radius: 50%; border: 4px solid var(--color-pink); color: var(--color-pink); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; font-size: 27px; font-weight: 900; background: radial-gradient(circle at 30% 30%, rgba(50,15,35,0.98), rgba(15,4,10,0.99)); box-shadow: 0 0 50px rgba(var(--color-pink-rgb), 0.7), 0 0 100px rgba(var(--color-pink-rgb), 0.4), 0 8px 20px rgba(0,0,0,0.9), inset 0 2px 8px rgba(255,255,255,0.2), inset 0 -4px 10px rgba(0,0,0,0.6); transition: border-color 0.5s, color 0.5s, box-shadow 0.5s; text-shadow: 0 0 20px rgba(var(--color-pink-rgb), 1), 0 2px 6px rgba(0,0,0,0.9); }
-.ball.small { width: 40px; height: 40px; font-size: 17px; border-width: 3px; }
-.result-actions { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top: 8px; }
-.simple-prize-table { width: 100%; border-collapse: collapse; margin-top: 16px; text-align: center; }
-.simple-prize-table-scroll { width: 100%; overflow-x: auto; }
-.simple-prize-table th { color: var(--game-color); font-family: 'Orbitron', sans-serif; font-size: 10.5px; padding: 10px 7px; border-bottom: 2px solid var(--game-color); text-transform: uppercase; transition: color 0.5s, border-color 0.5s; letter-spacing: 1px; text-shadow: 0 0 10px rgba(var(--game-color-rgb), 0.5); white-space: nowrap; }
-.simple-prize-table td { font-family: 'Orbitron', sans-serif; font-size: 13.5px; font-weight: 700; padding: 11px 7px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); white-space: nowrap; }
-.simple-prize-table tr.first-tier td { background: rgba(255,215,0,0.08); }
-.simple-prize-table tr.target-tier td { background: rgba(0,255,65,0.09); }
-.simple-prize-table .tier-name { color: var(--text-primary); text-align: left; font-size: 12px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); white-space: normal; }
-.simple-prize-table tr.first-tier .tier-name { color: var(--color-gold); }
-.simple-prize-table tr.target-tier .tier-name { color: var(--color-green); }
-.simple-prize-table .tier-odds { color: var(--color-white); text-shadow: 0 0 12px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0,0,0,0.9); font-size: 12px; }
-.simple-prize-table .tier-system { color: var(--color-green); text-shadow: 0 0 12px rgba(0,255,65,0.5), 0 2px 6px rgba(0,0,0,0.9); font-size: 11px; }
-.simple-prize-table .tier-value { color: var(--color-gold); text-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 2px 8px rgba(0,0,0,0.9); font-size: 13px; font-weight: 900; }
-.prize-table-legend { font-size: 0.64rem; color: var(--text-dim); margin-top: 8px; line-height: 1.55; }
-.prize-details { margin-top: 10px; }
-.prize-details summary { list-style: none; cursor: pointer; font-family: 'Orbitron', sans-serif; font-size: 0.66rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--game-color); padding: 10px 14px; background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; transition: border-color 0.3s, color 0.3s; text-shadow: 0 0 8px rgba(var(--game-color-rgb), 0.4); }
-.prize-details summary::-webkit-details-marker { display: none; }
-.prize-details summary::before { content: '▸ '; }
-.prize-details[open] summary::before { content: '▾ '; }
-.prize-details summary:hover { border-color: var(--game-color); }
-.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 16px; }
-.stat-box { background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: 10px; padding: 12px; text-align: left; backdrop-filter: blur(8px); }
-.stat-box .label { font-size: 0.61rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-.stat-box .value { font-family: 'Orbitron', sans-serif; font-size: 1rem; color: var(--game-color); margin-top: 4px; transition: color 0.5s; text-shadow: 0 0 8px rgba(var(--game-color-rgb), 0.5); }
-.stat-box .value.ok { color: var(--color-green); text-shadow: 0 0 10px rgba(0, 255, 65, 0.6); }
-.stat-box .value.warn { color: var(--color-red); text-shadow: 0 0 10px rgba(255, 26, 26, 0.6); }
-.history-list { display: flex; flex-direction: column; gap: 7px; margin-top: 12px; max-height: 260px; overflow-y: auto; }
-.history-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 9px 12px; }
-.history-nums { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: var(--text-primary); letter-spacing: 1px; }
-.history-nums .s { color: var(--color-pink); }
-.history-meta { font-size: 0.58rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
-.mc-table { width:100%; border-collapse: collapse; margin-top: 14px; font-size: 0.76rem; }
-.mc-table th { color: var(--game-color); font-family:'Orbitron',sans-serif; font-size: 10px; padding: 7px 6px; border-bottom: 2px solid var(--game-color); text-transform: uppercase; letter-spacing: 1px; }
-.mc-table td { padding: 9px 6px; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'Share Tech Mono', monospace; text-align: center; }
-.mc-table td:first-child { text-align:left; color: var(--text-primary); }
-.mc-summary { font-size: 15px; color: var(--text-dim); margin-top: 10px; line-height: 1.55; }
-.mc-summary b { color: var(--color-green); }
-.mc-canvas-wrap { margin-top: 14px; background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 10px; padding: 10px; }
-canvas#mcCanvas { width: 100%; height: 130px; display: block; }
-.tabs-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-.tab-btn { flex: 1; min-width: 100px; padding: 12px 8px; background: rgba(8,12,22,0.85); border: 1px solid var(--glass-border); border-radius: 14px; color: var(--text-dim); font-family: 'Orbitron', sans-serif; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.25s; text-align: center; }
-.tab-btn.active { color: var(--bg-deep); background: linear-gradient(135deg, var(--btn-color), var(--color-gold)); border-color: transparent; box-shadow: 0 0 22px rgba(var(--btn-color-rgb), 0.4); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
-.ticket-selector { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-top: 12px; }
-.ticket-btn { min-width: 42px; padding: 10px; background: rgba(0,0,0,0.5); border: 2px solid var(--glass-border); color: var(--text-primary); font-family:'Orbitron',sans-serif; font-weight:700; border-radius: 12px; cursor:pointer; text-align:center; transition: all 0.2s; }
-.ticket-btn.selected { border-color: var(--btn-color); color: var(--btn-color); background: rgba(var(--btn-color-rgb),0.12); box-shadow: 0 0 15px rgba(var(--btn-color-rgb),0.3); }
-.manual-grid { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 16px; padding: 12px; margin-top: 10px; }
-.pick-btn { width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,0.6); border: 2px solid var(--glass-border); color: var(--text-dim); font-family:'Orbitron',sans-serif; font-weight: 700; font-size: 0.72rem; cursor: pointer; transition: all 0.2s; display:flex; align-items:center; justify-content:center; }
-.pick-btn.selected-num { background: radial-gradient(circle at 30% 30%, rgba(20,30,50,0.98), rgba(2,4,8,0.99)); border-color: var(--game-color); color: var(--game-color); box-shadow: 0 0 18px rgba(var(--game-color-rgb), 0.55); }
-.pick-btn.selected-star { background: radial-gradient(circle at 30% 30%, rgba(50,15,35,0.98), rgba(15,4,10,0.99)); border-color: var(--color-pink); color: var(--color-pink); box-shadow: 0 0 18px rgba(var(--color-pink-rgb), 0.55); }
-.validation-msg { margin-top: 10px; font-size: 0.78rem; font-weight: 700; text-align: center; }
-.validation-msg.ok { color: var(--color-green); } .validation-msg.err { color: var(--color-red); }
-.combos-preview { display: flex; flex-wrap: wrap; gap: 6px; max-height: 180px; overflow-y: auto; margin-top: 10px; padding: 8px; background: rgba(0,0,0,0.3); border-radius: 10px; }
-.combo-chip { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; padding: 4px 8px; }
-.method-info { font-size: 0.66rem; color: var(--text-dim); margin-top: 8px; line-height: 1.5; padding: 8px 10px; background: rgba(0,0,0,0.3); border-radius: 8px; border-left: 3px solid var(--game-color); }
-.ticket-card { background: rgba(0,0,0,0.35); border: 1px solid var(--glass-border); border-radius: 14px; padding: 12px; margin-top: 10px; }
-.ticket-card .ticket-head { font-family: 'Orbitron', sans-serif; font-size: 0.72rem; color: var(--color-gold); margin-bottom: 8px; letter-spacing: 1px; }
-.ticket-card .balls { margin: 6px 0; gap: 8px; }
-.footer { margin-top: 24px; padding: 24px 20px 20px; text-align: center; background: var(--glass-heavy); border-radius: 20px 20px 0 0; position: relative; overflow: hidden; border: 1px solid var(--glass-border); backdrop-filter: blur(20px); }
-.footer-draw-info { font-family: 'Orbitron', sans-serif; font-weight: 900; line-height: 1.7; }
-.footer-draw-info .draw-date { font-size: 20px; color: var(--color-red); text-shadow: 0 0 20px rgba(255, 26, 26, 0.6), 0 2px 10px rgba(0,0,0,0.9); display: block; }
-.footer-draw-info .draw-price { font-size: 22px; color: var(--color-gold); text-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 2px 10px rgba(0,0,0,0.9); display: block; margin-top: 6px; }
-.footer-version { margin-top: 12px; font-size: 0.63rem; color: var(--text-dim); font-family: 'Orbitron', sans-serif; letter-spacing: 2px; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
-.footer-legal { margin-top: 12px; font-size: 0.62rem; color: var(--text-dim); line-height: 1.55; max-width: 620px; margin-left:auto; margin-right:auto; }
-.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: rgba(0,0,0,0.4); }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
-@media (max-width: 600px) {
-  .header { padding: 96px 16px 22px; }
-  .header h1 { font-size: 1.25rem; letter-spacing: 3px; }
-  .datetime-header { font-size: 16px; }
-  .ball.game-color, .ball.star-color { width: 48px; height: 48px; font-size: 21px; }
-  .stats-grid { grid-template-columns: 1fr; }
-  .simple-prize-table th, .simple-prize-table td { font-size: 10px; padding: 8px 4px; }
-  .footer-draw-info .draw-date { font-size: 15px; }
-  .footer-draw-info .draw-price { font-size: 17px; }
-  .price-display .price-value { font-size: 1.2rem; }
-  .fp-odds { font-size: 1.3rem; }
-  .container { padding: 10px; }
-  .pick-btn { width: 34px; height: 34px; font-size: 0.64rem; }
+/* ---------- METHOD INFO ---------- */
+.info-strip{font-size:0.68rem;color:var(--paper-dim);margin-top:10px;line-height:1.55;padding:10px 12px;background:rgba(0,0,0,0.25);border-radius:9px;border-left:2px solid var(--ice);}
+
+/* ---------- FILTER CHIPS ---------- */
+.filters-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.mini-btn{font-family:var(--font-mono);font-size:0.62rem;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--paper-dim);background:rgba(0,0,0,0.3);border:1px solid var(--line-strong);border-radius:8px;padding:7px 12px;cursor:pointer;transition:all .2s;}
+.mini-btn:hover{color:var(--paper);border-color:var(--ice);}
+.filter-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media (max-width:520px){.filter-grid{grid-template-columns:1fr;}}
+.filter-chip{display:flex;align-items:flex-start;gap:9px;padding:10px 11px;background:rgba(0,0,0,0.28);border-radius:10px;border:1px solid var(--line);cursor:pointer;transition:border-color .2s;}
+.filter-chip:has(input:checked){border-color:rgba(var(--ice-rgb),0.4);background:rgba(var(--ice-rgb),0.05);}
+.filter-chip input{width:16px;height:16px;accent-color:var(--ice);margin-top:1px;flex-shrink:0;cursor:pointer;}
+.filter-chip .fc-text{font-size:0.72rem;line-height:1.4;}
+.filter-chip .fc-title{color:var(--paper);font-weight:500;}
+.filter-chip .fc-sub{color:var(--paper-faint);font-size:0.64rem;}
+
+/* ---------- BUTTONS ---------- */
+.btn{width:100%;padding:18px;background:linear-gradient(135deg, rgba(var(--ice-rgb),0.22), rgba(var(--brass-rgb),0.14));border:1px solid rgba(var(--ice-rgb),0.5);color:var(--paper);font-family:var(--font-display);font-size:0.92rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;border-radius:13px;cursor:pointer;margin:14px 0;transition:all .25s;box-shadow:0 10px 30px rgba(var(--ice-rgb),0.1);}
+.btn:hover:not(:disabled){box-shadow:0 14px 40px rgba(var(--ice-rgb),0.2);transform:translateY(-1px);}
+.btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-secondary{flex:1;min-width:120px;padding:11px;background:rgba(255,255,255,0.03);border:1px solid var(--line-strong);color:var(--paper);font-family:var(--font-display);font-size:0.64rem;font-weight:600;text-transform:uppercase;letter-spacing:1.4px;border-radius:10px;cursor:pointer;transition:all .2s;}
+.btn-secondary:hover{border-color:var(--ice);color:var(--ice);}
+.btn-secondary:disabled{opacity:0.4;cursor:not-allowed;}
+
+/* ---------- PROGRESS ---------- */
+.progress-wrap{height:5px;width:100%;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin:6px 0 0;display:none;}
+.progress-wrap.active{display:block;}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg, var(--ice), var(--brass-bright));transition:width .15s ease-out;}
+
+/* ---------- TERMINAL LOG ---------- */
+.terminal{background:rgba(0,0,0,0.55);border:1px solid var(--line);border-radius:11px;height:120px;overflow-y:auto;padding:12px 14px;font-size:0.68rem;font-family:var(--font-mono);line-height:1.65;}
+.log-line{margin:2px 0;padding-left:9px;border-left:2px solid transparent;}
+.log-line.system{color:var(--ice);border-left-color:var(--ice);}
+.log-line.math{color:#9FB4E8;border-left-color:#9FB4E8;}
+.log-line.success{color:var(--brass-bright);border-left-color:var(--brass-bright);}
+.log-line.warn{color:var(--warn);border-left-color:var(--warn);}
+
+/* ---------- RESULT PANEL ---------- */
+.result-panel{display:none;border:1px solid rgba(var(--game-rgb),0.4);background:linear-gradient(180deg, rgba(17,22,33,0.92), rgba(10,13,20,0.97));border-radius:20px;padding:24px 18px;margin-top:16px;text-align:center;box-shadow:0 0 70px rgba(var(--game-rgb),0.1), var(--shadow-panel);animation:rise .5s ease;}
+.result-panel h2{font-family:var(--font-display);color:var(--game);letter-spacing:1.6px;margin-bottom:14px;font-size:0.9rem;text-transform:uppercase;}
+.balls{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:16px 0;}
+.ball{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.35rem;font-weight:700;background:radial-gradient(circle at 32% 28%, rgba(30,36,50,0.98), rgba(6,8,13,0.99));box-shadow:0 8px 20px rgba(0,0,0,0.7), inset 0 1px 3px rgba(255,255,255,0.12);}
+.ball.n{border:2.5px solid var(--ice);color:var(--ice);box-shadow:0 0 24px rgba(var(--ice-rgb),0.35), 0 8px 20px rgba(0,0,0,0.7);}
+.ball.s{border:2.5px solid var(--brass-bright);color:var(--brass-bright);box-shadow:0 0 24px rgba(var(--brass-rgb),0.35), 0 8px 20px rgba(0,0,0,0.7);}
+.ball.small{width:38px;height:38px;font-size:0.95rem;border-width:2px;}
+.result-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px;}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:16px;}
+.stat-box{background:rgba(0,0,0,0.32);border:1px solid var(--line);border-radius:10px;padding:11px;text-align:left;}
+.stat-box .label{font-family:var(--font-mono);font-size:0.58rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:0.8px;}
+.stat-box .value{font-family:var(--font-display);font-size:0.98rem;color:var(--ice);margin-top:4px;}
+.stat-box .value.ok{color:var(--ok);}
+.stat-box .value.warn{color:var(--warn);}
+
+/* ---------- PRIZE TABLE ---------- */
+.prize-table-scroll{width:100%;overflow-x:auto;}
+.prize-table{width:100%;border-collapse:collapse;margin-top:12px;text-align:center;}
+.prize-table th{color:var(--game);font-family:var(--font-mono);font-size:9.5px;padding:9px 6px;border-bottom:1px solid rgba(var(--game-rgb),0.4);text-transform:uppercase;letter-spacing:0.6px;white-space:nowrap;}
+.prize-table td{font-family:var(--font-mono);font-size:12.5px;font-weight:500;padding:10px 6px;border-bottom:1px solid var(--line);white-space:nowrap;}
+.prize-table tr.first-tier td{background:rgba(var(--brass-rgb),0.06);}
+.prize-table tr.target-tier td{background:rgba(var(--ok-rgb),0.07);}
+.prize-table .tier-name{color:var(--paper);text-align:left;font-size:11.5px;white-space:normal;font-family:var(--font-body);}
+.prize-table tr.first-tier .tier-name{color:var(--brass-bright);}
+.prize-table tr.target-tier .tier-name{color:var(--ok);}
+.prize-table .tier-value{color:var(--brass-bright);font-weight:600;}
+.prize-legend{font-size:0.62rem;color:var(--paper-faint);margin-top:8px;line-height:1.55;}
+.details{margin-top:10px;}
+.details summary{list-style:none;cursor:pointer;font-family:var(--font-display);font-size:0.66rem;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--game);padding:10px 14px;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:10px;}
+.details summary::-webkit-details-marker{display:none;}
+.details summary::before{content:'▸ ';}
+.details[open] summary::before{content:'▾ ';}
+
+/* ---------- MONTE CARLO ---------- */
+.mc-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
+@media (max-width:480px){.mc-buttons{grid-template-columns:1fr 1fr;}}
+.mc-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:0.72rem;}
+.mc-table th{color:var(--game);font-family:var(--font-mono);font-size:9px;padding:6px 5px;border-bottom:1px solid rgba(var(--game-rgb),0.4);text-transform:uppercase;}
+.mc-table td{padding:8px 5px;border-bottom:1px solid var(--line);font-family:var(--font-mono);text-align:center;}
+.mc-table td:first-child{text-align:left;color:var(--paper);font-family:var(--font-body);}
+.mc-summary{font-size:0.75rem;color:var(--paper-dim);margin-top:10px;line-height:1.6;}
+.mc-summary b{color:var(--ok);}
+.chi-box{margin-top:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--line-strong);background:rgba(0,0,0,0.28);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.chi-box .cl{font-family:var(--font-mono);font-size:0.62rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:1px;}
+.chi-box .cv{font-family:var(--font-display);font-size:1.15rem;color:var(--ice);}
+.mc-chart-wrap{margin-top:14px;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:10px;padding:10px;}
+
+/* ---------- TICKETS / MANUAL ---------- */
+.ticket-selector{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
+.ticket-btn{min-width:40px;padding:9px;background:rgba(0,0,0,0.4);border:1px solid var(--line-strong);color:var(--paper);font-family:var(--font-display);font-weight:600;border-radius:10px;cursor:pointer;text-align:center;transition:all .2s;}
+.ticket-btn.selected{border-color:var(--ice);color:var(--ice);background:rgba(var(--ice-rgb),0.1);}
+.manual-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px;}
+.pick-btn{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.5);border:1px solid var(--line-strong);color:var(--paper-dim);font-family:var(--font-mono);font-weight:600;font-size:0.68rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.pick-btn.sel-n{background:radial-gradient(circle at 30% 30%, rgba(30,36,50,0.98), rgba(6,8,13,0.99));border-color:var(--ice);color:var(--ice);box-shadow:0 0 14px rgba(var(--ice-rgb),0.4);}
+.pick-btn.sel-s{background:radial-gradient(circle at 30% 30%, rgba(40,30,15,0.98), rgba(13,9,4,0.99));border-color:var(--brass-bright);color:var(--brass-bright);box-shadow:0 0 14px rgba(var(--brass-rgb),0.4);}
+.validation-msg{margin-top:10px;font-size:0.76rem;font-weight:600;text-align:center;font-family:var(--font-mono);}
+.validation-msg.ok{color:var(--ok);}.validation-msg.err{color:var(--warn);}
+.combos-preview{display:flex;flex-wrap:wrap;gap:6px;max-height:170px;overflow-y:auto;margin-top:10px;padding:8px;background:rgba(0,0,0,0.25);border-radius:10px;}
+.combo-chip{font-family:var(--font-mono);font-size:0.64rem;background:rgba(255,255,255,0.04);border:1px solid var(--line);border-radius:7px;padding:4px 7px;}
+.ticket-card{background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:13px;padding:11px;margin-top:9px;}
+.ticket-card .th{font-family:var(--font-display);font-size:0.68rem;color:var(--brass-bright);margin-bottom:7px;letter-spacing:0.6px;}
+.ticket-card .balls{margin:5px 0;gap:7px;}
+
+/* ---------- HISTORY ---------- */
+.history-list{display:flex;flex-direction:column;gap:7px;margin-top:12px;max-height:260px;overflow-y:auto;}
+.history-item{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:10px;padding:9px 12px;}
+.history-nums{font-family:var(--font-mono);font-size:0.78rem;color:var(--paper);letter-spacing:0.5px;}
+.history-nums .s{color:var(--brass-bright);}
+.history-meta{font-size:0.58rem;color:var(--paper-faint);text-transform:uppercase;letter-spacing:0.6px;font-family:var(--font-mono);}
+
+/* ---------- FOOTER ---------- */
+.footer{margin-top:22px;padding:26px 18px 20px;text-align:center;background:linear-gradient(180deg, var(--panel), var(--panel-2));border-radius:20px 20px 0 0;border:1px solid var(--line-strong);position:relative;}
+.footer .draw-line{font-family:var(--font-display);font-weight:600;line-height:1.8;}
+.footer .draw-date{font-size:1.02rem;color:var(--ice);display:block;}
+.footer .draw-price{font-size:1.15rem;color:var(--brass-bright);display:block;margin-top:4px;}
+.footer .version{margin-top:12px;font-size:0.6rem;color:var(--paper-faint);font-family:var(--font-mono);letter-spacing:1.6px;}
+.footer .legal{margin-top:12px;font-size:0.62rem;color:var(--paper-faint);line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+::-webkit-scrollbar{width:7px;}
+::-webkit-scrollbar-track{background:rgba(0,0,0,0.3);}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:4px;}
+
+@media (max-width:600px){
+  .hero{padding:26px 14px 18px;}
+  h1.brand{font-size:1.28rem;}
+  .clock{font-size:0.95rem;}
+  .ball{width:46px;height:46px;font-size:1.05rem;}
+  .stats-grid{grid-template-columns:1fr;}
+  .dial-odds{font-size:1.5rem;}
+  .readout .rv{font-size:1.15rem;}
+  .wrap{padding:10px;}
 }
 </style>
 </head>
 <body>
-<div class="particle-layer" id="particleLayer" aria-hidden="true"></div>
-<div class="vine-fx" id="vineFx" aria-hidden="true"></div>
-<div class="avatar-sheriff" id="avatarSheriff" aria-hidden="true">⭐</div>
-<div class="avatar-sheriff-dog" id="avatarDog" aria-hidden="true">🐕</div>
-<div class="container">
-  <svg class="roots-svg" id="rootsSvg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-    <path class="root-path" d="M50,3 L2,1" pathLength="100"></path>
-    <path class="root-path" d="M50,3 L98,1" pathLength="100"></path>
-    <path class="root-path" d="M50,3 L2,99" pathLength="100"></path>
-    <path class="root-path" d="M50,3 L98,99" pathLength="100"></path>
-  </svg>
-  <div class="header">
-    <div class="brave-fx" aria-hidden="true">
-      <div class="sun-rays"></div>
-      <div class="droplets-layer" id="dropletsLayer"></div>
-    </div>
-    <div class="flag-5d flag-pt top" aria-hidden="true"><div class="stripe"></div><div class="stripe"></div><div class="flag-pt-emblem"></div></div>
-    <div class="header-emblem-wrap">
-      <svg class="header-emblem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g stroke="#FFD700" stroke-width="2.4" fill="none">
-          <ellipse cx="50" cy="50" rx="36" ry="36"/>
-          <ellipse cx="50" cy="50" rx="36" ry="15" transform="rotate(20 50 50)"/>
-          <ellipse cx="50" cy="50" rx="36" ry="15" transform="rotate(-20 50 50)"/>
-          <ellipse cx="50" cy="50" rx="15" ry="36" transform="rotate(45 50 50)"/>
+<div class="depth-field" aria-hidden="true">
+  <div class="stars"></div>
+  <div class="ring r1"></div>
+  <div class="ring r2"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="armillary-wrap">
+      <svg class="armillary" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g>
+          <ellipse class="ring ring1" cx="50" cy="50" rx="38" ry="38"/>
+          <ellipse class="ring ring2" cx="50" cy="50" rx="38" ry="16" transform="rotate(24 50 50)"/>
+          <ellipse class="ring ring3" cx="50" cy="50" rx="38" ry="16" transform="rotate(-24 50 50)"/>
+          <ellipse class="ring ring2" cx="50" cy="50" rx="16" ry="38" transform="rotate(48 50 50)"/>
         </g>
-        <circle cx="50" cy="50" r="4.5" fill="#FFD700"/>
-        <g fill="#CBA135"><circle cx="50" cy="80" r="3.2"/><circle cx="41" cy="84" r="3.2"/><circle cx="59" cy="84" r="3.2"/><circle cx="45" cy="90" r="3.2"/><circle cx="55" cy="90" r="3.2"/></g>
+        <circle class="core" cx="50" cy="50" r="4.5"/>
       </svg>
     </div>
-    <h1 class="brave-name">JONHY EL BRAVO</h1>
-    <div class="sub">Motor Combinatório Ultra-Avançado 5D · Dados Oficiais Santa Casa · v21.0</div>
-    <div class="datetime-header" id="datetimeHeader">--</div>
+    <div class="eyebrow">Observatório Combinatório · Dados Oficiais Santa Casa</div>
+    <h1 class="brand">JONHY EL <span class="accent">BRAVO</span></h1>
+    <div class="sub">Motor hipergeométrico exato · Genético populacional · Monte Carlo com teste χ² · v22.0</div>
+    <div class="clock" id="clock">--:--:--</div>
   </div>
 
-  <div class="card">
-    <h2><span>⚙ Jogo</span></h2>
+  <div class="panel">
+    <h2>Jogo</h2>
     <div class="game-pills" id="gamePills">
-      <button type="button" class="game-pill active" data-game="euromilhoes" onclick="selecionarJogo('euromilhoes')">🇫🇷 EUROMILHÕES</button>
-      <button type="button" class="game-pill" data-game="totoloto" onclick="selecionarJogo('totoloto')">🇵🇹 TOTOLOTO</button>
-      <button type="button" class="game-pill" data-game="eurodreams" onclick="selecionarJogo('eurodreams')">🇪🇺 EURODREAMS</button>
+      <button type="button" class="game-pill active" data-game="euromilhoes" onclick="selecionarJogo('euromilhoes')">🇫🇷 Euromilhões</button>
+      <button type="button" class="game-pill" data-game="totoloto" onclick="selecionarJogo('totoloto')">🇵🇹 Totoloto</button>
+      <button type="button" class="game-pill" data-game="eurodreams" onclick="selecionarJogo('eurodreams')">🇪🇺 EuroDreams</button>
     </div>
     <label class="sr-only" for="gameType">Escolher jogo</label>
     <select id="gameType">
-      <option value="euromilhoes">🇫🇷 EURO MILHÕES (5/50 + 2/12)</option>
-      <option value="totoloto">🇵🇹 TOTOLOTO (5/49 + 1/13)</option>
-      <option value="eurodreams">🇪🇺 EURO DREAMS (6/40 + 1/5)</option>
+      <option value="euromilhoes">Euromilhões (5/50 + 2/12)</option>
+      <option value="totoloto">Totoloto (5/49 + 1/13)</option>
+      <option value="eurodreams">EuroDreams (6/40 + 1/5)</option>
     </select>
   </div>
 
-  <div class="firstprize-card">
-    <div class="fp-label">🏆 1º Prémio — o que é preciso acertar</div>
-    <div class="fp-combo" id="fpCombo">5 números + 2 Estrelas</div>
-    <div class="fp-odds" id="fpOdds">1 / 139.838.160</div>
-    <div class="fp-jackpot" id="fpJackpot">Início ≈ €17.000.000 · Acumula até ao teto de €230.000.000</div>
+  <div class="dial-card">
+    <div class="dial-label">1º Prémio — combinação exata</div>
+    <div class="dial-combo" id="fpCombo">5 números + 2 Estrelas</div>
+    <div class="dial-odds" id="fpOdds">1 em 139.838.160</div>
+    <div class="dial-jackpot" id="fpJackpot">—</div>
   </div>
 
-  <div class="tabs-nav">
-    <button type="button" class="tab-btn active" data-tab="gerador" onclick="switchTab('gerador')">✨ Gerador</button>
-    <button type="button" class="tab-btn" data-tab="multiplo" onclick="switchTab('multiplo')">🎫 Múltiplos</button>
-    <button type="button" class="tab-btn" data-tab="manual" onclick="switchTab('manual')">🎲 Manual</button>
+  <div class="tabs">
+    <button type="button" class="tab active" data-tab="gerador" onclick="switchTab('gerador')">Gerador</button>
+    <button type="button" class="tab" data-tab="multiplo" onclick="switchTab('multiplo')">Múltiplos</button>
+    <button type="button" class="tab" data-tab="manual" onclick="switchTab('manual')">Manual</button>
   </div>
 
   <!-- ===================== TAB GERADOR ===================== -->
-  <div class="tab-panel active" id="tab-gerador">
-    <div class="card">
-      <h2><span>✨ Aposta e Método</span></h2>
-      <div class="flex">
+  <div class="tabpanel active" id="tab-gerador">
+    <div class="panel">
+      <h2>Aposta e Método</h2>
+      <div class="row">
         <div>
-          <label class="field-label" for="nQty">Números <span class="val" id="nQtyDisplay">5</span></label>
-          <select id="nQty"><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+          <label class="field-label" for="nQty">Números<span class="val" id="nQtyDisplay">5</span></label>
+          <select id="nQty"></select>
         </div>
         <div>
-          <label class="field-label" for="sQty"><span id="starLabel">Estrelas</span> <span class="val" id="sQtyDisplay">2</span></label>
-          <select id="sQty"><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+          <label class="field-label" for="sQty"><span id="starLabel">Estrelas</span><span class="val" id="sQtyDisplay">2</span></label>
+          <select id="sQty"></select>
         </div>
       </div>
-      <div class="flex">
+      <div class="row">
         <div style="flex-basis:100%;">
-          <label class="field-label" for="genMethod">Método de Amostragem</label>
+          <label class="field-label" for="genMethod">Método de amostragem</label>
           <select id="genMethod">
-            <option value="super-genetic">🧬 Super-Genético Populacional (elite+crossover+mutação)</option>
-            <option value="hybrid-ultra">🚀 Híbrido Ultra (combina todos)</option>
-            <option value="statistical">📊 Ponderado por Frequência</option>
-            <option value="neural">🧠 Ponderado por Recência</option>
-            <option value="genetic">🧬 Otimização Local (soma/paridade)</option>
-            <option value="balanced">⚖️ Distribuição por Zonas</option>
-            <option value="statistical-random">🎯 Frequência + Ruído</option>
-            <option value="random">🎲 Uniforme Puro</option>
+            <option value="super-genetic">Genético populacional (elite + crossover + mutação)</option>
+            <option value="hybrid-ultra">Híbrido (combina 4 métodos)</option>
+            <option value="statistical">Ponderado por frequência simulada</option>
+            <option value="balanced">Distribuição por zonas</option>
+            <option value="random">Uniforme puro</option>
           </select>
         </div>
       </div>
-      <div class="method-info" id="methodInfo">Os métodos alteram apenas quais combinações válidas são propostas primeiro (variedade). A probabilidade real de cada combinação é sempre a mesma — ver tabela de escalões abaixo.</div>
-
-      <div class="price-display" aria-live="polite">
-        <div class="price-label">💰 Valor da Aposta</div>
-        <div class="price-value" id="priceValue">€ 2,50</div>
-        <div class="price-combos" id="priceCombos">1 combinação · 5+2</div>
+      <div class="info-strip" id="methodInfo"></div>
+      <div class="readout">
+        <div class="rl">Valor da aposta</div>
+        <div class="rv" id="priceValue">€ 2,50</div>
+        <div class="rd" id="priceCombos">1 combinação · 5+2</div>
       </div>
     </div>
 
-    <div class="card">
-      <h2><span>📊 Filtros Estruturais Ultra (12)</span></h2>
+    <div class="panel">
+      <h2>Filtros Estruturais (9)</h2>
       <div class="filters-toolbar">
         <button type="button" class="mini-btn" id="btnFiltersAll">Ativar todos</button>
         <button type="button" class="mini-btn" id="btnFiltersNone">Sorteio puro</button>
       </div>
-      <div class="checkrow"><input type="checkbox" id="filterConsec" checked><label for="filterConsec">🚫 Sem 3+ consecutivos</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterSum" checked><label for="filterSum">📊 Soma dentro do IC 95%</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterParity" checked><label for="filterParity">⚖️ Equilíbrio par/ímpar</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterQuartile" checked><label for="filterQuartile">📈 Quartis Q1–Q4 (mín. 2)</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterHalf" checked><label for="filterHalf">🔀 Metade baixa + metade alta</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterDistance" checked><label for="filterDistance">📏 Máx. 2 pares próximos (Δ&lt;3)</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterDecade" checked><label for="filterDecade">🔟 Máx. 2 na mesma dezena</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterLastDigit" checked><label for="filterLastDigit">🔢 Máx. 2 no mesmo algarismo final</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterRepeat" checked><label for="filterRepeat">♻️ Nunca repetir a última aposta gerada</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterEntropy" checked><label for="filterEntropy">🌀 Entropia de Shannon mínima (diversidade)</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterArithmetic" checked><label for="filterArithmetic">📐 Rejeitar progressões aritméticas longas</label></div>
-      <div class="checkrow"><input type="checkbox" id="filterCluster" checked><label for="filterCluster">🧩 Evitar clusters extremos (muito concentrados)</label></div>
+      <div class="filter-grid" id="filterGrid"></div>
 
-      <details class="prize-details">
-        <summary>Ver tabela completa de escalões e prémios</summary>
-        <div class="simple-prize-table-scroll" style="margin-top:10px;"><div id="prizeTableContainer"></div></div>
+      <details class="details" style="margin-top:12px;">
+        <summary>Tabela completa de escalões e prémios</summary>
+        <div class="prize-table-scroll" style="margin-top:10px;"><div id="prizeTableContainer"></div></div>
       </details>
     </div>
 
-    <div class="card">
-      <h2><span>🧪 Simulação Monte Carlo</span></h2>
-      <p style="font-size:0.74rem; color:var(--text-dim); line-height:1.5;">Compara a frequência simulada de cada escalão com a probabilidade hipergeométrica teórica, e mostra a convergência do escalão mais comum ao longo da simulação (Lei dos Grandes Números).</p>
-      <div class="flex" style="margin-top:12px;">
+    <div class="panel">
+      <h2>Simulação Monte Carlo</h2>
+      <p style="font-size:0.72rem;color:var(--paper-dim);line-height:1.55;">Fixa uma aposta de referência e simula sorteios independentes reais, comparando a frequência observada de cada escalão com a probabilidade hipergeométrica teórica. Inclui teste de qualidade de ajuste χ² para validar que o gerador de números aleatórios não introduz enviesamento.</p>
+      <div class="mc-buttons">
         <button type="button" class="btn-secondary" id="btnMC10k">10 mil</button>
         <button type="button" class="btn-secondary" id="btnMC100k">100 mil</button>
         <button type="button" class="btn-secondary" id="btnMC500k">500 mil</button>
@@ -410,127 +373,116 @@ canvas#mcCanvas { width: 100%; height: 130px; display: block; }
       <div id="mcResultContainer"></div>
     </div>
 
-    <button class="btn" id="runBtn">🎲 GERAR COMBINAÇÃO ESTATISTICAMENTE EQUILIBRADA</button>
+    <button class="btn" id="runBtn">Gerar combinação estatisticamente filtrada</button>
     <div class="progress-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
 
     <div class="terminal" id="terminal" aria-live="polite" role="log">
-      <div class="log-line system">> JONHY EL BRAVO v21.0 Inicializado.</div>
-      <div class="log-line math">> Motor: Hipergeométrica exata + Genético Populacional + Monte Carlo com IC 95% + 12 filtros estruturais + 8 métodos de amostragem.</div>
+      <div class="log-line system">> JONHY EL BRAVO v22.0 inicializado.</div>
+      <div class="log-line math">> Motor: hipergeométrica exata · genético populacional · Monte Carlo com χ² · 9 filtros estruturais.</div>
     </div>
 
     <div id="resultPanel" class="result-panel">
-      <h2>🎯 COMBINAÇÃO GERADA</h2>
+      <h2>Combinação gerada</h2>
       <div class="balls" id="ballOutput"></div>
       <div class="result-actions">
-        <button type="button" class="btn-secondary" id="btnCopy">📋 Copiar</button>
-        <button type="button" class="btn-secondary" id="btnSave">💾 Guardar</button>
-        <button type="button" class="btn-secondary" id="btnRepeat">🔁 Gerar Outra</button>
+        <button type="button" class="btn-secondary" id="btnCopy">Copiar</button>
+        <button type="button" class="btn-secondary" id="btnSave">Guardar</button>
+        <button type="button" class="btn-secondary" id="btnRepeat">Gerar outra</button>
       </div>
       <div class="stats-grid" id="analysisGrid"></div>
-      <details class="prize-details" id="resultEscalaoDetails">
-        <summary>Probabilidade real desta aposta, por escalão (1º ao último)</summary>
-        <div class="simple-prize-table-scroll" style="margin-top:10px;"><div id="resultEscalaoTable"></div></div>
+      <details class="details" id="resultEscalaoDetails">
+        <summary>Probabilidade real desta aposta, por escalão</summary>
+        <div class="prize-table-scroll" style="margin-top:10px;"><div id="resultEscalaoTable"></div></div>
       </details>
     </div>
   </div>
 
   <!-- ===================== TAB MÚLTIPLOS ===================== -->
-  <div class="tab-panel" id="tab-multiplo">
-    <div class="card">
-      <h2><span>🎫 Múltiplos Bilhetes Independentes (1–10)</span></h2>
-      <p style="font-size:0.74rem;color:var(--text-dim);">Gera vários bilhetes simples separados (não um sistema múltiplo). Cada bilhete é uma aposta independente com o seu próprio custo.</p>
-      <h3 class="field-label" style="margin-top:12px;">Quantidade de bilhetes</h3>
+  <div class="tabpanel" id="tab-multiplo">
+    <div class="panel">
+      <h2>Bilhetes independentes (1–10)</h2>
+      <p style="font-size:0.72rem;color:var(--paper-dim);">Gera vários bilhetes simples separados — cada um é uma aposta independente com custo próprio.</p>
+      <h3 class="field-label" style="margin-top:12px;">Quantidade</h3>
       <div class="ticket-selector" id="ticketSelector"></div>
-
-      <div class="flex">
+      <div class="row">
         <div>
           <label class="field-label" for="multiN">Números por bilhete</label>
-          <select id="multiN"><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+          <select id="multiN"></select>
         </div>
         <div>
           <label class="field-label" for="multiS"><span id="multiStarLabel">Estrelas</span></label>
-          <select id="multiS"><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+          <select id="multiS"></select>
         </div>
       </div>
-      <div class="flex">
+      <div class="row">
         <div style="flex-basis:100%;">
           <label class="field-label" for="multiOverlap">Sobreposição entre bilhetes</label>
           <select id="multiOverlap">
             <option value="0">Nenhuma (máxima cobertura)</option>
-            <option value="2" selected>Baixa (até 2 números iguais)</option>
-            <option value="4">Média (até 4 números iguais)</option>
+            <option value="2" selected>Baixa (até 2 iguais)</option>
+            <option value="4">Média (até 4 iguais)</option>
             <option value="99">Sem restrição</option>
           </select>
         </div>
       </div>
-
-      <button class="btn" id="multiRunBtn" style="margin-top:16px;">🎫 GERAR BILHETES</button>
+      <button class="btn" id="multiRunBtn" style="margin-top:16px;">Gerar bilhetes</button>
       <div class="progress-wrap" id="multiProgressWrap"><div class="progress-bar" id="multiProgressBar"></div></div>
-
-      <div class="price-display">
-        <div class="price-label">💰 Custo Total</div>
-        <div class="price-value" id="multiTotalPrice">€ 0,00</div>
-        <div class="price-combos" id="multiTotalDetail">Selecione a quantidade</div>
+      <div class="readout">
+        <div class="rl">Custo total</div>
+        <div class="rv" id="multiTotalPrice">€ 0,00</div>
+        <div class="rd" id="multiTotalDetail">Selecione a quantidade</div>
       </div>
-
       <div id="multiTicketsList"></div>
-
       <div class="result-actions" style="margin-top:12px;">
-        <button type="button" class="btn-secondary" id="btnSaveAllMulti">💾 Guardar Todos</button>
-        <button type="button" class="btn-secondary" id="btnExportMulti">📄 Exportar CSV</button>
+        <button type="button" class="btn-secondary" id="btnSaveAllMulti">Guardar todos</button>
+        <button type="button" class="btn-secondary" id="btnExportMulti">Exportar CSV</button>
       </div>
     </div>
   </div>
 
   <!-- ===================== TAB MANUAL ===================== -->
-  <div class="tab-panel" id="tab-manual">
-    <div class="card">
-      <h2><span>🎲 Aposta Manual</span></h2>
-      <p style="font-size:0.74rem;color:var(--text-dim);">Escolha os seus próprios números. Pode selecionar mais do que o mínimo para criar uma aposta múltipla (sistema).</p>
+  <div class="tabpanel" id="tab-manual">
+    <div class="panel">
+      <h2>Aposta manual</h2>
+      <p style="font-size:0.72rem;color:var(--paper-dim);">Escolha os seus próprios números. Selecionar mais do que o mínimo cria um sistema múltiplo.</p>
       <h3 class="field-label" id="manualNumLabel" style="margin-top:12px;">Números</h3>
       <div class="manual-grid" id="manualNumGrid"></div>
       <h3 class="field-label" id="manualStarLabel" style="margin-top:12px;">Estrelas</h3>
       <div class="manual-grid" id="manualStarGrid"></div>
       <div class="validation-msg" id="manualValidation"></div>
-
-      <div class="price-display">
-        <div class="price-label">💰 Valor da Aposta</div>
-        <div class="price-value" id="manualPrice">€ 0,00</div>
-        <div class="price-combos" id="manualPriceDetail">Selecione números</div>
+      <div class="readout">
+        <div class="rl">Valor da aposta</div>
+        <div class="rv" id="manualPrice">€ 0,00</div>
+        <div class="rd" id="manualPriceDetail">Selecione números</div>
       </div>
-
       <div class="stats-grid">
         <div class="stat-box"><div class="label">Combinações</div><div class="value" id="manualComb">0</div></div>
         <div class="stat-box"><div class="label">Soma</div><div class="value" id="manualSum">0</div></div>
       </div>
-
       <div class="combos-preview" id="manualCombosPreview" style="display:none;"></div>
-
       <div class="result-actions" style="margin-top:12px;">
-        <button type="button" class="btn-secondary" id="btnSaveManual">💾 Guardar</button>
-        <button type="button" class="btn-secondary" id="btnClearManual">🗑️ Limpar</button>
+        <button type="button" class="btn-secondary" id="btnSaveManual">Guardar</button>
+        <button type="button" class="btn-secondary" id="btnClearManual">Limpar</button>
       </div>
-
-      <details class="prize-details" style="margin-top:12px;">
+      <details class="details" style="margin-top:12px;">
         <summary>Probabilidade real desta aposta, por escalão</summary>
-        <div class="simple-prize-table-scroll" style="margin-top:10px;"><div id="manualEscalaoTable"></div></div>
+        <div class="prize-table-scroll" style="margin-top:10px;"><div id="manualEscalaoTable"></div></div>
       </details>
     </div>
   </div>
 
-  <div class="card" id="historyCard" style="display:none;">
-    <h2><span>🕓 Apostas Guardadas</span><button type="button" class="mini-btn" id="btnClearHistory">Limpar Tudo</button></h2>
+  <div class="panel" id="historyCard" style="display:none;">
+    <h2>Apostas guardadas<button type="button" class="mini-btn" id="btnClearHistory">Limpar tudo</button></h2>
     <div class="history-list" id="historyList"></div>
   </div>
 
   <div class="footer">
-    <div class="flag-5d flag-fr bottom" aria-hidden="true"><div class="stripe"></div><div class="stripe"></div><div class="stripe"></div></div>
-    <div class="footer-draw-info" id="footerDrawInfo">
-      <span class="draw-date">PRÓXIMO SORTEIO: --</span>
-      <span class="draw-price">PREÇO DA APOSTA: --</span>
+    <div class="draw-line" id="footerDrawInfo">
+      <span class="draw-date">PRÓXIMO SORTEIO: —</span>
+      <span class="draw-price">PREÇO DA APOSTA: —</span>
     </div>
-    <div class="footer-version">JONHY EL BRAVO v21.0 · MATEMÁTICA COMBINATÓRIA REAL · GENÉTICO POPULACIONAL · DADOS OFICIAIS SANTA CASA</div>
-    <div class="footer-legal">As odds apresentadas correspondem às probabilidades oficiais de cada jogo da Santa Casa (Euromilhões, Totoloto, EuroDreams). Os valores em euros dos escalões inferiores variam por sorteio consoante vendas e nº de vencedores — consulte jogossantacasa.pt para os valores exatos do concurso atual. Os filtros, o algoritmo genético e os métodos de amostragem mudam apenas qual combinação válida é escolhida; nenhum deles altera, aumenta ou garante a probabilidade matemática real de qualquer combinação individual — cada sorteio é um evento aleatório independente dos anteriores.</div>
+    <div class="version">JONHY EL BRAVO v22.0 · MATEMÁTICA COMBINATÓRIA EXATA · DADOS OFICIAIS SANTA CASA</div>
+    <div class="legal">As odds apresentadas correspondem às probabilidades oficiais de cada jogo da Santa Casa. Os valores em euros dos escalões inferiores variam por sorteio consoante vendas e nº de vencedores — consulte jogossantacasa.pt para os valores exatos do concurso atual. Filtros, algoritmo genético e métodos de amostragem alteram apenas qual combinação válida é escolhida; nenhum deles altera, aumenta ou garante a probabilidade matemática real de qualquer combinação individual. Cada sorteio é um evento aleatório independente dos anteriores — não existe sistema capaz de prever resultados.</div>
   </div>
 </div>
 
@@ -549,7 +501,7 @@ const REGRAS = {
     diasSorteio: [2, 5], horaSorteio: "19:00",
     jackpotInfo: "Início ≈ €17.000.000 · Acumula até ao teto de €230.000.000",
     premios: [
-      { n: 5, s: 2, nome: "1º Prémio (5+2) — Jackpot", valor: null, valorTxt: "Acumulado (ver info)" },
+      { n: 5, s: 2, nome: "1º Prémio (5+2) — Jackpot", valor: null, valorTxt: "Acumulado" },
       { n: 5, s: 1, nome: "2º Prémio (5+1)", valor: null, valorTxt: "Variável" },
       { n: 5, s: 0, nome: "3º Prémio (5+0)", valor: null, valorTxt: "Variável" },
       { n: 4, s: 2, nome: "4º Prémio (4+2)", valor: null, valorTxt: "Variável" },
@@ -572,7 +524,7 @@ const REGRAS = {
     diasSorteio: [1, 3, 6], horaSorteio: "20:30",
     jackpotInfo: "1º prémio mínimo garantido de €1.000.000, sem limite de jackpot",
     premios: [
-      { n: 5, s: 1, nome: "1º Prémio (5+Nº Sorte) — Jackpot", valor: 1000000, valorTxt: "≥ €1.000.000 (mín. garantido)" },
+      { n: 5, s: 1, nome: "1º Prémio (5+Nº Sorte) — Jackpot", valor: 1000000, valorTxt: "≥ €1.000.000" },
       { n: 5, s: 0, nome: "2º Prémio (5 números)", valor: null, valorTxt: "Variável" },
       { n: 4, s: 1, nome: "3º Prémio (4+Nº Sorte)", valor: null, valorTxt: "Variável" },
       { n: 4, s: 0, nome: "4º Prémio (4 números)", valor: null, valorTxt: "Variável" },
@@ -593,31 +545,33 @@ const REGRAS = {
       { n: 5, s: 1, nome: "3º Prémio (5+Sonho)", valor: null, valorTxt: "Variável" },
       { n: 5, s: 0, nome: "4º Prémio (5 números)", valor: null, valorTxt: "Variável" },
       { n: 4, s: null, nome: "5º Prémio (4 números)", valor: null, valorTxt: "Variável", ignoreDream: true },
-      { n: 3, s: null, nome: "6º Prémio (3 números) — Reembolso", valor: 2.50, valorTxt: "€2,50 (reembolso da aposta)", ignoreDream: true }
+      { n: 3, s: null, nome: "6º Prémio (3 números) — Reembolso", valor: 2.50, valorTxt: "€2,50 (reembolso)", ignoreDream: true }
     ]
   }
 };
 
-const CORES_JOGO = {
-  euromilhoes: { btn: '#FF1A1A', btnRGB: '255, 26, 26' },
-  totoloto:    { btn: '#FFD700', btnRGB: '255, 215, 0' },
-  eurodreams:  { btn: '#00E676', btnRGB: '0, 230, 118' }
-};
-
 const METHOD_INFO = {
-  'super-genetic': 'Algoritmo genético populacional (elitismo + seleção por torneio + crossover ordenado + mutação adaptativa) que otimiza uma função de fitness multiobjetivo (soma, paridade, quartis, consecutivos, dezenas, entropia). Continua sujeito aos filtros abaixo. Não altera a probabilidade real de cada combinação.',
-  'hybrid-ultra': 'Combina os 6 métodos abaixo e escolhe os números mais consistentes entre eles.',
-  'statistical': 'Dá mais peso a números com maior frequência simulada localmente (não são dados reais de sorteios).',
-  'neural': 'Dá mais peso a uma pontuação de "recência" simulada localmente, para variar o padrão dos números.',
-  'genetic': 'Testa várias amostras e fica com a que tem soma mais próxima da média teórica e melhor equilíbrio par/ímpar.',
-  'balanced': 'Divide o intervalo de números em 5 zonas e tenta escolher pelo menos um número de cada zona.',
-  'statistical-random': 'Mistura o peso de frequência simulada com ruído aleatório, para maior variedade.',
+  'super-genetic': 'Algoritmo genético populacional (elitismo + seleção por torneio + crossover ordenado + mutação adaptativa) otimizando uma função multiobjetivo. Continua sujeito aos filtros abaixo — não altera a probabilidade real de nenhuma combinação.',
+  'hybrid-ultra': 'Combina 4 métodos independentes e retém os números mais consistentes entre eles.',
+  'statistical': 'Pesa números por uma frequência simulada localmente (não são dados reais de sorteios passados — cada sorteio real é independente).',
+  'balanced': 'Divide o intervalo em 5 zonas e procura pelo menos um número de cada zona.',
   'random': 'Amostragem uniforme sem qualquer peso — cada número tem exatamente a mesma probabilidade de ser proposto.'
 };
 
+const FILTROS_DEF = [
+  { id:'filterConsec', t:'Sem 3+ consecutivos', s:'Evita sequências longas ex. 21-22-23' },
+  { id:'filterSum', t:'Soma dentro do IC 95%', s:'Rejeita somas estatisticamente extremas' },
+  { id:'filterParity', t:'Equilíbrio par/ímpar', s:'Evita tudo par ou tudo ímpar' },
+  { id:'filterQuartile', t:'Quartis Q1–Q4', s:'Números espalhados por pelo menos 2 quartis' },
+  { id:'filterHalf', t:'Metade baixa + alta', s:'Pelo menos 1 número de cada metade do intervalo' },
+  { id:'filterDistance', t:'Máx. 2 pares próximos', s:'Limita pares com diferença menor que 3' },
+  { id:'filterDecade', t:'Máx. 2 na mesma dezena', s:'Evita concentração numa só faixa de 10' },
+  { id:'filterRepeat', t:'Nunca repetir a última', s:'Evita gerar a mesma aposta duas vezes seguidas' },
+  { id:'filterEntropy', t:'Entropia mínima', s:'Garante diversidade estatística (Shannon)' }
+];
+
 /* ============================================================
-   MATEMÁTICA COMBINATÓRIA (exata, sem BigInt — compatível com
-   qualquer motor JS, incluindo WebViews móveis mais antigos)
+   MATEMÁTICA COMBINATÓRIA EXATA
    ============================================================ */
 const combCache = new Map();
 function C(n, k) {
@@ -627,9 +581,7 @@ function C(n, k) {
   const key = n + ',' + k;
   if (combCache.has(key)) return combCache.get(key);
   let res = 1;
-  for (let i = 0; i < k; i++) {
-    res = (res * (n - i)) / (i + 1);
-  }
+  for (let i = 0; i < k; i++) res = (res * (n - i)) / (i + 1);
   res = Math.round(res);
   combCache.set(key, res);
   return res;
@@ -658,12 +610,10 @@ function amostraUniformeSemReposicao(min, max, qtd) {
   for (let i = min; i <= max; i++) pool.push(i);
   for (let i = 0; i < qtd; i++) {
     const j = i + Math.floor(Math.random() * (pool.length - i));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
+    const tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
   }
   return pool.slice(0, qtd);
 }
-
-// Amostragem sem reposição ponderada (algoritmo de chaves exponenciais - Efraimidis-Spirakis)
 function amostraPonderadaSemReposicao(min, max, qtd, pesoFn) {
   const itens = [];
   for (let i = min; i <= max; i++) {
@@ -682,9 +632,7 @@ function contarConsecutivosMax(nums) {
 }
 function contarParesProximos(nums) { let c=0; for (let i=1;i<nums.length;i++) if (nums[i]-nums[i-1]<3) c++; return c; }
 function contarMaxPorDezena(nums) { const d={}; nums.forEach(n=>{const k=Math.floor((n-1)/10); d[k]=(d[k]||0)+1;}); return Math.max(...Object.values(d)); }
-function contarMaxUltimoAlgarismo(nums) { const d={}; nums.forEach(n=>{const k=n%10; d[k]=(d[k]||0)+1;}); return Math.max(...Object.values(d)); }
 function contarMetades(nums, max) { const meio = max/2; const baixa = nums.filter(n=>n<=meio).length; const alta = nums.length - baixa; return { baixa, alta }; }
-
 function calcularEntropia(nums, max) {
   const bins = Math.ceil(max / 10);
   const counts = new Array(bins).fill(0);
@@ -694,82 +642,48 @@ function calcularEntropia(nums, max) {
   counts.forEach(c => { if (c > 0) { const p = c / total; H -= p * Math.log2(p); } });
   return H / Math.log2(bins || 1);
 }
-function temProgressaoAritmeticaLonga(nums) {
-  if (nums.length < 4) return false;
-  for (let i = 0; i < nums.length - 3; i++) {
-    for (let j = i + 1; j < nums.length - 2; j++) {
-      const d = nums[j] - nums[i];
-      if (d <= 0) continue;
-      let count = 2, next = nums[j] + d;
-      for (let k = j + 1; k < nums.length; k++) {
-        if (nums[k] === next) { count++; next += d; if (count >= 4) return true; }
-      }
-    }
-  }
-  return false;
-}
-function temClusterExtremo(nums, max) { return (nums[nums.length - 1] - nums[0]) < max * 0.28; }
 
 function getFiltrosAtivos() {
-  return {
-    consec: document.getElementById('filterConsec').checked,
-    sum: document.getElementById('filterSum').checked,
-    parity: document.getElementById('filterParity').checked,
-    quartile: document.getElementById('filterQuartile').checked,
-    half: document.getElementById('filterHalf').checked,
-    distance: document.getElementById('filterDistance').checked,
-    decade: document.getElementById('filterDecade').checked,
-    lastDigit: document.getElementById('filterLastDigit').checked,
-    repeat: document.getElementById('filterRepeat').checked,
-    entropy: document.getElementById('filterEntropy').checked,
-    arithmetic: document.getElementById('filterArithmetic').checked,
-    cluster: document.getElementById('filterCluster').checked
-  };
+  const o = {};
+  FILTROS_DEF.forEach(f => { const el = document.getElementById(f.id); o[f.id] = el ? el.checked : false; });
+  return o;
 }
-
 function passaFiltros(nums, filtros, somaMin, somaMax, quartis, maxNum, ultimaAposta) {
-  if (filtros.consec && contarConsecutivosMax(nums) >= 3) return false;
-  if (filtros.parity) { const pares = nums.filter(n=>n%2===0).length; if (pares===0 || pares===nums.length) return false; }
-  if (filtros.sum) { const soma = nums.reduce((a,b)=>a+b,0); if (soma<somaMin || soma>somaMax) return false; }
-  if (filtros.quartile) {
+  if (filtros.filterConsec && contarConsecutivosMax(nums) >= 3) return false;
+  if (filtros.filterParity) { const pares = nums.filter(n=>n%2===0).length; if (pares===0 || pares===nums.length) return false; }
+  if (filtros.filterSum) { const soma = nums.reduce((a,b)=>a+b,0); if (soma<somaMin || soma>somaMax) return false; }
+  if (filtros.filterQuartile) {
     const q1=nums.filter(n=>n<=quartis.Q1).length, q2=nums.filter(n=>n>quartis.Q1&&n<=quartis.Q2).length;
     const q3=nums.filter(n=>n>quartis.Q2&&n<=quartis.Q3).length, q4=nums.filter(n=>n>quartis.Q3).length;
     if ([q1,q2,q3,q4].filter(c=>c>0).length < 2) return false;
   }
-  if (filtros.half) { const m = contarMetades(nums, maxNum); if (m.baixa === 0 || m.alta === 0) return false; }
-  if (filtros.distance && contarParesProximos(nums) > 2) return false;
-  if (filtros.decade && contarMaxPorDezena(nums) > 2) return false;
-  if (filtros.lastDigit && contarMaxUltimoAlgarismo(nums) > 2) return false;
-  if (filtros.repeat && ultimaAposta && nums.join(',') === ultimaAposta.join(',')) return false;
-  if (filtros.entropy && calcularEntropia(nums, maxNum) < 0.55) return false;
-  if (filtros.arithmetic && temProgressaoAritmeticaLonga(nums)) return false;
-  if (filtros.cluster && temClusterExtremo(nums, maxNum)) return false;
+  if (filtros.filterHalf) { const m = contarMetades(nums, maxNum); if (m.baixa === 0 || m.alta === 0) return false; }
+  if (filtros.filterDistance && contarParesProximos(nums) > 2) return false;
+  if (filtros.filterDecade && contarMaxPorDezena(nums) > 2) return false;
+  if (filtros.filterRepeat && ultimaAposta && nums.join(',') === ultimaAposta.join(',')) return false;
+  if (filtros.filterEntropy && calcularEntropia(nums, maxNum) < 0.55) return false;
   return true;
 }
 
 /* ============================================================
-   ESTATÍSTICAS SIMULADAS (para variedade dos métodos — não são
-   dados reais de sorteios, apenas pesos locais gerados uma vez
-   por sessão/jogo para dar "personalidade" às propostas)
+   PESOS SIMULADOS (variedade local — não são dados reais)
    ============================================================ */
 const pesosSimulados = {};
 function getPesosSimulados(gameKey) {
   if (pesosSimulados[gameKey]) return pesosSimulados[gameKey];
   const regra = REGRAS[gameKey];
   const freq = new Array(regra.nums.max + 1).fill(0);
-  const recencia = new Array(regra.nums.max + 1).fill(0);
   for (let i = 0; i < 300; i++) {
     const nums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, regra.nums.sorteados);
     nums.forEach(n => { freq[n]++; });
   }
-  for (let i = 1; i <= regra.nums.max; i++) recencia[i] = Math.random();
-  const pesos = { freq, recencia };
+  const pesos = { freq };
   pesosSimulados[gameKey] = pesos;
   return pesos;
 }
 
 /* ============================================================
-   ALGORITMO GENÉTICO POPULACIONAL (elite + crossover + mutação)
+   ALGORITMO GENÉTICO POPULACIONAL
    ============================================================ */
 function fitnessMultiObjetivo(nums, regra, nQty) {
   const stats = calcularEstatisticasSoma(regra.nums.max, nQty);
@@ -789,12 +703,8 @@ function fitnessMultiObjetivo(nums, regra, nQty) {
   const scoreQuart = Math.min(1, qOcc.filter(c => c > 0).length / 3);
   const scoreConsec = 1 - Math.min(1, (contarConsecutivosMax(nums) - 1) / 3);
   const scoreDezena = 1 - Math.min(1, (contarMaxPorDezena(nums) - 1) / 3);
-  const scoreDigito = 1 - Math.min(1, (contarMaxUltimoAlgarismo(nums) - 1) / 3);
   const scoreEntropia = calcularEntropia(nums, regra.nums.max);
-  const scoreCluster = temClusterExtremo(nums, regra.nums.max) ? 0.2 : 1;
-  const scoreArith = temProgressaoAritmeticaLonga(nums) ? 0.15 : 1;
-  return scoreSoma*0.22 + scorePar*0.14 + scoreQuart*0.12 + scoreConsec*0.12 +
-         scoreDezena*0.10 + scoreDigito*0.08 + scoreEntropia*0.10 + scoreCluster*0.06 + scoreArith*0.06;
+  return scoreSoma*0.26 + scorePar*0.16 + scoreQuart*0.16 + scoreConsec*0.16 + scoreDezena*0.12 + scoreEntropia*0.14;
 }
 function crossoverOrdenado(pai1, pai2) {
   const n = pai1.length;
@@ -851,7 +761,7 @@ function superGenetico(regra, nQty, popSize, geracoes) {
 }
 
 /* ============================================================
-   MÉTODOS DE AMOSTRAGEM (candidato antes dos filtros)
+   MÉTODOS DE AMOSTRAGEM
    ============================================================ */
 function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
   const min = regra.nums.min, max = regra.nums.max;
@@ -865,15 +775,6 @@ function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
       const maxFreq = Math.max(...w.freq.slice(1)) || 1;
       return amostraPonderadaSemReposicao(min, max, nQty, i => 0.3 + (w.freq[i] / maxFreq) * 1.5);
     }
-    case 'neural': {
-      const w = getPesosSimulados(gameKey);
-      return amostraPonderadaSemReposicao(min, max, nQty, i => 0.3 + w.recencia[i] * 1.5);
-    }
-    case 'statistical-random': {
-      const w = getPesosSimulados(gameKey);
-      const maxFreq = Math.max(...w.freq.slice(1)) || 1;
-      return amostraPonderadaSemReposicao(min, max, nQty, i => 0.4 + (w.freq[i] / maxFreq) * 0.8 + Math.random() * 0.8);
-    }
     case 'balanced': {
       const zonas = 5, tamZona = (max - min + 1) / zonas;
       const selecionados = new Set();
@@ -883,29 +784,12 @@ function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
         for (let i = Math.max(min, ini); i <= Math.min(max, fim); i++) if (!selecionados.has(i)) candidatos.push(i);
         if (candidatos.length > 0) selecionados.add(candidatos[Math.floor(Math.random() * candidatos.length)]);
       }
-      while (selecionados.size < nQty) {
-        const n = min + Math.floor(Math.random() * (max - min + 1));
-        selecionados.add(n);
-      }
+      while (selecionados.size < nQty) selecionados.add(min + Math.floor(Math.random() * (max - min + 1)));
       return Array.from(selecionados).sort((a,b)=>a-b);
-    }
-    case 'genetic': {
-      const stats = calcularEstatisticasSoma(max, nQty);
-      let melhor = null, melhorScore = -1;
-      for (let tent = 0; tent < 40; tent++) {
-        const cand = amostraUniformeSemReposicao(min, max, nQty);
-        const soma = cand.reduce((a,b)=>a+b,0);
-        const pares = cand.filter(n=>n%2===0).length;
-        const scoreSoma = 1 - Math.min(1, Math.abs(soma - stats.mu) / (stats.sigma * 2 || 1));
-        const scoreParidade = 1 - Math.abs(pares - nQty/2) / (nQty/2 || 1);
-        const score = scoreSoma * 0.6 + scoreParidade * 0.4;
-        if (score > melhorScore) { melhorScore = score; melhor = cand; }
-      }
-      return melhor;
     }
     case 'hybrid-ultra':
     default: {
-      const metodos = ['statistical', 'neural', 'genetic', 'balanced', 'statistical-random'];
+      const metodos = ['statistical', 'balanced', 'super-genetic', 'random'];
       const freqMap = {};
       metodos.forEach(m => {
         const cand = gerarCandidatoNumeros(regra, nQty, m, gameKey);
@@ -926,8 +810,8 @@ function gerarCombinacaoAsync(regra, nQty, sQty, method, gameKey, ultimaAposta, 
   return new Promise((resolve) => {
     if (!nQty || isNaN(nQty) || nQty < regra.nums.sorteados) nQty = regra.nums.minAposta;
     if (!sQty || isNaN(sQty) || sQty < regra.stars.sorteados) sQty = regra.stars.minAposta;
-    const isGenetic = method === 'super-genetic';
-    const maxTentativas = isGenetic ? 60 : 300000;
+    const isGenetic = method === 'super-genetic' || method === 'hybrid-ultra';
+    const maxTentativas = isGenetic ? 200 : 300000;
     const tamanhoBloco = isGenetic ? 1 : 3000;
     let tentativas = 0, ultimaTentativa = null;
     const stats = calcularEstatisticasSoma(regra.nums.max, nQty);
@@ -965,7 +849,6 @@ function calcularPreco(regra, n, s) {
   const totalCombos = combosNums * combosStars;
   return { totalCombos, custo: totalCombos * regra.preco };
 }
-
 function getCombinations(arr, k) {
   if (k > arr.length || k <= 0) return [];
   if (k === arr.length) return [arr.slice()];
@@ -982,17 +865,14 @@ function getCombinations(arr, k) {
 }
 
 let currentGame = 'euromilhoes';
-let historico = [];
 let ultimaApostaGerador = null;
 
 /* ============================================================
-   PERSISTÊNCIA (window.storage — apostas guardadas)
+   PERSISTÊNCIA
    ============================================================ */
 async function carregarApostasGuardadas() {
-  try {
-    const res = await window.storage.get('apostas_guardadas');
-    return res ? JSON.parse(res.value) : [];
-  } catch (e) { return []; }
+  try { const res = await window.storage.get('apostas_guardadas'); return res ? JSON.parse(res.value) : []; }
+  catch (e) { return []; }
 }
 async function guardarApostaPersistente(entry) {
   try {
@@ -1038,20 +918,14 @@ function getNextDrawDate(diasSemana, hora) {
   return `${diasNomes[dataProx.getDay()]}, ${dataFmt} às ${hora}`;
 }
 
+const CORES_JOGO = { euromilhoes:{c:'#E4523F',rgb:'228,82,63'}, totoloto:{c:'#C8963E',rgb:'200,150,62'}, eurodreams:{c:'#4FCB8E',rgb:'79,203,142'} };
 function aplicarCoresJogo(gameKey) {
   const cores = CORES_JOGO[gameKey];
   if (!cores) return;
-  document.documentElement.style.setProperty('--btn-color', cores.btn);
-  document.documentElement.style.setProperty('--btn-color-rgb', cores.btnRGB);
-
-  document.querySelectorAll('.game-pill').forEach(p => {
-    if (p.dataset.game === gameKey) p.classList.add('active'); else p.classList.remove('active');
-  });
-
-  dispararEfeitosTema(gameKey);
-  animarAvatares();
+  document.documentElement.style.setProperty('--game', cores.c);
+  document.documentElement.style.setProperty('--game-rgb', cores.rgb);
+  document.querySelectorAll('.game-pill').forEach(p => { p.classList.toggle('active', p.dataset.game === gameKey); });
 }
-
 function selecionarJogo(gameKey) {
   const sel = document.getElementById('gameType');
   if (!sel) return;
@@ -1059,61 +933,18 @@ function selecionarJogo(gameKey) {
   updateUI();
 }
 
-function dispararEfeitosTema(gameKey) {
-  try {
-    const layer = document.getElementById('particleLayer');
-    const vine = document.getElementById('vineFx');
-    if (!layer || !vine) return;
-    layer.innerHTML = '';
-    vine.classList.remove('active');
-    document.querySelectorAll('.sunray-fx').forEach(el => el.remove());
-
-    if (gameKey === 'euromilhoes') {
-      for (let i = 0; i < 18; i++) {
-        const b = document.createElement('div');
-        b.className = 'bullet-fx';
-        const angle = Math.random() * 2 * Math.PI;
-        const dist = 150 + Math.random() * 350;
-        b.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
-        b.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
-        b.style.left = (15 + Math.random() * 70) + '%';
-        b.style.top = (15 + Math.random() * 60) + '%';
-        b.style.animationDelay = (Math.random() * 0.6) + 's';
-        layer.appendChild(b);
-      }
-      setTimeout(() => { layer.innerHTML = ''; }, 2600);
-    } else if (gameKey === 'totoloto') {
-      for (let i = 0; i < 12; i++) {
-        const ray = document.createElement('div');
-        ray.className = 'sunray-fx';
-        const deg = (i / 12) * 360;
-        ray.style.transform = 'translate(-50%, -50%) rotate(' + deg + 'deg)';
-        document.body.appendChild(ray);
-        setTimeout(() => ray.remove(), 3200);
-      }
-    } else if (gameKey === 'eurodreams') {
-      vine.classList.add('active');
-      setTimeout(() => vine.classList.remove('active'), 3200);
-    }
-  } catch (e) { console.error('efeitos tema erro:', e); }
-}
-
-function animarAvatares() {
-  try {
-    const sheriff = document.getElementById('avatarSheriff');
-    const dog = document.getElementById('avatarDog');
-    if (!sheriff || !dog) return;
-    sheriff.classList.add('show');
-    dog.classList.add('show');
-    sheriff.classList.add('big');
-    dog.classList.add('big');
-    setTimeout(() => { sheriff.classList.remove('big'); dog.classList.remove('big'); }, 1400);
-  } catch (e) { console.error('avatar erro:', e); }
-}
-
 /* ============================================================
    UI: TAB GERADOR
    ============================================================ */
+function renderFilterGrid() {
+  const grid = document.getElementById('filterGrid');
+  grid.innerHTML = FILTROS_DEF.map(f => `
+    <label class="filter-chip" for="${f.id}">
+      <input type="checkbox" id="${f.id}" checked>
+      <span class="fc-text"><span class="fc-title">${f.t}</span><br><span class="fc-sub">${f.s}</span></span>
+    </label>`).join('');
+}
+
 function updateUI() {
   try {
     currentGame = document.getElementById('gameType').value;
@@ -1138,7 +969,7 @@ function updateUI() {
     }
     sSel.value = regra.stars.minAposta;
     sSel.disabled = isFixed;
-    document.getElementById('starLabel').textContent = regra.stars.nome + (isFixed ? ' (Fixo)' : '');
+    document.getElementById('starLabel').textContent = regra.stars.nome + (isFixed ? ' (fixo)' : '');
     document.getElementById('sQtyDisplay').textContent = regra.stars.minAposta;
 
     nSel.onchange = function () { document.getElementById('nQtyDisplay').textContent = this.value; updatePriceDisplay(); updateFooter(); renderPrizeTable(regra); };
@@ -1167,7 +998,6 @@ function updatePriceDisplay() {
   document.getElementById('priceValue').textContent = `€ ${custo.toFixed(2).replace('.', ',')}`;
   document.getElementById('priceCombos').textContent = `${totalCombos.toLocaleString('pt-PT')} combinação(ões) · ${n}+${s}`;
 }
-
 function updateFooter() {
   const regra = REGRAS[currentGame];
   const n = parseInt(document.getElementById('nQty').value, 10);
@@ -1176,15 +1006,12 @@ function updateFooter() {
   const proximoSorteio = getNextDrawDate(regra.diasSorteio, regra.horaSorteio);
   document.getElementById('footerDrawInfo').innerHTML = `
     <span class="draw-date">PRÓXIMO SORTEIO: ${proximoSorteio}</span>
-    <span class="draw-price">PREÇO DA APOSTA: € ${custo.toFixed(2).replace('.', ',')}</span>
-  `;
+    <span class="draw-price">PREÇO DA APOSTA: € ${custo.toFixed(2).replace('.', ',')}</span>`;
 }
-
 function updateFirstPrize(regra) {
   const totalCombos = C(regra.nums.max, regra.nums.sorteados) * C(regra.stars.max, regra.stars.sorteados);
-  const comboTxt = `${regra.nums.sorteados} números + ${regra.stars.sorteados} ${regra.stars.nome}`;
-  document.getElementById('fpCombo').textContent = comboTxt;
-  document.getElementById('fpOdds').textContent = `1 / ${totalCombos.toLocaleString('pt-PT')}`;
+  document.getElementById('fpCombo').textContent = `${regra.nums.sorteados} números + ${regra.stars.sorteados} ${regra.stars.nome}`;
+  document.getElementById('fpOdds').textContent = `1 em ${totalCombos.toLocaleString('pt-PT')}`;
   document.getElementById('fpJackpot').textContent = regra.jackpotInfo;
 }
 
@@ -1193,9 +1020,9 @@ function updateFirstPrize(regra) {
    ============================================================ */
 function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
   const isSystem = nQty > regra.nums.sorteados || sQty > regra.stars.sorteados;
-  let html = `<table class="simple-prize-table"><thead><tr>
-      <th style="text-align:left;">Escalão</th><th>Odds Aposta Simples</th>
-      ${isSystem ? '<th>Chance no Seu Sistema</th>' : ''}<th>Valor (€)</th>
+  let html = `<table class="prize-table"><thead><tr>
+      <th style="text-align:left;">Escalão</th><th>Odds simples</th>
+      ${isSystem ? '<th>No seu sistema</th>' : ''}<th>Valor (€)</th>
     </tr></thead><tbody>`;
 
   regra.premios.forEach((p, idx) => {
@@ -1207,7 +1034,7 @@ function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
       probReal = probNums * probStars;
     }
     const odds = probReal > 0 ? 1 / probReal : Infinity;
-    const oddsFmt = isFinite(odds) ? '1 / ' + Math.round(odds).toLocaleString('pt-PT') : 'N/D';
+    const oddsFmt = isFinite(odds) ? '1/' + Math.round(odds).toLocaleString('pt-PT') : 'N/D';
     const valorFmt = p.valor !== null ? '€ ' + p.valor.toLocaleString('pt-PT') : p.valorTxt;
 
     let sistemaCell = '';
@@ -1220,15 +1047,15 @@ function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
         probSistema = probSistemaNums * probSistemaStars;
       }
       const oddsSistema = probSistema > 0 ? 1 / probSistema : Infinity;
-      const sistemaFmt = isFinite(oddsSistema) ? (probSistema >= 0.001 ? (probSistema * 100).toFixed(2) + '%' : '1 / ' + Math.round(oddsSistema).toLocaleString('pt-PT')) : 'N/D';
-      sistemaCell = `<td class="tier-system">${sistemaFmt}</td>`;
+      const sistemaFmt = isFinite(oddsSistema) ? (probSistema >= 0.001 ? (probSistema * 100).toFixed(2) + '%' : '1/' + Math.round(oddsSistema).toLocaleString('pt-PT')) : 'N/D';
+      sistemaCell = `<td>${sistemaFmt}</td>`;
     }
     const rowClass = idx === 0 ? 'first-tier' : (idx === targetIdx ? 'target-tier' : '');
-    html += `<tr class="${rowClass}"><td class="tier-name">${p.nome}</td><td class="tier-odds">${oddsFmt}</td>${sistemaCell}<td class="tier-value">${valorFmt}</td></tr>`;
+    html += `<tr class="${rowClass}"><td class="tier-name">${p.nome}</td><td>${oddsFmt}</td>${sistemaCell}<td class="tier-value">${valorFmt}</td></tr>`;
   });
   html += `</tbody></table>`;
-  html += `<div class="prize-table-legend">📌 ${regra.jackpotInfo}. Odds calculadas por combinatória hipergeométrica exata — idênticas às probabilidades oficiais publicadas pela Santa Casa. Valores marcados "Variável" dependem das vendas e nº de vencedores de cada sorteio real.</div>`;
-  if (isSystem) html += `<div class="prize-table-legend">"Chance no Seu Sistema" = probabilidade real de acertar <b>pelo menos uma vez</b> nesse escalão jogando todas as combinações do seu sistema.</div>`;
+  html += `<div class="prize-legend">${regra.jackpotInfo}. Odds calculadas por combinatória hipergeométrica exata — idênticas às probabilidades oficiais da Santa Casa. Valores "Variável" dependem das vendas e nº de vencedores de cada sorteio real.</div>`;
+  if (isSystem) html += `<div class="prize-legend">"No seu sistema" = probabilidade real de acertar pelo menos uma vez nesse escalão jogando todas as combinações do sistema.</div>`;
   return html;
 }
 function renderPrizeTable(regra) {
@@ -1241,7 +1068,7 @@ function renderResultEscalaoTable(regra, nQty, sQty) {
 }
 
 /* ============================================================
-   LOG / PROGRESSO
+   LOG / PROGRESSO / TOAST
    ============================================================ */
 function toast(msg, isError) {
   try {
@@ -1249,15 +1076,16 @@ function toast(msg, isError) {
     if (!t) {
       t = document.createElement('div');
       t.id = 'globalToast';
-      t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:9999;padding:12px 20px;border-radius:30px;font-family:Rajdhani,sans-serif;font-weight:700;font-size:0.85rem;max-width:90%;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,0.6);transition:opacity 0.3s;';
+      t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:9999;padding:11px 20px;border-radius:24px;font-family:Inter,sans-serif;font-weight:600;font-size:0.82rem;max-width:90%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.55);transition:opacity .3s;';
       document.body.appendChild(t);
     }
-    t.style.background = isError ? '#FF1A1A' : '#0066FF';
-    t.style.color = '#fff';
+    t.style.background = isError ? '#E4523F' : '#161C2A';
+    t.style.border = isError ? 'none' : '1px solid rgba(111,214,232,0.4)';
+    t.style.color = '#EDEAE1';
     t.textContent = msg;
     t.style.opacity = '1';
     clearTimeout(t._hideTimer);
-    t._hideTimer = setTimeout(() => { t.style.opacity = '0'; }, 3200);
+    t._hideTimer = setTimeout(() => { t.style.opacity = '0'; }, 3000);
   } catch (e) { console.error('toast erro:', e); }
 }
 function addLog(msg, type) {
@@ -1280,12 +1108,12 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
   const panel = document.getElementById('resultPanel');
   const ballOut = document.getElementById('ballOutput');
   ballOut.innerHTML = '';
-  nums.forEach(n => { const b=document.createElement('div'); b.className='ball game-color'; b.textContent=String(n).padStart(2,'0'); ballOut.appendChild(b); });
+  nums.forEach(n => { const b=document.createElement('div'); b.className='ball n'; b.textContent=String(n).padStart(2,'0'); ballOut.appendChild(b); });
   if (stars && stars.length > 0) {
     const sep = document.createElement('div'); sep.style.width='100%'; sep.style.height='1px';
-    sep.style.background = 'linear-gradient(90deg, transparent, var(--glass-border), transparent)'; sep.style.margin='8px 0';
+    sep.style.background = 'linear-gradient(90deg, transparent, var(--line-strong), transparent)'; sep.style.margin='6px 0';
     ballOut.appendChild(sep);
-    stars.forEach(s => { const b=document.createElement('div'); b.className='ball star-color'; b.textContent=String(s).padStart(2,'0'); ballOut.appendChild(b); });
+    stars.forEach(s => { const b=document.createElement('div'); b.className='ball s'; b.textContent=String(s).padStart(2,'0'); ballOut.appendChild(b); });
   }
 
   const soma = nums.reduce((a,b)=>a+b,0);
@@ -1296,22 +1124,21 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
   const q3=nums.filter(n=>n>resultado.quartis.Q2&&n<=resultado.quartis.Q3).length, q4=nums.filter(n=>n>resultado.quartis.Q3).length;
   const quartisOcupados = [q1,q2,q3,q4].filter(c=>c>0).length;
   const paresProximos = contarParesProximos(nums), maxConsec = contarConsecutivosMax(nums);
-  const maxDezena = contarMaxPorDezena(nums), maxDigito = contarMaxUltimoAlgarismo(nums);
+  const maxDezena = contarMaxPorDezena(nums);
   const metades = contarMetades(nums, regra.nums.max);
   const entropia = calcularEntropia(nums, regra.nums.max);
 
   document.getElementById('analysisGrid').innerHTML = `
     <div class="stat-box"><div class="label">Método</div><div class="value">${method}</div></div>
-    <div class="stat-box"><div class="label">Soma (Z-Score)</div><div class="value ${somaOk?'ok':'warn'}">${soma} (z=${zScore.toFixed(2)}) ${somaOk?'✓':'⚠'}</div></div>
+    <div class="stat-box"><div class="label">Soma (Z-score)</div><div class="value ${somaOk?'ok':'warn'}">${soma} (z=${zScore.toFixed(2)})</div></div>
     <div class="stat-box"><div class="label">Par / Ímpar</div><div class="value">${pares} / ${impares}</div></div>
-    <div class="stat-box"><div class="label">Metade Baixa / Alta</div><div class="value ${metades.baixa>0&&metades.alta>0?'ok':'warn'}">${metades.baixa} / ${metades.alta}</div></div>
-    <div class="stat-box"><div class="label">Quartis Ocupados</div><div class="value ${quartisOcupados>=2?'ok':'warn'}">${quartisOcupados}/4 (${q1}-${q2}-${q3}-${q4})</div></div>
-    <div class="stat-box"><div class="label">Pares Próximos (Δ&lt;3)</div><div class="value ${paresProximos<=2?'ok':'warn'}">${paresProximos} (máx 2)</div></div>
-    <div class="stat-box"><div class="label">Consecutivos Máx.</div><div class="value ${maxConsec<3?'ok':'warn'}">${maxConsec} (máx 2)</div></div>
-    <div class="stat-box"><div class="label">Máx. por Dezena</div><div class="value ${maxDezena<=2?'ok':'warn'}">${maxDezena} (máx 2)</div></div>
-    <div class="stat-box"><div class="label">Máx. Mesmo Algarismo Final</div><div class="value ${maxDigito<=2?'ok':'warn'}">${maxDigito} (máx 2)</div></div>
+    <div class="stat-box"><div class="label">Metade baixa / alta</div><div class="value ${metades.baixa>0&&metades.alta>0?'ok':'warn'}">${metades.baixa} / ${metades.alta}</div></div>
+    <div class="stat-box"><div class="label">Quartis ocupados</div><div class="value ${quartisOcupados>=2?'ok':'warn'}">${quartisOcupados}/4 (${q1}-${q2}-${q3}-${q4})</div></div>
+    <div class="stat-box"><div class="label">Pares próximos (Δ&lt;3)</div><div class="value ${paresProximos<=2?'ok':'warn'}">${paresProximos} (máx 2)</div></div>
+    <div class="stat-box"><div class="label">Consecutivos máx.</div><div class="value ${maxConsec<3?'ok':'warn'}">${maxConsec} (máx 2)</div></div>
+    <div class="stat-box"><div class="label">Máx. por dezena</div><div class="value ${maxDezena<=2?'ok':'warn'}">${maxDezena} (máx 2)</div></div>
     <div class="stat-box"><div class="label">Entropia (diversidade)</div><div class="value ${entropia>=0.55?'ok':'warn'}">${entropia.toFixed(3)}</div></div>
-    <div class="stat-box"><div class="label">Iterações até Válida</div><div class="value">${resultado.tentativas.toLocaleString('pt-PT')}</div></div>
+    <div class="stat-box"><div class="label">Iterações até válida</div><div class="value">${resultado.tentativas.toLocaleString('pt-PT')}</div></div>
   `;
   renderResultEscalaoTable(regra, nQty, sQty);
   panel.dataset.nums = nums.join(', ');
@@ -1323,7 +1150,7 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
 }
 
 /* ============================================================
-   CÓPIA (com fallback)
+   CÓPIA (com fallback robusto)
    ============================================================ */
 function copiarTexto(texto) {
   return new Promise((resolve, reject) => {
@@ -1344,35 +1171,47 @@ function copiarFallback(texto, resolve, reject) {
 }
 
 /* ============================================================
-   MONTE CARLO (com convergência)
+   MONTE CARLO — motor rápido, aposta fixa, teste χ²
+   Otimização: fixa a aposta de referência uma única vez e simula
+   apenas o sorteio real a cada iteração (equivalente estatisticamente
+   a simular ambos, já que a aposta é arbitrária) — reduz para metade
+   o trabalho por iteração e permite laços muito maiores.
    ============================================================ */
-function runMonteCarloAsync(regra, totalSorteios, targetIdx, onProgress, onSnapshot) {
+function runMonteCarloAsync(regra, totalSorteios, onProgress) {
   return new Promise((resolve) => {
-    const tamanhoBloco = 5000;
+    const tamanhoBloco = 20000;
     let feitos = 0;
-    const contagens = {};
-    regra.premios.forEach(p => { contagens[p.nome] = 0; });
+    const nTiers = regra.premios.length;
+    const contagens = new Uint32Array(nTiers);
     const snapshots = [];
-    const targetNome = regra.premios[targetIdx].nome;
+    const targetIdx = nTiers - 1;
 
+    // aposta de referência fixa para toda a simulação
+    const minhaAposta = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, regra.nums.sorteados);
+    const minhasStars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, regra.stars.sorteados);
+    const apostaSet = new Set(minhaAposta);
+    const starsSet = new Set(minhasStars);
+
+    // pré-computar mapa escalão -> {n,s,ignoreDream}
     function bloco() {
       const limite = Math.min(feitos + tamanhoBloco, totalSorteios);
       while (feitos < limite) {
         feitos++;
         const drawNums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, regra.nums.sorteados);
         const drawStars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, regra.stars.sorteados);
-        const meusNums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, regra.nums.sorteados);
-        const meusStars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, regra.stars.sorteados);
-        const acertosNums = meusNums.filter(n => drawNums.includes(n)).length;
-        const acertosStars = meusStars.filter(s => drawStars.includes(s)).length;
-        regra.premios.forEach(p => {
-          if (p.ignoreDream) { if (acertosNums === p.n) contagens[p.nome]++; }
-          else if (acertosNums === p.n && acertosStars === p.s) contagens[p.nome]++;
-        });
+        let acertosNums = 0;
+        for (let i = 0; i < drawNums.length; i++) if (apostaSet.has(drawNums[i])) acertosNums++;
+        let acertosStars = 0;
+        for (let i = 0; i < drawStars.length; i++) if (starsSet.has(drawStars[i])) acertosStars++;
+        for (let ti = 0; ti < nTiers; ti++) {
+          const p = regra.premios[ti];
+          if (p.ignoreDream) { if (acertosNums === p.n) contagens[ti]++; }
+          else if (acertosNums === p.n && acertosStars === p.s) contagens[ti]++;
+        }
       }
-      snapshots.push({ feitos, prob: contagens[targetNome] / feitos });
+      snapshots.push({ feitos, prob: contagens[targetIdx] / feitos });
       if (onProgress) onProgress(feitos, totalSorteios);
-      if (feitos >= totalSorteios) { resolve({ contagens, snapshots }); return; }
+      if (feitos >= totalSorteios) { resolve({ contagens, snapshots, minhaAposta, minhasStars }); return; }
       setTimeout(bloco, 0);
     }
     bloco();
@@ -1381,36 +1220,35 @@ function runMonteCarloAsync(regra, totalSorteios, targetIdx, onProgress, onSnaps
 
 function construirSVGConvergencia(snapshots, probTeorica) {
   if (!snapshots || snapshots.length < 2) return '';
-  const W = 600, H = 160, padL = 8, padR = 8, padT = 8, padB = 8;
+  const W = 600, H = 150, padL = 6, padR = 6, padT = 8, padB = 8;
   const plotW = W - padL - padR, plotH = H - padT - padB;
   const probs = snapshots.map(s => s.prob);
   const maxV = Math.max(probTeorica * 1.4, Math.max.apply(null, probs)) || (probTeorica * 2) || 0.01;
-
   function xAt(i) { return padL + (i / (snapshots.length - 1)) * plotW; }
   function yAt(p) { return padT + plotH - (Math.max(0, Math.min(1, p / maxV))) * plotH; }
-
   const linhaPts = snapshots.map((s, i) => xAt(i).toFixed(1) + ',' + yAt(s.prob).toFixed(1)).join(' ');
-
-  const topPts = snapshots.map((s, i) => {
-    const se = Math.sqrt(probTeorica * (1 - probTeorica) / s.feitos) * 1.96;
-    return xAt(i).toFixed(1) + ',' + yAt(s.prob + se).toFixed(1);
-  });
-  const botPts = snapshots.slice().reverse().map((s, ri) => {
-    const i = snapshots.length - 1 - ri;
-    const se = Math.sqrt(probTeorica * (1 - probTeorica) / s.feitos) * 1.96;
-    return xAt(i).toFixed(1) + ',' + yAt(Math.max(0, s.prob - se)).toFixed(1);
-  });
+  const topPts = snapshots.map((s, i) => { const se = Math.sqrt(probTeorica * (1 - probTeorica) / s.feitos) * 1.96; return xAt(i).toFixed(1) + ',' + yAt(s.prob + se).toFixed(1); });
+  const botPts = snapshots.slice().reverse().map((s, ri) => { const i = snapshots.length - 1 - ri; const se = Math.sqrt(probTeorica * (1 - probTeorica) / s.feitos) * 1.96; return xAt(i).toFixed(1) + ',' + yAt(Math.max(0, s.prob - se)).toFixed(1); });
   const bandaPts = topPts.concat(botPts).join(' ');
-
   const yTeo = yAt(probTeorica).toFixed(1);
-
-  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:150px;display:block;">
-    <polygon points="${bandaPts}" fill="rgba(0,102,255,0.14)" stroke="none"></polygon>
-    <line x1="${padL}" y1="${yTeo}" x2="${W - padR}" y2="${yTeo}" stroke="#FFD700" stroke-width="2.5" stroke-dasharray="9,7" opacity="0.9"></line>
-    <polyline points="${linhaPts}" fill="none" stroke="#0066FF" stroke-width="3"></polyline>
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:140px;display:block;">
+    <polygon points="${bandaPts}" fill="rgba(111,214,232,0.12)" stroke="none"></polygon>
+    <line x1="${padL}" y1="${yTeo}" x2="${W - padR}" y2="${yTeo}" stroke="#EFC272" stroke-width="2" stroke-dasharray="8,6" opacity="0.9"></line>
+    <polyline points="${linhaPts}" fill="none" stroke="#6FD6E8" stroke-width="2.5"></polyline>
   </svg>`;
 }
 
+// aproximação de Wilson-Hilferty para p-valor de χ² (suficiente para diagnóstico visual)
+function chiSquarePValueApprox(chi2, df) {
+  if (df <= 0) return 1;
+  const z = (Math.pow(chi2 / df, 1/3) - (1 - 2/(9*df))) / Math.sqrt(2/(9*df));
+  // aproximação da cauda superior da normal padrão via função erro
+  const t = 1 / (1 + 0.2316419 * Math.abs(z));
+  const d = 0.3989423 * Math.exp(-z*z/2);
+  let p = d * t * (0.3193815 + t*(-0.3565638 + t*(1.781478 + t*(-1.821256 + t*1.330274))));
+  if (z > 0) p = p; else p = 1 - p;
+  return Math.max(0, Math.min(1, p));
+}
 
 async function executarMonteCarlo(totalSorteios) {
   const regra = REGRAS[currentGame];
@@ -1418,33 +1256,45 @@ async function executarMonteCarlo(totalSorteios) {
   const buttons = [document.getElementById('btnMC10k'), document.getElementById('btnMC100k'), document.getElementById('btnMC500k'), document.getElementById('btnMC1M')];
   buttons.forEach(b => b.disabled = true);
   setProgress(1, 'mcProgressWrap', 'mcProgressBar');
-  addLog(`Iniciando simulação Monte Carlo: ${totalSorteios.toLocaleString('pt-PT')} sorteios independentes...`, 'system');
+  addLog(`Iniciando simulação Monte Carlo: ${totalSorteios.toLocaleString('pt-PT')} sorteios independentes (aposta de referência fixa)...`, 'system');
 
-  const targetIdx = regra.premios.length - 1; // escalão mais comum, para convergência visível
-  const { contagens, snapshots } = await runMonteCarloAsync(regra, totalSorteios, targetIdx, (feitos, total) => setProgress((feitos/total)*100, 'mcProgressWrap', 'mcProgressBar'));
+  const { contagens, snapshots } = await runMonteCarloAsync(regra, totalSorteios, (feitos, total) => setProgress((feitos/total)*100, 'mcProgressWrap', 'mcProgressBar'));
 
-  let html = `<table class="mc-table"><thead><tr><th style="text-align:left;">Escalão</th><th>Teórico</th><th>Simulado</th><th>Nº Acertos</th></tr></thead><tbody>`;
+  let html = `<table class="mc-table"><thead><tr><th style="text-align:left;">Escalão</th><th>Teórico</th><th>Simulado</th><th>Nº acertos</th></tr></thead><tbody>`;
   let probTeoricaTarget = 0;
+  let chi2 = 0, gl = 0;
+  const targetIdx = regra.premios.length - 1;
   regra.premios.forEach((p, idx) => {
     let probTeorica;
     if (p.ignoreDream) probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
     else probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n) * probHipergeometrica(regra.stars.max, regra.stars.sorteados, regra.stars.sorteados, p.s);
     if (idx === targetIdx) probTeoricaTarget = probTeorica;
-    const contagem = contagens[p.nome] || 0;
+    const contagem = contagens[idx] || 0;
     const probSimulada = contagem / totalSorteios;
     const teoricoFmt = probTeorica > 0 ? '1/' + Math.round(1/probTeorica).toLocaleString('pt-PT') : '≈0';
     const simuladoFmt = probSimulada > 0 ? '1/' + Math.round(1/probSimulada).toLocaleString('pt-PT') : (contagem === 0 ? 'sem ocorrências' : '—');
-    const rowStyle = idx === targetIdx ? ' style="background:rgba(0,255,65,0.07);"' : '';
+    const esperado = probTeorica * totalSorteios;
+    if (esperado >= 5) { chi2 += Math.pow(contagem - esperado, 2) / esperado; gl++; } // só escalões com contagem esperada suficiente entram no χ²
+    const rowStyle = idx === targetIdx ? ' style="background:rgba(79,203,142,0.07);"' : '';
     html += `<tr${rowStyle}><td>${p.nome}</td><td>${teoricoFmt}</td><td>${simuladoFmt}</td><td>${contagem.toLocaleString('pt-PT')}</td></tr>`;
   });
   html += `</tbody></table>`;
+
   const erroPadrao = Math.sqrt(probTeoricaTarget * (1 - probTeoricaTarget) / totalSorteios);
   const svgConvergencia = construirSVGConvergencia(snapshots, probTeoricaTarget);
-  html += `<div class="mc-canvas-wrap"><div style="font-size:15px;color:var(--text-dim);margin-bottom:6px;">Convergência do escalão "<b style="color:var(--color-green);">${regra.premios[targetIdx].nome}</b>" — linha sólida = estimativa acumulada · linha tracejada dourada = valor teórico exato · faixa azul = IC 95%</div>${svgConvergencia}</div>`;
-  html += `<div class="mc-summary">Com <b>${totalSorteios.toLocaleString('pt-PT')}</b> sorteios simulados, a coluna "Simulado" tende a aproximar-se da coluna "Teórico" (Lei dos Grandes Números). Erro-padrão estimado para o escalão em destaque: ±${(erroPadrao*100).toFixed(4)} p.p. Escalões muito raros (ex: 1º prémio) podem mostrar "sem ocorrências" mesmo em 1.000.000 de simulações, o que é matematicamente esperado dada a odd real de milhões/dezenas de milhões para 1.</div>`;
+  html += `<div class="mc-chart-wrap"><div style="font-size:0.7rem;color:var(--paper-dim);margin-bottom:6px;">Convergência do escalão "<b style="color:var(--ok);">${regra.premios[targetIdx].nome}</b>" — linha sólida = estimativa acumulada · tracejado dourado = valor teórico exato · faixa = IC 95%</div>${svgConvergencia}</div>`;
+
+  if (gl > 0) {
+    const dfEfetivo = Math.max(1, gl - 1);
+    const pValor = chiSquarePValueApprox(chi2, dfEfetivo);
+    const veredito = pValor > 0.05 ? 'Sem desvio estatisticamente significativo (p > 0,05) — consistente com sorteio uniforme.' : 'Desvio estatisticamente significativo (p ≤ 0,05) — pode ser apenas variação amostral; repita com mais sorteios.';
+    html += `<div class="chi-box"><div><div class="cl">Estatística χ² (${gl} escalões)</div><div class="cv">${chi2.toFixed(2)}</div></div><div><div class="cl">p-valor aproximado</div><div class="cv">${pValor.toFixed(3)}</div></div></div>`;
+    html += `<div class="mc-summary">Teste de qualidade de ajuste: compara as contagens observadas dos escalões com contagem esperada ≥5 (${gl} escalões elegíveis) contra a distribuição hipergeométrica teórica. ${veredito}</div>`;
+  }
+  html += `<div class="mc-summary">Com <b>${totalSorteios.toLocaleString('pt-PT')}</b> sorteios simulados, "Simulado" tende a aproximar-se de "Teórico" (Lei dos Grandes Números). Erro-padrão do escalão em destaque: ±${(erroPadrao*100).toFixed(4)} p.p. Escalões muito raros (ex: 1º prémio) podem mostrar "sem ocorrências" mesmo em 1.000.000 de simulações — matematicamente esperado, dada a odd real de dezenas de milhões para 1.</div>`;
   container.innerHTML = html;
 
-  addLog(`Simulação concluída: ${totalSorteios.toLocaleString('pt-PT')} sorteios processados.`, 'success');
+  addLog(`Simulação concluída: ${totalSorteios.toLocaleString('pt-PT')} sorteios processados. χ²=${chi2.toFixed(2)} (${gl} escalões testados).`, 'success');
   toast(`Monte Carlo concluído: ${totalSorteios.toLocaleString('pt-PT')} sorteios.`);
   buttons.forEach(b => b.disabled = false);
   setProgress(null, 'mcProgressWrap', 'mcProgressBar');
@@ -1456,13 +1306,13 @@ async function executarMonteCarlo(totalSorteios) {
 async function executarGeracao() {
   const btn = document.getElementById('runBtn');
   btn.disabled = true;
-  btn.textContent = '🎲 A CALCULAR...';
+  btn.textContent = 'A calcular...';
   setProgress(2);
   try {
     document.getElementById('terminal').innerHTML = '';
     const method = document.getElementById('genMethod').value;
     addLog(`Iniciando amostragem (método: ${method}) + rejeição assíncrona (9 filtros)...`, 'system');
-    await new Promise(r => setTimeout(r, 80));
+    await new Promise(r => setTimeout(r, 60));
 
     const regra = REGRAS[currentGame];
     let nQty = parseInt(document.getElementById('nQty').value, 10);
@@ -1480,7 +1330,7 @@ async function executarGeracao() {
     if (resultado.esgotado) addLog(`Limite de ${resultado.tentativas.toLocaleString('pt-PT')} iterações atingido — a mostrar a última tentativa gerada.`, 'warn');
     else addLog(`Combinação válida encontrada após ${resultado.tentativas.toLocaleString('pt-PT')} iteração(ões).`, 'success');
     toast('Combinação gerada com sucesso!');
-    addLog(`A probabilidade real de acerto de cada escalão mantém-se inalterada (ver painel acima/abaixo).`, 'system');
+    addLog(`A probabilidade real de acerto de cada escalão mantém-se inalterada (ver painel abaixo).`, 'system');
 
     ultimaApostaGerador = resultado.nums;
     exibirResultado(resultado.nums, resultado.stars, regra, resultado, nQty, sQty, method);
@@ -1489,7 +1339,7 @@ async function executarGeracao() {
     addLog('Erro: ' + err.message, 'warn');
   } finally {
     btn.disabled = false;
-    btn.textContent = '🎲 GERAR COMBINAÇÃO ESTATISTICAMENTE EQUILIBRADA';
+    btn.textContent = 'Gerar combinação estatisticamente filtrada';
     setProgress(null);
   }
 }
@@ -1511,21 +1361,16 @@ function buildTicketSelector() {
     wrap.appendChild(btn);
   }
 }
-
 function updateMultiUI() {
   const regra = REGRAS[currentGame];
   const nSel = document.getElementById('multiN');
   nSel.innerHTML = '';
-  for (let i = regra.nums.minAposta; i <= regra.nums.maxAposta; i++) {
-    const opt = document.createElement('option'); opt.value = i; opt.textContent = i; nSel.appendChild(opt);
-  }
+  for (let i = regra.nums.minAposta; i <= regra.nums.maxAposta; i++) { const opt = document.createElement('option'); opt.value = i; opt.textContent = i; nSel.appendChild(opt); }
   nSel.value = regra.nums.minAposta;
   const sSel = document.getElementById('multiS');
   sSel.innerHTML = '';
   const isFixed = regra.stars.minAposta === regra.stars.maxAposta;
-  for (let i = regra.stars.minAposta; i <= regra.stars.maxAposta; i++) {
-    const opt = document.createElement('option'); opt.value = i; opt.textContent = i; sSel.appendChild(opt);
-  }
+  for (let i = regra.stars.minAposta; i <= regra.stars.maxAposta; i++) { const opt = document.createElement('option'); opt.value = i; opt.textContent = i; sSel.appendChild(opt); }
   sSel.value = regra.stars.minAposta;
   sSel.disabled = isFixed;
   document.getElementById('multiStarLabel').textContent = regra.stars.nome;
@@ -1533,7 +1378,6 @@ function updateMultiUI() {
   sSel.onchange = updateMultiPriceDisplay;
   updateMultiPriceDisplay();
 }
-
 function updateMultiPriceDisplay() {
   const regra = REGRAS[currentGame];
   const n = parseInt(document.getElementById('multiN').value, 10) || regra.nums.minAposta;
@@ -1543,11 +1387,10 @@ function updateMultiPriceDisplay() {
   document.getElementById('multiTotalPrice').textContent = `€ ${total.toFixed(2).replace('.', ',')}`;
   document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) × € ${custo.toFixed(2).replace('.', ',')}`;
 }
-
 async function executarGeracaoMultipla() {
   const btn = document.getElementById('multiRunBtn');
   btn.disabled = true;
-  btn.textContent = '🎫 A GERAR...';
+  btn.textContent = 'A gerar...';
   setProgress(2, 'multiProgressWrap', 'multiProgressBar');
   try {
     const regra = REGRAS[currentGame];
@@ -1577,12 +1420,11 @@ async function executarGeracaoMultipla() {
     document.getElementById('multiTotalPrice').textContent = `€ ${(custo*selectedTickets).toFixed(2).replace('.', ',')}`;
     document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) × € ${custo.toFixed(2).replace('.', ',')}`;
 
-    const starClass = 'star-color';
     let html = '';
     multiTicketsAtuais.forEach((t, idx) => {
-      html += `<div class="ticket-card"><div class="ticket-head">🎫 Bilhete #${idx+1}</div><div class="balls">
-        ${t.nums.map(x=>`<div class="ball game-color small">${String(x).padStart(2,'0')}</div>`).join('')}
-        ${t.stars.map(x=>`<div class="ball ${starClass} small">${String(x).padStart(2,'0')}</div>`).join('')}
+      html += `<div class="ticket-card"><div class="th">Bilhete #${idx+1}</div><div class="balls">
+        ${t.nums.map(x=>`<div class="ball n small">${String(x).padStart(2,'0')}</div>`).join('')}
+        ${t.stars.map(x=>`<div class="ball s small">${String(x).padStart(2,'0')}</div>`).join('')}
       </div></div>`;
     });
     document.getElementById('multiTicketsList').innerHTML = html;
@@ -1593,21 +1435,17 @@ async function executarGeracaoMultipla() {
     addLog('Erro ao gerar bilhetes: ' + err.message, 'warn');
   } finally {
     btn.disabled = false;
-    btn.textContent = '🎫 GERAR BILHETES';
+    btn.textContent = 'Gerar bilhetes';
     setProgress(null, 'multiProgressWrap', 'multiProgressBar');
   }
 }
-
 async function guardarTodosBilhetes() {
   if (multiTicketsAtuais.length === 0) return addLog('Gere bilhetes primeiro.', 'warn');
   const regra = REGRAS[currentGame];
-  for (const t of multiTicketsAtuais) {
-    await guardarApostaPersistente({ game: regra.nome, nums: t.nums, stars: t.stars, metodo: 'Múltiplo', data: new Date().toLocaleDateString('pt-PT') });
-  }
+  for (const t of multiTicketsAtuais) await guardarApostaPersistente({ game: regra.nome, nums: t.nums, stars: t.stars, metodo: 'Múltiplo', data: new Date().toLocaleDateString('pt-PT') });
   await renderApostasGuardadas();
   addLog(`${multiTicketsAtuais.length} bilhetes guardados.`, 'success');
 }
-
 function exportarBilhetesCSV() {
   if (multiTicketsAtuais.length === 0) return addLog('Gere bilhetes primeiro.', 'warn');
   const regra = REGRAS[currentGame];
@@ -1634,72 +1472,47 @@ function exportarBilhetesCSV() {
    ============================================================ */
 let manualSelectedNums = new Set();
 let manualSelectedStars = new Set();
-
 function renderManualGrids() {
   const regra = REGRAS[currentGame];
   manualSelectedNums.clear();
   manualSelectedStars.clear();
   document.getElementById('manualNumLabel').textContent = `Números (1–${regra.nums.max}, mín. ${regra.nums.sorteados})`;
   document.getElementById('manualStarLabel').textContent = `${regra.stars.nome} (1–${regra.stars.max}, exatamente ${regra.stars.sorteados})`;
-
   const numGrid = document.getElementById('manualNumGrid');
   numGrid.innerHTML = '';
-  for (let i = 1; i <= regra.nums.max; i++) {
-    const btn = document.createElement('div');
-    btn.className = 'pick-btn';
-    btn.textContent = i;
-    btn.onclick = () => toggleManualNumber(i, btn);
-    numGrid.appendChild(btn);
-  }
+  for (let i = 1; i <= regra.nums.max; i++) { const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i; btn.onclick = () => toggleManualNumber(i, btn); numGrid.appendChild(btn); }
   const starGrid = document.getElementById('manualStarGrid');
   starGrid.innerHTML = '';
-  for (let i = 1; i <= regra.stars.max; i++) {
-    const btn = document.createElement('div');
-    btn.className = 'pick-btn';
-    btn.textContent = i;
-    btn.onclick = () => toggleManualStar(i, btn);
-    starGrid.appendChild(btn);
-  }
+  for (let i = 1; i <= regra.stars.max; i++) { const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i; btn.onclick = () => toggleManualStar(i, btn); starGrid.appendChild(btn); }
   updateManualInfo();
 }
-
 function toggleManualNumber(n, btn) {
-  if (manualSelectedNums.has(n)) { manualSelectedNums.delete(n); btn.classList.remove('selected-num'); }
-  else {
-    if (manualSelectedNums.size >= 12) { addLog('Máximo de 12 números.', 'warn'); return; }
-    manualSelectedNums.add(n); btn.classList.add('selected-num');
-  }
+  if (manualSelectedNums.has(n)) { manualSelectedNums.delete(n); btn.classList.remove('sel-n'); }
+  else { if (manualSelectedNums.size >= 12) { addLog('Máximo de 12 números.', 'warn'); return; } manualSelectedNums.add(n); btn.classList.add('sel-n'); }
   updateManualInfo();
 }
 function toggleManualStar(s, btn) {
   const regra = REGRAS[currentGame];
-  if (manualSelectedStars.has(s)) { manualSelectedStars.delete(s); btn.classList.remove('selected-star'); }
-  else {
-    if (manualSelectedStars.size >= regra.stars.maxAposta) { addLog(`Máximo ${regra.stars.maxAposta} ${regra.stars.nome}.`, 'warn'); return; }
-    manualSelectedStars.add(s); btn.classList.add('selected-star');
-  }
+  if (manualSelectedStars.has(s)) { manualSelectedStars.delete(s); btn.classList.remove('sel-s'); }
+  else { if (manualSelectedStars.size >= regra.stars.maxAposta) { addLog(`Máximo ${regra.stars.maxAposta} ${regra.stars.nome}.`, 'warn'); return; } manualSelectedStars.add(s); btn.classList.add('sel-s'); }
   updateManualInfo();
 }
-
 function updateManualInfo() {
   const regra = REGRAS[currentGame];
   const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
   const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
-  const valid = nums.length >= regra.nums.sorteados && nums.length <= regra.nums.maxAposta &&
-                stars.length === regra.stars.sorteados;
-
+  const valid = nums.length >= regra.nums.sorteados && nums.length <= regra.nums.maxAposta && stars.length === regra.stars.sorteados;
   const msg = document.getElementById('manualValidation');
   if (nums.length === 0 && stars.length === 0) { msg.textContent = ''; msg.className = 'validation-msg'; }
-  else if (valid) { msg.textContent = '✅ Aposta válida'; msg.className = 'validation-msg ok'; }
+  else if (valid) { msg.textContent = '✓ Aposta válida'; msg.className = 'validation-msg ok'; }
   else {
     const errs = [];
     if (nums.length < regra.nums.sorteados) errs.push(`Mín. ${regra.nums.sorteados} números`);
     if (nums.length > regra.nums.maxAposta) errs.push(`Máx. ${regra.nums.maxAposta} números`);
     if (stars.length !== regra.stars.sorteados) errs.push(`Necessário ${regra.stars.sorteados} ${regra.stars.nome}`);
-    msg.textContent = '❌ ' + errs.join(', ');
+    msg.textContent = errs.join(', ');
     msg.className = 'validation-msg err';
   }
-
   let comb = 0, price = 0, sum = 0;
   if (nums.length >= regra.nums.sorteados) {
     const r = calcularPreco(regra, nums.length, Math.max(stars.length, regra.stars.sorteados));
@@ -1710,17 +1523,14 @@ function updateManualInfo() {
   document.getElementById('manualPriceDetail').textContent = nums.length === 0 ? 'Selecione números' : (nums.length === regra.nums.sorteados ? 'Aposta simples' : `Sistema múltiplo (${comb.toLocaleString('pt-PT')} comb.)`);
   document.getElementById('manualComb').textContent = comb.toLocaleString('pt-PT');
   document.getElementById('manualSum').textContent = sum;
-
   const preview = document.getElementById('manualCombosPreview');
   if (nums.length > regra.nums.sorteados && valid) {
     preview.style.display = 'flex';
     const combos = getCombinations(nums, regra.nums.sorteados);
     preview.innerHTML = combos.slice(0, 300).map(c => `<span class="combo-chip">${c.join(' ')}</span>`).join('');
   } else preview.style.display = 'none';
-
-  document.getElementById('manualEscalaoTable').innerHTML = valid ? construirTabelaEscaloes(regra, nums.length, stars.length) : '<div style="font-size:0.7rem;color:var(--text-dim);padding:8px;">Selecione uma aposta válida para ver a tabela.</div>';
+  document.getElementById('manualEscalaoTable').innerHTML = valid ? construirTabelaEscaloes(regra, nums.length, stars.length) : '<div style="font-size:0.7rem;color:var(--paper-dim);padding:8px;">Selecione uma aposta válida para ver a tabela.</div>';
 }
-
 async function guardarApostaManual() {
   const regra = REGRAS[currentGame];
   const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
@@ -1736,102 +1546,52 @@ async function guardarApostaManual() {
 function limparApostaManual() { renderManualGrids(); }
 
 /* ============================================================
-   RELÓGIO
+   RELÓGIO / TABS
    ============================================================ */
 function updateClock() {
   const now = new Date();
   const dataFmt = now.toLocaleDateString('pt-PT', { weekday:'short', day:'2-digit', month:'2-digit', year:'numeric' }).toUpperCase();
-  document.getElementById('datetimeHeader').textContent = `${dataFmt} | ${now.toLocaleTimeString('pt-PT')}`;
+  document.getElementById('clock').textContent = `${dataFmt} · ${now.toLocaleTimeString('pt-PT')}`;
 }
 setInterval(updateClock, 1000);
-
-/* ============================================================
-   TABS
-   ============================================================ */
 function switchTab(name) {
   try {
-    const panels = ['gerador', 'multiplo', 'manual'];
-    panels.forEach(p => {
+    ['gerador', 'multiplo', 'manual'].forEach(p => {
       const panelEl = document.getElementById('tab-' + p);
-      const btnEl = document.querySelector('.tab-btn[data-tab="' + p + '"]');
+      const btnEl = document.querySelector('.tab[data-tab="' + p + '"]');
       const isActive = p === name;
-      if (panelEl) {
-        panelEl.style.display = isActive ? 'block' : 'none';
-        if (isActive) panelEl.classList.add('active'); else panelEl.classList.remove('active');
-      }
-      if (btnEl) {
-        if (isActive) btnEl.classList.add('active'); else btnEl.classList.remove('active');
-      }
+      if (panelEl) { panelEl.style.display = isActive ? 'block' : 'none'; panelEl.classList.toggle('active', isActive); }
+      if (btnEl) btnEl.classList.toggle('active', isActive);
     });
-  } catch (e) {
-    console.error('switchTab erro:', e);
-  }
-}
-function iniciarCicloBrave() {
-  try {
-    const fases = ['cloud', 'sun', 'plant'];
-    let idx = 0;
-    function aplicar() {
-      document.body.dataset.phase = fases[idx];
-      idx = (idx + 1) % fases.length;
-    }
-    aplicar();
-    setInterval(aplicar, 10000);
-
-    setInterval(() => {
-      if (document.body.dataset.phase !== 'cloud') return;
-      const layer = document.getElementById('dropletsLayer');
-      if (!layer) return;
-      const d = document.createElement('div');
-      d.className = 'droplet';
-      d.style.left = (10 + Math.random() * 80) + '%';
-      d.style.animationDelay = (Math.random() * 0.3) + 's';
-      layer.appendChild(d);
-      setTimeout(() => { try { layer.removeChild(d); } catch (e) {} }, 1900);
-    }, 350);
-  } catch (e) { console.error('ciclo brave erro:', e); }
+  } catch (e) { console.error('switchTab erro:', e); }
 }
 function setupTabs() {
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-  });
+  document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
   switchTab('gerador');
 }
 
 /* ============================================================
-   INICIALIZAÇÃO E EVENTOS
+   INICIALIZAÇÃO
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
   try {
-    window.addEventListener('error', function (e) {
-      try { addLog('Erro JS: ' + (e.message || 'desconhecido'), 'warn'); toast('Ocorreu um erro: ' + (e.message || 'desconhecido'), true); } catch (_) {}
-    });
-    window.addEventListener('unhandledrejection', function (e) {
-      try { const msg = (e.reason && e.reason.message) ? e.reason.message : e.reason; addLog('Erro assíncrono: ' + msg, 'warn'); toast('Ocorreu um erro: ' + msg, true); } catch (_) {}
-    });
+    window.addEventListener('error', function (e) { try { addLog('Erro JS: ' + (e.message || 'desconhecido'), 'warn'); toast('Ocorreu um erro: ' + (e.message || 'desconhecido'), true); } catch (_) {} });
+    window.addEventListener('unhandledrejection', function (e) { try { const msg = (e.reason && e.reason.message) ? e.reason.message : e.reason; addLog('Erro assíncrono: ' + msg, 'warn'); toast('Ocorreu um erro: ' + msg, true); } catch (_) {} });
+
+    renderFilterGrid();
     setupTabs();
     buildTicketSelector();
-    iniciarCicloBrave();
-    setInterval(() => {
-      const sheriff = document.getElementById('avatarSheriff');
-      const dog = document.getElementById('avatarDog');
-      if (sheriff && dog) { sheriff.classList.toggle('big'); dog.classList.toggle('big'); }
-    }, 6000);
 
     document.getElementById('gameType').addEventListener('change', updateUI);
-    document.getElementById('genMethod').addEventListener('change', function () {
-      document.getElementById('methodInfo').textContent = METHOD_INFO[this.value] || '';
-    });
-    document.getElementById('methodInfo').textContent = METHOD_INFO['super-genetic'];
+    document.getElementById('genMethod').addEventListener('change', function () { document.getElementById('methodInfo').textContent = METHOD_INFO[this.value] || ''; });
 
     document.getElementById('runBtn').addEventListener('click', executarGeracao);
     document.getElementById('btnRepeat').addEventListener('click', executarGeracao);
     document.getElementById('btnCopy').addEventListener('click', async function () {
       const panel = document.getElementById('resultPanel');
       const texto = `${panel.dataset.game || ''} (${panel.dataset.method || ''}) — Números: ${panel.dataset.nums || ''}${panel.dataset.stars ? ' | Estrelas: ' + panel.dataset.stars : ''}`;
-      try { await copiarTexto(texto); this.textContent = '✅ Copiado!'; }
-      catch (e) { this.textContent = '⚠ Não foi possível copiar'; }
-      setTimeout(() => { this.textContent = '📋 Copiar'; }, 1800);
+      try { await copiarTexto(texto); this.textContent = 'Copiado ✓'; } catch (e) { this.textContent = 'Não foi possível copiar'; }
+      setTimeout(() => { this.textContent = 'Copiar'; }, 1800);
     });
     document.getElementById('btnSave').addEventListener('click', async function () {
       const panel = document.getElementById('resultPanel');
@@ -1844,11 +1604,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('btnFiltersAll').addEventListener('click', () => {
-      ['filterConsec','filterSum','filterParity','filterQuartile','filterHalf','filterDistance','filterDecade','filterLastDigit','filterRepeat','filterEntropy','filterArithmetic','filterCluster'].forEach(id => document.getElementById(id).checked = true);
+      FILTROS_DEF.forEach(f => document.getElementById(f.id).checked = true);
       addLog('Todos os filtros estruturais ativados.', 'system');
     });
     document.getElementById('btnFiltersNone').addEventListener('click', () => {
-      ['filterConsec','filterSum','filterParity','filterQuartile','filterHalf','filterDistance','filterDecade','filterLastDigit','filterRepeat','filterEntropy','filterArithmetic','filterCluster'].forEach(id => document.getElementById(id).checked = false);
+      FILTROS_DEF.forEach(f => document.getElementById(f.id).checked = false);
       addLog('Todos os filtros desativados — sorteio puramente aleatório (uniforme).', 'system');
     });
     document.getElementById('btnClearHistory').addEventListener('click', async () => { await limparApostasPersistentes(); await renderApostasGuardadas(); addLog('Histórico limpo.', 'system'); });
@@ -1867,10 +1627,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateUI();
     updateClock();
+    document.getElementById('methodInfo').textContent = METHOD_INFO['super-genetic'];
     renderApostasGuardadas();
-    addLog('Sistema pronto. Gerador, Múltiplos Bilhetes, Aposta Manual, Monte Carlo com convergência e 12 filtros estruturais ativos.', 'system');
+    addLog('Sistema pronto. Gerador, Múltiplos Bilhetes, Aposta Manual, Monte Carlo com teste χ² e 9 filtros estruturais ativos.', 'system');
   } catch (err) { console.error('Erro na inicialização:', err); }
 });
 </script>
 </body>
-            </html>
+</html>
