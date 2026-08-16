@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>JONHY EL BRAVO v23 · OBSERVATÓRIO COMBINATÓRIO</title>
+<title>JONHY EL BRAVO v26 · OBSERVATÓRIO COMBINATÓRIO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   TOKENS — Observatório Combinatório
+   Paleta de instrumento de precisão: grafite/marinho profundo,
+   latão (referência à esfera armilar), gelo (dados/probabilidade)
+   ============================================================ */
 :root{
   --void:#0a0d14; --void-2:#0d111a;
   --panel:#111621; --panel-2:#161c2a;
@@ -35,6 +40,7 @@ body{
   position:relative;
   overflow-x:hidden;
 }
+/* layered depth field — stars + orbit rings + vignette, three parallax planes */
 .depth-field{position:fixed;inset:0;z-index:0;pointer-events:none;}
 .depth-field .stars{position:absolute;inset:0;background-image:
   radial-gradient(1px 1px at 12% 18%, rgba(237,234,225,0.5) 0, transparent 60%),
@@ -54,6 +60,7 @@ body{
 @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}}
 
+/* ---------- HERO / INSTRUMENT HEADER ---------- */
 .hero{
   position:relative;background:linear-gradient(180deg, var(--panel-2) 0%, var(--panel) 100%);
   border:1px solid var(--line-strong); border-radius:22px; padding:34px 20px 22px; text-align:center;
@@ -77,6 +84,7 @@ h1.brand .accent{color:var(--brass-bright);}
 .sub{font-size:0.72rem;color:var(--paper-dim);margin-top:5px;letter-spacing:0.4px;}
 .clock{font-family:var(--font-mono);font-size:1.15rem;color:var(--ice);font-weight:500;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-strong);letter-spacing:1px;}
 
+/* ---------- GAME SELECTOR ---------- */
 .panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);box-shadow:var(--shadow-panel);}
 .panel h2{font-family:var(--font-display);font-size:0.78rem;font-weight:600;color:var(--game);text-transform:uppercase;letter-spacing:1.6px;border-left:3px solid var(--game);padding-left:11px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;transition:color .4s,border-color .4s;}
 .game-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
@@ -87,18 +95,21 @@ h1.brand .accent{color:var(--brass-bright);}
 .game-pill:not(.active):hover{color:var(--paper);border-color:var(--paper-faint);}
 #gameType{display:none;}
 
+/* ---------- FIRST PRIZE DIAL ---------- */
 .dial-card{background:linear-gradient(180deg, rgba(17,22,33,0.9), rgba(10,13,20,0.96));border:1px solid rgba(var(--brass-rgb),0.35);border-radius:20px;padding:22px 18px;text-align:center;margin-bottom:14px;box-shadow:0 0 50px rgba(var(--brass-rgb),0.08), var(--shadow-panel);position:relative;}
 .dial-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:3px;}
 .dial-combo{font-size:0.92rem;color:var(--paper);margin-top:8px;font-weight:500;}
 .dial-odds{font-family:var(--font-display);font-size:1.9rem;font-weight:700;color:var(--brass-bright);margin:9px 0 4px;letter-spacing:0.5px;}
 .dial-jackpot{font-size:0.72rem;color:var(--paper-dim);line-height:1.5;max-width:480px;margin:0 auto;}
 
+/* ---------- TABS ---------- */
 .tabs{display:flex;gap:6px;margin-bottom:14px;}
 .tab{flex:1;padding:12px 6px;background:rgba(17,22,33,0.6);border:1px solid var(--line);border-radius:12px;color:var(--paper-dim);font-family:var(--font-display);font-weight:600;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:center;}
 .tab.active{color:var(--void);background:linear-gradient(135deg, var(--ice), var(--brass-bright));border-color:transparent;box-shadow:0 8px 20px rgba(var(--ice-rgb),0.2);}
 .tabpanel{display:none;animation:rise .35s ease;}
 .tabpanel.active{display:block;}
 
+/* ---------- FORM ELEMENTS ---------- */
 select{width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%236FD6E8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .3s;}
 select:focus{border-color:var(--ice);}
 select:disabled{opacity:0.5;cursor:not-allowed;}
@@ -107,13 +118,16 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
 .row>*{flex:1;min-width:130px;}
 
+/* ---------- PRICE / READOUT ---------- */
 .readout{margin-top:12px;padding:13px 16px;background:linear-gradient(135deg, rgba(var(--brass-rgb),0.1), rgba(var(--brass-rgb),0.02));border:1px solid rgba(var(--brass-rgb),0.4);border-radius:12px;text-align:center;}
 .readout .rl{font-family:var(--font-mono);font-size:0.58rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:2px;}
 .readout .rv{font-family:var(--font-display);font-size:1.4rem;color:var(--brass-bright);font-weight:700;}
 .readout .rd{font-family:var(--font-mono);font-size:0.62rem;color:var(--paper-dim);margin-top:2px;}
 
+/* ---------- METHOD INFO ---------- */
 .info-strip{font-size:0.68rem;color:var(--paper-dim);margin-top:10px;line-height:1.55;padding:10px 12px;background:rgba(0,0,0,0.25);border-radius:9px;border-left:2px solid var(--ice);}
 
+/* ---------- FILTER CHIPS ---------- */
 .filters-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
 .mini-btn{font-family:var(--font-mono);font-size:0.62rem;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--paper-dim);background:rgba(0,0,0,0.3);border:1px solid var(--line-strong);border-radius:8px;padding:7px 12px;cursor:pointer;transition:all .2s;}
 .mini-btn:hover{color:var(--paper);border-color:var(--ice);}
@@ -126,6 +140,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .filter-chip .fc-title{color:var(--paper);font-weight:500;}
 .filter-chip .fc-sub{color:var(--paper-faint);font-size:0.64rem;}
 
+/* ---------- BUTTONS ---------- */
 .btn{width:100%;padding:18px;background:linear-gradient(135deg, rgba(var(--ice-rgb),0.22), rgba(var(--brass-rgb),0.14));border:1px solid rgba(var(--ice-rgb),0.5);color:var(--paper);font-family:var(--font-display);font-size:0.92rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;border-radius:13px;cursor:pointer;margin:14px 0;transition:all .25s;box-shadow:0 10px 30px rgba(var(--ice-rgb),0.1);}
 .btn:hover:not(:disabled){box-shadow:0 14px 40px rgba(var(--ice-rgb),0.2);transform:translateY(-1px);}
 .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
@@ -133,10 +148,12 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .btn-secondary:hover{border-color:var(--ice);color:var(--ice);}
 .btn-secondary:disabled{opacity:0.4;cursor:not-allowed;}
 
+/* ---------- PROGRESS ---------- */
 .progress-wrap{height:5px;width:100%;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin:6px 0 0;display:none;}
 .progress-wrap.active{display:block;}
 .progress-bar{height:100%;width:0%;background:linear-gradient(90deg, var(--ice), var(--brass-bright));transition:width .15s ease-out;}
 
+/* ---------- TERMINAL LOG ---------- */
 .terminal{background:rgba(0,0,0,0.55);border:1px solid var(--line);border-radius:11px;height:120px;overflow-y:auto;padding:12px 14px;font-size:0.68rem;font-family:var(--font-mono);line-height:1.65;}
 .log-line{margin:2px 0;padding-left:9px;border-left:2px solid transparent;}
 .log-line.system{color:var(--ice);border-left-color:var(--ice);}
@@ -144,6 +161,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .log-line.success{color:var(--brass-bright);border-left-color:var(--brass-bright);}
 .log-line.warn{color:var(--warn);border-left-color:var(--warn);}
 
+/* ---------- RESULT PANEL ---------- */
 .result-panel{display:none;border:1px solid rgba(var(--game-rgb),0.4);background:linear-gradient(180deg, rgba(17,22,33,0.92), rgba(10,13,20,0.97));border-radius:20px;padding:24px 18px;margin-top:16px;text-align:center;box-shadow:0 0 70px rgba(var(--game-rgb),0.1), var(--shadow-panel);animation:rise .5s ease;}
 .result-panel h2{font-family:var(--font-display);color:var(--game);letter-spacing:1.6px;margin-bottom:14px;font-size:0.9rem;text-transform:uppercase;}
 .balls{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:16px 0;}
@@ -159,6 +177,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .stat-box .value.ok{color:var(--ok);}
 .stat-box .value.warn{color:var(--warn);}
 
+/* ---------- PRIZE TABLE ---------- */
 .prize-table-scroll{width:100%;overflow-x:auto;}
 .prize-table{width:100%;border-collapse:collapse;margin-top:12px;text-align:center;}
 .prize-table th{color:var(--game);font-family:var(--font-mono);font-size:9.5px;padding:9px 6px;border-bottom:1px solid rgba(var(--game-rgb),0.4);text-transform:uppercase;letter-spacing:0.6px;white-space:nowrap;}
@@ -176,6 +195,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .details summary::before{content:'▸ ';}
 .details[open] summary::before{content:'▾ ';}
 
+/* ---------- MONTE CARLO ---------- */
 .mc-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
 @media (max-width:480px){.mc-buttons{grid-template-columns:1fr 1fr;}}
 .mc-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:0.72rem;}
@@ -189,6 +209,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .chi-box .cv{font-family:var(--font-display);font-size:1.15rem;color:var(--ice);}
 .mc-chart-wrap{margin-top:14px;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:10px;padding:10px;}
 
+/* ---------- TICKETS / MANUAL ---------- */
 .ticket-selector{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
 .ticket-btn{min-width:40px;padding:9px;background:rgba(0,0,0,0.4);border:1px solid var(--line-strong);color:var(--paper);font-family:var(--font-display);font-weight:600;border-radius:10px;cursor:pointer;text-align:center;transition:all .2s;}
 .ticket-btn.selected{border-color:var(--ice);color:var(--ice);background:rgba(var(--ice-rgb),0.1);}
@@ -204,12 +225,14 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .ticket-card .th{font-family:var(--font-display);font-size:0.68rem;color:var(--brass-bright);margin-bottom:7px;letter-spacing:0.6px;}
 .ticket-card .balls{margin:5px 0;gap:7px;}
 
+/* ---------- HISTORY ---------- */
 .history-list{display:flex;flex-direction:column;gap:7px;margin-top:12px;max-height:260px;overflow-y:auto;}
 .history-item{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:10px;padding:9px 12px;}
 .history-nums{font-family:var(--font-mono);font-size:0.78rem;color:var(--paper);letter-spacing:0.5px;}
 .history-nums .s{color:var(--brass-bright);}
 .history-meta{font-size:0.58rem;color:var(--paper-faint);text-transform:uppercase;letter-spacing:0.6px;font-family:var(--font-mono);}
 
+/* ---------- FOOTER ---------- */
 .footer{margin-top:22px;padding:26px 18px 20px;text-align:center;background:linear-gradient(180deg, var(--panel), var(--panel-2));border-radius:20px 20px 0 0;border:1px solid var(--line-strong);position:relative;}
 .footer .draw-line{font-family:var(--font-display);font-weight:600;line-height:1.8;}
 .footer .draw-date{font-size:1.02rem;color:var(--ice);display:block;}
@@ -257,7 +280,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
     <div class="eyebrow">Observatório Combinatório · Dados Oficiais Santa Casa</div>
     <h1 class="brand">JONHY EL <span class="accent">BRAVO</span></h1>
-    <div class="sub">Motor hipergeométrico exato · Genético populacional · Monte Carlo com teste χ² · v23.0</div>
+    <div class="sub">Motor hipergeométrico exato · Genético populacional · Monte Carlo com teste χ² · v26.0</div>
     <div class="clock" id="clock">--:--:--</div>
   </div>
 
@@ -287,8 +310,10 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     <button type="button" class="tab active" data-tab="gerador" onclick="switchTab('gerador')">Gerador</button>
     <button type="button" class="tab" data-tab="multiplo" onclick="switchTab('multiplo')">Múltiplos</button>
     <button type="button" class="tab" data-tab="manual" onclick="switchTab('manual')">Manual</button>
+    <button type="button" class="tab" data-tab="historico" onclick="switchTab('historico')">Histórico</button>
   </div>
 
+  <!-- ===================== TAB GERADOR ===================== -->
   <div class="tabpanel active" id="tab-gerador">
     <div class="panel">
       <h2>Aposta e Método</h2>
@@ -353,7 +378,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     <div class="progress-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
 
     <div class="terminal" id="terminal" aria-live="polite" role="log">
-      <div class="log-line system">> JONHY EL BRAVO v23.0 inicializado. Dias de sorteio verificados junto da fonte oficial (jogossantacasa.pt).</div>
+      <div class="log-line system">> JONHY EL BRAVO v26.0 inicializado. Dias de sorteio verificados junto da fonte oficial (jogossantacasa.pt).</div>
       <div class="log-line math">> Motor: hipergeométrica exata · genético populacional · Monte Carlo com χ² · 6 filtros estruturais.</div>
     </div>
 
@@ -373,6 +398,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
   </div>
 
+  <!-- ===================== TAB MÚLTIPLOS ===================== -->
   <div class="tabpanel" id="tab-multiplo">
     <div class="panel">
       <h2>Bilhetes independentes (1–10)</h2>
@@ -415,6 +441,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
   </div>
 
+  <!-- ===================== TAB MANUAL ===================== -->
   <div class="tabpanel" id="tab-manual">
     <div class="panel">
       <h2>Aposta manual</h2>
@@ -445,6 +472,44 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
   </div>
 
+  <!-- ===================== TAB HISTÓRICO ===================== -->
+  <div class="tabpanel" id="tab-historico">
+    <div class="panel">
+      <h2>Adicionar Sorteio Real</h2>
+      <p style="font-size:0.72rem;color:var(--paper-dim);line-height:1.55;">Insira aqui os resultados à medida que forem saindo (jogossantacasa.pt). Fica guardado neste dispositivo, sem precisar de editar código.</p>
+      <div class="row">
+        <div style="flex-basis:100%;">
+          <label class="field-label" for="histDrawDate">Data do sorteio</label>
+          <input type="text" id="histDrawDate" placeholder="DD/MM/AAAA" maxlength="10" style="width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;">
+        </div>
+      </div>
+      <h3 class="field-label" id="histNumLabel" style="margin-top:14px;">Números sorteados</h3>
+      <div class="manual-grid" id="histNumGrid"></div>
+      <h3 class="field-label" id="histExtraLabel" style="margin-top:12px;">Estrelas</h3>
+      <div class="manual-grid" id="histExtraGrid"></div>
+      <div class="validation-msg" id="histValidation"></div>
+      <button class="btn" id="btnAddHistorico" style="margin-top:12px;">Adicionar sorteio ao histórico</button>
+    </div>
+
+    <div class="panel">
+      <h2>Histórico de Sorteios Reais</h2>
+      <p style="font-size:0.72rem;color:var(--paper-dim);line-height:1.55;"><b style="color:var(--warn);">Importante:</b> cada sorteio é um evento aleatório totalmente independente dos anteriores — o histórico não influencia, prevê, nem aumenta a probabilidade de qualquer número sair num sorteio futuro. Esta tabela existe apenas para consulta e não é usada pelo gerador.</p>
+      <div class="row" style="margin-top:12px;">
+        <div style="flex-basis:100%;">
+          <label class="field-label" for="histMonthFilter">Filtrar por mês</label>
+          <select id="histMonthFilter"><option value="all">Todos os meses</option></select>
+        </div>
+      </div>
+      <div class="prize-table-scroll" style="margin-top:12px;"><div id="historicoTableContainer"></div></div>
+
+      <details class="details" style="margin-top:14px;">
+        <summary>Frequência estatística no histórico registado</summary>
+        <p style="font-size:0.68rem;color:var(--paper-dim);line-height:1.5;margin-top:10px;">Contagem simples de quantas vezes cada número apareceu nos sorteios registados abaixo. Com poucos sorteios registados esta contagem não tem significado estatístico (é preciso milhares de sorteios para qualquer padrão convergir para o valor teórico) — e mesmo com muitos sorteios, não altera a probabilidade do próximo sorteio.</p>
+        <div id="historicoFreqContainer" style="margin-top:10px;"></div>
+      </details>
+    </div>
+  </div>
+
   <div class="panel" id="historyCard" style="display:none;">
     <h2>Apostas guardadas<button type="button" class="mini-btn" id="btnClearHistory">Limpar tudo</button></h2>
     <div class="history-list" id="historyList"></div>
@@ -455,7 +520,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
       <span class="draw-date">PRÓXIMO SORTEIO: —</span>
       <span class="draw-price">PREÇO DA APOSTA: —</span>
     </div>
-    <div class="version">JONHY EL BRAVO v23.0 · MATEMÁTICA COMBINATÓRIA EXATA · DADOS OFICIAIS SANTA CASA</div>
+    <div class="version">JONHY EL BRAVO v26.0 · MATEMÁTICA COMBINATÓRIA EXATA · DADOS OFICIAIS SANTA CASA</div>
     <div class="legal">As odds apresentadas correspondem às probabilidades oficiais de cada jogo da Santa Casa. Os valores em euros dos escalões inferiores variam por sorteio consoante vendas e nº de vencedores — consulte jogossantacasa.pt para os valores exatos do concurso atual. Filtros, algoritmo genético e métodos de amostragem alteram apenas qual combinação válida é escolhida; nenhum deles altera, aumenta ou garante a probabilidade matemática real de qualquer combinação individual. Cada sorteio é um evento aleatório independente dos anteriores — não existe sistema capaz de prever resultados.</div>
   </div>
 </div>
@@ -463,6 +528,9 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 <script>
 'use strict';
 
+/* ============================================================
+   DADOS OFICIAIS SANTA CASA
+   ============================================================ */
 const REGRAS = {
   euromilhoes: {
     nome: "EURO MILHÕES",
@@ -521,6 +589,26 @@ const REGRAS = {
   }
 };
 
+/* ============================================================
+   HISTÓRICO DE SORTEIOS REAIS (dados estáticos, inseridos à mão)
+   ============================================================ */
+const HISTORICO_SORTEIOS = {
+  euromilhoes: [
+    { data: "26/09/2023", numeros: [4, 15, 22, 35, 48], estrelas: [3, 9] },
+    { data: "23/09/2023", numeros: [8, 12, 19, 27, 41], estrelas: [2, 6] }
+  ],
+  totoloto: [
+    { data: "27/09/2023", numeros: [5, 14, 23, 33, 42], sorte: 7 },
+    { data: "23/09/2023", numeros: [2, 11, 20, 31, 40], sorte: 1 }
+  ],
+  eurodreams: [
+    { data: "25/09/2023", numeros: [1, 9, 15, 22, 30, 38], sonho: 5 },
+    { data: "21/09/2023", numeros: [4, 7, 12, 19, 25, 33], sonho: 2 }
+  ]
+};
+let historicoCustom = { euromilhoes: [], totoloto: [], eurodreams: [] };
+const HISTORICO_CUSTOM_KEY = 'jonhy_el_bravo_historico_custom';
+
 const METHOD_INFO = {
   'super-genetic': 'Algoritmo genético populacional (elitismo + seleção por torneio + crossover ordenado + mutação adaptativa) otimizando uma função multiobjetivo. Continua sujeito aos filtros abaixo — não altera a probabilidade real de nenhuma combinação.',
   'hybrid-ultra': 'Combina 4 métodos independentes e retém os números mais consistentes entre eles.',
@@ -538,6 +626,9 @@ const FILTROS_DEF = [
   { id:'filterConsec', t:'Sem 3+ consecutivos', s:'Evita sequências longas, ex. 21-22-23-24' }
 ];
 
+/* ============================================================
+   MATEMÁTICA COMBINATÓRIA EXATA
+   ============================================================ */
 const combCache = new Map();
 function C(n, k) {
   if (k < 0 || k > n || n < 0) return 0;
@@ -628,6 +719,9 @@ function passaFiltros(nums, filtros, somaMin, somaMax, quartis, maxNum, ultimaAp
   return true;
 }
 
+/* ============================================================
+   PESOS SIMULADOS
+   ============================================================ */
 const pesosSimulados = {};
 function getPesosSimulados(gameKey) {
   if (pesosSimulados[gameKey]) return pesosSimulados[gameKey];
@@ -642,6 +736,9 @@ function getPesosSimulados(gameKey) {
   return pesos;
 }
 
+/* ============================================================
+   ALGORITMO GENÉTICO POPULACIONAL
+   ============================================================ */
 function fitnessMultiObjetivo(nums, regra, nQty) {
   const stats = calcularEstatisticasSoma(regra.nums.max, nQty);
   const soma = nums.reduce((a, b) => a + b, 0);
@@ -717,6 +814,9 @@ function superGenetico(regra, nQty, popSize, geracoes) {
   return finalScored[0].ind;
 }
 
+/* ============================================================
+   MÉTODOS DE AMOSTRAGEM
+   ============================================================ */
 function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
   const min = regra.nums.min, max = regra.nums.max;
   switch (method) {
@@ -821,6 +921,9 @@ function getCombinations(arr, k) {
 let currentGame = 'euromilhoes';
 let ultimaApostaGerador = null;
 
+/* ============================================================
+   PERSISTÊNCIA
+   ============================================================ */
 const STORAGE_KEY = 'jonhy_el_bravo_apostas_guardadas';
 const temWindowStorage = () => (typeof window !== 'undefined' && window.storage && typeof window.storage.get === 'function' && typeof window.storage.set === 'function');
 
@@ -850,6 +953,24 @@ async function limparApostasPersistentes() {
     else localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
     return true;
   } catch (e) { return false; }
+}
+
+async function carregarHistoricoCustom() {
+  try {
+    if (temWindowStorage()) {
+      const res = await window.storage.get(HISTORICO_CUSTOM_KEY);
+      return res ? JSON.parse(res.value) : { euromilhoes: [], totoloto: [], eurodreams: [] };
+    }
+    const raw = localStorage.getItem(HISTORICO_CUSTOM_KEY);
+    return raw ? JSON.parse(raw) : { euromilhoes: [], totoloto: [], eurodreams: [] };
+  } catch (e) { return { euromilhoes: [], totoloto: [], eurodreams: [] }; }
+}
+async function guardarHistoricoCustom() {
+  try {
+    if (temWindowStorage()) await window.storage.set(HISTORICO_CUSTOM_KEY, JSON.stringify(historicoCustom));
+    else localStorage.setItem(HISTORICO_CUSTOM_KEY, JSON.stringify(historicoCustom));
+    return true;
+  } catch (e) { console.error('Erro ao guardar histórico', e); return false; }
 }
 async function renderApostasGuardadas() {
   const card = document.getElementById('historyCard');
@@ -899,6 +1020,9 @@ function selecionarJogo(gameKey) {
   updateUI();
 }
 
+/* ============================================================
+   UI: TAB GERADOR
+   ============================================================ */
 function renderFilterGrid() {
   const grid = document.getElementById('filterGrid');
   grid.innerHTML = FILTROS_DEF.map(f => `
@@ -906,6 +1030,16 @@ function renderFilterGrid() {
       <input type="checkbox" id="${f.id}" checked>
       <span class="fc-text"><span class="fc-title">${f.t}</span><br><span class="fc-sub">${f.s}</span></span>
     </label>`).join('');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const target = document.getElementById('tab-' + tab);
+  if (target) target.classList.add('active');
+  document.querySelector(`.tab[data-tab="${tab}"]`)?.classList.add('active');
+  if (tab === 'historico') { renderHistoricoTable(currentGame); renderHistoricoInputGrids(); }
+  if (tab === 'multiplo') { updateMultiUI(); }
 }
 
 function updateUI() {
@@ -938,6 +1072,12 @@ function updateUI() {
     nSel.onchange = function () { document.getElementById('nQtyDisplay').textContent = this.value; updatePriceDisplay(); updateFooter(); renderPrizeTable(regra); };
     sSel.onchange = function () { document.getElementById('sQtyDisplay').textContent = this.value; updatePriceDisplay(); updateFooter(); renderPrizeTable(regra); };
 
+    // Método info
+    document.getElementById('genMethod').onchange = function() {
+      document.getElementById('methodInfo').textContent = METHOD_INFO[this.value] || '';
+    };
+    document.getElementById('methodInfo').textContent = METHOD_INFO[document.getElementById('genMethod').value] || '';
+
     renderPrizeTable(regra);
     updateFirstPrize(regra);
     updatePriceDisplay();
@@ -946,6 +1086,8 @@ function updateUI() {
     document.getElementById('mcResultContainer').innerHTML = '';
     updateMultiUI();
     renderManualGrids();
+    renderHistoricoTable(currentGame);
+    renderHistoricoInputGrids();
     addLog(`Jogo selecionado: ${regra.nome}`, 'system');
   } catch (err) {
     console.error('Erro em updateUI:', err);
@@ -978,6 +1120,9 @@ function updateFirstPrize(regra) {
   document.getElementById('fpJackpot').textContent = regra.jackpotInfo;
 }
 
+/* ============================================================
+   TABELAS DE ESCALÕES
+   ============================================================ */
 function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
   const isSystem = nQty > regra.nums.sorteados || sQty > regra.stars.sorteados;
   let html = `<table class="prize-table"><thead><tr>
@@ -1027,6 +1172,189 @@ function renderResultEscalaoTable(regra, nQty, sQty) {
   document.getElementById('resultEscalaoTable').innerHTML = construirTabelaEscaloes(regra, nQty, sQty);
 }
 
+/* ============================================================
+   HISTÓRICO
+   ============================================================ */
+function getExtraLabel(gameKey) {
+  if (gameKey === 'euromilhoes') return 'Estrelas';
+  if (gameKey === 'totoloto') return 'Nº Sorte';
+  return 'Nº Sonho';
+}
+function getExtraValores(gameKey, sorteio) {
+  if (gameKey === 'euromilhoes') return sorteio.estrelas;
+  if (gameKey === 'totoloto') return [sorteio.sorte];
+  return [sorteio.sonho];
+}
+const MESES_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+function renderHistoricoTable(gameKey) {
+  const regra = REGRAS[gameKey];
+  const seed = (HISTORICO_SORTEIOS[gameKey] || []).map(s => ({ ...s, custom: false }));
+  const custom = (historicoCustom[gameKey] || []).map((s, i) => ({ ...s, custom: true, customIndex: i }));
+  let dados = seed.concat(custom).sort((a, b) => {
+    const da = a.data.split('/').reverse().join('');
+    const db = b.data.split('/').reverse().join('');
+    return db.localeCompare(da);
+  });
+
+  const monthSel = document.getElementById('histMonthFilter');
+  const mesesPresentes = new Map();
+  dados.forEach(s => {
+    const [d, m, y] = s.data.split('/');
+    const key = `${y}-${m}`;
+    if (!mesesPresentes.has(key)) mesesPresentes.set(key, `${MESES_PT[parseInt(m,10)-1]} ${y}`);
+  });
+  const mesesOrdenados = Array.from(mesesPresentes.entries()).sort((a, b) => b[0].localeCompare(a[0]));
+  const valorAtual = monthSel.value || 'all';
+  monthSel.innerHTML = '<option value="all">Todos os meses</option>' + mesesOrdenados.map(([k, label]) => `<option value="${k}">${label}</option>`).join('');
+  monthSel.value = mesesPresentes.has(valorAtual) || valorAtual === 'all' ? valorAtual : 'all';
+
+  const filtro = monthSel.value;
+  const dadosFiltrados = filtro === 'all' ? dados : dados.filter(s => {
+    const [d, m, y] = s.data.split('/');
+    return `${y}-${m}` === filtro;
+  });
+
+  const container = document.getElementById('historicoTableContainer');
+  if (!dadosFiltrados.length) {
+    container.innerHTML = `<div class="prize-legend">${dados.length ? 'Sem sorteios neste mês.' : `Ainda não há sorteios registados para ${regra.nome}. Use o formulário acima para adicionar.`}</div>`;
+    document.getElementById('historicoFreqContainer').innerHTML = '';
+    return;
+  }
+
+  const grupos = new Map();
+  dadosFiltrados.forEach(s => {
+    const [d, m, y] = s.data.split('/');
+    const key = `${y}-${m}`;
+    if (!grupos.has(key)) grupos.set(key, { label: `${MESES_PT[parseInt(m,10)-1]} ${y}`, itens: [] });
+    grupos.get(key).itens.push(s);
+  });
+  const gruposOrdenados = Array.from(grupos.entries()).sort((a, b) => b[0].localeCompare(a[0]));
+
+  let html = '';
+  gruposOrdenados.forEach(([key, grupo]) => {
+    html += `<div style="font-family:var(--font-display);font-size:0.72rem;color:var(--brass-bright);text-transform:uppercase;letter-spacing:1px;margin:14px 0 6px;">${grupo.label} · ${grupo.itens.length} sorteio(s)</div>`;
+    html += `<table class="prize-table"><thead><tr><th style="text-align:left;">Data</th><th style="text-align:left;">Números</th><th>${getExtraLabel(gameKey)}</th><th></th></tr></thead><tbody>`;
+    grupo.itens.forEach(sorteio => {
+      const numsFmt = sorteio.numeros.map(n => String(n).padStart(2, '0')).join(' · ');
+      const extrasFmt = getExtraValores(gameKey, sorteio).map(n => String(n).padStart(2, '0')).join(' · ');
+      const delBtn = sorteio.custom ? `<button type="button" class="mini-btn hist-del-btn" data-idx="${sorteio.customIndex}" style="padding:4px 8px;">🗑</button>` : '';
+      html += `<tr><td class="tier-name">${sorteio.data}</td><td class="tier-name">${numsFmt}</td><td class="tier-value">${extrasFmt}</td><td>${delBtn}</td></tr>`;
+    });
+    html += `</tbody></table>`;
+  });
+  html += `<div class="prize-legend">${dadosFiltrados.length} sorteio(s) mostrado(s) de ${dados.length} registado(s) no total (${custom.length} adicionado(s) por si).</div>`;
+  container.innerHTML = html;
+  container.querySelectorAll('.hist-del-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const idx = parseInt(btn.dataset.idx, 10);
+      historicoCustom[gameKey].splice(idx, 1);
+      await guardarHistoricoCustom();
+      renderHistoricoTable(gameKey);
+      addLog('Sorteio removido do histórico.', 'system');
+    });
+  });
+
+  const freq = new Array(regra.nums.max + 1).fill(0);
+  dadosFiltrados.forEach(s => s.numeros.forEach(n => { if (n >= 1 && n <= regra.nums.max) freq[n]++; }));
+  const maxFreq = Math.max(1, ...freq.slice(1));
+  let freqHtml = '<div style="display:flex;flex-direction:column;gap:5px;">';
+  for (let n = 1; n <= regra.nums.max; n++) {
+    if (freq[n] === 0) continue;
+    const pct = (freq[n] / maxFreq) * 100;
+    freqHtml += `<div style="display:flex;align-items:center;gap:8px;">
+      <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--paper-dim);width:28px;">${String(n).padStart(2,'0')}</div>
+      <div style="flex:1;background:rgba(0,0,0,0.3);border-radius:4px;height:14px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:linear-gradient(90deg,var(--ice),var(--brass-bright));"></div></div>
+      <div style="font-family:var(--font-mono);font-size:0.64rem;color:var(--paper-dim);width:18px;text-align:right;">${freq[n]}</div>
+    </div>`;
+  }
+  freqHtml += '</div>';
+  document.getElementById('historicoFreqContainer').innerHTML = freqHtml;
+}
+
+let histSelectedNums = new Set();
+let histSelectedExtra = new Set();
+function renderHistoricoInputGrids() {
+  const regra = REGRAS[currentGame];
+  histSelectedNums.clear();
+  histSelectedExtra.clear();
+  document.getElementById('histNumLabel').textContent = `Números sorteados (exatamente ${regra.nums.sorteados})`;
+  document.getElementById('histExtraLabel').textContent = `${regra.stars.nome} (exatamente ${regra.stars.sorteados})`;
+  const numGrid = document.getElementById('histNumGrid');
+  numGrid.innerHTML = '';
+  for (let i = 1; i <= regra.nums.max; i++) {
+    const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i;
+    btn.onclick = () => toggleHistNum(i, btn); numGrid.appendChild(btn);
+  }
+  const extraGrid = document.getElementById('histExtraGrid');
+  extraGrid.innerHTML = '';
+  for (let i = 1; i <= regra.stars.max; i++) {
+    const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i;
+    btn.onclick = () => toggleHistExtra(i, btn); extraGrid.appendChild(btn);
+  }
+  updateHistValidation();
+}
+function toggleHistNum(n, btn) {
+  const regra = REGRAS[currentGame];
+  if (histSelectedNums.has(n)) { histSelectedNums.delete(n); btn.classList.remove('sel-n'); }
+  else {
+    if (histSelectedNums.size >= regra.nums.sorteados) { addLog(`Um sorteio real tem exatamente ${regra.nums.sorteados} números.`, 'warn'); return; }
+    histSelectedNums.add(n); btn.classList.add('sel-n');
+  }
+  updateHistValidation();
+}
+function toggleHistExtra(n, btn) {
+  const regra = REGRAS[currentGame];
+  if (histSelectedExtra.has(n)) { histSelectedExtra.delete(n); btn.classList.remove('sel-s'); }
+  else {
+    if (histSelectedExtra.size >= regra.stars.sorteados) { addLog(`Um sorteio real tem exatamente ${regra.stars.sorteados} ${regra.stars.nome}.`, 'warn'); return; }
+    histSelectedExtra.add(n); btn.classList.add('sel-s');
+  }
+  updateHistValidation();
+}
+function validarDataHist(txt) {
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(txt || '');
+  if (!m) return false;
+  const d = parseInt(m[1], 10), mo = parseInt(m[2], 10), y = parseInt(m[3], 10);
+  if (mo < 1 || mo > 12 || d < 1 || d > 31 || y < 2000 || y > 2100) return false;
+  return true;
+}
+function updateHistValidation() {
+  const regra = REGRAS[currentGame];
+  const dataTxt = document.getElementById('histDrawDate').value.trim();
+  const msg = document.getElementById('histValidation');
+  const errs = [];
+  if (!validarDataHist(dataTxt)) errs.push('Data inválida (use DD/MM/AAAA)');
+  if (histSelectedNums.size !== regra.nums.sorteados) errs.push(`${histSelectedNums.size}/${regra.nums.sorteados} números`);
+  if (histSelectedExtra.size !== regra.stars.sorteados) errs.push(`${histSelectedExtra.size}/${regra.stars.sorteados} ${regra.stars.nome}`);
+  if (errs.length === 0) { msg.textContent = '✓ Pronto a adicionar'; msg.className = 'validation-msg ok'; return true; }
+  msg.textContent = errs.join(' · ');
+  msg.className = 'validation-msg err';
+  return false;
+}
+async function adicionarSorteioHistorico() {
+  if (!updateHistValidation()) { addLog('Preencha data, números e ' + REGRAS[currentGame].stars.nome + ' corretamente.', 'warn'); return; }
+  const regra = REGRAS[currentGame];
+  const dataTxt = document.getElementById('histDrawDate').value.trim();
+  const nums = Array.from(histSelectedNums).sort((a, b) => a - b);
+  const extra = Array.from(histSelectedExtra).sort((a, b) => a - b);
+  const entry = { data: dataTxt, numeros: nums };
+  if (currentGame === 'euromilhoes') entry.estrelas = extra;
+  else if (currentGame === 'totoloto') entry.sorte = extra[0];
+  else entry.sonho = extra[0];
+
+  if (!historicoCustom[currentGame]) historicoCustom[currentGame] = [];
+  historicoCustom[currentGame].push(entry);
+  const ok = await guardarHistoricoCustom();
+  renderHistoricoTable(currentGame);
+  renderHistoricoInputGrids();
+  document.getElementById('histDrawDate').value = '';
+  if (ok) { addLog(`Sorteio de ${dataTxt} adicionado ao histórico de ${regra.nome}.`, 'success'); toast('Sorteio adicionado!'); }
+  else { addLog('Sorteio adicionado nesta sessão, mas não foi possível guardar de forma persistente.', 'warn'); toast('Guardado só nesta sessão.', true); }
+}
+
+/* ============================================================
+   LOG / PROGRESSO / TOAST
+   ============================================================ */
 function toast(msg, isError) {
   try {
     let t = document.getElementById('globalToast');
@@ -1103,6 +1431,9 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
   setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
+/* ============================================================
+   CÓPIA
+   ============================================================ */
 function copiarTexto(texto) {
   return new Promise((resolve, reject) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -1121,6 +1452,9 @@ function copiarFallback(texto, resolve, reject) {
   } catch (e) { reject(e); }
 }
 
+/* ============================================================
+   MONTE CARLO
+   ============================================================ */
 function runMonteCarloAsync(regra, totalSorteios, onProgress) {
   return new Promise((resolve) => {
     const tamanhoBloco = 20000;
@@ -1258,6 +1592,9 @@ async function executarMonteCarlo(totalSorteios) {
   setProgress(null, 'mcProgressWrap', 'mcProgressBar');
 }
 
+/* ============================================================
+   GERAR COMBINAÇÃO PRINCIPAL (TAB GERADOR)
+   ============================================================ */
 async function executarGeracao() {
   const btn = document.getElementById('runBtn');
   btn.disabled = true;
@@ -1299,6 +1636,9 @@ async function executarGeracao() {
   }
 }
 
+/* ============================================================
+   TAB MÚLTIPLOS BILHETES
+   ============================================================ */
 let selectedTickets = 3;
 let multiTicketsAtuais = [];
 
@@ -1325,259 +1665,310 @@ function updateMultiUI() {
   for (let i = regra.stars.minAposta; i <= regra.stars.maxAposta; i++) { const opt = document.createElement('option'); opt.value = i; opt.textContent = i; sSel.appendChild(opt); }
   sSel.value = regra.stars.minAposta;
   sSel.disabled = isFixed;
-  document.getElementById('multiStarLabel').textContent = regra.stars.nome;
-  nSel.onchange = updateMultiPriceDisplay;
-  sSel.onchange = updateMultiPriceDisplay;
+  document.getElementById('multiStarLabel').textContent = regra.stars.nome + (isFixed ? ' (fixo)' : '');
+  buildTicketSelector();
   updateMultiPriceDisplay();
+  document.getElementById('multiTicketsList').innerHTML = '';
+  multiTicketsAtuais = [];
 }
 function updateMultiPriceDisplay() {
   const regra = REGRAS[currentGame];
-  const n = parseInt(document.getElementById('multiN').value, 10) || regra.nums.minAposta;
-  const s = parseInt(document.getElementById('multiS').value, 10) || regra.stars.minAposta;
-  const { custo } = calcularPreco(regra, n, s);
+  const n = parseInt(document.getElementById('multiN').value, 10);
+  const s = parseInt(document.getElementById('multiS').value, 10);
+  const { totalCombos, custo } = calcularPreco(regra, n, s);
   const total = custo * selectedTickets;
   document.getElementById('multiTotalPrice').textContent = `€ ${total.toFixed(2).replace('.', ',')}`;
-  document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) × € ${custo.toFixed(2).replace('.', ',')}`;
+  document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) · ${totalCombos.toLocaleString('pt-PT')} combinações cada · ${n}+${s}`;
 }
-async function executarGeracaoMultipla() {
-  const btn = document.getElementById('multiRunBtn');
-  btn.disabled = true;
-  btn.textContent = 'A gerar...';
-  setProgress(2, 'multiProgressWrap', 'multiProgressBar');
-  try {
-    const regra = REGRAS[currentGame];
-    let n = parseInt(document.getElementById('multiN').value, 10);
-    let s = parseInt(document.getElementById('multiS').value, 10);
-    if (!n || isNaN(n) || n < regra.nums.sorteados) n = regra.nums.minAposta;
-    if (!s || isNaN(s) || s < regra.stars.sorteados) s = regra.stars.minAposta;
-    const maxOverlap = parseInt(document.getElementById('multiOverlap').value, 10) || 99;
 
-    multiTicketsAtuais = [];
-    const usados = new Set();
-    for (let i = 0; i < selectedTickets; i++) {
-      setProgress(((i) / selectedTickets) * 100, 'multiProgressWrap', 'multiProgressBar');
-      let tentativa = null, overlapCount = 999, tentativasOverlap = 0;
-      while (overlapCount > maxOverlap && tentativasOverlap < 25) {
-        const resultado = await gerarCombinacaoAsync(regra, n, s, 'hybrid-ultra', currentGame, null, () => {});
-        overlapCount = resultado.nums.filter(x => usados.has(x)).length;
-        tentativa = resultado;
-        tentativasOverlap++;
+function gerarMultiplos() {
+  const regra = REGRAS[currentGame];
+  const n = parseInt(document.getElementById('multiN').value, 10);
+  const s = parseInt(document.getElementById('multiS').value, 10);
+  const overlap = parseInt(document.getElementById('multiOverlap').value, 10);
+  const qtd = selectedTickets;
+  const tickets = [];
+  let tentativas = 0;
+  const maxTent = 5000;
+  const progressWrap = document.getElementById('multiProgressWrap');
+  const progressBar = document.getElementById('multiProgressBar');
+
+  for (let i = 0; i < qtd && tentativas < maxTent * 10; i++) {
+    let nums, stars;
+    let valido = false;
+    let loops = 0;
+    while (!valido && loops < maxTent) {
+      loops++;
+      tentativas++;
+      nums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, n).sort((a,b)=>a-b);
+      stars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, s).sort((a,b)=>a-b);
+      valido = true;
+      if (overlap < 99 && tickets.length > 0) {
+        for (const existente of tickets) {
+          const iguaisNums = nums.filter(x => existente.nums.includes(x)).length;
+          const iguaisStars = stars.filter(x => existente.stars.includes(x)).length;
+          if (iguaisNums > overlap || iguaisStars > overlap) { valido = false; break; }
+        }
       }
-      tentativa.nums.forEach(x => usados.add(x));
-      multiTicketsAtuais.push({ nums: tentativa.nums, stars: tentativa.stars });
     }
-    setProgress(100, 'multiProgressWrap', 'multiProgressBar');
-
-    const { custo } = calcularPreco(regra, n, s);
-    document.getElementById('multiTotalPrice').textContent = `€ ${(custo*selectedTickets).toFixed(2).replace('.', ',')}`;
-    document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) × € ${custo.toFixed(2).replace('.', ',')}`;
-
-    let html = '';
-    multiTicketsAtuais.forEach((t, idx) => {
-      html += `<div class="ticket-card"><div class="th">Bilhete #${idx+1}</div><div class="balls">
-        ${t.nums.map(x=>`<div class="ball n small">${String(x).padStart(2,'0')}</div>`).join('')}
-        ${t.stars.map(x=>`<div class="ball s small">${String(x).padStart(2,'0')}</div>`).join('')}
-      </div></div>`;
-    });
-    document.getElementById('multiTicketsList').innerHTML = html;
-    addLog(`${selectedTickets} bilhetes independentes gerados para ${regra.nome}.`, 'success');
-    toast(`${selectedTickets} bilhetes gerados!`);
-  } catch (err) {
-    console.error(err);
-    addLog('Erro ao gerar bilhetes: ' + err.message, 'warn');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Gerar bilhetes';
-    setProgress(null, 'multiProgressWrap', 'multiProgressBar');
+    tickets.push({ nums, stars, idx: i + 1 });
+    if (i % Math.max(1, Math.floor(qtd / 20)) === 0) {
+      progressWrap.classList.add('active');
+      progressBar.style.width = ((i / qtd) * 100) + '%';
+    }
   }
-}
-async function guardarTodosBilhetes() {
-  if (multiTicketsAtuais.length === 0) return addLog('Gere bilhetes primeiro.', 'warn');
-  const regra = REGRAS[currentGame];
-  let sucessos = 0;
-  for (const t of multiTicketsAtuais) { const ok = await guardarApostaPersistente({ game: regra.nome, nums: t.nums, stars: t.stars, metodo: 'Múltiplo', data: new Date().toLocaleDateString('pt-PT') }); if (ok) sucessos++; }
-  await renderApostasGuardadas();
-  if (sucessos === multiTicketsAtuais.length) { addLog(`${sucessos} bilhetes guardados.`, 'success'); toast(`${sucessos} bilhetes guardados.`); }
-  else { addLog(`${sucessos}/${multiTicketsAtuais.length} bilhetes guardados — armazenamento indisponível para os restantes.`, 'warn'); toast('Falha ao guardar alguns bilhetes.', true); }
-}
-function exportarBilhetesCSV() {
-  if (multiTicketsAtuais.length === 0) return addLog('Gere bilhetes primeiro.', 'warn');
-  const regra = REGRAS[currentGame];
-  let csv = 'Bilhete,Data';
-  for (let i = 1; i <= regra.nums.sorteados; i++) csv += `,N${i}`;
-  for (let i = 1; i <= regra.stars.sorteados; i++) csv += `,E${i}`;
-  csv += '\n';
-  multiTicketsAtuais.forEach((t, idx) => {
-    csv += `${idx+1},${new Date().toLocaleDateString('pt-PT')}`;
-    t.nums.forEach(n => csv += `,${n}`);
-    t.stars.forEach(s => csv += `,${s}`);
-    csv += '\n';
+  progressWrap.classList.remove('active');
+  progressBar.style.width = '0%';
+
+  multiTicketsAtuais = tickets;
+  const list = document.getElementById('multiTicketsList');
+  if (tickets.length === 0) { list.innerHTML = '<div class="prize-legend">Não foi possível gerar bilhetes com esta restrição.</div>'; return; }
+  let html = '';
+  tickets.forEach(t => {
+    const custo = calcularPreco(regra, n, s);
+    html += `<div class="ticket-card"><div class="th">Bilhete #${t.idx} · € ${custo.custo.toFixed(2).replace('.', ',')}</div><div class="balls">`;
+    t.nums.forEach(num => { html += `<div class="ball n small">${String(num).padStart(2,'0')}</div>`; });
+    if (t.stars.length) {
+      html += `<div style="display:flex;gap:7px;align-items:center;margin-left:6px;">`;
+      t.stars.forEach(s => { html += `<div class="ball s small">${String(s).padStart(2,'0')}</div>`; });
+      html += `</div>`;
+    }
+    html += `</div></div>`;
   });
-  const blob = new Blob([csv], { type: 'text/csv' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `bilhetes_${currentGame}.csv`;
-  a.click();
-  addLog('CSV exportado.', 'success');
+  list.innerHTML = html;
+  addLog(`${tickets.length} bilhete(s) gerado(s) com ${overlap < 99 ? 'sobreposição ≤ ' + overlap : 'sobreposição livre'}.`, 'success');
+  toast(`${tickets.length} bilhetes gerados.`);
 }
 
+async function guardarTodosMulti() {
+  if (!multiTicketsAtuais.length) { toast('Nenhum bilhete para guardar.', true); return; }
+  const regra = REGRAS[currentGame];
+  const n = parseInt(document.getElementById('multiN').value, 10);
+  const s = parseInt(document.getElementById('multiS').value, 10);
+  let guardados = 0;
+  for (const t of multiTicketsAtuais) {
+    const entry = {
+      nums: t.nums,
+      stars: t.stars,
+      game: regra.nome,
+      metodo: 'Múltiplo',
+      data: new Date().toLocaleDateString('pt-PT')
+    };
+    const ok = await guardarApostaPersistente(entry);
+    if (ok) guardados++;
+  }
+  renderApostasGuardadas();
+  toast(`${guardados} bilhete(s) guardado(s).`);
+  addLog(`${guardados} bilhetes guardados.`, 'success');
+}
+function exportarMultiCSV() {
+  if (!multiTicketsAtuais.length) { toast('Nenhum bilhete para exportar.', true); return; }
+  let csv = 'Bilhete,Números,Estrelas\n';
+  multiTicketsAtuais.forEach(t => {
+    csv += `${t.idx},"${t.nums.join(';')}","${t.stars.join(';')}"\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `bilhetes_${currentGame}_${new Date().toISOString().slice(0,10)}.csv`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  toast('CSV exportado.');
+}
+
+/* ============================================================
+   TAB MANUAL
+   ============================================================ */
 let manualSelectedNums = new Set();
 let manualSelectedStars = new Set();
+
 function renderManualGrids() {
   const regra = REGRAS[currentGame];
   manualSelectedNums.clear();
   manualSelectedStars.clear();
-  document.getElementById('manualNumLabel').textContent = `Números (1–${regra.nums.max}, mín. ${regra.nums.sorteados})`;
-  document.getElementById('manualStarLabel').textContent = `${regra.stars.nome} (1–${regra.stars.max}, exatamente ${regra.stars.sorteados})`;
+  document.getElementById('manualNumLabel').textContent = `Números (mín. ${regra.nums.sorteados})`;
+  document.getElementById('manualStarLabel').textContent = `${regra.stars.nome} (mín. ${regra.stars.sorteados})`;
   const numGrid = document.getElementById('manualNumGrid');
   numGrid.innerHTML = '';
-  for (let i = 1; i <= regra.nums.max; i++) { const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i; btn.onclick = () => toggleManualNumber(i, btn); numGrid.appendChild(btn); }
+  for (let i = 1; i <= regra.nums.max; i++) {
+    const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i;
+    btn.onclick = () => toggleManualNum(i, btn); numGrid.appendChild(btn);
+  }
   const starGrid = document.getElementById('manualStarGrid');
   starGrid.innerHTML = '';
-  for (let i = 1; i <= regra.stars.max; i++) { const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i; btn.onclick = () => toggleManualStar(i, btn); starGrid.appendChild(btn); }
-  updateManualInfo();
+  for (let i = 1; i <= regra.stars.max; i++) {
+    const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i;
+    btn.onclick = () => toggleManualStar(i, btn); starGrid.appendChild(btn);
+  }
+  updateManualUI();
 }
-function toggleManualNumber(n, btn) {
+function toggleManualNum(n, btn) {
   if (manualSelectedNums.has(n)) { manualSelectedNums.delete(n); btn.classList.remove('sel-n'); }
-  else { if (manualSelectedNums.size >= 12) { addLog('Máximo de 12 números.', 'warn'); return; } manualSelectedNums.add(n); btn.classList.add('sel-n'); }
-  updateManualInfo();
+  else { manualSelectedNums.add(n); btn.classList.add('sel-n'); }
+  updateManualUI();
 }
-function toggleManualStar(s, btn) {
-  const regra = REGRAS[currentGame];
-  if (manualSelectedStars.has(s)) { manualSelectedStars.delete(s); btn.classList.remove('sel-s'); }
-  else { if (manualSelectedStars.size >= regra.stars.maxAposta) { addLog(`Máximo ${regra.stars.maxAposta} ${regra.stars.nome}.`, 'warn'); return; } manualSelectedStars.add(s); btn.classList.add('sel-s'); }
-  updateManualInfo();
+function toggleManualStar(n, btn) {
+  if (manualSelectedStars.has(n)) { manualSelectedStars.delete(n); btn.classList.remove('sel-s'); }
+  else { manualSelectedStars.add(n); btn.classList.add('sel-s'); }
+  updateManualUI();
 }
-function updateManualInfo() {
+function updateManualUI() {
   const regra = REGRAS[currentGame];
   const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
   const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
-  const valid = nums.length >= regra.nums.sorteados && nums.length <= regra.nums.maxAposta && stars.length === regra.stars.sorteados;
+  const n = nums.length;
+  const s = stars.length;
+  const nMin = regra.nums.sorteados;
+  const sMin = regra.stars.sorteados;
+  const valido = n >= nMin && s >= sMin;
+  const { totalCombos, custo } = calcularPreco(regra, n, s);
+  document.getElementById('manualPrice').textContent = `€ ${custo.toFixed(2).replace('.', ',')}`;
+  document.getElementById('manualPriceDetail').textContent = valido ? `${totalCombos.toLocaleString('pt-PT')} combinação(ões) · ${n}+${s}` : `Selecione pelo menos ${nMin}+${sMin}`;
+  document.getElementById('manualComb').textContent = valido ? totalCombos.toLocaleString('pt-PT') : '—';
+  const soma = nums.reduce((a,b)=>a+b,0);
+  document.getElementById('manualSum').textContent = valido ? soma : '—';
   const msg = document.getElementById('manualValidation');
-  if (nums.length === 0 && stars.length === 0) { msg.textContent = ''; msg.className = 'validation-msg'; }
-  else if (valid) { msg.textContent = '✓ Aposta válida'; msg.className = 'validation-msg ok'; }
-  else {
-    const errs = [];
-    if (nums.length < regra.nums.sorteados) errs.push(`Mín. ${regra.nums.sorteados} números`);
-    if (nums.length > regra.nums.maxAposta) errs.push(`Máx. ${regra.nums.maxAposta} números`);
-    if (stars.length !== regra.stars.sorteados) errs.push(`Necessário ${regra.stars.sorteados} ${regra.stars.nome}`);
-    msg.textContent = errs.join(', ');
-    msg.className = 'validation-msg err';
-  }
-  let comb = 0, price = 0, sum = 0;
-  if (nums.length >= regra.nums.sorteados) {
-    const r = calcularPreco(regra, nums.length, Math.max(stars.length, regra.stars.sorteados));
-    comb = r.totalCombos; price = r.custo;
-    sum = nums.reduce((a,b)=>a+b,0);
-  }
-  document.getElementById('manualPrice').textContent = `€ ${price.toFixed(2).replace('.', ',')}`;
-  document.getElementById('manualPriceDetail').textContent = nums.length === 0 ? 'Selecione números' : (nums.length === regra.nums.sorteados ? 'Aposta simples' : `Sistema múltiplo (${comb.toLocaleString('pt-PT')} comb.)`);
-  document.getElementById('manualComb').textContent = comb.toLocaleString('pt-PT');
-  document.getElementById('manualSum').textContent = sum;
   const preview = document.getElementById('manualCombosPreview');
-  if (nums.length > regra.nums.sorteados && valid) {
+  if (!valido) { msg.textContent = `Selecione pelo menos ${nMin} números e ${sMin} ${regra.stars.nome}.`; msg.className = 'validation-msg err'; preview.style.display = 'none'; return; }
+  msg.textContent = `✓ ${totalCombos.toLocaleString('pt-PT')} combinações · € ${custo.toFixed(2).replace('.', ',')}`;
+  msg.className = 'validation-msg ok';
+  if (totalCombos <= 2000 && totalCombos > 0) {
+    const todas = getCombinations(nums, regra.nums.sorteados);
+    const allStars = getCombinations(stars, regra.stars.sorteados);
+    let html = '';
+    let count = 0;
+    for (const c of todas) {
+      for (const st of allStars) {
+        if (count++ > 500) break;
+        html += `<span class="combo-chip">${c.join(' ')}  |  ${st.join(' ')}</span>`;
+      }
+      if (count > 500) break;
+    }
+    preview.innerHTML = html + (count > 500 ? '<span class="combo-chip">...</span>' : '');
     preview.style.display = 'flex';
-    const combos = getCombinations(nums, regra.nums.sorteados);
-    preview.innerHTML = combos.slice(0, 300).map(c => `<span class="combo-chip">${c.join(' ')}</span>`).join('');
-  } else preview.style.display = 'none';
-  document.getElementById('manualEscalaoTable').innerHTML = valid ? construirTabelaEscaloes(regra, nums.length, stars.length) : '<div style="font-size:0.7rem;color:var(--paper-dim);padding:8px;">Selecione uma aposta válida para ver a tabela.</div>';
+  } else {
+    preview.innerHTML = `<span class="combo-chip">${totalCombos.toLocaleString('pt-PT')} combinações — demasiadas para listar</span>`;
+    preview.style.display = 'flex';
+  }
+  document.getElementById('manualEscalaoTable').innerHTML = construirTabelaEscaloes(regra, n, s);
 }
-async function guardarApostaManual() {
+async function guardarManual() {
   const regra = REGRAS[currentGame];
   const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
   const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
-  const valid = nums.length >= regra.nums.sorteados && stars.length === regra.stars.sorteados;
-  if (!valid) return addLog('Aposta manual inválida.', 'warn');
-  const ok = await guardarApostaPersistente({ game: regra.nome, nums, stars, metodo: 'Manual', data: new Date().toLocaleDateString('pt-PT') });
-  await renderApostasGuardadas();
-  if (ok) { addLog('Aposta manual guardada.', 'success'); toast('Aposta manual guardada!'); }
-  else { addLog('Não foi possível guardar — armazenamento indisponível neste navegador.', 'warn'); toast('Não foi possível guardar.', true); }
-  limparApostaManual();
+  if (nums.length < regra.nums.sorteados || stars.length < regra.stars.sorteados) {
+    toast('Selecione números suficientes.', true); return;
+  }
+  const entry = {
+    nums: nums,
+    stars: stars,
+    game: regra.nome,
+    metodo: 'Manual',
+    data: new Date().toLocaleDateString('pt-PT')
+  };
+  const ok = await guardarApostaPersistente(entry);
+  if (ok) { toast('Aposta manual guardada.'); addLog('Aposta manual guardada.', 'success'); renderApostasGuardadas(); } else toast('Erro ao guardar.', true);
 }
-function limparApostaManual() { renderManualGrids(); }
-
-function updateClock() {
-  const now = new Date();
-  const dataFmt = now.toLocaleDateString('pt-PT', { weekday:'short', day:'2-digit', month:'2-digit', year:'numeric' }).toUpperCase();
-  document.getElementById('clock').textContent = `${dataFmt} · ${now.toLocaleTimeString('pt-PT')}`;
-}
-setInterval(updateClock, 1000);
-function switchTab(name) {
-  try {
-    ['gerador', 'multiplo', 'manual'].forEach(p => {
-      const panelEl = document.getElementById('tab-' + p);
-      const btnEl = document.querySelector('.tab[data-tab="' + p + '"]');
-      const isActive = p === name;
-      if (panelEl) { panelEl.style.display = isActive ? 'block' : 'none'; panelEl.classList.toggle('active', isActive); }
-      if (btnEl) btnEl.classList.toggle('active', isActive);
-    });
-  } catch (e) { console.error('switchTab erro:', e); }
-}
-function setupTabs() {
-  document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
-  switchTab('gerador');
+function limparManual() {
+  manualSelectedNums.clear();
+  manualSelectedStars.clear();
+  document.querySelectorAll('#manualNumGrid .pick-btn').forEach(b => b.classList.remove('sel-n'));
+  document.querySelectorAll('#manualStarGrid .pick-btn').forEach(b => b.classList.remove('sel-s'));
+  updateManualUI();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  try {
-    window.addEventListener('error', function (e) { try { addLog('Erro JS: ' + (e.message || 'desconhecido'), 'warn'); toast('Ocorreu um erro: ' + (e.message || 'desconhecido'), true); } catch (_) {} });
-    window.addEventListener('unhandledrejection', function (e) { try { const msg = (e.reason && e.reason.message) ? e.reason.message : e.reason; addLog('Erro assíncrono: ' + msg, 'warn'); toast('Ocorreu um erro: ' + msg, true); } catch (_) {} });
+/* ============================================================
+   INICIALIZAÇÃO
+   ============================================================ */
+function init() {
+  // Load custom history
+  (async () => {
+    const h = await carregarHistoricoCustom();
+    historicoCustom = h;
+    renderHistoricoTable(currentGame);
+  })();
 
-    renderFilterGrid();
-    setupTabs();
-    buildTicketSelector();
+  renderFilterGrid();
+  document.getElementById('gameType').addEventListener('change', updateUI);
 
-    document.getElementById('gameType').addEventListener('change', updateUI);
-    document.getElementById('genMethod').addEventListener('change', function () { document.getElementById('methodInfo').textContent = METHOD_INFO[this.value] || ''; });
+  // Filter buttons
+  document.getElementById('btnFiltersAll').onclick = () => {
+    document.querySelectorAll('#filterGrid input').forEach(cb => cb.checked = true);
+    addLog('Todos os filtros ativados.', 'system');
+  };
+  document.getElementById('btnFiltersNone').onclick = () => {
+    document.querySelectorAll('#filterGrid input').forEach(cb => cb.checked = false);
+    addLog('Sorteio puro — nenhum filtro aplicado.', 'system');
+  };
 
-    document.getElementById('runBtn').addEventListener('click', executarGeracao);
-    document.getElementById('btnRepeat').addEventListener('click', executarGeracao);
-    document.getElementById('btnCopy').addEventListener('click', async function () {
-      const panel = document.getElementById('resultPanel');
-      const texto = `${panel.dataset.game || ''} (${panel.dataset.method || ''}) — Números: ${panel.dataset.nums || ''}${panel.dataset.stars ? ' | Estrelas: ' + panel.dataset.stars : ''}`;
-      try { await copiarTexto(texto); this.textContent = 'Copiado ✓'; } catch (e) { this.textContent = 'Não foi possível copiar'; }
-      setTimeout(() => { this.textContent = 'Copiar'; }, 1800);
-    });
-    document.getElementById('btnSave').addEventListener('click', async function () {
-      const panel = document.getElementById('resultPanel');
-      if (!panel.dataset.nums) return;
-      const nums = panel.dataset.nums.split(', ').map(Number);
-      const stars = panel.dataset.stars ? panel.dataset.stars.split(', ').map(Number) : [];
-      const ok = await guardarApostaPersistente({ game: panel.dataset.game, nums, stars, metodo: panel.dataset.method, data: new Date().toLocaleDateString('pt-PT') });
-      await renderApostasGuardadas();
-      if (ok) { addLog('Aposta guardada.', 'success'); toast('Aposta guardada.'); }
-      else { addLog('Não foi possível guardar — armazenamento indisponível neste navegador.', 'warn'); toast('Não foi possível guardar.', true); }
-    });
+  // Run button
+  document.getElementById('runBtn').onclick = executarGeracao;
 
-    document.getElementById('btnFiltersAll').addEventListener('click', () => {
-      FILTROS_DEF.forEach(f => document.getElementById(f.id).checked = true);
-      addLog('Todos os filtros estruturais ativados.', 'system');
-    });
-    document.getElementById('btnFiltersNone').addEventListener('click', () => {
-      FILTROS_DEF.forEach(f => document.getElementById(f.id).checked = false);
-      addLog('Todos os filtros desativados — sorteio puramente aleatório (uniforme).', 'system');
-    });
-    document.getElementById('btnClearHistory').addEventListener('click', async () => { await limparApostasPersistentes(); await renderApostasGuardadas(); addLog('Histórico limpo.', 'system'); });
+  // Monte Carlo buttons
+  document.getElementById('btnMC10k').onclick = () => executarMonteCarlo(10000);
+  document.getElementById('btnMC100k').onclick = () => executarMonteCarlo(100000);
+  document.getElementById('btnMC500k').onclick = () => executarMonteCarlo(500000);
+  document.getElementById('btnMC1M').onclick = () => executarMonteCarlo(1000000);
 
-    document.getElementById('btnMC10k').addEventListener('click', () => executarMonteCarlo(10000));
-    document.getElementById('btnMC100k').addEventListener('click', () => executarMonteCarlo(100000));
-    document.getElementById('btnMC500k').addEventListener('click', () => executarMonteCarlo(500000));
-    document.getElementById('btnMC1M').addEventListener('click', () => executarMonteCarlo(1000000));
+  // Multi buttons
+  document.getElementById('multiRunBtn').onclick = gerarMultiplos;
+  document.getElementById('btnSaveAllMulti').onclick = guardarTodosMulti;
+  document.getElementById('btnExportMulti').onclick = exportarMultiCSV;
+  document.getElementById('multiN').onchange = updateMultiPriceDisplay;
+  document.getElementById('multiS').onchange = updateMultiPriceDisplay;
+  document.getElementById('multiOverlap').onchange = updateMultiPriceDisplay;
 
-    document.getElementById('multiRunBtn').addEventListener('click', executarGeracaoMultipla);
-    document.getElementById('btnSaveAllMulti').addEventListener('click', guardarTodosBilhetes);
-    document.getElementById('btnExportMulti').addEventListener('click', exportarBilhetesCSV);
+  // Copy, Save, Repeat
+  document.getElementById('btnCopy').onclick = () => {
+    const panel = document.getElementById('resultPanel');
+    if (!panel.dataset.nums) { toast('Nada para copiar.', true); return; }
+    const txt = `${panel.dataset.nums}  |  ${panel.dataset.stars || ''}`;
+    copiarTexto(txt).then(() => { toast('Copiado!'); }).catch(() => toast('Erro ao copiar.', true));
+  };
+  document.getElementById('btnSave').onclick = async () => {
+    const panel = document.getElementById('resultPanel');
+    if (!panel.dataset.nums) { toast('Nada para guardar.', true); return; }
+    const entry = {
+      nums: panel.dataset.nums.split(',').map(Number),
+      stars: panel.dataset.stars ? panel.dataset.stars.split(',').map(Number) : [],
+      game: panel.dataset.game || REGRAS[currentGame].nome,
+      metodo: panel.dataset.method || 'Gerador',
+      data: new Date().toLocaleDateString('pt-PT')
+    };
+    const ok = await guardarApostaPersistente(entry);
+    if (ok) { toast('Aposta guardada.'); addLog('Aposta guardada.', 'success'); renderApostasGuardadas(); } else toast('Erro ao guardar.', true);
+  };
+  document.getElementById('btnRepeat').onclick = executarGeracao;
 
-    document.getElementById('btnSaveManual').addEventListener('click', guardarApostaManual);
-    document.getElementById('btnClearManual').addEventListener('click', limparApostaManual);
+  // History buttons
+  document.getElementById('btnAddHistorico').onclick = adicionarSorteioHistorico;
+  document.getElementById('histMonthFilter').onchange = () => renderHistoricoTable(currentGame);
+  document.getElementById('histDrawDate').addEventListener('input', updateHistValidation);
+  document.getElementById('histDrawDate').addEventListener('blur', updateHistValidation);
 
-    updateUI();
-    updateClock();
-    document.getElementById('methodInfo').textContent = METHOD_INFO['super-genetic'];
-    renderApostasGuardadas();
-    addLog('Sistema pronto. Gerador, Múltiplos Bilhetes, Aposta Manual, Monte Carlo com teste χ² e 6 filtros estruturais ativos.', 'system');
-  } catch (err) { console.error('Erro na inicialização:', err); }
-});
+  // Clear history
+  document.getElementById('btnClearHistory').onclick = async () => {
+    if (!confirm('Limpar todas as apostas guardadas?')) return;
+    const ok = await limparApostasPersistentes();
+    if (ok) { renderApostasGuardadas(); toast('Histórico limpo.'); addLog('Apostas guardadas limpas.', 'system'); } else toast('Erro ao limpar.', true);
+  };
+  // Manual buttons
+  document.getElementById('btnSaveManual').onclick = guardarManual;
+  document.getElementById('btnClearManual').onclick = limparManual;
+
+  // Clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toLocaleTimeString('pt-PT');
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  updateUI();
+  renderApostasGuardadas();
+}
+
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
-                                                                                                   </html>
+  </html>
