@@ -7,11 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   TOKENS — Observatório Combinatório
-   Paleta de instrumento de precisão: grafite/marinho profundo,
-   latão (referência à esfera armilar), gelo (dados/probabilidade)
-   ============================================================ */
 :root{
   --void:#0a0d14; --void-2:#0d111a;
   --panel:#111621; --panel-2:#161c2a;
@@ -40,7 +35,6 @@ body{
   position:relative;
   overflow-x:hidden;
 }
-/* layered depth field — stars + orbit rings + vignette, three parallax planes */
 .depth-field{position:fixed;inset:0;z-index:0;pointer-events:none;}
 .depth-field .stars{position:absolute;inset:0;background-image:
   radial-gradient(1px 1px at 12% 18%, rgba(237,234,225,0.5) 0, transparent 60%),
@@ -60,7 +54,6 @@ body{
 @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}}
 
-/* ---------- HERO / INSTRUMENT HEADER ---------- */
 .hero{
   position:relative;background:linear-gradient(180deg, var(--panel-2) 0%, var(--panel) 100%);
   border:1px solid var(--line-strong); border-radius:22px; padding:34px 20px 22px; text-align:center;
@@ -84,7 +77,6 @@ h1.brand .accent{color:var(--brass-bright);}
 .sub{font-size:0.72rem;color:var(--paper-dim);margin-top:5px;letter-spacing:0.4px;}
 .clock{font-family:var(--font-mono);font-size:1.15rem;color:var(--ice);font-weight:500;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-strong);letter-spacing:1px;}
 
-/* ---------- GAME SELECTOR ---------- */
 .panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);box-shadow:var(--shadow-panel);}
 .panel h2{font-family:var(--font-display);font-size:0.78rem;font-weight:600;color:var(--game);text-transform:uppercase;letter-spacing:1.6px;border-left:3px solid var(--game);padding-left:11px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;transition:color .4s,border-color .4s;}
 .game-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
@@ -95,21 +87,18 @@ h1.brand .accent{color:var(--brass-bright);}
 .game-pill:not(.active):hover{color:var(--paper);border-color:var(--paper-faint);}
 #gameType{display:none;}
 
-/* ---------- FIRST PRIZE DIAL ---------- */
 .dial-card{background:linear-gradient(180deg, rgba(17,22,33,0.9), rgba(10,13,20,0.96));border:1px solid rgba(var(--brass-rgb),0.35);border-radius:20px;padding:22px 18px;text-align:center;margin-bottom:14px;box-shadow:0 0 50px rgba(var(--brass-rgb),0.08), var(--shadow-panel);position:relative;}
 .dial-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:3px;}
 .dial-combo{font-size:0.92rem;color:var(--paper);margin-top:8px;font-weight:500;}
 .dial-odds{font-family:var(--font-display);font-size:1.9rem;font-weight:700;color:var(--brass-bright);margin:9px 0 4px;letter-spacing:0.5px;}
 .dial-jackpot{font-size:0.72rem;color:var(--paper-dim);line-height:1.5;max-width:480px;margin:0 auto;}
 
-/* ---------- TABS ---------- */
 .tabs{display:flex;gap:6px;margin-bottom:14px;}
 .tab{flex:1;padding:12px 6px;background:rgba(17,22,33,0.6);border:1px solid var(--line);border-radius:12px;color:var(--paper-dim);font-family:var(--font-display);font-weight:600;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:center;}
 .tab.active{color:var(--void);background:linear-gradient(135deg, var(--ice), var(--brass-bright));border-color:transparent;box-shadow:0 8px 20px rgba(var(--ice-rgb),0.2);}
 .tabpanel{display:none;animation:rise .35s ease;}
 .tabpanel.active{display:block;}
 
-/* ---------- FORM ELEMENTS ---------- */
 select{width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%236FD6E8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .3s;}
 select:focus{border-color:var(--ice);}
 select:disabled{opacity:0.5;cursor:not-allowed;}
@@ -118,16 +107,13 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
 .row>*{flex:1;min-width:130px;}
 
-/* ---------- PRICE / READOUT ---------- */
 .readout{margin-top:12px;padding:13px 16px;background:linear-gradient(135deg, rgba(var(--brass-rgb),0.1), rgba(var(--brass-rgb),0.02));border:1px solid rgba(var(--brass-rgb),0.4);border-radius:12px;text-align:center;}
 .readout .rl{font-family:var(--font-mono);font-size:0.58rem;color:var(--paper-dim);text-transform:uppercase;letter-spacing:2px;}
 .readout .rv{font-family:var(--font-display);font-size:1.4rem;color:var(--brass-bright);font-weight:700;}
 .readout .rd{font-family:var(--font-mono);font-size:0.62rem;color:var(--paper-dim);margin-top:2px;}
 
-/* ---------- METHOD INFO ---------- */
 .info-strip{font-size:0.68rem;color:var(--paper-dim);margin-top:10px;line-height:1.55;padding:10px 12px;background:rgba(0,0,0,0.25);border-radius:9px;border-left:2px solid var(--ice);}
 
-/* ---------- FILTER CHIPS ---------- */
 .filters-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
 .mini-btn{font-family:var(--font-mono);font-size:0.62rem;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;color:var(--paper-dim);background:rgba(0,0,0,0.3);border:1px solid var(--line-strong);border-radius:8px;padding:7px 12px;cursor:pointer;transition:all .2s;}
 .mini-btn:hover{color:var(--paper);border-color:var(--ice);}
@@ -140,7 +126,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .filter-chip .fc-title{color:var(--paper);font-weight:500;}
 .filter-chip .fc-sub{color:var(--paper-faint);font-size:0.64rem;}
 
-/* ---------- BUTTONS ---------- */
 .btn{width:100%;padding:18px;background:linear-gradient(135deg, rgba(var(--ice-rgb),0.22), rgba(var(--brass-rgb),0.14));border:1px solid rgba(var(--ice-rgb),0.5);color:var(--paper);font-family:var(--font-display);font-size:0.92rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;border-radius:13px;cursor:pointer;margin:14px 0;transition:all .25s;box-shadow:0 10px 30px rgba(var(--ice-rgb),0.1);}
 .btn:hover:not(:disabled){box-shadow:0 14px 40px rgba(var(--ice-rgb),0.2);transform:translateY(-1px);}
 .btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
@@ -148,12 +133,10 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .btn-secondary:hover{border-color:var(--ice);color:var(--ice);}
 .btn-secondary:disabled{opacity:0.4;cursor:not-allowed;}
 
-/* ---------- PROGRESS ---------- */
 .progress-wrap{height:5px;width:100%;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden;margin:6px 0 0;display:none;}
 .progress-wrap.active{display:block;}
 .progress-bar{height:100%;width:0%;background:linear-gradient(90deg, var(--ice), var(--brass-bright));transition:width .15s ease-out;}
 
-/* ---------- TERMINAL LOG ---------- */
 .terminal{background:rgba(0,0,0,0.55);border:1px solid var(--line);border-radius:11px;height:120px;overflow-y:auto;padding:12px 14px;font-size:0.68rem;font-family:var(--font-mono);line-height:1.65;}
 .log-line{margin:2px 0;padding-left:9px;border-left:2px solid transparent;}
 .log-line.system{color:var(--ice);border-left-color:var(--ice);}
@@ -161,7 +144,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .log-line.success{color:var(--brass-bright);border-left-color:var(--brass-bright);}
 .log-line.warn{color:var(--warn);border-left-color:var(--warn);}
 
-/* ---------- RESULT PANEL ---------- */
 .result-panel{display:none;border:1px solid rgba(var(--game-rgb),0.4);background:linear-gradient(180deg, rgba(17,22,33,0.92), rgba(10,13,20,0.97));border-radius:20px;padding:24px 18px;margin-top:16px;text-align:center;box-shadow:0 0 70px rgba(var(--game-rgb),0.1), var(--shadow-panel);animation:rise .5s ease;}
 .result-panel h2{font-family:var(--font-display);color:var(--game);letter-spacing:1.6px;margin-bottom:14px;font-size:0.9rem;text-transform:uppercase;}
 .balls{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:16px 0;}
@@ -177,7 +159,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .stat-box .value.ok{color:var(--ok);}
 .stat-box .value.warn{color:var(--warn);}
 
-/* ---------- PRIZE TABLE ---------- */
 .prize-table-scroll{width:100%;overflow-x:auto;}
 .prize-table{width:100%;border-collapse:collapse;margin-top:12px;text-align:center;}
 .prize-table th{color:var(--game);font-family:var(--font-mono);font-size:9.5px;padding:9px 6px;border-bottom:1px solid rgba(var(--game-rgb),0.4);text-transform:uppercase;letter-spacing:0.6px;white-space:nowrap;}
@@ -195,7 +176,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .details summary::before{content:'▸ ';}
 .details[open] summary::before{content:'▾ ';}
 
-/* ---------- MONTE CARLO ---------- */
 .mc-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
 @media (max-width:480px){.mc-buttons{grid-template-columns:1fr 1fr;}}
 .mc-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:0.72rem;}
@@ -209,7 +189,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .chi-box .cv{font-family:var(--font-display);font-size:1.15rem;color:var(--ice);}
 .mc-chart-wrap{margin-top:14px;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:10px;padding:10px;}
 
-/* ---------- TICKETS / MANUAL ---------- */
 .ticket-selector{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:12px;}
 .ticket-btn{min-width:40px;padding:9px;background:rgba(0,0,0,0.4);border:1px solid var(--line-strong);color:var(--paper);font-family:var(--font-display);font-weight:600;border-radius:10px;cursor:pointer;text-align:center;transition:all .2s;}
 .ticket-btn.selected{border-color:var(--ice);color:var(--ice);background:rgba(var(--ice-rgb),0.1);}
@@ -225,14 +204,12 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 .ticket-card .th{font-family:var(--font-display);font-size:0.68rem;color:var(--brass-bright);margin-bottom:7px;letter-spacing:0.6px;}
 .ticket-card .balls{margin:5px 0;gap:7px;}
 
-/* ---------- HISTORY ---------- */
 .history-list{display:flex;flex-direction:column;gap:7px;margin-top:12px;max-height:260px;overflow-y:auto;}
 .history-item{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:rgba(0,0,0,0.28);border:1px solid var(--line);border-radius:10px;padding:9px 12px;}
 .history-nums{font-family:var(--font-mono);font-size:0.78rem;color:var(--paper);letter-spacing:0.5px;}
 .history-nums .s{color:var(--brass-bright);}
 .history-meta{font-size:0.58rem;color:var(--paper-faint);text-transform:uppercase;letter-spacing:0.6px;font-family:var(--font-mono);}
 
-/* ---------- FOOTER ---------- */
 .footer{margin-top:22px;padding:26px 18px 20px;text-align:center;background:linear-gradient(180deg, var(--panel), var(--panel-2));border-radius:20px 20px 0 0;border:1px solid var(--line-strong);position:relative;}
 .footer .draw-line{font-family:var(--font-display);font-weight:600;line-height:1.8;}
 .footer .draw-date{font-size:1.02rem;color:var(--ice);display:block;}
@@ -312,7 +289,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     <button type="button" class="tab" data-tab="manual" onclick="switchTab('manual')">Manual</button>
   </div>
 
-  <!-- ===================== TAB GERADOR ===================== -->
   <div class="tabpanel active" id="tab-gerador">
     <div class="panel">
       <h2>Aposta e Método</h2>
@@ -397,7 +373,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
   </div>
 
-  <!-- ===================== TAB MÚLTIPLOS ===================== -->
   <div class="tabpanel" id="tab-multiplo">
     <div class="panel">
       <h2>Bilhetes independentes (1–10)</h2>
@@ -440,7 +415,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
   </div>
 
-  <!-- ===================== TAB MANUAL ===================== -->
   <div class="tabpanel" id="tab-manual">
     <div class="panel">
       <h2>Aposta manual</h2>
@@ -489,9 +463,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 <script>
 'use strict';
 
-/* ============================================================
-   DADOS OFICIAIS SANTA CASA
-   ============================================================ */
 const REGRAS = {
   euromilhoes: {
     nome: "EURO MILHÕES",
@@ -558,13 +529,6 @@ const METHOD_INFO = {
   'random': 'Amostragem uniforme sem qualquer peso — cada número tem exatamente a mesma probabilidade de ser proposto.'
 };
 
-/* Filtros reduzidos aos estruturalmente mais sólidos e citados na
-   literatura de análise combinatória de lotarias (soma, paridade,
-   dispersão por quartis/metades, concentração por dezena e
-   sequências). Removidos: distância entre pares próximos, "nunca
-   repetir a última" e entropia de Shannon — eram os filtros mais
-   fracos estatisticamente e com menor efeito real na dispersão
-   da combinação, apenas complicavam a leitura sem valor adicional. */
 const FILTROS_DEF = [
   { id:'filterSum', t:'Soma dentro do IC 95%', s:'Rejeita somas estatisticamente extremas face à distribuição teórica exata' },
   { id:'filterParity', t:'Equilíbrio par/ímpar', s:'Evita combinações totalmente pares ou totalmente ímpares' },
@@ -574,9 +538,6 @@ const FILTROS_DEF = [
   { id:'filterConsec', t:'Sem 3+ consecutivos', s:'Evita sequências longas, ex. 21-22-23-24' }
 ];
 
-/* ============================================================
-   MATEMÁTICA COMBINATÓRIA EXATA
-   ============================================================ */
 const combCache = new Map();
 function C(n, k) {
   if (k < 0 || k > n || n < 0) return 0;
@@ -663,13 +624,10 @@ function passaFiltros(nums, filtros, somaMin, somaMax, quartis, maxNum, ultimaAp
   }
   if (filtros.filterHalf) { const m = contarMetades(nums, maxNum); if (m.baixa === 0 || m.alta === 0) return false; }
   if (filtros.filterDecade && contarMaxPorDezena(nums) > 2) return false;
-  if (ultimaAposta && nums.join(',') === ultimaAposta.join(',')) return false; // nunca repete a aposta imediatamente anterior, sempre ativo
+  if (ultimaAposta && nums.join(',') === ultimaAposta.join(',')) return false;
   return true;
 }
 
-/* ============================================================
-   PESOS SIMULADOS (variedade local — não são dados reais)
-   ============================================================ */
 const pesosSimulados = {};
 function getPesosSimulados(gameKey) {
   if (pesosSimulados[gameKey]) return pesosSimulados[gameKey];
@@ -684,9 +642,6 @@ function getPesosSimulados(gameKey) {
   return pesos;
 }
 
-/* ============================================================
-   ALGORITMO GENÉTICO POPULACIONAL
-   ============================================================ */
 function fitnessMultiObjetivo(nums, regra, nQty) {
   const stats = calcularEstatisticasSoma(regra.nums.max, nQty);
   const soma = nums.reduce((a, b) => a + b, 0);
@@ -762,9 +717,6 @@ function superGenetico(regra, nQty, popSize, geracoes) {
   return finalScored[0].ind;
 }
 
-/* ============================================================
-   MÉTODOS DE AMOSTRAGEM
-   ============================================================ */
 function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
   const min = regra.nums.min, max = regra.nums.max;
   switch (method) {
@@ -869,14 +821,6 @@ function getCombinations(arr, k) {
 let currentGame = 'euromilhoes';
 let ultimaApostaGerador = null;
 
-/* ============================================================
-   PERSISTÊNCIA — com deteção automática de ambiente.
-   Dentro do Claude.ai (artifact) usa window.storage. Quando o
-   ficheiro é aberto isoladamente (duplo clique, WebView, PWA),
-   window.storage não existe — nesse caso usa localStorage do
-   próprio navegador, para que "Guardar" funcione sempre a sério
-   em vez de reportar sucesso sem gravar nada.
-   ============================================================ */
 const STORAGE_KEY = 'jonhy_el_bravo_apostas_guardadas';
 const temWindowStorage = () => (typeof window !== 'undefined' && window.storage && typeof window.storage.get === 'function' && typeof window.storage.set === 'function');
 
@@ -955,9 +899,6 @@ function selecionarJogo(gameKey) {
   updateUI();
 }
 
-/* ============================================================
-   UI: TAB GERADOR
-   ============================================================ */
 function renderFilterGrid() {
   const grid = document.getElementById('filterGrid');
   grid.innerHTML = FILTROS_DEF.map(f => `
@@ -1037,9 +978,6 @@ function updateFirstPrize(regra) {
   document.getElementById('fpJackpot').textContent = regra.jackpotInfo;
 }
 
-/* ============================================================
-   TABELAS DE ESCALÕES
-   ============================================================ */
 function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
   const isSystem = nQty > regra.nums.sorteados || sQty > regra.stars.sorteados;
   let html = `<table class="prize-table"><thead><tr>
@@ -1089,9 +1027,6 @@ function renderResultEscalaoTable(regra, nQty, sQty) {
   document.getElementById('resultEscalaoTable').innerHTML = construirTabelaEscaloes(regra, nQty, sQty);
 }
 
-/* ============================================================
-   LOG / PROGRESSO / TOAST
-   ============================================================ */
 function toast(msg, isError) {
   try {
     let t = document.getElementById('globalToast');
@@ -1168,9 +1103,6 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
   setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
-/* ============================================================
-   CÓPIA (com fallback robusto)
-   ============================================================ */
 function copiarTexto(texto) {
   return new Promise((resolve, reject) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -1189,13 +1121,6 @@ function copiarFallback(texto, resolve, reject) {
   } catch (e) { reject(e); }
 }
 
-/* ============================================================
-   MONTE CARLO — motor rápido, aposta fixa, teste χ²
-   Otimização: fixa a aposta de referência uma única vez e simula
-   apenas o sorteio real a cada iteração (equivalente estatisticamente
-   a simular ambos, já que a aposta é arbitrária) — reduz para metade
-   o trabalho por iteração e permite laços muito maiores.
-   ============================================================ */
 function runMonteCarloAsync(regra, totalSorteios, onProgress) {
   return new Promise((resolve) => {
     const tamanhoBloco = 20000;
@@ -1205,13 +1130,11 @@ function runMonteCarloAsync(regra, totalSorteios, onProgress) {
     const snapshots = [];
     const targetIdx = nTiers - 1;
 
-    // aposta de referência fixa para toda a simulação
     const minhaAposta = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, regra.nums.sorteados);
     const minhasStars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, regra.stars.sorteados);
     const apostaSet = new Set(minhaAposta);
     const starsSet = new Set(minhasStars);
 
-    // pré-computar mapa escalão -> {n,s,ignoreDream}
     function bloco() {
       const limite = Math.min(feitos + tamanhoBloco, totalSorteios);
       while (feitos < limite) {
@@ -1257,11 +1180,9 @@ function construirSVGConvergencia(snapshots, probTeorica) {
   </svg>`;
 }
 
-// aproximação de Wilson-Hilferty para p-valor de χ² (suficiente para diagnóstico visual)
 function chiSquarePValueApprox(chi2, df) {
   if (df <= 0) return 1;
   const z = (Math.pow(chi2 / df, 1/3) - (1 - 2/(9*df))) / Math.sqrt(2/(9*df));
-  // aproximação da cauda superior da normal padrão via função erro
   const t = 1 / (1 + 0.2316419 * Math.abs(z));
   const d = 0.3989423 * Math.exp(-z*z/2);
   let p = d * t * (0.3193815 + t*(-0.3565638 + t*(1.781478 + t*(-1.821256 + t*1.330274))));
@@ -1279,11 +1200,6 @@ async function executarMonteCarlo(totalSorteios) {
 
   const { contagens, snapshots } = await runMonteCarloAsync(regra, totalSorteios, (feitos, total) => setProgress((feitos/total)*100, 'mcProgressWrap', 'mcProgressBar'));
 
-  // Passo 1: calcular prob. teórica exata de cada escalão e separar
-  // o que é estatisticamente observável a esta dimensão de amostra
-  // (esperado ≥ 1 ocorrência) do que é praticamente impossível de
-  // aparecer na simulação — evita encher a tabela de "sem ocorrências"
-  // e mostra apenas números com significado real a esta escala.
   const escaloes = regra.premios.map((p, idx) => {
     let probTeorica;
     if (p.ignoreDream) probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
@@ -1311,9 +1227,6 @@ async function executarMonteCarlo(totalSorteios) {
   });
   html += `</tbody></table>`;
 
-  // Escalões demasiado raros para esta amostra (tipicamente o 1º prémio)
-  // — mostrados à parte, só com a odd teórica exata e a escala de
-  // sorteios necessária para se tornarem estatisticamente prováveis.
   if (inobservaveis.length) {
     html += `<div class="prize-legend" style="margin-top:10px;">Escalões demasiado raros para aparecer de forma fiável em ${totalSorteios.toLocaleString('pt-PT')} sorteios (menos de 1 ocorrência esperada) — odd teórica exata, sem coluna "Simulado":</div>`;
     html += `<table class="mc-table" style="margin-top:4px;"><tbody>`;
@@ -1345,9 +1258,6 @@ async function executarMonteCarlo(totalSorteios) {
   setProgress(null, 'mcProgressWrap', 'mcProgressBar');
 }
 
-/* ============================================================
-   GERAR COMBINAÇÃO PRINCIPAL (TAB GERADOR)
-   ============================================================ */
 async function executarGeracao() {
   const btn = document.getElementById('runBtn');
   btn.disabled = true;
@@ -1389,9 +1299,6 @@ async function executarGeracao() {
   }
 }
 
-/* ============================================================
-   TAB MÚLTIPLOS BILHETES
-   ============================================================ */
 let selectedTickets = 3;
 let multiTicketsAtuais = [];
 
@@ -1514,9 +1421,6 @@ function exportarBilhetesCSV() {
   addLog('CSV exportado.', 'success');
 }
 
-/* ============================================================
-   TAB MANUAL
-   ============================================================ */
 let manualSelectedNums = new Set();
 let manualSelectedStars = new Set();
 function renderManualGrids() {
@@ -1592,9 +1496,6 @@ async function guardarApostaManual() {
 }
 function limparApostaManual() { renderManualGrids(); }
 
-/* ============================================================
-   RELÓGIO / TABS
-   ============================================================ */
 function updateClock() {
   const now = new Date();
   const dataFmt = now.toLocaleDateString('pt-PT', { weekday:'short', day:'2-digit', month:'2-digit', year:'numeric' }).toUpperCase();
@@ -1617,9 +1518,6 @@ function setupTabs() {
   switchTab('gerador');
 }
 
-/* ============================================================
-   INICIALIZAÇÃO
-   ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
   try {
     window.addEventListener('error', function (e) { try { addLog('Erro JS: ' + (e.message || 'desconhecido'), 'warn'); toast('Ocorreu um erro: ' + (e.message || 'desconhecido'), true); } catch (_) {} });
@@ -1667,4 +1565,19 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btnMC1M').addEventListener('click', () => executarMonteCarlo(1000000));
 
     document.getElementById('multiRunBtn').addEventListener('click', executarGeracaoMultipla);
-    document.getElementById('btnSaveAllMu
+    document.getElementById('btnSaveAllMulti').addEventListener('click', guardarTodosBilhetes);
+    document.getElementById('btnExportMulti').addEventListener('click', exportarBilhetesCSV);
+
+    document.getElementById('btnSaveManual').addEventListener('click', guardarApostaManual);
+    document.getElementById('btnClearManual').addEventListener('click', limparApostaManual);
+
+    updateUI();
+    updateClock();
+    document.getElementById('methodInfo').textContent = METHOD_INFO['super-genetic'];
+    renderApostasGuardadas();
+    addLog('Sistema pronto. Gerador, Múltiplos Bilhetes, Aposta Manual, Monte Carlo com teste χ² e 6 filtros estruturais ativos.', 'system');
+  } catch (err) { console.error('Erro na inicialização:', err); }
+});
+</script>
+</body>
+                                                                                                   </html>
