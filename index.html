@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>JONHY EL BRAVO v22 · OBSERVATÓRIO COMBINATÓRIO</title>
+<title>JONHY EL BRAVO v23 · OBSERVATÓRIO COMBINATÓRIO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -280,7 +280,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
     <div class="eyebrow">Observatório Combinatório · Dados Oficiais Santa Casa</div>
     <h1 class="brand">JONHY EL <span class="accent">BRAVO</span></h1>
-    <div class="sub">Motor hipergeométrico exato · Genético populacional · Monte Carlo com teste χ² · v22.0</div>
+    <div class="sub">Motor hipergeométrico exato · Genético populacional · Monte Carlo com teste χ² · v23.0</div>
     <div class="clock" id="clock">--:--:--</div>
   </div>
 
@@ -347,7 +347,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
 
     <div class="panel">
-      <h2>Filtros Estruturais (9)</h2>
+      <h2>Filtros Estruturais (6)</h2>
       <div class="filters-toolbar">
         <button type="button" class="mini-btn" id="btnFiltersAll">Ativar todos</button>
         <button type="button" class="mini-btn" id="btnFiltersNone">Sorteio puro</button>
@@ -377,8 +377,8 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     <div class="progress-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
 
     <div class="terminal" id="terminal" aria-live="polite" role="log">
-      <div class="log-line system">> JONHY EL BRAVO v22.0 inicializado.</div>
-      <div class="log-line math">> Motor: hipergeométrica exata · genético populacional · Monte Carlo com χ² · 9 filtros estruturais.</div>
+      <div class="log-line system">> JONHY EL BRAVO v23.0 inicializado. Dias de sorteio verificados junto da fonte oficial (jogossantacasa.pt).</div>
+      <div class="log-line math">> Motor: hipergeométrica exata · genético populacional · Monte Carlo com χ² · 6 filtros estruturais.</div>
     </div>
 
     <div id="resultPanel" class="result-panel">
@@ -481,7 +481,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
       <span class="draw-date">PRÓXIMO SORTEIO: —</span>
       <span class="draw-price">PREÇO DA APOSTA: —</span>
     </div>
-    <div class="version">JONHY EL BRAVO v22.0 · MATEMÁTICA COMBINATÓRIA EXATA · DADOS OFICIAIS SANTA CASA</div>
+    <div class="version">JONHY EL BRAVO v23.0 · MATEMÁTICA COMBINATÓRIA EXATA · DADOS OFICIAIS SANTA CASA</div>
     <div class="legal">As odds apresentadas correspondem às probabilidades oficiais de cada jogo da Santa Casa. Os valores em euros dos escalões inferiores variam por sorteio consoante vendas e nº de vencedores — consulte jogossantacasa.pt para os valores exatos do concurso atual. Filtros, algoritmo genético e métodos de amostragem alteram apenas qual combinação válida é escolhida; nenhum deles altera, aumenta ou garante a probabilidade matemática real de qualquer combinação individual. Cada sorteio é um evento aleatório independente dos anteriores — não existe sistema capaz de prever resultados.</div>
   </div>
 </div>
@@ -521,7 +521,7 @@ const REGRAS = {
     nums: { min: 1, max: 49, sorteados: 5, minAposta: 5, maxAposta: 11 },
     stars: { min: 1, max: 13, sorteados: 1, minAposta: 1, maxAposta: 1, nome: "Nº Sorte" },
     preco: 1.00,
-    diasSorteio: [1, 3, 6], horaSorteio: "20:30",
+    diasSorteio: [3, 6], horaSorteio: "20:30",
     jackpotInfo: "1º prémio mínimo garantido de €1.000.000, sem limite de jackpot",
     premios: [
       { n: 5, s: 1, nome: "1º Prémio (5+Nº Sorte) — Jackpot", valor: 1000000, valorTxt: "≥ €1.000.000" },
@@ -558,16 +558,20 @@ const METHOD_INFO = {
   'random': 'Amostragem uniforme sem qualquer peso — cada número tem exatamente a mesma probabilidade de ser proposto.'
 };
 
+/* Filtros reduzidos aos estruturalmente mais sólidos e citados na
+   literatura de análise combinatória de lotarias (soma, paridade,
+   dispersão por quartis/metades, concentração por dezena e
+   sequências). Removidos: distância entre pares próximos, "nunca
+   repetir a última" e entropia de Shannon — eram os filtros mais
+   fracos estatisticamente e com menor efeito real na dispersão
+   da combinação, apenas complicavam a leitura sem valor adicional. */
 const FILTROS_DEF = [
-  { id:'filterConsec', t:'Sem 3+ consecutivos', s:'Evita sequências longas ex. 21-22-23' },
-  { id:'filterSum', t:'Soma dentro do IC 95%', s:'Rejeita somas estatisticamente extremas' },
-  { id:'filterParity', t:'Equilíbrio par/ímpar', s:'Evita tudo par ou tudo ímpar' },
-  { id:'filterQuartile', t:'Quartis Q1–Q4', s:'Números espalhados por pelo menos 2 quartis' },
-  { id:'filterHalf', t:'Metade baixa + alta', s:'Pelo menos 1 número de cada metade do intervalo' },
-  { id:'filterDistance', t:'Máx. 2 pares próximos', s:'Limita pares com diferença menor que 3' },
-  { id:'filterDecade', t:'Máx. 2 na mesma dezena', s:'Evita concentração numa só faixa de 10' },
-  { id:'filterRepeat', t:'Nunca repetir a última', s:'Evita gerar a mesma aposta duas vezes seguidas' },
-  { id:'filterEntropy', t:'Entropia mínima', s:'Garante diversidade estatística (Shannon)' }
+  { id:'filterSum', t:'Soma dentro do IC 95%', s:'Rejeita somas estatisticamente extremas face à distribuição teórica exata' },
+  { id:'filterParity', t:'Equilíbrio par/ímpar', s:'Evita combinações totalmente pares ou totalmente ímpares' },
+  { id:'filterQuartile', t:'Quartis Q1–Q4', s:'Números espalhados por pelo menos 2 dos 4 quartis do intervalo' },
+  { id:'filterHalf', t:'Metade baixa + alta', s:'Pelo menos 1 número de cada metade do intervalo do jogo' },
+  { id:'filterDecade', t:'Máx. 2 na mesma dezena', s:'Evita concentração excessiva numa só faixa de 10 números' },
+  { id:'filterConsec', t:'Sem 3+ consecutivos', s:'Evita sequências longas, ex. 21-22-23-24' }
 ];
 
 /* ============================================================
@@ -658,10 +662,8 @@ function passaFiltros(nums, filtros, somaMin, somaMax, quartis, maxNum, ultimaAp
     if ([q1,q2,q3,q4].filter(c=>c>0).length < 2) return false;
   }
   if (filtros.filterHalf) { const m = contarMetades(nums, maxNum); if (m.baixa === 0 || m.alta === 0) return false; }
-  if (filtros.filterDistance && contarParesProximos(nums) > 2) return false;
   if (filtros.filterDecade && contarMaxPorDezena(nums) > 2) return false;
-  if (filtros.filterRepeat && ultimaAposta && nums.join(',') === ultimaAposta.join(',')) return false;
-  if (filtros.filterEntropy && calcularEntropia(nums, maxNum) < 0.55) return false;
+  if (ultimaAposta && nums.join(',') === ultimaAposta.join(',')) return false; // nunca repete a aposta imediatamente anterior, sempre ativo
   return true;
 }
 
@@ -868,22 +870,42 @@ let currentGame = 'euromilhoes';
 let ultimaApostaGerador = null;
 
 /* ============================================================
-   PERSISTÊNCIA
+   PERSISTÊNCIA — com deteção automática de ambiente.
+   Dentro do Claude.ai (artifact) usa window.storage. Quando o
+   ficheiro é aberto isoladamente (duplo clique, WebView, PWA),
+   window.storage não existe — nesse caso usa localStorage do
+   próprio navegador, para que "Guardar" funcione sempre a sério
+   em vez de reportar sucesso sem gravar nada.
    ============================================================ */
+const STORAGE_KEY = 'jonhy_el_bravo_apostas_guardadas';
+const temWindowStorage = () => (typeof window !== 'undefined' && window.storage && typeof window.storage.get === 'function' && typeof window.storage.set === 'function');
+
 async function carregarApostasGuardadas() {
-  try { const res = await window.storage.get('apostas_guardadas'); return res ? JSON.parse(res.value) : []; }
-  catch (e) { return []; }
+  try {
+    if (temWindowStorage()) {
+      const res = await window.storage.get('apostas_guardadas');
+      return res ? JSON.parse(res.value) : [];
+    }
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) { return []; }
 }
 async function guardarApostaPersistente(entry) {
   try {
     const atuais = await carregarApostasGuardadas();
     atuais.unshift(entry);
-    await window.storage.set('apostas_guardadas', JSON.stringify(atuais.slice(0, 200)));
+    const lista = atuais.slice(0, 200);
+    if (temWindowStorage()) await window.storage.set('apostas_guardadas', JSON.stringify(lista));
+    else localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
     return true;
   } catch (e) { console.error('Erro ao guardar', e); return false; }
 }
 async function limparApostasPersistentes() {
-  try { await window.storage.set('apostas_guardadas', JSON.stringify([])); return true; } catch (e) { return false; }
+  try {
+    if (temWindowStorage()) await window.storage.set('apostas_guardadas', JSON.stringify([]));
+    else localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+    return true;
+  } catch (e) { return false; }
 }
 async function renderApostasGuardadas() {
   const card = document.getElementById('historyCard');
@@ -1123,10 +1145,9 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
   const q1=nums.filter(n=>n<=resultado.quartis.Q1).length, q2=nums.filter(n=>n>resultado.quartis.Q1&&n<=resultado.quartis.Q2).length;
   const q3=nums.filter(n=>n>resultado.quartis.Q2&&n<=resultado.quartis.Q3).length, q4=nums.filter(n=>n>resultado.quartis.Q3).length;
   const quartisOcupados = [q1,q2,q3,q4].filter(c=>c>0).length;
-  const paresProximos = contarParesProximos(nums), maxConsec = contarConsecutivosMax(nums);
+  const maxConsec = contarConsecutivosMax(nums);
   const maxDezena = contarMaxPorDezena(nums);
   const metades = contarMetades(nums, regra.nums.max);
-  const entropia = calcularEntropia(nums, regra.nums.max);
 
   document.getElementById('analysisGrid').innerHTML = `
     <div class="stat-box"><div class="label">Método</div><div class="value">${method}</div></div>
@@ -1134,10 +1155,8 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
     <div class="stat-box"><div class="label">Par / Ímpar</div><div class="value">${pares} / ${impares}</div></div>
     <div class="stat-box"><div class="label">Metade baixa / alta</div><div class="value ${metades.baixa>0&&metades.alta>0?'ok':'warn'}">${metades.baixa} / ${metades.alta}</div></div>
     <div class="stat-box"><div class="label">Quartis ocupados</div><div class="value ${quartisOcupados>=2?'ok':'warn'}">${quartisOcupados}/4 (${q1}-${q2}-${q3}-${q4})</div></div>
-    <div class="stat-box"><div class="label">Pares próximos (Δ&lt;3)</div><div class="value ${paresProximos<=2?'ok':'warn'}">${paresProximos} (máx 2)</div></div>
     <div class="stat-box"><div class="label">Consecutivos máx.</div><div class="value ${maxConsec<3?'ok':'warn'}">${maxConsec} (máx 2)</div></div>
     <div class="stat-box"><div class="label">Máx. por dezena</div><div class="value ${maxDezena<=2?'ok':'warn'}">${maxDezena} (máx 2)</div></div>
-    <div class="stat-box"><div class="label">Entropia (diversidade)</div><div class="value ${entropia>=0.55?'ok':'warn'}">${entropia.toFixed(3)}</div></div>
     <div class="stat-box"><div class="label">Iterações até válida</div><div class="value">${resultado.tentativas.toLocaleString('pt-PT')}</div></div>
   `;
   renderResultEscalaoTable(regra, nQty, sQty);
@@ -1260,29 +1279,54 @@ async function executarMonteCarlo(totalSorteios) {
 
   const { contagens, snapshots } = await runMonteCarloAsync(regra, totalSorteios, (feitos, total) => setProgress((feitos/total)*100, 'mcProgressWrap', 'mcProgressBar'));
 
-  let html = `<table class="mc-table"><thead><tr><th style="text-align:left;">Escalão</th><th>Teórico</th><th>Simulado</th><th>Nº acertos</th></tr></thead><tbody>`;
-  let probTeoricaTarget = 0;
-  let chi2 = 0, gl = 0;
-  const targetIdx = regra.premios.length - 1;
-  regra.premios.forEach((p, idx) => {
+  // Passo 1: calcular prob. teórica exata de cada escalão e separar
+  // o que é estatisticamente observável a esta dimensão de amostra
+  // (esperado ≥ 1 ocorrência) do que é praticamente impossível de
+  // aparecer na simulação — evita encher a tabela de "sem ocorrências"
+  // e mostra apenas números com significado real a esta escala.
+  const escaloes = regra.premios.map((p, idx) => {
     let probTeorica;
     if (p.ignoreDream) probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n);
     else probTeorica = probHipergeometrica(regra.nums.max, regra.nums.sorteados, regra.nums.sorteados, p.n) * probHipergeometrica(regra.stars.max, regra.stars.sorteados, regra.stars.sorteados, p.s);
-    if (idx === targetIdx) probTeoricaTarget = probTeorica;
     const contagem = contagens[idx] || 0;
-    const probSimulada = contagem / totalSorteios;
-    const teoricoFmt = probTeorica > 0 ? '1/' + Math.round(1/probTeorica).toLocaleString('pt-PT') : '≈0';
-    const simuladoFmt = probSimulada > 0 ? '1/' + Math.round(1/probSimulada).toLocaleString('pt-PT') : (contagem === 0 ? 'sem ocorrências' : '—');
     const esperado = probTeorica * totalSorteios;
-    if (esperado >= 5) { chi2 += Math.pow(contagem - esperado, 2) / esperado; gl++; } // só escalões com contagem esperada suficiente entram no χ²
+    return { p, idx, probTeorica, contagem, esperado };
+  });
+  const primeiroPremio = escaloes[0];
+  const observaveis = escaloes.filter(e => e.esperado >= 1);
+  const inobservaveis = escaloes.filter(e => e.esperado < 1);
+  const targetIdx = observaveis.length ? observaveis[observaveis.length - 1].idx : escaloes[escaloes.length - 1].idx;
+  const probTeoricaTarget = escaloes[targetIdx].probTeorica;
+
+  let html = `<table class="mc-table"><thead><tr><th style="text-align:left;">Escalão</th><th>Teórico</th><th>Simulado</th><th>Nº acertos</th></tr></thead><tbody>`;
+  let chi2 = 0, gl = 0;
+  observaveis.forEach(e => {
+    const { p, idx, probTeorica, contagem, esperado } = e;
+    const probSimulada = contagem / totalSorteios;
+    const teoricoFmt = '1/' + Math.round(1/probTeorica).toLocaleString('pt-PT');
+    const simuladoFmt = probSimulada > 0 ? '1/' + Math.round(1/probSimulada).toLocaleString('pt-PT') : 'sem ocorrências';
+    if (esperado >= 5) { chi2 += Math.pow(contagem - esperado, 2) / esperado; gl++; }
     const rowStyle = idx === targetIdx ? ' style="background:rgba(79,203,142,0.07);"' : '';
     html += `<tr${rowStyle}><td>${p.nome}</td><td>${teoricoFmt}</td><td>${simuladoFmt}</td><td>${contagem.toLocaleString('pt-PT')}</td></tr>`;
   });
   html += `</tbody></table>`;
 
+  // Escalões demasiado raros para esta amostra (tipicamente o 1º prémio)
+  // — mostrados à parte, só com a odd teórica exata e a escala de
+  // sorteios necessária para se tornarem estatisticamente prováveis.
+  if (inobservaveis.length) {
+    html += `<div class="prize-legend" style="margin-top:10px;">Escalões demasiado raros para aparecer de forma fiável em ${totalSorteios.toLocaleString('pt-PT')} sorteios (menos de 1 ocorrência esperada) — odd teórica exata, sem coluna "Simulado":</div>`;
+    html += `<table class="mc-table" style="margin-top:4px;"><tbody>`;
+    inobservaveis.forEach(e => {
+      const sorteiosPara63 = Math.round(1 / e.probTeorica);
+      html += `<tr><td>${e.p.nome}</td><td colspan="2" style="text-align:center;">1/${Math.round(1/e.probTeorica).toLocaleString('pt-PT')}</td><td>≈${sorteiosPara63.toLocaleString('pt-PT')} sorteios p/ ~63% hipótese</td></tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+
   const erroPadrao = Math.sqrt(probTeoricaTarget * (1 - probTeoricaTarget) / totalSorteios);
   const svgConvergencia = construirSVGConvergencia(snapshots, probTeoricaTarget);
-  html += `<div class="mc-chart-wrap"><div style="font-size:0.7rem;color:var(--paper-dim);margin-bottom:6px;">Convergência do escalão "<b style="color:var(--ok);">${regra.premios[targetIdx].nome}</b>" — linha sólida = estimativa acumulada · tracejado dourado = valor teórico exato · faixa = IC 95%</div>${svgConvergencia}</div>`;
+  html += `<div class="mc-chart-wrap"><div style="font-size:0.7rem;color:var(--paper-dim);margin-bottom:6px;">Convergência do escalão mais próximo do 1º prémio observável a esta escala — "<b style="color:var(--ok);">${regra.premios[targetIdx].nome}</b>" — linha sólida = estimativa acumulada · tracejado dourado = valor teórico exato · faixa = IC 95%</div>${svgConvergencia}</div>`;
 
   if (gl > 0) {
     const dfEfetivo = Math.max(1, gl - 1);
@@ -1291,6 +1335,7 @@ async function executarMonteCarlo(totalSorteios) {
     html += `<div class="chi-box"><div><div class="cl">Estatística χ² (${gl} escalões)</div><div class="cv">${chi2.toFixed(2)}</div></div><div><div class="cl">p-valor aproximado</div><div class="cv">${pValor.toFixed(3)}</div></div></div>`;
     html += `<div class="mc-summary">Teste de qualidade de ajuste: compara as contagens observadas dos escalões com contagem esperada ≥5 (${gl} escalões elegíveis) contra a distribuição hipergeométrica teórica. ${veredito}</div>`;
   }
+  html += `<div class="mc-summary">1º prémio real (${primeiroPremio.p.nome}): odd teórica exata <b>1/${Math.round(1/primeiroPremio.probTeorica).toLocaleString('pt-PT')}</b> — precisaria de ≈${Math.round(1/primeiroPremio.probTeorica).toLocaleString('pt-PT')} sorteios simulados para ter, em média, uma hipótese de ~63% de o observar pelo menos uma vez. É por isto que não aparece na tabela "Simulado" mesmo a 1 milhão de sorteios — não é um erro do motor, é a escala real do jogo.</div>`;
   html += `<div class="mc-summary">Com <b>${totalSorteios.toLocaleString('pt-PT')}</b> sorteios simulados, "Simulado" tende a aproximar-se de "Teórico" (Lei dos Grandes Números). Erro-padrão do escalão em destaque: ±${(erroPadrao*100).toFixed(4)} p.p. Escalões muito raros (ex: 1º prémio) podem mostrar "sem ocorrências" mesmo em 1.000.000 de simulações — matematicamente esperado, dada a odd real de dezenas de milhões para 1.</div>`;
   container.innerHTML = html;
 
@@ -1311,7 +1356,7 @@ async function executarGeracao() {
   try {
     document.getElementById('terminal').innerHTML = '';
     const method = document.getElementById('genMethod').value;
-    addLog(`Iniciando amostragem (método: ${method}) + rejeição assíncrona (9 filtros)...`, 'system');
+    addLog(`Iniciando amostragem (método: ${method}) + rejeição assíncrona (6 filtros)...`, 'system');
     await new Promise(r => setTimeout(r, 60));
 
     const regra = REGRAS[currentGame];
@@ -1442,9 +1487,11 @@ async function executarGeracaoMultipla() {
 async function guardarTodosBilhetes() {
   if (multiTicketsAtuais.length === 0) return addLog('Gere bilhetes primeiro.', 'warn');
   const regra = REGRAS[currentGame];
-  for (const t of multiTicketsAtuais) await guardarApostaPersistente({ game: regra.nome, nums: t.nums, stars: t.stars, metodo: 'Múltiplo', data: new Date().toLocaleDateString('pt-PT') });
+  let sucessos = 0;
+  for (const t of multiTicketsAtuais) { const ok = await guardarApostaPersistente({ game: regra.nome, nums: t.nums, stars: t.stars, metodo: 'Múltiplo', data: new Date().toLocaleDateString('pt-PT') }); if (ok) sucessos++; }
   await renderApostasGuardadas();
-  addLog(`${multiTicketsAtuais.length} bilhetes guardados.`, 'success');
+  if (sucessos === multiTicketsAtuais.length) { addLog(`${sucessos} bilhetes guardados.`, 'success'); toast(`${sucessos} bilhetes guardados.`); }
+  else { addLog(`${sucessos}/${multiTicketsAtuais.length} bilhetes guardados — armazenamento indisponível para os restantes.`, 'warn'); toast('Falha ao guardar alguns bilhetes.', true); }
 }
 function exportarBilhetesCSV() {
   if (multiTicketsAtuais.length === 0) return addLog('Gere bilhetes primeiro.', 'warn');
@@ -1537,10 +1584,10 @@ async function guardarApostaManual() {
   const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
   const valid = nums.length >= regra.nums.sorteados && stars.length === regra.stars.sorteados;
   if (!valid) return addLog('Aposta manual inválida.', 'warn');
-  await guardarApostaPersistente({ game: regra.nome, nums, stars, metodo: 'Manual', data: new Date().toLocaleDateString('pt-PT') });
+  const ok = await guardarApostaPersistente({ game: regra.nome, nums, stars, metodo: 'Manual', data: new Date().toLocaleDateString('pt-PT') });
   await renderApostasGuardadas();
-  addLog('Aposta manual guardada.', 'success');
-  toast('Aposta manual guardada!');
+  if (ok) { addLog('Aposta manual guardada.', 'success'); toast('Aposta manual guardada!'); }
+  else { addLog('Não foi possível guardar — armazenamento indisponível neste navegador.', 'warn'); toast('Não foi possível guardar.', true); }
   limparApostaManual();
 }
 function limparApostaManual() { renderManualGrids(); }
@@ -1598,9 +1645,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!panel.dataset.nums) return;
       const nums = panel.dataset.nums.split(', ').map(Number);
       const stars = panel.dataset.stars ? panel.dataset.stars.split(', ').map(Number) : [];
-      await guardarApostaPersistente({ game: panel.dataset.game, nums, stars, metodo: panel.dataset.method, data: new Date().toLocaleDateString('pt-PT') });
+      const ok = await guardarApostaPersistente({ game: panel.dataset.game, nums, stars, metodo: panel.dataset.method, data: new Date().toLocaleDateString('pt-PT') });
       await renderApostasGuardadas();
-      addLog('Aposta guardada.', 'success');
+      if (ok) { addLog('Aposta guardada.', 'success'); toast('Aposta guardada.'); }
+      else { addLog('Não foi possível guardar — armazenamento indisponível neste navegador.', 'warn'); toast('Não foi possível guardar.', true); }
     });
 
     document.getElementById('btnFiltersAll').addEventListener('click', () => {
@@ -1619,19 +1667,4 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btnMC1M').addEventListener('click', () => executarMonteCarlo(1000000));
 
     document.getElementById('multiRunBtn').addEventListener('click', executarGeracaoMultipla);
-    document.getElementById('btnSaveAllMulti').addEventListener('click', guardarTodosBilhetes);
-    document.getElementById('btnExportMulti').addEventListener('click', exportarBilhetesCSV);
-
-    document.getElementById('btnSaveManual').addEventListener('click', guardarApostaManual);
-    document.getElementById('btnClearManual').addEventListener('click', limparApostaManual);
-
-    updateUI();
-    updateClock();
-    document.getElementById('methodInfo').textContent = METHOD_INFO['super-genetic'];
-    renderApostasGuardadas();
-    addLog('Sistema pronto. Gerador, Múltiplos Bilhetes, Aposta Manual, Monte Carlo com teste χ² e 9 filtros estruturais ativos.', 'system');
-  } catch (err) { console.error('Erro na inicialização:', err); }
-});
-</script>
-</body>
-</html>
+    document.getElementById('btnSaveAllMu
