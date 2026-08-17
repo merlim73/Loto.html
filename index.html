@@ -3,15 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>JONHY EL BRAVO v26 · OBSERVATÓRIO COMBINATÓRIO</title>
+<title>Registo Pessoal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   TOKENS — Observatório Combinatório
-   Paleta de instrumento de precisão: grafite/marinho profundo,
-   latão (referência à esfera armilar), gelo (dados/probabilidade)
-   ============================================================ */
 :root{
   --void:#0a0d14; --void-2:#0d111a;
   --panel:#111621; --panel-2:#161c2a;
@@ -40,7 +35,6 @@ body{
   position:relative;
   overflow-x:hidden;
 }
-/* layered depth field — stars + orbit rings + vignette, three parallax planes */
 .depth-field{position:fixed;inset:0;z-index:0;pointer-events:none;}
 .depth-field .stars{position:absolute;inset:0;background-image:
   radial-gradient(1px 1px at 12% 18%, rgba(237,234,225,0.5) 0, transparent 60%),
@@ -60,29 +54,26 @@ body{
 @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}}
 
-/* ---------- HERO / INSTRUMENT HEADER ---------- */
+/* ---------- HERO — Zeus & Atlas ---------- */
 .hero{
   position:relative;background:linear-gradient(180deg, var(--panel-2) 0%, var(--panel) 100%);
-  border:1px solid var(--line-strong); border-radius:22px; padding:34px 20px 22px; text-align:center;
-  margin-bottom:16px; box-shadow:var(--shadow-deep); overflow:hidden;
+  border:1px solid var(--line-strong); border-radius:16px; padding:14px 12px 10px; text-align:center;
+  margin-bottom:12px; box-shadow:var(--shadow-panel); overflow:hidden;
 }
-.hero::before{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg, rgba(200,150,62,0.06), transparent 40%),
-  repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255,255,255,0.012) 39px);}
-.armillary-wrap{width:96px;height:96px;margin:0 auto 6px;position:relative;}
-.armillary{width:100%;height:100%;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6));}
-.armillary .ring{fill:none;stroke:var(--brass);stroke-width:1.6;transform-origin:50px 50px;}
-.armillary .ring1{stroke-opacity:0.95;animation:spin1 18s linear infinite;}
-.armillary .ring2{stroke-opacity:0.75;animation:spin2 24s linear infinite reverse;}
-.armillary .ring3{stroke-opacity:0.55;animation:spin1 32s linear infinite;}
-.armillary .core{fill:var(--brass-bright);filter:drop-shadow(0 0 6px rgba(239,194,114,0.8));}
-@keyframes spin1{from{transform:rotateY(0deg) rotate(0deg);}to{transform:rotateY(360deg) rotate(360deg);}}
-@keyframes spin2{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-.eyebrow{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--brass);opacity:0.9;margin-top:6px;}
-h1.brand{font-family:var(--font-display);font-weight:700;font-size:1.7rem;letter-spacing:1px;color:var(--paper);margin-top:6px;}
-h1.brand .accent{color:var(--brass-bright);}
-.sub{font-size:0.72rem;color:var(--paper-dim);margin-top:5px;letter-spacing:0.4px;}
-.clock{font-family:var(--font-mono);font-size:1.15rem;color:var(--ice);font-weight:500;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-strong);letter-spacing:1px;}
+.pets-row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;}
+.pet-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;position:relative;}
+.pet-name{font-family:var(--font-display);font-weight:700;font-size:0.95rem;letter-spacing:1.5px;color:var(--brass-bright);text-transform:uppercase;text-shadow:0 0 14px rgba(var(--brass-rgb),0.5);}
+.pets-amp{font-family:var(--font-display);font-size:1.1rem;color:var(--paper-faint);opacity:0.6;}
+.cat-icon{width:52px;height:52px;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.6));}
+.pet-hearts{position:absolute;top:-6px;left:50%;width:1px;height:1px;pointer-events:none;}
+.heart{position:absolute;font-size:11px;opacity:0;animation:heartFloat5D 3.2s ease-in infinite;filter:drop-shadow(0 0 4px rgba(255,105,180,0.7));}
+@keyframes heartFloat5D{
+  0%{opacity:0;transform:translate(-50%,0) scale(0.4) rotate(-8deg);}
+  15%{opacity:1;transform:translate(-50%,-10px) scale(1) rotate(4deg);}
+  55%{opacity:0.9;transform:translate(calc(-50% + 8px),-38px) scale(1.05) rotate(-6deg);}
+  100%{opacity:0;transform:translate(calc(-50% - 6px),-64px) scale(0.7) rotate(10deg);}
+}
+.clock{font-family:var(--font-mono);font-size:15px;color:#3D8BFF;font-weight:600;margin-top:8px;letter-spacing:0.5px;text-shadow:0 0 10px rgba(61,139,255,0.35);}
 
 /* ---------- GAME SELECTOR ---------- */
 .panel{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);box-shadow:var(--shadow-panel);}
@@ -267,20 +258,70 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 
 <div class="wrap">
   <div class="hero">
-    <div class="armillary-wrap">
-      <svg class="armillary" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g>
-          <ellipse class="ring ring1" cx="50" cy="50" rx="38" ry="38"/>
-          <ellipse class="ring ring2" cx="50" cy="50" rx="38" ry="16" transform="rotate(24 50 50)"/>
-          <ellipse class="ring ring3" cx="50" cy="50" rx="38" ry="16" transform="rotate(-24 50 50)"/>
-          <ellipse class="ring ring2" cx="50" cy="50" rx="16" ry="38" transform="rotate(48 50 50)"/>
-        </g>
-        <circle class="core" cx="50" cy="50" r="4.5"/>
-      </svg>
+    <div class="pets-row">
+      <div class="pet-wrap">
+        <div class="pet-hearts" aria-hidden="true">
+          <span class="heart" style="animation-delay:0s;left:-6px;">💗</span>
+          <span class="heart" style="animation-delay:1.1s;left:4px;">💛</span>
+          <span class="heart" style="animation-delay:2.2s;left:-2px;">💗</span>
+        </div>
+        <svg class="cat-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- ZEUS: gato preto, olhos amarelos -->
+          <ellipse cx="32" cy="50" rx="14" ry="9" fill="#12141a"/>
+          <path d="M20 50 Q17 40 21 36 Q24 44 24 50 Z" fill="#0c0e13"/>
+          <path d="M44 50 Q47 40 43 36 Q40 44 40 50 Z" fill="#0c0e13"/>
+          <circle cx="32" cy="30" r="14" fill="#15171f"/>
+          <path d="M20 22 L15 9 L26 18 Z" fill="#15171f"/>
+          <path d="M44 22 L49 9 L38 18 Z" fill="#15171f"/>
+          <path d="M21 24 L16 13 L25 20 Z" fill="#2a1030"/>
+          <path d="M43 24 L48 13 L39 20 Z" fill="#2a1030"/>
+          <ellipse cx="26" cy="30" rx="3.4" ry="4.2" fill="#FFD23F"/>
+          <ellipse cx="38" cy="30" rx="3.4" ry="4.2" fill="#FFD23F"/>
+          <ellipse cx="26" cy="30" rx="1.3" ry="3.6" fill="#12141a"/>
+          <ellipse cx="38" cy="30" rx="1.3" ry="3.6" fill="#12141a"/>
+          <path d="M30 35 L32 37 L34 35" stroke="#EFC272" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M32 37 Q30 40 27 39.5 M32 37 Q34 40 37 39.5" stroke="#8a8f9c" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M14 27 Q6 25 4 22 M14 30 Q5 30 3 30 M14 33 Q6 35 4 38" stroke="#5c6478" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <path d="M50 27 Q58 25 60 22 M50 30 Q59 30 61 30 M50 33 Q58 35 60 38" stroke="#5c6478" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <path d="M44 48 Q54 44 56 54 Q52 60 46 56" fill="none" stroke="#12141a" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <div class="pet-name">Zeus</div>
+      </div>
+
+      <div class="pets-amp">&amp;</div>
+
+      <div class="pet-wrap">
+        <div class="pet-hearts" aria-hidden="true">
+          <span class="heart" style="animation-delay:0.6s;left:-4px;">💛</span>
+          <span class="heart" style="animation-delay:1.7s;left:5px;">💗</span>
+          <span class="heart" style="animation-delay:2.8s;left:-3px;">💛</span>
+        </div>
+        <svg class="cat-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- ATLAS: gato preto e branco, olhos amarelos, patas traseiras maiores -->
+          <ellipse cx="32" cy="50" rx="15" ry="10" fill="#EDEAE1"/>
+          <path d="M22 44 Q19 52 22 58 Q28 60 28 52 Q27 46 22 44 Z" fill="#15171f"/>
+          <path d="M42 44 Q45 52 42 58 Q36 60 36 52 Q37 46 42 44 Z" fill="#15171f"/>
+          <path d="M19 52 Q17 42 21 38 Q23 46 23 52 Z" fill="#EDEAE1"/>
+          <path d="M45 52 Q47 42 43 38 Q41 46 41 52 Z" fill="#EDEAE1"/>
+          <circle cx="32" cy="30" r="14" fill="#EDEAE1"/>
+          <path d="M22 20 Q26 26 32 27 Q30 18 24 15 Z" fill="#15171f"/>
+          <path d="M20 22 L15 9 L26 18 Z" fill="#15171f"/>
+          <path d="M44 22 L49 9 L38 18 Z" fill="#EDEAE1"/>
+          <path d="M21 24 L16 13 L25 20 Z" fill="#2a1030"/>
+          <path d="M43 24 L48 13 L39 20 Z" fill="#f0d8e0"/>
+          <ellipse cx="26" cy="30" rx="3.4" ry="4.2" fill="#FFD23F"/>
+          <ellipse cx="38" cy="30" rx="3.4" ry="4.2" fill="#FFD23F"/>
+          <ellipse cx="26" cy="30" rx="1.3" ry="3.6" fill="#12141a"/>
+          <ellipse cx="38" cy="30" rx="1.3" ry="3.6" fill="#12141a"/>
+          <path d="M30 35 L32 37 L34 35" stroke="#c98a4a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M32 37 Q30 40 27 39.5 M32 37 Q34 40 37 39.5" stroke="#8a8f9c" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M14 27 Q6 25 4 22 M14 30 Q5 30 3 30 M14 33 Q6 35 4 38" stroke="#9AA3B5" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <path d="M50 27 Q58 25 60 22 M50 30 Q59 30 61 30 M50 33 Q58 35 60 38" stroke="#9AA3B5" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+          <path d="M44 48 Q54 44 56 54 Q52 60 46 56" fill="none" stroke="#EDEAE1" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <div class="pet-name">Atlas</div>
+      </div>
     </div>
-    <div class="eyebrow">Observatório Combinatório · Dados Oficiais Santa Casa</div>
-    <h1 class="brand">JONHY EL <span class="accent">BRAVO</span></h1>
-    <div class="sub">Motor hipergeométrico exato · Genético populacional · Monte Carlo com teste χ² · v26.0</div>
     <div class="clock" id="clock">--:--:--</div>
   </div>
 
@@ -378,7 +419,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     <div class="progress-wrap" id="progressWrap"><div class="progress-bar" id="progressBar"></div></div>
 
     <div class="terminal" id="terminal" aria-live="polite" role="log">
-      <div class="log-line system">> JONHY EL BRAVO v26.0 inicializado. Dias de sorteio verificados junto da fonte oficial (jogossantacasa.pt).</div>
+      <div class="log-line system">> JONHY EL BRAVO v28.0 inicializado. Dias de sorteio verificados junto da fonte oficial (jogossantacasa.pt).</div>
       <div class="log-line math">> Motor: hipergeométrica exata · genético populacional · Monte Carlo com χ² · 6 filtros estruturais.</div>
     </div>
 
@@ -472,7 +513,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
   </div>
 
-  <!-- ===================== TAB HISTÓRICO ===================== -->
   <div class="tabpanel" id="tab-historico">
     <div class="panel">
       <h2>Adicionar Sorteio Real</h2>
@@ -520,7 +560,7 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
       <span class="draw-date">PRÓXIMO SORTEIO: —</span>
       <span class="draw-price">PREÇO DA APOSTA: —</span>
     </div>
-    <div class="version">JONHY EL BRAVO v26.0 · MATEMÁTICA COMBINATÓRIA EXATA · DADOS OFICIAIS SANTA CASA</div>
+    <div class="version">JONHY EL BRAVO v28.0 · MATEMÁTICA COMBINATÓRIA EXATA · DADOS OFICIAIS SANTA CASA</div>
     <div class="legal">As odds apresentadas correspondem às probabilidades oficiais de cada jogo da Santa Casa. Os valores em euros dos escalões inferiores variam por sorteio consoante vendas e nº de vencedores — consulte jogossantacasa.pt para os valores exatos do concurso atual. Filtros, algoritmo genético e métodos de amostragem alteram apenas qual combinação válida é escolhida; nenhum deles altera, aumenta ou garante a probabilidade matemática real de qualquer combinação individual. Cada sorteio é um evento aleatório independente dos anteriores — não existe sistema capaz de prever resultados.</div>
   </div>
 </div>
@@ -528,9 +568,6 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
 <script>
 'use strict';
 
-/* ============================================================
-   DADOS OFICIAIS SANTA CASA
-   ============================================================ */
 const REGRAS = {
   euromilhoes: {
     nome: "EURO MILHÕES",
@@ -589,17 +626,14 @@ const REGRAS = {
   }
 };
 
-/* ============================================================
-   HISTÓRICO DE SORTEIOS REAIS (dados estáticos, inseridos à mão)
-   ============================================================ */
 const HISTORICO_SORTEIOS = {
   euromilhoes: [
     { data: "26/09/2023", numeros: [4, 15, 22, 35, 48], estrelas: [3, 9] },
     { data: "23/09/2023", numeros: [8, 12, 19, 27, 41], estrelas: [2, 6] }
   ],
   totoloto: [
-    { data: "27/09/2023", numeros: [5, 14, 23, 33, 42], sorte: 7 },
-    { data: "23/09/2023", numeros: [2, 11, 20, 31, 40], sorte: 1 }
+    { data: "27/09/2023", numeros: [5, 14, 23, 33, 42, 49], sorte: 7 },
+    { data: "23/09/2023", numeros: [2, 11, 20, 31, 40, 45], sorte: 1 }
   ],
   eurodreams: [
     { data: "25/09/2023", numeros: [1, 9, 15, 22, 30, 38], sonho: 5 },
@@ -626,9 +660,6 @@ const FILTROS_DEF = [
   { id:'filterConsec', t:'Sem 3+ consecutivos', s:'Evita sequências longas, ex. 21-22-23-24' }
 ];
 
-/* ============================================================
-   MATEMÁTICA COMBINATÓRIA EXATA
-   ============================================================ */
 const combCache = new Map();
 function C(n, k) {
   if (k < 0 || k > n || n < 0) return 0;
@@ -644,7 +675,14 @@ function C(n, k) {
 }
 function probHipergeometrica(N, K, n, k) {
   if (k > K || k > n || (n - k) > (N - K)) return 0;
-  return (C(K, k) * C(N - K, n - k)) / C(N, n);
+  const logC = (n, k) => {
+    if (k < 0 || k > n) return -Infinity;
+    k = Math.min(k, n - k);
+    let log = 0;
+    for (let i = 1; i <= k; i++) log += Math.log(n - k + i) - Math.log(i);
+    return log;
+  };
+  return Math.exp(logC(K, k) + logC(N - K, n - k) - logC(N, n));
 }
 function probSistemaPeloMenos(N, K, n, minK) {
   const upper = Math.min(n, K);
@@ -686,7 +724,6 @@ function contarConsecutivosMax(nums) {
   for (let i = 1; i < nums.length; i++) { if (nums[i] === nums[i-1]+1) { atual++; maxConsec = Math.max(maxConsec, atual); } else atual = 1; }
   return maxConsec;
 }
-function contarParesProximos(nums) { let c=0; for (let i=1;i<nums.length;i++) if (nums[i]-nums[i-1]<3) c++; return c; }
 function contarMaxPorDezena(nums) { const d={}; nums.forEach(n=>{const k=Math.floor((n-1)/10); d[k]=(d[k]||0)+1;}); return Math.max(...Object.values(d)); }
 function contarMetades(nums, max) { const meio = max/2; const baixa = nums.filter(n=>n<=meio).length; const alta = nums.length - baixa; return { baixa, alta }; }
 function calcularEntropia(nums, max) {
@@ -719,15 +756,12 @@ function passaFiltros(nums, filtros, somaMin, somaMax, quartis, maxNum, ultimaAp
   return true;
 }
 
-/* ============================================================
-   PESOS SIMULADOS
-   ============================================================ */
 const pesosSimulados = {};
 function getPesosSimulados(gameKey) {
   if (pesosSimulados[gameKey]) return pesosSimulados[gameKey];
   const regra = REGRAS[gameKey];
   const freq = new Array(regra.nums.max + 1).fill(0);
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 1000; i++) {
     const nums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, regra.nums.sorteados);
     nums.forEach(n => { freq[n]++; });
   }
@@ -736,14 +770,11 @@ function getPesosSimulados(gameKey) {
   return pesos;
 }
 
-/* ============================================================
-   ALGORITMO GENÉTICO POPULACIONAL
-   ============================================================ */
 function fitnessMultiObjetivo(nums, regra, nQty) {
   const stats = calcularEstatisticasSoma(regra.nums.max, nQty);
   const soma = nums.reduce((a, b) => a + b, 0);
   const z = Math.abs((soma - stats.mu) / (stats.sigma || 1));
-  const scoreSoma = Math.max(0, 1 - z / 2.5);
+  const scoreSoma = Math.exp(-z * 0.4);
   const pares = nums.filter(n => n % 2 === 0).length;
   const scorePar = 1 - Math.abs(pares - nQty / 2) / (nQty / 2 || 1);
   const quartis = calcularQuartis(regra.nums.max);
@@ -792,17 +823,25 @@ function mutar(nums, min, max, taxa) {
   return [...new Set(res)].sort((a, b) => a - b).slice(0, nums.length);
 }
 function superGenetico(regra, nQty, popSize, geracoes) {
-  popSize = popSize || 60; geracoes = geracoes || 30;
+  popSize = popSize || 80; geracoes = geracoes || 40;
   const min = regra.nums.min, max = regra.nums.max;
   let populacao = [];
-  for (let i = 0; i < popSize; i++) populacao.push(amostraUniformeSemReposicao(min, max, nQty));
+  const w = getPesosSimulados(Object.keys(REGRAS).find(k => REGRAS[k] === regra) || 'euromilhoes');
+  const maxFreq = Math.max(...w.freq.slice(1)) || 1;
+  for (let i = 0; i < popSize; i++) {
+    if (i < popSize * 0.3) {
+      populacao.push(amostraPonderadaSemReposicao(min, max, nQty, n => 0.3 + (w.freq[n] / maxFreq) * 1.5));
+    } else {
+      populacao.push(amostraUniformeSemReposicao(min, max, nQty));
+    }
+  }
   for (let g = 0; g < geracoes; g++) {
     const scored = populacao.map(ind => ({ ind, fit: fitnessMultiObjetivo(ind, regra, nQty) })).sort((a, b) => b.fit - a.fit);
-    const elite = scored.slice(0, Math.max(3, Math.floor(popSize * 0.12))).map(x => x.ind);
+    const elite = scored.slice(0, Math.max(4, Math.floor(popSize * 0.15))).map(x => x.ind);
     const nova = [...elite];
     while (nova.length < popSize) {
-      const t1 = scored[Math.floor(Math.random() * Math.min(25, scored.length))].ind;
-      const t2 = scored[Math.floor(Math.random() * Math.min(25, scored.length))].ind;
+      const t1 = scored[Math.floor(Math.random() * Math.min(30, scored.length))].ind;
+      const t2 = scored[Math.floor(Math.random() * Math.min(30, scored.length))].ind;
       let filho = crossoverOrdenado(t1, t2);
       if (filho.length !== nQty) filho = amostraUniformeSemReposicao(min, max, nQty);
       filho = mutar(filho, min, max, 0.14 + 0.12 * (1 - g / geracoes));
@@ -814,9 +853,6 @@ function superGenetico(regra, nQty, popSize, geracoes) {
   return finalScored[0].ind;
 }
 
-/* ============================================================
-   MÉTODOS DE AMOSTRAGEM
-   ============================================================ */
 function gerarCandidatoNumeros(regra, nQty, method, gameKey) {
   const min = regra.nums.min, max = regra.nums.max;
   switch (method) {
@@ -921,9 +957,6 @@ function getCombinations(arr, k) {
 let currentGame = 'euromilhoes';
 let ultimaApostaGerador = null;
 
-/* ============================================================
-   PERSISTÊNCIA
-   ============================================================ */
 const STORAGE_KEY = 'jonhy_el_bravo_apostas_guardadas';
 const temWindowStorage = () => (typeof window !== 'undefined' && window.storage && typeof window.storage.get === 'function' && typeof window.storage.set === 'function');
 
@@ -1020,9 +1053,6 @@ function selecionarJogo(gameKey) {
   updateUI();
 }
 
-/* ============================================================
-   UI: TAB GERADOR
-   ============================================================ */
 function renderFilterGrid() {
   const grid = document.getElementById('filterGrid');
   grid.innerHTML = FILTROS_DEF.map(f => `
@@ -1030,16 +1060,6 @@ function renderFilterGrid() {
       <input type="checkbox" id="${f.id}" checked>
       <span class="fc-text"><span class="fc-title">${f.t}</span><br><span class="fc-sub">${f.s}</span></span>
     </label>`).join('');
-}
-
-function switchTab(tab) {
-  document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  const target = document.getElementById('tab-' + tab);
-  if (target) target.classList.add('active');
-  document.querySelector(`.tab[data-tab="${tab}"]`)?.classList.add('active');
-  if (tab === 'historico') { renderHistoricoTable(currentGame); renderHistoricoInputGrids(); }
-  if (tab === 'multiplo') { updateMultiUI(); }
 }
 
 function updateUI() {
@@ -1071,12 +1091,6 @@ function updateUI() {
 
     nSel.onchange = function () { document.getElementById('nQtyDisplay').textContent = this.value; updatePriceDisplay(); updateFooter(); renderPrizeTable(regra); };
     sSel.onchange = function () { document.getElementById('sQtyDisplay').textContent = this.value; updatePriceDisplay(); updateFooter(); renderPrizeTable(regra); };
-
-    // Método info
-    document.getElementById('genMethod').onchange = function() {
-      document.getElementById('methodInfo').textContent = METHOD_INFO[this.value] || '';
-    };
-    document.getElementById('methodInfo').textContent = METHOD_INFO[document.getElementById('genMethod').value] || '';
 
     renderPrizeTable(regra);
     updateFirstPrize(regra);
@@ -1120,9 +1134,6 @@ function updateFirstPrize(regra) {
   document.getElementById('fpJackpot').textContent = regra.jackpotInfo;
 }
 
-/* ============================================================
-   TABELAS DE ESCALÕES
-   ============================================================ */
 function construirTabelaEscaloes(regra, nQty, sQty, targetIdx) {
   const isSystem = nQty > regra.nums.sorteados || sQty > regra.stars.sorteados;
   let html = `<table class="prize-table"><thead><tr>
@@ -1172,9 +1183,6 @@ function renderResultEscalaoTable(regra, nQty, sQty) {
   document.getElementById('resultEscalaoTable').innerHTML = construirTabelaEscaloes(regra, nQty, sQty);
 }
 
-/* ============================================================
-   HISTÓRICO
-   ============================================================ */
 function getExtraLabel(gameKey) {
   if (gameKey === 'euromilhoes') return 'Estrelas';
   if (gameKey === 'totoloto') return 'Nº Sorte';
@@ -1352,9 +1360,6 @@ async function adicionarSorteioHistorico() {
   else { addLog('Sorteio adicionado nesta sessão, mas não foi possível guardar de forma persistente.', 'warn'); toast('Guardado só nesta sessão.', true); }
 }
 
-/* ============================================================
-   LOG / PROGRESSO / TOAST
-   ============================================================ */
 function toast(msg, isError) {
   try {
     let t = document.getElementById('globalToast');
@@ -1431,9 +1436,6 @@ function exibirResultado(nums, stars, regra, resultado, nQty, sQty, method) {
   setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
 }
 
-/* ============================================================
-   CÓPIA
-   ============================================================ */
 function copiarTexto(texto) {
   return new Promise((resolve, reject) => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -1452,9 +1454,6 @@ function copiarFallback(texto, resolve, reject) {
   } catch (e) { reject(e); }
 }
 
-/* ============================================================
-   MONTE CARLO
-   ============================================================ */
 function runMonteCarloAsync(regra, totalSorteios, onProgress) {
   return new Promise((resolve) => {
     const tamanhoBloco = 20000;
@@ -1592,9 +1591,6 @@ async function executarMonteCarlo(totalSorteios) {
   setProgress(null, 'mcProgressWrap', 'mcProgressBar');
 }
 
-/* ============================================================
-   GERAR COMBINAÇÃO PRINCIPAL (TAB GERADOR)
-   ============================================================ */
 async function executarGeracao() {
   const btn = document.getElementById('runBtn');
   btn.disabled = true;
@@ -1636,9 +1632,6 @@ async function executarGeracao() {
   }
 }
 
-/* ============================================================
-   TAB MÚLTIPLOS BILHETES
-   ============================================================ */
 let selectedTickets = 3;
 let multiTicketsAtuais = [];
 
@@ -1665,120 +1658,129 @@ function updateMultiUI() {
   for (let i = regra.stars.minAposta; i <= regra.stars.maxAposta; i++) { const opt = document.createElement('option'); opt.value = i; opt.textContent = i; sSel.appendChild(opt); }
   sSel.value = regra.stars.minAposta;
   sSel.disabled = isFixed;
-  document.getElementById('multiStarLabel').textContent = regra.stars.nome + (isFixed ? ' (fixo)' : '');
+  document.getElementById('multiStarLabel').textContent = regra.stars.nome;
+  nSel.onchange = updateMultiPriceDisplay;
+  sSel.onchange = updateMultiPriceDisplay;
   buildTicketSelector();
   updateMultiPriceDisplay();
-  document.getElementById('multiTicketsList').innerHTML = '';
-  multiTicketsAtuais = [];
 }
 function updateMultiPriceDisplay() {
   const regra = REGRAS[currentGame];
-  const n = parseInt(document.getElementById('multiN').value, 10);
-  const s = parseInt(document.getElementById('multiS').value, 10);
-  const { totalCombos, custo } = calcularPreco(regra, n, s);
+  const n = parseInt(document.getElementById('multiN').value, 10) || regra.nums.minAposta;
+  const s = parseInt(document.getElementById('multiS').value, 10) || regra.stars.minAposta;
+  const { custo } = calcularPreco(regra, n, s);
   const total = custo * selectedTickets;
   document.getElementById('multiTotalPrice').textContent = `€ ${total.toFixed(2).replace('.', ',')}`;
-  document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) · ${totalCombos.toLocaleString('pt-PT')} combinações cada · ${n}+${s}`;
+  document.getElementById('multiTotalDetail').textContent = `${selectedTickets} bilhete(s) × € ${custo.toFixed(2).replace('.', ',')}`;
 }
+async function executarGeracaoMultipla() {
+  const btn = document.getElementById('multiRunBtn');
+  btn.disabled = true;
+  btn.textContent = 'A gerar...';
+  setProgress(2, 'multiProgressWrap', 'multiProgressBar');
 
-function gerarMultiplos() {
-  const regra = REGRAS[currentGame];
-  const n = parseInt(document.getElementById('multiN').value, 10);
-  const s = parseInt(document.getElementById('multiS').value, 10);
-  const overlap = parseInt(document.getElementById('multiOverlap').value, 10);
-  const qtd = selectedTickets;
-  const tickets = [];
-  let tentativas = 0;
-  const maxTent = 5000;
-  const progressWrap = document.getElementById('multiProgressWrap');
-  const progressBar = document.getElementById('multiProgressBar');
+  try {
+    const regra = REGRAS[currentGame];
+    let n = parseInt(document.getElementById('multiN').value, 10);
+    let s = parseInt(document.getElementById('multiS').value, 10);
+    if (!n || isNaN(n) || n < regra.nums.sorteados) n = regra.nums.minAposta;
+    if (!s || isNaN(s) || s < regra.stars.sorteados) s = regra.stars.minAposta;
+    const maxOverlap = parseInt(document.getElementById('multiOverlap').value, 10) || 99;
 
-  for (let i = 0; i < qtd && tentativas < maxTent * 10; i++) {
-    let nums, stars;
-    let valido = false;
-    let loops = 0;
-    while (!valido && loops < maxTent) {
-      loops++;
-      tentativas++;
-      nums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, n).sort((a,b)=>a-b);
-      stars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, s).sort((a,b)=>a-b);
-      valido = true;
-      if (overlap < 99 && tickets.length > 0) {
-        for (const existente of tickets) {
-          const iguaisNums = nums.filter(x => existente.nums.includes(x)).length;
-          const iguaisStars = stars.filter(x => existente.stars.includes(x)).length;
-          if (iguaisNums > overlap || iguaisStars > overlap) { valido = false; break; }
+    const ticketsGerados = [];
+    const maxTentativasPorBilhete = 5000;
+    const method = document.getElementById('genMethod').value;
+
+    for (let i = 0; i < selectedTickets; i++) {
+      setProgress(((i + 1) / selectedTickets) * 100, 'multiProgressWrap', 'multiProgressBar');
+
+      let sucesso = false;
+      let tentativaLocal = 0;
+      let ultimoResultado = null;
+
+      while (!sucesso && tentativaLocal < maxTentativasPorBilhete) {
+        tentativaLocal++;
+        const result = await gerarCombinacaoAsync(
+          regra, n, s,
+          method,
+          currentGame,
+          null,   // não há "última aposta" a evitar
+          null
+        );
+
+        // Verifica sobreposição com os bilhetes já gerados
+        let overlapTotal = 0;
+        for (const existente of ticketsGerados) {
+          const numsExistentes = new Set(existente.nums);
+          const starsExistentes = new Set(existente.stars);
+          const overlapNums = result.nums.filter(num => numsExistentes.has(num)).length;
+          const overlapStars = result.stars.filter(star => starsExistentes.has(star)).length;
+          overlapTotal = overlapNums + overlapStars;
+          if (overlapTotal > maxOverlap) break;
+        }
+
+        if (overlapTotal <= maxOverlap) {
+          ticketsGerados.push({ nums: result.nums, stars: result.stars });
+          sucesso = true;
+          ultimoResultado = result;
         }
       }
-    }
-    tickets.push({ nums, stars, idx: i + 1 });
-    if (i % Math.max(1, Math.floor(qtd / 20)) === 0) {
-      progressWrap.classList.add('active');
-      progressBar.style.width = ((i / qtd) * 100) + '%';
-    }
-  }
-  progressWrap.classList.remove('active');
-  progressBar.style.width = '0%';
 
-  multiTicketsAtuais = tickets;
-  const list = document.getElementById('multiTicketsList');
-  if (tickets.length === 0) { list.innerHTML = '<div class="prize-legend">Não foi possível gerar bilhetes com esta restrição.</div>'; return; }
+      if (!sucesso) {
+        // Fallback: geração puramente aleatória (sem filtros)
+        const nums = amostraUniformeSemReposicao(regra.nums.min, regra.nums.max, n);
+        const stars = amostraUniformeSemReposicao(regra.stars.min, regra.stars.max, s);
+        ticketsGerados.push({ nums, stars });
+        addLog(`Bilhete ${i+1}: gerado por fallback (sem restrição)`, 'warn');
+      } else {
+        addLog(`Bilhete ${i+1}: gerado com sucesso`, 'system');
+      }
+    }
+
+    multiTicketsAtuais = ticketsGerados;
+    renderMultiTickets(ticketsGerados, regra);
+    updateMultiPriceDisplay();
+    toast(`${ticketsGerados.length} bilhetes gerados.`);
+
+  } catch (err) {
+    console.error('Erro em múltiplos:', err);
+    addLog('Erro: ' + err.message, 'warn');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Gerar bilhetes';
+    setProgress(null, 'multiProgressWrap', 'multiProgressBar');
+  }
+}
+
+function renderMultiTickets(tickets, regra) {
+  const container = document.getElementById('multiTicketsList');
+  if (!tickets || tickets.length === 0) {
+    container.innerHTML = '<p style="font-size:0.72rem;color:var(--paper-dim);">Nenhum bilhete gerado ainda.</p>';
+    return;
+  }
+
   let html = '';
-  tickets.forEach(t => {
-    const custo = calcularPreco(regra, n, s);
-    html += `<div class="ticket-card"><div class="th">Bilhete #${t.idx} · € ${custo.custo.toFixed(2).replace('.', ',')}</div><div class="balls">`;
-    t.nums.forEach(num => { html += `<div class="ball n small">${String(num).padStart(2,'0')}</div>`; });
-    if (t.stars.length) {
-      html += `<div style="display:flex;gap:7px;align-items:center;margin-left:6px;">`;
-      t.stars.forEach(s => { html += `<div class="ball s small">${String(s).padStart(2,'0')}</div>`; });
-      html += `</div>`;
-    }
-    html += `</div></div>`;
+  tickets.forEach((t, idx) => {
+    const { custo } = calcularPreco(regra, t.nums.length, t.stars.length);
+    html += `
+      <div class="ticket-card">
+        <div class="th">Bilhete #${idx + 1}</div>
+        <div class="balls" style="gap:7px;">
+          ${t.nums.map(n => `<div class="ball n" style="width:42px;height:42px;font-size:1rem;">${String(n).padStart(2,'0')}</div>`).join('')}
+          <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--line-strong),transparent);margin:4px 0;"></div>
+          ${t.stars.map(s => `<div class="ball s" style="width:36px;height:36px;font-size:0.9rem;">${String(s).padStart(2,'0')}</div>`).join('')}
+        </div>
+        <div style="font-family:var(--font-mono);font-size:0.58rem;color:var(--paper-faint);margin-top:4px;">
+          € ${custo.toFixed(2).replace('.', ',')}
+        </div>
+      </div>
+    `;
   });
-  list.innerHTML = html;
-  addLog(`${tickets.length} bilhete(s) gerado(s) com ${overlap < 99 ? 'sobreposição ≤ ' + overlap : 'sobreposição livre'}.`, 'success');
-  toast(`${tickets.length} bilhetes gerados.`);
+
+  container.innerHTML = html;
 }
 
-async function guardarTodosMulti() {
-  if (!multiTicketsAtuais.length) { toast('Nenhum bilhete para guardar.', true); return; }
-  const regra = REGRAS[currentGame];
-  const n = parseInt(document.getElementById('multiN').value, 10);
-  const s = parseInt(document.getElementById('multiS').value, 10);
-  let guardados = 0;
-  for (const t of multiTicketsAtuais) {
-    const entry = {
-      nums: t.nums,
-      stars: t.stars,
-      game: regra.nome,
-      metodo: 'Múltiplo',
-      data: new Date().toLocaleDateString('pt-PT')
-    };
-    const ok = await guardarApostaPersistente(entry);
-    if (ok) guardados++;
-  }
-  renderApostasGuardadas();
-  toast(`${guardados} bilhete(s) guardado(s).`);
-  addLog(`${guardados} bilhetes guardados.`, 'success');
-}
-function exportarMultiCSV() {
-  if (!multiTicketsAtuais.length) { toast('Nenhum bilhete para exportar.', true); return; }
-  let csv = 'Bilhete,Números,Estrelas\n';
-  multiTicketsAtuais.forEach(t => {
-    csv += `${t.idx},"${t.nums.join(';')}","${t.stars.join(';')}"\n`;
-  });
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `bilhetes_${currentGame}_${new Date().toISOString().slice(0,10)}.csv`;
-  link.click();
-  URL.revokeObjectURL(link.href);
-  toast('CSV exportado.');
-}
-
-/* ============================================================
-   TAB MANUAL
-   ============================================================ */
+// ===================== MANUAL =====================
 let manualSelectedNums = new Set();
 let manualSelectedStars = new Set();
 
@@ -1786,8 +1788,10 @@ function renderManualGrids() {
   const regra = REGRAS[currentGame];
   manualSelectedNums.clear();
   manualSelectedStars.clear();
-  document.getElementById('manualNumLabel').textContent = `Números (mín. ${regra.nums.sorteados})`;
-  document.getElementById('manualStarLabel').textContent = `${regra.stars.nome} (mín. ${regra.stars.sorteados})`;
+
+  document.getElementById('manualNumLabel').textContent = `Números (escolha ${regra.nums.minAposta} a ${regra.nums.maxAposta})`;
+  document.getElementById('manualStarLabel').textContent = `${regra.stars.nome} (escolha ${regra.stars.minAposta} a ${regra.stars.maxAposta})`;
+
   const numGrid = document.getElementById('manualNumGrid');
   numGrid.innerHTML = '';
   for (let i = 1; i <= regra.nums.max; i++) {
@@ -1802,6 +1806,7 @@ function renderManualGrids() {
   }
   updateManualUI();
 }
+
 function toggleManualNum(n, btn) {
   if (manualSelectedNums.has(n)) { manualSelectedNums.delete(n); btn.classList.remove('sel-n'); }
   else { manualSelectedNums.add(n); btn.classList.add('sel-n'); }
@@ -1816,159 +1821,216 @@ function updateManualUI() {
   const regra = REGRAS[currentGame];
   const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
   const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
-  const n = nums.length;
-  const s = stars.length;
-  const nMin = regra.nums.sorteados;
-  const sMin = regra.stars.sorteados;
-  const valido = n >= nMin && s >= sMin;
-  const { totalCombos, custo } = calcularPreco(regra, n, s);
-  document.getElementById('manualPrice').textContent = `€ ${custo.toFixed(2).replace('.', ',')}`;
-  document.getElementById('manualPriceDetail').textContent = valido ? `${totalCombos.toLocaleString('pt-PT')} combinação(ões) · ${n}+${s}` : `Selecione pelo menos ${nMin}+${sMin}`;
-  document.getElementById('manualComb').textContent = valido ? totalCombos.toLocaleString('pt-PT') : '—';
-  const soma = nums.reduce((a,b)=>a+b,0);
-  document.getElementById('manualSum').textContent = valido ? soma : '—';
+  const nOK = nums.length >= regra.nums.minAposta && nums.length <= regra.nums.maxAposta;
+  const sOK = stars.length >= regra.stars.minAposta && stars.length <= regra.stars.maxAposta;
+  const valid = nOK && sOK;
+
   const msg = document.getElementById('manualValidation');
-  const preview = document.getElementById('manualCombosPreview');
-  if (!valido) { msg.textContent = `Selecione pelo menos ${nMin} números e ${sMin} ${regra.stars.nome}.`; msg.className = 'validation-msg err'; preview.style.display = 'none'; return; }
-  msg.textContent = `✓ ${totalCombos.toLocaleString('pt-PT')} combinações · € ${custo.toFixed(2).replace('.', ',')}`;
-  msg.className = 'validation-msg ok';
-  if (totalCombos <= 2000 && totalCombos > 0) {
-    const todas = getCombinations(nums, regra.nums.sorteados);
-    const allStars = getCombinations(stars, regra.stars.sorteados);
-    let html = '';
-    let count = 0;
-    for (const c of todas) {
-      for (const st of allStars) {
-        if (count++ > 500) break;
-        html += `<span class="combo-chip">${c.join(' ')}  |  ${st.join(' ')}</span>`;
-      }
-      if (count > 500) break;
-    }
-    preview.innerHTML = html + (count > 500 ? '<span class="combo-chip">...</span>' : '');
-    preview.style.display = 'flex';
+  if (!valid) {
+    const errs = [];
+    if (!nOK) errs.push(`Números: ${nums.length} (min ${regra.nums.minAposta}, max ${regra.nums.maxAposta})`);
+    if (!sOK) errs.push(`${regra.stars.nome}: ${stars.length} (min ${regra.stars.minAposta}, max ${regra.stars.maxAposta})`);
+    msg.textContent = errs.join(' · ');
+    msg.className = 'validation-msg err';
   } else {
-    preview.innerHTML = `<span class="combo-chip">${totalCombos.toLocaleString('pt-PT')} combinações — demasiadas para listar</span>`;
-    preview.style.display = 'flex';
+    msg.textContent = '✓ Aposta válida';
+    msg.className = 'validation-msg ok';
   }
-  document.getElementById('manualEscalaoTable').innerHTML = construirTabelaEscaloes(regra, n, s);
-}
-async function guardarManual() {
-  const regra = REGRAS[currentGame];
-  const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
-  const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
-  if (nums.length < regra.nums.sorteados || stars.length < regra.stars.sorteados) {
-    toast('Selecione números suficientes.', true); return;
+
+  // Preço e combinações
+  if (valid) {
+    const { totalCombos, custo } = calcularPreco(regra, nums.length, stars.length);
+    document.getElementById('manualPrice').textContent = `€ ${custo.toFixed(2).replace('.', ',')}`;
+    document.getElementById('manualPriceDetail').textContent = `${totalCombos.toLocaleString('pt-PT')} combinação(ões) · ${nums.length}+${stars.length}`;
+    document.getElementById('manualComb').textContent = totalCombos.toLocaleString('pt-PT');
+    document.getElementById('manualSum').textContent = nums.reduce((a,b)=>a+b,0);
+    // Previsualização de combinações (só se não for demasiado grande)
+    const maxCombosPreview = 200;
+    if (totalCombos > 0 && totalCombos <= maxCombosPreview) {
+      const combosNums = getCombinations(nums, regra.nums.sorteados);
+      const combosStars = getCombinations(stars, regra.stars.sorteados);
+      const preview = document.getElementById('manualCombosPreview');
+      preview.style.display = 'flex';
+      let html = '';
+      const limit = 30;
+      combosNums.slice(0, limit).forEach(cn => {
+        combosStars.slice(0, limit).forEach(cs => {
+          html += `<span class="combo-chip">${cn.join(' ')}  |  ${cs.join(' ')}</span>`;
+        });
+      });
+      if (combosNums.length * combosStars.length > limit * limit) html += `<span class="combo-chip">… mais ${(combosNums.length * combosStars.length - limit*limit).toLocaleString('pt-PT')} combinações</span>`;
+      preview.innerHTML = html;
+    } else {
+      document.getElementById('manualCombosPreview').style.display = 'none';
+    }
+    // Tabela de escalões
+    document.getElementById('manualEscalaoTable').innerHTML = construirTabelaEscaloes(regra, nums.length, stars.length);
+  } else {
+    document.getElementById('manualPrice').textContent = '€ 0,00';
+    document.getElementById('manualPriceDetail').textContent = 'Selecione números';
+    document.getElementById('manualComb').textContent = '0';
+    document.getElementById('manualSum').textContent = '0';
+    document.getElementById('manualCombosPreview').style.display = 'none';
+    document.getElementById('manualEscalaoTable').innerHTML = '<div class="prize-legend">Selecione números e estrelas válidos para ver as odds.</div>';
   }
-  const entry = {
-    nums: nums,
-    stars: stars,
-    game: regra.nome,
-    metodo: 'Manual',
-    data: new Date().toLocaleDateString('pt-PT')
-  };
-  const ok = await guardarApostaPersistente(entry);
-  if (ok) { toast('Aposta manual guardada.'); addLog('Aposta manual guardada.', 'success'); renderApostasGuardadas(); } else toast('Erro ao guardar.', true);
-}
-function limparManual() {
-  manualSelectedNums.clear();
-  manualSelectedStars.clear();
-  document.querySelectorAll('#manualNumGrid .pick-btn').forEach(b => b.classList.remove('sel-n'));
-  document.querySelectorAll('#manualStarGrid .pick-btn').forEach(b => b.classList.remove('sel-s'));
-  updateManualUI();
 }
 
-/* ============================================================
-   INICIALIZAÇÃO
-   ============================================================ */
-function init() {
-  // Load custom history
-  (async () => {
-    const h = await carregarHistoricoCustom();
-    historicoCustom = h;
-    renderHistoricoTable(currentGame);
-  })();
+// ===================== SWITCH TAB =====================
+function switchTab(tabId) {
+  document.querySelectorAll('.tabpanel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
+}
+
+// ===================== RELÓGIO =====================
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent = now.toLocaleTimeString('pt-PT', { hour12: false });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ===================== INICIALIZAÇÃO =====================
+document.addEventListener('DOMContentLoaded', async function() {
+  // Carregar histórico custom
+  historicoCustom = await carregarHistoricoCustom();
 
   renderFilterGrid();
-  document.getElementById('gameType').addEventListener('change', updateUI);
+  updateUI();
+  renderApostasGuardadas();
 
-  // Filter buttons
-  document.getElementById('btnFiltersAll').onclick = () => {
-    document.querySelectorAll('#filterGrid input').forEach(cb => cb.checked = true);
-    addLog('Todos os filtros ativados.', 'system');
-  };
-  document.getElementById('btnFiltersNone').onclick = () => {
-    document.querySelectorAll('#filterGrid input').forEach(cb => cb.checked = false);
-    addLog('Sorteio puro — nenhum filtro aplicado.', 'system');
-  };
+  // Método info
+  document.getElementById('genMethod').addEventListener('change', function() {
+    document.getElementById('methodInfo').textContent = METHOD_INFO[this.value] || '';
+  });
+  document.getElementById('genMethod').dispatchEvent(new Event('change'));
 
-  // Run button
-  document.getElementById('runBtn').onclick = executarGeracao;
+  // Filtros all/none
+  document.getElementById('btnFiltersAll').addEventListener('click', () => {
+    FILTROS_DEF.forEach(f => { const el = document.getElementById(f.id); if (el) el.checked = true; });
+  });
+  document.getElementById('btnFiltersNone').addEventListener('click', () => {
+    FILTROS_DEF.forEach(f => { const el = document.getElementById(f.id); if (el) el.checked = false; });
+  });
 
-  // Monte Carlo buttons
-  document.getElementById('btnMC10k').onclick = () => executarMonteCarlo(10000);
-  document.getElementById('btnMC100k').onclick = () => executarMonteCarlo(100000);
-  document.getElementById('btnMC500k').onclick = () => executarMonteCarlo(500000);
-  document.getElementById('btnMC1M').onclick = () => executarMonteCarlo(1000000);
+  // Botão gerar
+  document.getElementById('runBtn').addEventListener('click', executarGeracao);
 
-  // Multi buttons
-  document.getElementById('multiRunBtn').onclick = gerarMultiplos;
-  document.getElementById('btnSaveAllMulti').onclick = guardarTodosMulti;
-  document.getElementById('btnExportMulti').onclick = exportarMultiCSV;
-  document.getElementById('multiN').onchange = updateMultiPriceDisplay;
-  document.getElementById('multiS').onchange = updateMultiPriceDisplay;
-  document.getElementById('multiOverlap').onchange = updateMultiPriceDisplay;
-
-  // Copy, Save, Repeat
-  document.getElementById('btnCopy').onclick = () => {
+  // Botões resultado
+  document.getElementById('btnCopy').addEventListener('click', async function() {
     const panel = document.getElementById('resultPanel');
-    if (!panel.dataset.nums) { toast('Nada para copiar.', true); return; }
-    const txt = `${panel.dataset.nums}  |  ${panel.dataset.stars || ''}`;
-    copiarTexto(txt).then(() => { toast('Copiado!'); }).catch(() => toast('Erro ao copiar.', true));
-  };
-  document.getElementById('btnSave').onclick = async () => {
+    if (!panel || panel.style.display === 'none') { toast('Nenhuma combinação para copiar.', true); return; }
+    const nums = panel.dataset.nums;
+    const stars = panel.dataset.stars;
+    const txt = `Números: ${nums} | ${stars}`;
+    try { await copiarTexto(txt); toast('Copiado!'); } catch (e) { toast('Erro ao copiar.', true); }
+  });
+  document.getElementById('btnSave').addEventListener('click', async function() {
     const panel = document.getElementById('resultPanel');
-    if (!panel.dataset.nums) { toast('Nada para guardar.', true); return; }
+    if (!panel || panel.style.display === 'none') { toast('Nenhuma combinação para guardar.', true); return; }
     const entry = {
-      nums: panel.dataset.nums.split(',').map(Number),
-      stars: panel.dataset.stars ? panel.dataset.stars.split(',').map(Number) : [],
       game: panel.dataset.game || REGRAS[currentGame].nome,
-      metodo: panel.dataset.method || 'Gerador',
+      nums: panel.dataset.nums.split(', ').map(Number),
+      stars: panel.dataset.stars.split(', ').map(Number),
+      metodo: panel.dataset.method || document.getElementById('genMethod').value,
       data: new Date().toLocaleDateString('pt-PT')
     };
     const ok = await guardarApostaPersistente(entry);
-    if (ok) { toast('Aposta guardada.'); addLog('Aposta guardada.', 'success'); renderApostasGuardadas(); } else toast('Erro ao guardar.', true);
-  };
-  document.getElementById('btnRepeat').onclick = executarGeracao;
+    if (ok) { toast('Guardado!'); renderApostasGuardadas(); } else toast('Erro ao guardar.', true);
+  });
+  document.getElementById('btnRepeat').addEventListener('click', executarGeracao);
 
-  // History buttons
-  document.getElementById('btnAddHistorico').onclick = adicionarSorteioHistorico;
-  document.getElementById('histMonthFilter').onchange = () => renderHistoricoTable(currentGame);
-  document.getElementById('histDrawDate').addEventListener('input', updateHistValidation);
-  document.getElementById('histDrawDate').addEventListener('blur', updateHistValidation);
+  // Botões Monte Carlo
+  document.getElementById('btnMC10k').addEventListener('click', () => executarMonteCarlo(10000));
+  document.getElementById('btnMC100k').addEventListener('click', () => executarMonteCarlo(100000));
+  document.getElementById('btnMC500k').addEventListener('click', () => executarMonteCarlo(500000));
+  document.getElementById('btnMC1M').addEventListener('click', () => executarMonteCarlo(1000000));
 
-  // Clear history
-  document.getElementById('btnClearHistory').onclick = async () => {
-    if (!confirm('Limpar todas as apostas guardadas?')) return;
-    const ok = await limparApostasPersistentes();
-    if (ok) { renderApostasGuardadas(); toast('Histórico limpo.'); addLog('Apostas guardadas limpas.', 'system'); } else toast('Erro ao limpar.', true);
-  };
-  // Manual buttons
-  document.getElementById('btnSaveManual').onclick = guardarManual;
-  document.getElementById('btnClearManual').onclick = limparManual;
+  // Tab múltiplos
+  document.getElementById('multiRunBtn').addEventListener('click', executarGeracaoMultipla);
+  // Guardar todos os múltiplos
+  document.getElementById('btnSaveAllMulti').addEventListener('click', async function() {
+    if (!multiTicketsAtuais || multiTicketsAtuais.length === 0) {
+      toast('Gere bilhetes primeiro.', true);
+      return;
+    }
+    const regra = REGRAS[currentGame];
+    for (const t of multiTicketsAtuais) {
+      const entry = {
+        game: regra.nome,
+        nums: t.nums,
+        stars: t.stars,
+        metodo: 'Múltiplos',
+        data: new Date().toLocaleDateString('pt-PT')
+      };
+      await guardarApostaPersistente(entry);
+    }
+    toast(`${multiTicketsAtuais.length} bilhetes guardados.`);
+    await renderApostasGuardadas();
+  });
+  // Exportar CSV
+  document.getElementById('btnExportMulti').addEventListener('click', function() {
+    if (!multiTicketsAtuais || multiTicketsAtuais.length === 0) {
+      toast('Gere bilhetes primeiro.', true);
+      return;
+    }
+    let csv = 'Bilhete,Números,Estrelas\n';
+    multiTicketsAtuais.forEach((t, i) => {
+      csv += `${i+1},"${t.nums.join(';')}","${t.stars.join(';')}"\n`;
+    });
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `bilhetes_${currentGame}_${new Date().toISOString().slice(0,10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+    toast('CSV exportado.');
+  });
 
-  // Clock
-  function updateClock() {
-    const now = new Date();
-    document.getElementById('clock').textContent = now.toLocaleTimeString('pt-PT');
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
+  // Tab manual
+  document.getElementById('btnClearManual').addEventListener('click', () => {
+    manualSelectedNums.clear();
+    manualSelectedStars.clear();
+    renderManualGrids();
+  });
+  document.getElementById('btnSaveManual').addEventListener('click', async function() {
+    const regra = REGRAS[currentGame];
+    const nums = Array.from(manualSelectedNums).sort((a,b)=>a-b);
+    const stars = Array.from(manualSelectedStars).sort((a,b)=>a-b);
+    if (nums.length < regra.nums.minAposta || nums.length > regra.nums.maxAposta ||
+        stars.length < regra.stars.minAposta || stars.length > regra.stars.maxAposta) {
+      toast('Aposta inválida.', true);
+      return;
+    }
+    const entry = {
+      game: regra.nome,
+      nums,
+      stars,
+      metodo: 'Manual',
+      data: new Date().toLocaleDateString('pt-PT')
+    };
+    const ok = await guardarApostaPersistente(entry);
+    if (ok) { toast('Guardado!'); renderApostasGuardadas(); } else toast('Erro ao guardar.', true);
+  });
 
-  updateUI();
-  renderApostasGuardadas();
-}
+  // Histórico
+  document.getElementById('btnAddHistorico').addEventListener('click', adicionarSorteioHistorico);
+  document.getElementById('histMonthFilter').addEventListener('change', function() {
+    renderHistoricoTable(currentGame);
+  });
 
-document.addEventListener('DOMContentLoaded', init);
+  // Limpar histórico de apostas guardadas
+  document.getElementById('btnClearHistory').addEventListener('click', async function() {
+    if (!confirm('Tem a certeza que deseja apagar todas as apostas guardadas?')) return;
+    await limparApostasPersistentes();
+    renderApostasGuardadas();
+    toast('Histórico limpo.');
+  });
+
+  // Evento de mudança de jogo no select
+  document.getElementById('gameType').addEventListener('change', updateUI);
+});
 </script>
 </body>
-  </html>
+   </html>
