@@ -549,20 +549,24 @@ select:disabled{opacity:0.5;cursor:not-allowed;}
     </div>
   </div>
 
+  <!-- ===================== TAB HISTÓRICO ===================== -->
   <div class="tabpanel" id="tab-historico">
     <div class="panel">
       <h2>Adicionar Sorteio Real</h2>
       <p style="font-size:0.72rem;color:var(--paper-dim);line-height:1.55;">Insira aqui os resultados à medida que forem saindo (jogossantacasa.pt). Fica guardado neste dispositivo, sem precisar de editar código.</p>
       <div class="row">
         <div style="flex-basis:100%;">
-          <label class="field-label" for="histDrawDate">Data do sorteio</label>
-          <input type="text" id="histDrawDate" placeholder="DD/MM/AAAA" maxlength="10" style="width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;">
+          <label class="field-label" for="histDrawDate">Data do sorteio (DD/MM/AAAA)</label>
+          <input type="text" id="histDrawDate" placeholder="Ex: 26/09/2023" maxlength="10" style="width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;">
         </div>
       </div>
-      <h3 class="field-label" id="histNumLabel" style="margin-top:14px;">Números sorteados</h3>
-      <div class="manual-grid" id="histNumGrid"></div>
-      <h3 class="field-label" id="histExtraLabel" style="margin-top:12px;">Estrelas</h3>
-      <div class="manual-grid" id="histExtraGrid"></div>
+
+      <h3 class="field-label" id="histNumLabel" style="margin-top:14px;">Números sorteados (separados por espaço ou vírgula)</h3>
+      <input type="text" id="histNumsInput" placeholder="Ex: 4 15 22 35 48" style="width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;">
+
+      <h3 class="field-label" id="histExtraLabel" style="margin-top:12px;">Estrelas / Nº Sorte / Sonho (separados por espaço ou vírgula)</h3>
+      <input type="text" id="histExtraInput" placeholder="Ex: 3 9" style="width:100%;background:rgba(0,0,0,0.45);border:1px solid var(--line-strong);color:var(--paper);padding:13px 14px;font-size:0.95rem;border-radius:11px;outline:none;font-family:var(--font-mono);font-weight:500;">
+
       <div class="validation-msg" id="histValidation"></div>
       <button class="btn" id="btnAddHistorico" style="margin-top:12px;">Adicionar sorteio ao histórico</button>
     </div>
@@ -1182,7 +1186,8 @@ function updateUI() {
     updateMultiUI();
     renderManualGrids();
     renderHistoricoTable(currentGame);
-    renderHistoricoInputGrids();
+    // Atualizar validação do histórico (campos de texto)
+    updateHistValidation();
     addLog(`Jogo selecionado: ${regra.nome}`, 'system');
   } catch (err) {
     console.error('Erro em updateUI:', err);
@@ -1369,47 +1374,48 @@ function renderHistoricoTable(gameKey) {
   document.getElementById('historicoFreqContainer').innerHTML = freqHtml;
 }
 
-/* ---- Formulário de inserção de novo sorteio ---- */
-let histSelectedNums = new Set();
-let histSelectedExtra = new Set();
-function renderHistoricoInputGrids() {
-  const regra = REGRAS[currentGame];
-  histSelectedNums.clear();
-  histSelectedExtra.clear();
-  document.getElementById('histNumLabel').textContent = `Números sorteados (exatamente ${regra.nums.sorteados})`;
-  document.getElementById('histExtraLabel').textContent = `${regra.stars.nome} (exatamente ${regra.stars.sorteados})`;
-  const numGrid = document.getElementById('histNumGrid');
-  numGrid.innerHTML = '';
-  for (let i = 1; i <= regra.nums.max; i++) {
-    const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i;
-    btn.onclick = () => toggleHistNum(i, btn); numGrid.appendChild(btn);
-  }
-  const extraGrid = document.getElementById('histExtraGrid');
-  extraGrid.innerHTML = '';
-  for (let i = 1; i <= regra.stars.max; i++) {
-    const btn = document.createElement('div'); btn.className = 'pick-btn'; btn.textContent = i;
-    btn.onclick = () => toggleHistExtra(i, btn); extraGrid.appendChild(btn);
-  }
-  updateHistValidation();
+/* ---- Funções auxiliares para parse de números ---- */
+function parseNumbersFromInput(text) {
+  if (!text.trim()) return [];
+  // separa por vírgula ou espaço, filtra números inteiros positivos
+  return text.split(/[\s,]+/).map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n) && n > 0);
 }
-function toggleHistNum(n, btn) {
+
+/* ---- Validação e adição de sorteio (campos de texto) ---- */
+function updateHistValidation() {
   const regra = REGRAS[currentGame];
-  if (histSelectedNums.has(n)) { histSelectedNums.delete(n); btn.classList.remove('sel-n'); }
+  const dataTxt = document.getElementById('histDrawDate').value.trim();
+  const numsText = document.getElementById('histNumsInput').value;
+  const extraText = document.getElementById('histExtraInput').value;
+
+  const nums = parseNumbersFromInput(numsText);
+  const extras = parseNumbersFromInput(extraText);
+
+  const msg = document.getElementById('histValidation');
+  const errs = [];
+
+  if (!validarDataHist(dataTxt)) errs.push('Data inválida (use DD/MM/AAAA)');
+  if (nums.length !== regra.nums.sorteados) errs.push(`${nums.length}/${regra.nums.sorteados} números`);
   else {
-    if (histSelectedNums.size >= regra.nums.sorteados) { addLog(`Um sorteio real tem exatamente ${regra.nums.sorteados} números.`, 'warn'); return; }
-    histSelectedNums.add(n); btn.classList.add('sel-n');
+    const invalidNums = nums.filter(n => n < regra.nums.min || n > regra.nums.max);
+    if (invalidNums.length) errs.push(`Números fora do intervalo (${regra.nums.min}-${regra.nums.max})`);
   }
-  updateHistValidation();
-}
-function toggleHistExtra(n, btn) {
-  const regra = REGRAS[currentGame];
-  if (histSelectedExtra.has(n)) { histSelectedExtra.delete(n); btn.classList.remove('sel-s'); }
+  if (extras.length !== regra.stars.sorteados) errs.push(`${extras.length}/${regra.stars.sorteados} ${regra.stars.nome}`);
   else {
-    if (histSelectedExtra.size >= regra.stars.sorteados) { addLog(`Um sorteio real tem exatamente ${regra.stars.sorteados} ${regra.stars.nome}.`, 'warn'); return; }
-    histSelectedExtra.add(n); btn.classList.add('sel-s');
+    const invalidExtras = extras.filter(n => n < regra.stars.min || n > regra.stars.max);
+    if (invalidExtras.length) errs.push(`${regra.stars.nome} fora do intervalo (${regra.stars.min}-${regra.stars.max})`);
   }
-  updateHistValidation();
+
+  if (errs.length === 0) {
+    msg.textContent = '✓ Pronto a adicionar';
+    msg.className = 'validation-msg ok';
+    return true;
+  }
+  msg.textContent = errs.join(' · ');
+  msg.className = 'validation-msg err';
+  return false;
 }
+
 function validarDataHist(txt) {
   const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(txt || '');
   if (!m) return false;
@@ -1417,38 +1423,41 @@ function validarDataHist(txt) {
   if (mo < 1 || mo > 12 || d < 1 || d > 31 || y < 2000 || y > 2100) return false;
   return true;
 }
-function updateHistValidation() {
-  const regra = REGRAS[currentGame];
-  const dataTxt = document.getElementById('histDrawDate').value.trim();
-  const msg = document.getElementById('histValidation');
-  const errs = [];
-  if (!validarDataHist(dataTxt)) errs.push('Data inválida (use DD/MM/AAAA)');
-  if (histSelectedNums.size !== regra.nums.sorteados) errs.push(`${histSelectedNums.size}/${regra.nums.sorteados} números`);
-  if (histSelectedExtra.size !== regra.stars.sorteados) errs.push(`${histSelectedExtra.size}/${regra.stars.sorteados} ${regra.stars.nome}`);
-  if (errs.length === 0) { msg.textContent = '✓ Pronto a adicionar'; msg.className = 'validation-msg ok'; return true; }
-  msg.textContent = errs.join(' · ');
-  msg.className = 'validation-msg err';
-  return false;
-}
+
 async function adicionarSorteioHistorico() {
-  if (!updateHistValidation()) { addLog('Preencha data, números e ' + REGRAS[currentGame].stars.nome + ' corretamente.', 'warn'); return; }
+  if (!updateHistValidation()) {
+    addLog('Preencha data, números e ' + REGRAS[currentGame].stars.nome + ' corretamente.', 'warn');
+    return;
+  }
   const regra = REGRAS[currentGame];
   const dataTxt = document.getElementById('histDrawDate').value.trim();
-  const nums = Array.from(histSelectedNums).sort((a, b) => a - b);
-  const extra = Array.from(histSelectedExtra).sort((a, b) => a - b);
+  const numsText = document.getElementById('histNumsInput').value;
+  const extraText = document.getElementById('histExtraInput').value;
+
+  const nums = parseNumbersFromInput(numsText).sort((a, b) => a - b);
+  const extras = parseNumbersFromInput(extraText).sort((a, b) => a - b);
+
   const entry = { data: dataTxt, numeros: nums };
-  if (currentGame === 'euromilhoes') entry.estrelas = extra;
-  else if (currentGame === 'totoloto') entry.sorte = extra[0];
-  else entry.sonho = extra[0];
+  if (currentGame === 'euromilhoes') entry.estrelas = extras;
+  else if (currentGame === 'totoloto') entry.sorte = extras[0];
+  else entry.sonho = extras[0];
 
   if (!historicoCustom[currentGame]) historicoCustom[currentGame] = [];
   historicoCustom[currentGame].push(entry);
   const ok = await guardarHistoricoCustom();
   renderHistoricoTable(currentGame);
-  renderHistoricoInputGrids();
+  // Limpar campos após adicionar
   document.getElementById('histDrawDate').value = '';
-  if (ok) { addLog(`Sorteio de ${dataTxt} adicionado ao histórico de ${regra.nome}.`, 'success'); toast('Sorteio adicionado!'); }
-  else { addLog('Sorteio adicionado nesta sessão, mas não foi possível guardar de forma persistente.', 'warn'); toast('Guardado só nesta sessão.', true); }
+  document.getElementById('histNumsInput').value = '';
+  document.getElementById('histExtraInput').value = '';
+  updateHistValidation();
+  if (ok) {
+    addLog(`Sorteio de ${dataTxt} adicionado ao histórico de ${regra.nome}.`, 'success');
+    toast('Sorteio adicionado!');
+  } else {
+    addLog('Sorteio adicionado nesta sessão, mas não foi possível guardar de forma persistente.', 'warn');
+    toast('Guardado só nesta sessão.', true);
+  }
 }
 
 /* ============================================================
@@ -1943,7 +1952,13 @@ document.addEventListener('DOMContentLoaded', async function () {
   // Preencher UI
   renderFilterGrid();
   renderManualGrids();
-  renderHistoricoInputGrids();
+  // Adicionar listeners para validação em tempo real do histórico (campos de texto)
+  document.getElementById('histDrawDate').addEventListener('input', updateHistValidation);
+  document.getElementById('histNumsInput').addEventListener('input', updateHistValidation);
+  document.getElementById('histExtraInput').addEventListener('input', updateHistValidation);
+  // Inicializar validação do histórico
+  updateHistValidation();
+
   document.getElementById('gameType').addEventListener('change', updateUI);
   document.getElementById('genMethod').addEventListener('change', function () {
     document.getElementById('methodInfo').textContent = METHOD_INFO[this.value] || '';
@@ -2081,7 +2096,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   // Histórico
   document.getElementById('btnAddHistorico').addEventListener('click', adicionarSorteioHistorico);
   document.getElementById('histMonthFilter').addEventListener('change', () => renderHistoricoTable(currentGame));
-  document.getElementById('histDrawDate').addEventListener('input', updateHistValidation);
 
   // Relógio
   function atualizarRelogio() {
@@ -2097,4 +2111,4 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 </script>
 </body>
-  </html>
+   </html>
